@@ -12,7 +12,7 @@ public class User
     public string Headline { get; set; }
     public string Summary { get; set; }
     public string Location { get; set; }
-    public DateTime DateJoined { get; set; }
+    public DateTimeOffset DateJoined { get; set; }
     public string LinkedInUrl { get; set; }
     public string GenderIdentity { get; set; }
     public string Pronoun { get; set; }

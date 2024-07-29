@@ -9,8 +9,8 @@ public class JobOffer
     public string Location { get; set; }
     public string JobType { get; set; }
     public string ExperienceLevel { get; set; }
-    public DateTime PostedDate { get; set; }
-    public DateTime ExpiredDate { get; set; }
+    public DateTimeOffset PostedDate { get; set; }
+    public DateTimeOffset ExpiredDate { get; set; }
     public bool IsActive { get; set; }
     public int EstimatedDurationDays { get; set; }
     public decimal MinSalary { get; set; }
