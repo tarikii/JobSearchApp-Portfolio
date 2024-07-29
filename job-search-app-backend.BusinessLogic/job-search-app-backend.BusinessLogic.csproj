@@ -8,12 +8,14 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Interfaces\" />
-    <Folder Include="Services\" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.7" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Abstractions" Version="8.0.7" />
+    <PackageReference Include="System.Threading.Tasks" Version="4.3.0" />
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.7" />
+    <ProjectReference Include="..\job-search-app-backend.Domain\job-search-app-backend.Domain.csproj" />
+    <ProjectReference Include="..\job-search-app-backend.Infraestructure\job-search-app-backend.Infraestructure.csproj" />
   </ItemGroup>
 
 </Project>
