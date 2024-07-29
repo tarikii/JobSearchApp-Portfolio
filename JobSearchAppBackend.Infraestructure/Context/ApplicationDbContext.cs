@@ -30,27 +30,27 @@ namespace JobSearchApp.Infrastructure.Data
         }
 
         public DbSet<User> Users { get; set; }
-        // public DbSet<CompensationBenefit> CompensationBenefits { get; set; }
-        // public DbSet<Role> Roles { get; set; }
-        // public DbSet<Permission> Permissions { get; set; }
-        // public DbSet<Resource> Resources { get; set; }
-        // public DbSet<RolePermissionPatent> RolePermissionPatents { get; set; }
-        // public DbSet<Company> Companies { get; set; }
-        // public DbSet<JobOffer> JobOffers { get; set; }
-        // public DbSet<WorkExperience> WorkExperiences { get; set; }
-        // public DbSet<Education> Educations { get; set; }
-        // public DbSet<Application> Applications { get; set; }
-        // public DbSet<Feedback> Feedbacks { get; set; }
-        // public DbSet<SocialMedia> SocialMedias { get; set; }
-        // public DbSet<Question> Questions { get; set; }
-        // public DbSet<Answer> Answers { get; set; }
-        // public DbSet<Interest> Interests { get; set; }
-        // public DbSet<UserPreference> UserPreferences { get; set; }
-        // public DbSet<Match> Matches { get; set; }
-        // public DbSet<Skill> Skills { get; set; }
-        // public DbSet<UserSkill> UserSkills { get; set; }
-        // public DbSet<Tag> Tags { get; set; }
-        // public DbSet<CompanyTag> CompanyTags { get; set; }
+        public DbSet<CompensationBenefit> CompensationBenefits { get; set; }
+        public DbSet<Role> Roles { get; set; }
+        public DbSet<Permission> Permissions { get; set; }
+        public DbSet<Resource> Resources { get; set; }
+        public DbSet<RolePermissionPatent> RolePermissionPatents { get; set; }
+        public DbSet<Company> Companies { get; set; }
+        public DbSet<JobOffer> JobOffers { get; set; }
+        public DbSet<WorkExperience> WorkExperiences { get; set; }
+        public DbSet<Education> Educations { get; set; }
+        public DbSet<Application> Applications { get; set; }
+        public DbSet<Feedback> Feedbacks { get; set; }
+        public DbSet<SocialMedia> SocialMedias { get; set; }
+        public DbSet<Question> Questions { get; set; }
+        public DbSet<Answer> Answers { get; set; }
+        public DbSet<Interest> Interests { get; set; }
+        public DbSet<UserPreference> UserPreferences { get; set; }
+        public DbSet<Domain.Models.Match> Matches { get; set; }
+        public DbSet<Skill> Skills { get; set; }
+        public DbSet<UserSkill> UserSkills { get; set; }
+        public DbSet<Tag> Tags { get; set; }
+        public DbSet<CompanyTag> CompanyTags { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
