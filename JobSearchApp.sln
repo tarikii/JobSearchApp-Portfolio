@@ -5,7 +5,7 @@ VisualStudioVersion = 17.7.34202.233
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JobSearchApp", "JobSearchApp\JobSearchApp.csproj", "{A13AA6F4-827D-4B2F-A27B-FD33E061992D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JobSearchApp.Infraestructure", "JobSearchApp.Infraestructure\JobSearchApp.Infraestructure.csproj", "{9C47682A-6E39-4EB4-A06E-F722889D46A0}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JobSearchApp.Infrastructure", "JobSearchApp.Infrastructure\JobSearchApp.Infrastructure.csproj", "{9C47682A-6E39-4EB4-A06E-F722889D46A0}"
 	ProjectSection(ProjectDependencies) = postProject
 		{5F71D73E-3D1E-4125-BB91-D9F1C8D769A4} = {5F71D73E-3D1E-4125-BB91-D9F1C8D769A4}
 	EndProjectSection

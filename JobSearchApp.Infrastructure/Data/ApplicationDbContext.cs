@@ -13,8 +13,8 @@ public class ApplicationDbContext : DbContext
     private readonly string _localConnectionString;
     private readonly string _localDbFilePath;
 
-    public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options, IConfiguration configuration,
-        ILogger<ApplicationDbContext> logger)
+    public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options, IConfiguration configuration=null,
+        ILogger<ApplicationDbContext> logger=null)
         : base(options)
     {
         _logger = logger;
@@ -24,7 +24,6 @@ public class ApplicationDbContext : DbContext
 
         // EnsureLocalDatabaseExists();
     }
-
     public DbSet<Company> Companies { get; set; }
     public DbSet<CompensationBenefit> CompensationBenefits { get; set; }
     public DbSet<JobOffer> JobOffers { get; set; }
@@ -47,11 +46,12 @@ public class ApplicationDbContext : DbContext
     public DbSet<UserPreference> UserPreferences { get; set; }
     public DbSet<UserSkill> UserSkills { get; set; }
     public DbSet<WorkExperience> WorkExperiences { get; set; }
-    
+
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         base.OnModelCreating(modelBuilder);
 
+        // Configuración de tablas
         modelBuilder.Entity<Company>().ToTable("Company");
         modelBuilder.Entity<CompensationBenefit>().ToTable("CompensationBenefit");
         modelBuilder.Entity<JobOffer>().ToTable("JobOffer");
@@ -75,117 +75,195 @@ public class ApplicationDbContext : DbContext
         modelBuilder.Entity<UserSkill>().ToTable("UserSkill");
         modelBuilder.Entity<WorkExperience>().ToTable("WorkExperience");
 
+        // Configuración de claves primarias
+        modelBuilder.Entity<Company>().HasKey(c => c.CompanyId);
+        modelBuilder.Entity<CompensationBenefit>().HasKey(cb => cb.BenefitId);
+        modelBuilder.Entity<JobOffer>().HasKey(j => j.JobOfferId);
+        modelBuilder.Entity<Permission>().HasKey(p => p.Name);
+        modelBuilder.Entity<Question>().HasKey(q => q.QuestionId);
+        modelBuilder.Entity<Resource>().HasKey(r => r.ResourceId);
+        modelBuilder.Entity<Role>().HasKey(r => r.RoleId);
+        modelBuilder.Entity<Skill>().HasKey(s => s.SkillId);
+        modelBuilder.Entity<Tag>().HasKey(t => t.TagId);
+        modelBuilder.Entity<User>().HasKey(u => u.UserId);
+        modelBuilder.Entity<Answer>().HasKey(a => a.AnswerId);
+        modelBuilder.Entity<Application>().HasKey(a => a.ApplicationId);
+        modelBuilder.Entity<Education>().HasKey(e => e.EducationId);
+        modelBuilder.Entity<Feedback>().HasKey(f => f.FeedbackId);
+        modelBuilder.Entity<Interest>().HasKey(i => i.InterestId);
+        modelBuilder.Entity<Match>().HasKey(m => m.MatchId);
+        modelBuilder.Entity<SocialMedia>().HasKey(sm => sm.SocialMediaId);
+        modelBuilder.Entity<UserPreference>().HasKey(up => up.PreferenceId);
+        modelBuilder.Entity<UserSkill>().HasKey(us => us.UserSkillId);
+        modelBuilder.Entity<WorkExperience>().HasKey(we => we.WorkExperienceId);
+        modelBuilder.Entity<CompanyTag>().HasKey(ct => new { ct.CompanyId, ct.TagId });
+        modelBuilder.Entity<RolePermissionPatent>().HasKey(rp => new { rp.RoleId, rp.ResourceId, rp.Permission });
+
+        // Configuración de propiedades decimales
+        modelBuilder.Entity<Application>()
+            .Property(a => a.SalaryExpected)
+            .HasColumnType("decimal(18,2)");
+
+        modelBuilder.Entity<JobOffer>()
+            .Property(j => j.MaxSalary)
+            .HasColumnType("decimal(18,2)");
+
+        modelBuilder.Entity<JobOffer>()
+            .Property(j => j.MinSalary)
+            .HasColumnType("decimal(18,2)");
+
+        // Configuración de relaciones
         modelBuilder.Entity<Company>()
             .HasMany(c => c.CompensationBenefits)
             .WithOne(cb => cb.Company)
-            .HasForeignKey(cb => cb.CompanyId);
+            .HasForeignKey(cb => cb.CompanyId)
+            .OnDelete(DeleteBehavior.Cascade);
 
         modelBuilder.Entity<Company>()
             .HasMany(c => c.JobOffers)
             .WithOne(j => j.Company)
-            .HasForeignKey(j => j.CompanyId);
+            .HasForeignKey(j => j.CompanyId)
+            .OnDelete(DeleteBehavior.Cascade);
 
         modelBuilder.Entity<Company>()
             .HasMany(c => c.CompanyTags)
             .WithOne(ct => ct.Company)
-            .HasForeignKey(ct => ct.CompanyId);
+            .HasForeignKey(ct => ct.CompanyId)
+            .OnDelete(DeleteBehavior.Cascade);
 
         modelBuilder.Entity<Company>()
             .HasMany(c => c.Users)
             .WithOne(u => u.Company)
-            .HasForeignKey(u => u.CompanyId);
+            .HasForeignKey(u => u.CompanyId)
+            .OnDelete(DeleteBehavior.Cascade);
 
         modelBuilder.Entity<JobOffer>()
             .HasMany(j => j.Applications)
             .WithOne(a => a.JobOffer)
-            .HasForeignKey(a => a.JobOfferId);
+            .HasForeignKey(a => a.JobOfferId)
+            .OnDelete(DeleteBehavior.Cascade);
 
         modelBuilder.Entity<JobOffer>()
             .HasMany(j => j.Matches)
             .WithOne(m => m.JobOffer)
-            .HasForeignKey(m => m.JobOfferId);
+            .HasForeignKey(m => m.JobOfferId)
+            .OnDelete(DeleteBehavior.Cascade);
 
         modelBuilder.Entity<Question>()
             .HasMany(q => q.Answers)
             .WithOne(a => a.Question)
-            .HasForeignKey(a => a.QuestionId);
+            .HasForeignKey(a => a.QuestionId)
+            .OnDelete(DeleteBehavior.Cascade);
 
         modelBuilder.Entity<Resource>()
             .HasMany(r => r.RolePermissionPatents)
             .WithOne(rp => rp.Resource)
-            .HasForeignKey(rp => rp.ResourceId);
+            .HasForeignKey(rp => rp.ResourceId)
+            .OnDelete(DeleteBehavior.Cascade);
 
         modelBuilder.Entity<Role>()
             .HasMany(r => r.Users)
             .WithOne(u => u.Role)
-            .HasForeignKey(u => u.RoleId);
+            .HasForeignKey(u => u.RoleId)
+            .OnDelete(DeleteBehavior.Cascade);
 
         modelBuilder.Entity<Role>()
             .HasMany(r => r.RolePermissionPatents)
             .WithOne(rp => rp.Role)
-            .HasForeignKey(rp => rp.RoleId);
+            .HasForeignKey(rp => rp.RoleId)
+            .OnDelete(DeleteBehavior.Cascade);
 
         modelBuilder.Entity<Skill>()
             .HasMany(s => s.UserSkills)
             .WithOne(us => us.Skill)
-            .HasForeignKey(us => us.SkillId);
+            .HasForeignKey(us => us.SkillId)
+            .OnDelete(DeleteBehavior.Cascade);
 
         modelBuilder.Entity<Tag>()
             .HasMany(t => t.CompanyTags)
             .WithOne(ct => ct.Tag)
-            .HasForeignKey(ct => ct.TagId);
+            .HasForeignKey(ct => ct.TagId)
+            .OnDelete(DeleteBehavior.Cascade);
 
         modelBuilder.Entity<User>()
             .HasMany(u => u.Answers)
             .WithOne(a => a.User)
-            .HasForeignKey(a => a.UserId);
+            .HasForeignKey(a => a.UserId)
+            .OnDelete(DeleteBehavior.Cascade);
 
         modelBuilder.Entity<User>()
             .HasMany(u => u.Applications)
             .WithOne(a => a.User)
-            .HasForeignKey(a => a.UserId);
+            .HasForeignKey(a => a.UserId)
+            .OnDelete(DeleteBehavior.NoAction);
 
         modelBuilder.Entity<User>()
             .HasMany(u => u.Educations)
             .WithOne(e => e.User)
-            .HasForeignKey(e => e.UserId);
+            .HasForeignKey(e => e.UserId)
+            .OnDelete(DeleteBehavior.Cascade);
 
         modelBuilder.Entity<User>()
             .HasMany(u => u.Feedbacks)
             .WithOne(f => f.Recruiter)
-            .HasForeignKey(f => f.RecruiterId);
+            .HasForeignKey(f => f.RecruiterId)
+            .OnDelete(DeleteBehavior.NoAction);
 
         modelBuilder.Entity<User>()
             .HasMany(u => u.Interests)
             .WithOne(i => i.User)
-            .HasForeignKey(i => i.UserId);
+            .HasForeignKey(i => i.UserId)
+            .OnDelete(DeleteBehavior.NoAction);
 
         modelBuilder.Entity<User>()
             .HasMany(u => u.Matches)
             .WithOne(m => m.User)
-            .HasForeignKey(m => m.UserId);
+            .HasForeignKey(m => m.UserId)
+            .OnDelete(DeleteBehavior.NoAction);
 
         modelBuilder.Entity<User>()
             .HasMany(u => u.SocialMedias)
             .WithOne(sm => sm.User)
-            .HasForeignKey(sm => sm.UserId);
+            .HasForeignKey(sm => sm.UserId)
+            .OnDelete(DeleteBehavior.Cascade);
 
         modelBuilder.Entity<User>()
             .HasMany(u => u.UserPreferences)
             .WithOne(up => up.User)
-            .HasForeignKey(up => up.UserId);
+            .HasForeignKey(up => up.UserId)
+            .OnDelete(DeleteBehavior.Cascade);
 
         modelBuilder.Entity<User>()
             .HasMany(u => u.UserSkills)
             .WithOne(us => us.User)
-            .HasForeignKey(us => us.UserId);
+            .HasForeignKey(us => us.UserId)
+            .OnDelete(DeleteBehavior.Cascade);
 
         modelBuilder.Entity<User>()
             .HasMany(u => u.WorkExperiences)
             .WithOne(we => we.User)
-            .HasForeignKey(we => we.UserId);
-    }
+            .HasForeignKey(we => we.UserId)
+            .OnDelete(DeleteBehavior.Cascade);
 
+        modelBuilder.Entity<RolePermissionPatent>()
+            .HasOne(rp => rp.Role)
+            .WithMany(r => r.RolePermissionPatents)
+            .HasForeignKey(rp => rp.RoleId)
+            .OnDelete(DeleteBehavior.Cascade);
+
+        modelBuilder.Entity<RolePermissionPatent>()
+            .HasOne(rp => rp.Resource)
+            .WithMany(r => r.RolePermissionPatents)
+            .HasForeignKey(rp => rp.ResourceId)
+            .OnDelete(DeleteBehavior.Cascade);
+
+        modelBuilder.Entity<RolePermissionPatent>()
+            .HasOne(rp => rp.PermissionEntity)
+            .WithMany()
+            .HasForeignKey(rp => rp.Permission)
+            .HasPrincipalKey(p => p.Name)
+            .OnDelete(DeleteBehavior.Cascade);
+    }
     private void EnsureLocalDatabaseExists()
     {
         if (!File.Exists(_localDbFilePath))
