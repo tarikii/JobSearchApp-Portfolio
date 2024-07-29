@@ -20,4 +20,18 @@ public class DatabaseController : ControllerBase
         var result = await _context.TestConnectionAsync();
         return Ok(result);
     }
+    
+    [HttpPost("revert")]
+    public IActionResult RevertDatabase()
+    {
+        try
+        {
+            DbInitializer.Revert(_context);
+            return Ok("Database reverted successfully.");
+        }
+        catch (Exception ex)
+        {
+            return StatusCode(500, $"An error occurred while reverting the database: {ex.Message}");
+        }
+    }
 }

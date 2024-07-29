@@ -42,20 +42,28 @@ namespace JobSearchApp
             app.UseHttpsRedirection();
             app.UseAuthorization();
             app.MapControllers();
-
-
             using (var scope = app.Services.CreateScope())
             {
-                var db = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
-                var logger = scope.ServiceProvider.GetRequiredService<ILogger<Program>>();
+                var services = scope.ServiceProvider;
+                var context = services.GetRequiredService<ApplicationDbContext>();
+                var logger = services.GetRequiredService<ILogger<Program>>();
+
                 try
                 {
-                    var result = db.TestConnectionAsync().Result;
+                    var result = context.TestConnectionAsync().Result;
                     logger.LogInformation(result);
+                    if (args.Contains("revert"))
+                    {
+                        DbInitializer.Revert(context);
+                    }
+                    else
+                    {
+                        DbInitializer.Initialize(context);
+                    }
                 }
                 catch (Exception ex)
                 {
-                    logger.LogError(ex, "An error occurred while testing the database connection.");
+                    logger.LogError(ex, "An error occurred while seeding the database.");
                 }
             }
 
