@@ -23,10 +23,10 @@ namespace JobSearchApp.Infrastructure.Data
         {
             _logger = logger;
             _azureConnectionString = configuration.GetConnectionString("AzureConnection");
-            _localConnectionString = configuration.GetConnectionString("LocalConnection");
-            _localDbFilePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "JobSearchDb.mdf");
+            // _localConnectionString = configuration.GetConnectionString("LocalConnection");
+            // _localDbFilePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "JobSearchDb.mdf");
 
-            EnsureLocalDatabaseExists();
+            // EnsureLocalDatabaseExists();
         }
 
         public DbSet<User> Users { get; set; }
