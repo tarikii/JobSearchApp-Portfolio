@@ -1,4 +1,4 @@
-namespace job_search_app_backend.Domain.Models;
+namespace JobSearchApp.Domain.Models;
 
 public class User
 {

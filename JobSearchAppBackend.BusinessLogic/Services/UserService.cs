@@ -1,10 +1,10 @@
 using System.Threading.Tasks;
-using job_search_app_backend.BusinessLogic.Interfaces;
-using job_search_app_backend.Domain.Models;
+using JobSearchApp.BusinessLogic.Interfaces;
+using JobSearchApp.Domain.Models;
 using JobSearchApp.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 
-namespace job_search_app_backend.BusinessLogic.Services;
+namespace JobSearchApp.BusinessLogic.Services;
 
 public class UserService : IUserService
 {

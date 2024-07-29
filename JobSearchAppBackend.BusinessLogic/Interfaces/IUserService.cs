@@ -1,6 +1,6 @@
-using job_search_app_backend.Domain.Models;
+using JobSearchApp.Domain.Models;
 
-namespace job_search_app_backend.BusinessLogic.Interfaces;
+namespace JobSearchApp.BusinessLogic.Interfaces;
 
 public interface IUserService
 {

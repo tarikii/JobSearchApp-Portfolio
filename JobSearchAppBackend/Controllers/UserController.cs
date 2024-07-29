@@ -1,5 +1,5 @@
-using job_search_app_backend.BusinessLogic.Interfaces;
-using job_search_app_backend.Domain.Models;
+using JobSearchApp.BusinessLogic.Interfaces;
+using JobSearchApp.Domain.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace JobSearchApp.Web.Controllers;

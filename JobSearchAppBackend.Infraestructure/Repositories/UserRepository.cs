@@ -1,9 +1,9 @@
-using job_search_app_backend.Domain.Models;
-using job_search_app_backend.Infraestructure.Interfaces;
+using JobSearchApp.Domain.Models;
+using JobSearchApp.Infraestructure.Interfaces;
 using JobSearchApp.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 
-namespace job_search_app_backend.Infraestructure.Repositories;
+namespace JobSearchApp.Infraestructure.Repositories;
 
 public class UserRepository : IUserRepository
 {

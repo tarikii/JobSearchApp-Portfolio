@@ -1,6 +1,6 @@
-using job_search_app_backend.Domain.Models;
+using JobSearchApp.Domain.Models;
 
-namespace job_search_app_backend.Infraestructure.Interfaces;
+namespace JobSearchApp.Infraestructure.Interfaces;
 
 public interface IUserRepository
 {

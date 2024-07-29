@@ -6,7 +6,7 @@ using System.IO;
 using System.Net.Mime;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
-using job_search_app_backend.Domain.Models;
+using JobSearchApp.Domain.Models;
 using Microsoft.Data.SqlClient;
 
 namespace JobSearchApp.Infrastructure.Data
