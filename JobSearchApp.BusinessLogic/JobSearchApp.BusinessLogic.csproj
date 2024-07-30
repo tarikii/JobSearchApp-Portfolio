@@ -26,4 +26,8 @@
     <ProjectReference Include="..\JobSearchApp.Infrastructure\JobSearchApp.Infrastructure.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Mapping\" />
+  </ItemGroup>
+
 </Project>

@@ -1,6 +1,6 @@
 using JobSearchApp.Domain.Models;
 
-namespace JobSearchApp.Domain.DTOs
+namespace JobSearchApp.BusinessLogic.DTOs
 {
     public class EducationDto
     {
