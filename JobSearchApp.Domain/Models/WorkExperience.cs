@@ -1,5 +1,6 @@
 namespace JobSearchApp.Domain.Models;
 
+
 public class WorkExperience
 {
     public int WorkExperienceId { get; set; }

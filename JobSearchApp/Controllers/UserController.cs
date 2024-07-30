@@ -1,6 +1,7 @@
 using JobSearchApp.BusinessLogic.Interfaces;
 using JobSearchApp.Domain.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace JobSearchApp.Web.Controllers;
 
@@ -19,6 +20,7 @@ public class UsersController : ControllerBase
     public async Task<ActionResult<IEnumerable<User>>> GetAllUsers()
     {
         var users = await _userService.GetAllUsersAsync();
+        
         return Ok(users);
     }
 
