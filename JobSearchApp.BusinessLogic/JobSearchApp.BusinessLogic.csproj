@@ -8,6 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="13.0.1" />
     <PackageReference Include="EFCore.AutomaticMigrations.NetTopologySuite" Version="7.0.5" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.7" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="8.0.7">
@@ -24,10 +25,6 @@
   <ItemGroup>
     <ProjectReference Include="..\JobSearchApp.Domain\JobSearchApp.Domain.csproj" />
     <ProjectReference Include="..\JobSearchApp.Infrastructure\JobSearchApp.Infrastructure.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Mapping\" />
   </ItemGroup>
 
 </Project>
