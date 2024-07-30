@@ -1,0 +1,18 @@
+using JobSearchApp.Domain.Models;
+
+namespace JobSearchApp.Domain.DTOs
+{
+    public class ResourceDto
+    {
+        public int ResourceId { get; set; }
+        public string Name { get; set; }
+        public string Description { get; set; }
+
+        public ResourceDto(Resource resource)
+        {
+            ResourceId = resource.ResourceId;
+            Name = resource.Name;
+            Description = resource.Description;
+        }
+    }
+}
