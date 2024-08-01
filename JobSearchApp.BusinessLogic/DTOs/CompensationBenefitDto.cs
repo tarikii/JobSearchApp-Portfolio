@@ -20,4 +20,16 @@ namespace JobSearchApp.BusinessLogic.DTOs
             CompanyName = compensationBenefit.Company?.Name;
         }
     }
+    public class CreateCompensationBenefitDto
+    {
+        public int CompanyId { get; set; }
+        public string BenefitType { get; set; }
+        public string Description { get; set; }
+    }
+    
+    public class UpdateCompensationBenefitDto
+    {
+        public string BenefitType { get; set; }
+        public string Description { get; set; }
+    }
 }

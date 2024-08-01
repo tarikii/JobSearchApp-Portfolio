@@ -26,4 +26,18 @@ namespace JobSearchApp.BusinessLogic.DTOs
             JobTitle = application.JobOffer?.Title;
         }
     }
+    public class CreateApplicationDto
+    {
+        public int UserId { get; set; }
+        public int JobOfferId { get; set; }
+        public DateTimeOffset ApplicationDate { get; set; } = DateTimeOffset.Now;
+        public string Status { get; set; } = "Pending";
+        public decimal SalaryExpected { get; set; }
+    }
+    
+    public class UpdateApplicationDto
+    {
+        public string Status { get; set; }
+        public decimal SalaryExpected { get; set; }
+    }
 }

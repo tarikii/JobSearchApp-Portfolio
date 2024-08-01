@@ -15,4 +15,15 @@ namespace JobSearchApp.BusinessLogic.DTOs
             ImageUrl = tag.ImageUrl;
         }
     }
+    public class CreateTagDto
+    {
+        public string TagName { get; set; }
+        public string ImageUrl { get; set; }
+    }
+    
+    public class UpdateTagDto
+    {
+        public string TagName { get; set; }
+        public string ImageUrl { get; set; }
+    }
 }

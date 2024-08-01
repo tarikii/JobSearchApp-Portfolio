@@ -9,7 +9,6 @@ namespace JobSearchApp.BusinessLogic.DTOs
         public int QuestionId { get; set; }
         public string AnswerText { get; set; }
         public bool IsFeatured { get; set; }
-
         public string UserName { get; set; }
         public string QuestionText { get; set; }
 
@@ -23,5 +22,17 @@ namespace JobSearchApp.BusinessLogic.DTOs
             UserName = answer.User?.UserName;
             QuestionText = answer.Question?.QuestionText;
         }
+    }
+    public class CreateAnswerDto
+    {
+        public int UserId { get; set; }
+        public int QuestionId { get; set; }
+        public string AnswerText { get; set; }
+        public bool IsFeatured { get; set; }
+    }
+    public class UpdateAnswerDto
+    {
+        public string AnswerText { get; set; }
+        public bool IsFeatured { get; set; }
     }
 }

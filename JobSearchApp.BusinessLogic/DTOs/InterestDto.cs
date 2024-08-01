@@ -18,4 +18,13 @@ namespace JobSearchApp.BusinessLogic.DTOs
             UserName = interest.User?.UserName;
         }
     }
+    public class CreateInterestDto
+    {
+        public int UserId { get; set; }
+        public string InterestText { get; set; }
+    }
+    public class UpdateInterestDto
+    {
+        public string InterestText { get; set; }
+    }
 }

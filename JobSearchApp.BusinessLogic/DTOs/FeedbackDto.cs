@@ -22,4 +22,16 @@ namespace JobSearchApp.BusinessLogic.DTOs
             RecruiterName = feedback.Recruiter?.UserName;
         }
     }
+    public class CreateFeedbackDto
+    {
+        public int ApplicationId { get; set; }
+        public int RecruiterId { get; set; }
+        public string FeedbackText { get; set; }
+        public DateTimeOffset FeedbackDate { get; set; } = DateTimeOffset.Now;
+    }
+    
+    public class UpdateFeedbackDto
+    {
+        public string FeedbackText { get; set; }
+    }
 }

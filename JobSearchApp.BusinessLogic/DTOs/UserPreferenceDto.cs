@@ -20,4 +20,15 @@ namespace JobSearchApp.BusinessLogic.DTOs
             UserName = userPreference.User?.UserName;
         }
     }
+    public class CreateUserPreferenceDto
+    {
+        public int UserId { get; set; }
+        public string Category { get; set; }
+        public string Value { get; set; }
+    }
+    public class UpdateUserPreferenceDto
+    {
+        public string Category { get; set; }
+        public string Value { get; set; }
+    }
 }

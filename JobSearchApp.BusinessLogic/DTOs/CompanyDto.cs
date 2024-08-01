@@ -27,4 +27,25 @@ namespace JobSearchApp.BusinessLogic.DTOs
             Location = company.Location;
         }
     }
+    public class CreateCompanyDto
+    {
+        public string Name { get; set; }
+        public string WebsiteUrl { get; set; }
+        public string Industry { get; set; }
+        public string Size { get; set; }
+        public string Headquarters { get; set; }
+        public int FoundedYear { get; set; }
+        public string Description { get; set; }
+        public string Location { get; set; }
+    }
+    public class UpdateCompanyDto
+    {
+        public string WebsiteUrl { get; set; }
+        public string Industry { get; set; }
+        public string Size { get; set; }
+        public string Headquarters { get; set; }
+        public int FoundedYear { get; set; }
+        public string Description { get; set; }
+        public string Location { get; set; }
+    }
 }
