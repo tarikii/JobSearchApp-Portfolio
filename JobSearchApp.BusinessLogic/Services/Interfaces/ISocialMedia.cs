@@ -6,7 +6,8 @@ public interface ISocialMediaService
 {
     Task<IEnumerable<SocialMediaDto>> GetAllSocialMediasAsync();
     Task<SocialMediaDto> GetSocialMediaByIdAsync(int id);
-    Task<SocialMediaDto> CreateSocialMediaAsync(SocialMediaDto socialMediaDto);
-    Task<bool> UpdateSocialMediaAsync(SocialMediaDto socialMediaDto);
+    Task<SocialMediaDto> CreateSocialMediaAsync(CreateSocialMediaDto socialMediaDto);
+    Task<bool> UpdateSocialMediaAsync(int id, UpdateSocialMediaDto socialMediaDto);
     Task<bool> DeleteSocialMediaAsync(int id);
 }
+
