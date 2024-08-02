@@ -6,8 +6,8 @@ namespace JobSearchApp.BusinessLogic.Interfaces
     {
         Task<IEnumerable<AnswerDto>> GetAllAnswersAsync();
         Task<AnswerDto> GetAnswerByIdAsync(int id);
-        Task<AnswerDto> CreateAnswerAsync(AnswerDto answerDto);
-        Task<bool> UpdateAnswerAsync(AnswerDto answerDto);
+        Task<AnswerDto> CreateAnswerAsync(CreateAnswerDto answerDto);
+        Task<bool> UpdateAnswerAsync(UpdateAnswerDto answerDto);
         Task<bool> DeleteAnswerAsync(int id);
     }
 }

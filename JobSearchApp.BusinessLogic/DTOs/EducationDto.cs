@@ -46,6 +46,7 @@ namespace JobSearchApp.BusinessLogic.DTOs
     }
     public class UpdateEducationDto
     {
+        public int EducationId { get; set; }
         public string SchoolName { get; set; }
         public string Degree { get; set; }
         public string FieldOfStudy { get; set; }

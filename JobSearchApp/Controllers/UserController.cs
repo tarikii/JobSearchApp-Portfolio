@@ -1,7 +1,8 @@
+using AutoMapper;
+using JobSearchApp.BusinessLogic.DTOs;
 using JobSearchApp.BusinessLogic.Interfaces;
 using JobSearchApp.Domain.Models;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 
 namespace JobSearchApp.Web.Controllers;
 
@@ -10,52 +11,60 @@ namespace JobSearchApp.Web.Controllers;
 public class UsersController : ControllerBase
 {
     private readonly IUserService _userService;
+    private readonly IMapper _mapper;
 
-    public UsersController(IUserService userService)
+    public UsersController(IUserService userService, IMapper mapper)
     {
         _userService = userService;
+        _mapper = mapper;
     }
 
     [HttpGet]
-    public async Task<ActionResult<IEnumerable<User>>> GetAllUsers()
+    public async Task<ActionResult<IEnumerable<UserDto>>> GetAllUsers()
     {
         var users = await _userService.GetAllUsersAsync();
-        
-        return Ok(users);
+        var userDtos = _mapper.Map<IEnumerable<UserDto>>(users);
+        return Ok(userDtos);
     }
 
     [HttpGet("{id}")]
-    public async Task<ActionResult<User>> GetUserById(int id)
+    public async Task<ActionResult<UserDto>> GetUserById(int id)
     {
         var user = await _userService.GetUserByIdAsync(id);
         if (user == null)
         {
             return NotFound();
         }
-        return Ok(user);
+
+        var userDto = _mapper.Map<UserDto>(user);
+        return Ok(userDto);
     }
 
     [HttpPost]
-    public async Task<ActionResult<User>> CreateUser(User user)
+    public async Task<ActionResult<UserDto>> CreateUser(CreateUserDto createUserDto)
     {
-        var createdUser = await _userService.CreateUserAsync(user);
-        return CreatedAtAction(nameof(GetUserById), new { id = createdUser.UserId }, createdUser);
+        var user = _mapper.Map<User>(createUserDto);
+        var createdUser = await _userService.CreateUserAsync(createUserDto);
+        var userDto = _mapper.Map<UserDto>(createdUser);
+
+        return CreatedAtAction(nameof(GetUserById), new { id = userDto.UserId }, userDto);
     }
 
     [HttpPut("{id}")]
-    public async Task<ActionResult<User>> UpdateUser(int id, User user)
+    public async Task<ActionResult<UserDto>> UpdateUser(int id, UpdateUserDto updateUserDto)
     {
-        if (id != user.UserId)
+        var updatedUser = await _userService.UpdateUserAsync(id, updateUserDto);
+        if (updatedUser == null)
         {
-            return BadRequest();
+            return NotFound();
         }
 
-        var updatedUser = await _userService.UpdateUserAsync(user);
-        return Ok(updatedUser);
+        var userDto = _mapper.Map<UserDto>(updatedUser);
+        return Ok(userDto);
     }
 
     [HttpDelete("{id}")]
-    public async Task<ActionResult> DeleteUser(int id)
+    public async Task<IActionResult> DeleteUser(int id)
     {
         var result = await _userService.DeleteUserAsync(id);
         if (!result)

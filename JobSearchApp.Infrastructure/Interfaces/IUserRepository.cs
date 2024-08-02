@@ -1,6 +1,6 @@
 using JobSearchApp.Domain.Models;
 
-namespace JobSearchApp.Infraestructure.Interfaces;
+namespace JobSearchApp.Infrastructure.Interfaces;
 
 public interface IUserRepository
 {
