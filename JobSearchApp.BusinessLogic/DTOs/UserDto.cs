@@ -79,6 +79,7 @@ public class CreateUserDto
 
 public class UpdateUserDto
 {
+    public int UserId { get; set; }
     public string PasswordHash { get; set; }
     public string UserType { get; set; }
     public string FirstName { get; set; }

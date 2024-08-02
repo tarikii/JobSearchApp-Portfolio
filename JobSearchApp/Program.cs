@@ -33,30 +33,30 @@ public class Program
         app.UseAuthorization();
         app.MapControllers();
 
-        // using (var scope = app.Services.CreateScope())
-        // {
-        //     var services = scope.ServiceProvider;
-        //     var context = services.GetRequiredService<ApplicationDbContext>();
-        //     var logger = services.GetRequiredService<ILogger<Program>>();
-        //
-        //     try
-        //     {
-        //         var result = context.TestConnectionAsync().Result;
-        //         logger.LogInformation(result);
-        //         if (args.Contains("revert"))
-        //         {
-        //             DbInitializer.Revert(context);
-        //         }
-        //         else
-        //         {
-        //             DbInitializer.Initialize(context);
-        //         }
-        //     }
-        //     catch (Exception ex)
-        //     {
-        //         logger.LogError(ex, "An error occurred while seeding the database.");
-        //     }
-        // }
+        using (var scope = app.Services.CreateScope())
+        {
+            var sv = scope.ServiceProvider;
+            var context = sv.GetRequiredService<ApplicationDbContext>();
+            var logger = sv.GetRequiredService<ILogger<Program>>();
+        
+            try
+            {
+                var result = context.TestConnectionAsync().Result;
+                logger.LogInformation(result);
+                if (args.Contains("revert"))
+                {
+                    DbInitializer.Revert(context);
+                }
+                else
+                {
+                    DbInitializer.Initialize(context);
+                }
+            }
+            catch (Exception ex)
+            {
+                logger.LogError(ex, "An error occurred while seeding the database.");
+            }
+        }
 
         app.Run();
     }

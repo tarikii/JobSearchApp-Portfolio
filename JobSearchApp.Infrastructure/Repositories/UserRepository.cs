@@ -1,53 +1,54 @@
 using JobSearchApp.Domain.Models;
-using JobSearchApp.Infraestructure.Interfaces;
 using JobSearchApp.Infrastructure.Data;
+using JobSearchApp.Infrastructure.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
-namespace JobSearchApp.Infraestructure.Repositories;
-
-public class UserRepository : IUserRepository
+namespace JobSearchApp.Infrastructure.Repositories
 {
-    private readonly ApplicationDbContext _context;
-
-    public UserRepository(ApplicationDbContext context)
+    public class UserRepository : IUserRepository
     {
-        _context = context;
-    }
+        private readonly ApplicationDbContext _context;
 
-    public async Task<IEnumerable<User>> GetAllUsersAsync()
-    {
-        return await _context.Users.ToListAsync();
-    }
-
-    public async Task<User> GetUserByIdAsync(int userId)
-    {
-        return await _context.Users.FindAsync(userId);
-    }
-
-    public async Task<User> CreateUserAsync(User user)
-    {
-        _context.Users.Add(user);
-        await _context.SaveChangesAsync();
-        return user;
-    }
-
-    public async Task<User> UpdateUserAsync(User user)
-    {
-        _context.Users.Update(user);
-        await _context.SaveChangesAsync();
-        return user;
-    }
-
-    public async Task<bool> DeleteUserAsync(int userId)
-    {
-        var user = await _context.Users.FindAsync(userId);
-        if (user == null)
+        public UserRepository(ApplicationDbContext context)
         {
-            return false;
+            _context = context;
         }
 
-        _context.Users.Remove(user);
-        await _context.SaveChangesAsync();
-        return true;
+        public async Task<IEnumerable<User>> GetAllUsersAsync()
+        {
+            return await _context.Users.ToListAsync();
+        }
+
+        public async Task<User> GetUserByIdAsync(int userId)
+        {
+            return await _context.Users.FindAsync(userId);
+        }
+
+        public async Task<User> CreateUserAsync(User user)
+        {
+            _context.Users.Add(user);
+            await _context.SaveChangesAsync();
+            return user;
+        }
+
+        public async Task<User> UpdateUserAsync(User user)
+        {
+            _context.Users.Update(user);
+            await _context.SaveChangesAsync();
+            return user;
+        }
+
+        public async Task<bool> DeleteUserAsync(int userId)
+        {
+            var user = await _context.Users.FindAsync(userId);
+            if (user == null)
+            {
+                return false;
+            }
+
+            _context.Users.Remove(user);
+            await _context.SaveChangesAsync();
+            return true;
+        }
     }
 }
