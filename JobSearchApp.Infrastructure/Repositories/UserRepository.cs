@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+using System.Threading.Tasks;
 using JobSearchApp.Domain.Models;
 using JobSearchApp.Infrastructure.Data;
 using JobSearchApp.Infrastructure.Interfaces;
