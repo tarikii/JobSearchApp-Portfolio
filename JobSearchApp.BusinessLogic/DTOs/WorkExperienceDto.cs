@@ -40,6 +40,7 @@ namespace JobSearchApp.BusinessLogic.DTOs
     }
     public class UpdateWorkExperienceDto
     {
+        public int WorkExperienceId { get; set; }
         public string CompanyName { get; set; }
         public string JobTitle { get; set; }
         public DateTimeOffset StartDate { get; set; }
