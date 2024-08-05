@@ -18,6 +18,7 @@ public class ResourceDto
 
 public class CreateResourceDto
 {
+    public int ResourceId { get; set; }
     public string Name { get; set; }
     public string Description { get; set; }
 }
