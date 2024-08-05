@@ -1,7 +1,8 @@
+using System.Collections.Generic;
+using System.Threading.Tasks;
 using AutoMapper;
 using JobSearchApp.BusinessLogic.DTOs;
-using JobSearchApp.Domain.Models;
-using JobSearchApp.Infrastructure.Data;
+using JobSearchApp.BusinessLogic.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
 namespace JobSearchApp.Web.Controllers
@@ -10,56 +11,70 @@ namespace JobSearchApp.Web.Controllers
     [ApiController]
     public class CompanyController : ControllerBase
     {
-        private readonly ApplicationDbContext _context;
+        private readonly ICompanyService _companyService;
         private readonly IMapper _mapper;
 
-        public CompanyController(ApplicationDbContext context, IMapper mapper)
+        public CompanyController(ICompanyService companyService, IMapper mapper)
         {
-            _context = context;
+            _companyService = companyService;
             _mapper = mapper;
         }
 
-        [HttpGet("{id}")]
-        public async Task<IActionResult> GetCompany(int id)
+        [HttpGet]
+        public async Task<ActionResult<IEnumerable<CompanyDto>>> GetAllCompanies()
         {
-            var company = await _context.Companies.FindAsync(id);
-            if (company == null) return NotFound();
+            var companies = await _companyService.GetAllCompaniesAsync();
+            var companyDtos = _mapper.Map<IEnumerable<CompanyDto>>(companies);
 
+            return Ok(companyDtos);
+        }
+
+        [HttpGet("{id}")]
+        public async Task<ActionResult<CompanyDto>> GetCompanyById(int id)
+        {
+            var company = await _companyService.GetCompanyByIdAsync(id);
+            if (company == null)
+            {
+                return NotFound();
+            }
             var companyDto = _mapper.Map<CompanyDto>(company);
             return Ok(companyDto);
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreateCompany(CreateCompanyDto createCompanyDto)
+        public async Task<ActionResult<CompanyDto>> CreateCompany(CreateCompanyDto createCompanyDto)
         {
-            var company = _mapper.Map<Company>(createCompanyDto);
-            _context.Companies.Add(company);
-            await _context.SaveChangesAsync();
+            var createdCompany = await _companyService.CreateCompanyAsync(createCompanyDto);
 
-            var companyDto = _mapper.Map<CompanyDto>(company);
-            return CreatedAtAction(nameof(GetCompany), new { id = companyDto.CompanyId }, companyDto);
+            return CreatedAtAction(nameof(GetCompanyById), new { id = createdCompany.CompanyId }, createdCompany);
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> UpdateCompany(int id, UpdateCompanyDto updateCompanyDto)
+        public async Task<ActionResult<CompanyDto>> UpdateCompany(int id, UpdateCompanyDto updateCompanyDto)
         {
-            var company = await _context.Companies.FindAsync(id);
-            if (company == null) return NotFound();
+            if (id != updateCompanyDto.CompanyId)
+            {
+                return BadRequest();
+            }
 
-            _mapper.Map(updateCompanyDto, company);
-            await _context.SaveChangesAsync();
+            var updatedCompany = await _companyService.UpdateCompanyAsync(id, updateCompanyDto);
+            if (updatedCompany == null)
+            {
+                return NotFound();
+            }
 
-            return NoContent();
+            var companyDto = _mapper.Map<CompanyDto>(updatedCompany);
+            return Ok(companyDto);
         }
 
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteCompany(int id)
+        public async Task<ActionResult> DeleteCompany(int id)
         {
-            var company = await _context.Companies.FindAsync(id);
-            if (company == null) return NotFound();
-
-            _context.Companies.Remove(company);
-            await _context.SaveChangesAsync();
+            var result = await _companyService.DeleteCompanyAsync(id);
+            if (!result)
+            {
+                return NotFound();
+            }
 
             return NoContent();
         }

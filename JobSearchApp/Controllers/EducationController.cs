@@ -1,7 +1,8 @@
+using System.Collections.Generic;
+using System.Threading.Tasks;
 using AutoMapper;
 using JobSearchApp.BusinessLogic.DTOs;
 using JobSearchApp.BusinessLogic.Interfaces;
-using JobSearchApp.Domain.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace JobSearchApp.Web.Controllers
@@ -20,60 +21,62 @@ namespace JobSearchApp.Web.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<EducationDto>>> GetAll()
+        public async Task<ActionResult<IEnumerable<EducationDto>>> GetAllEducations()
         {
-            var studies = await _educationService.GetAllEducationsAsync();
-            var educationDto = _mapper.Map<IEnumerable<EducationDto>>(studies);
+            var educations = await _educationService.GetAllEducationsAsync();
+            var educationDtos = _mapper.Map<IEnumerable<EducationDto>>(educations);
 
-            return Ok(educationDto);
+            return Ok(educationDtos);
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<EducationDto>> GetById(int id)
+        public async Task<ActionResult<EducationDto>> GetEducationById(int id)
         {
             var education = await _educationService.GetEducationByIdAsync(id);
             if (education == null)
             {
                 return NotFound();
             }
-
             var educationDto = _mapper.Map<EducationDto>(education);
             return Ok(educationDto);
         }
+
+        [HttpPost]
+        public async Task<ActionResult<EducationDto>> CreateEducation(CreateEducationDto createEducationDto)
+        {
+            var createdEducation = await _educationService.CreateEducationAsync(createEducationDto);
+
+            return CreatedAtAction(nameof(GetEducationById), new { id = createdEducation.EducationId }, createdEducation);
+        }
+
+        [HttpPut("{id}")]
+        public async Task<ActionResult<EducationDto>> UpdateEducation(int id, UpdateEducationDto updateEducationDto)
+        {
+            if (id != updateEducationDto.EducationId)
+            {
+                return BadRequest();
+            }
+
+            var updatedEducation = await _educationService.UpdateEducationAsync(id, updateEducationDto);
+            if (updatedEducation == null)
+            {
+                return NotFound();
+            }
+
+            var educationDto = _mapper.Map<EducationDto>(updatedEducation);
+            return Ok(educationDto);
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<ActionResult> DeleteEducation(int id)
+        {
+            var result = await _educationService.DeleteEducationAsync(id);
+            if (!result)
+            {
+                return NotFound();
+            }
+
+            return NoContent();
+        }
     }
-
-    // [HttpPost]
-    // public async Task<ActionResult<EducationDto>> Create(CreateEducationDto createEducationDto)
-    // {
-    //     var education = _mapper.Map<Education>(createEducationDto);
-    //     var createdEducation = await _educationService.CreateEducationAsync(education);
-    //     var educationDto = _mapper.Map<EducationDto>(createdEducation);
-    //
-    //     return CreatedAtAction(nameof(GetById), new { id = educationDto.EducationId }, educationDto);
-    // }
-    //
-    // [HttpPut("{id}")]
-    // public async Task<ActionResult<EducationDto>> Update(int id, UpdateEducationDto updateEducationDto)
-    // {
-    //     if (id != updateEducationDto.EducationId)
-    //     {
-    //         return BadRequest();
-    //     }
-    //
-    //     var education = _mapper.Map<User>(updateEducationDto);
-    //     var updatedUser = await _educationService.UpdateEducationAsync(education);
-    //     var educationDto = _mapper.Map<EducationDto>(updatedUser);
-    //
-    //     return Ok(educationDto);
-    // }
-    //
-    // [HttpDelete("{id}")]
-    // public async Task<ActionResult> DeleteUser(int id)
-    // {
-    //     var result = await _educationService.DeleteEducationAsync(id);
-    //     if (!result)
-    //     {
-    //         return NotFou    nd();
 }
-
-//return NoContent();

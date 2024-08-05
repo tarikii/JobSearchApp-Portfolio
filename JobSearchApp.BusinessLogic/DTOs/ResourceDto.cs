@@ -24,6 +24,7 @@ public class CreateResourceDto
 
 public class UpdateResourceDto
 {
+    public int ResourceId { get; set; }
     public string Name { get; set; }
     public string Description { get; set; }
 }

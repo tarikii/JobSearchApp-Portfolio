@@ -1,7 +1,8 @@
+using System.Collections.Generic;
+using System.Threading.Tasks;
 using AutoMapper;
 using JobSearchApp.BusinessLogic.DTOs;
-using JobSearchApp.Domain.Models;
-using JobSearchApp.Infrastructure.Data;
+using JobSearchApp.BusinessLogic.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
 namespace JobSearchApp.Web.Controllers
@@ -10,56 +11,70 @@ namespace JobSearchApp.Web.Controllers
     [ApiController]
     public class JobOfferController : ControllerBase
     {
-        private readonly ApplicationDbContext _context;
+        private readonly IJobOfferService _jobOfferService;
         private readonly IMapper _mapper;
 
-        public JobOfferController(ApplicationDbContext context, IMapper mapper)
+        public JobOfferController(IJobOfferService jobOfferService, IMapper mapper)
         {
-            _context = context;
+            _jobOfferService = jobOfferService;
             _mapper = mapper;
         }
 
-        [HttpGet("{id}")]
-        public async Task<IActionResult> GetJobOffer(int id)
+        [HttpGet]
+        public async Task<ActionResult<IEnumerable<JobOfferDto>>> GetAllJobOffers()
         {
-            var jobOffer = await _context.JobOffers.FindAsync(id);
-            if (jobOffer == null) return NotFound();
+            var jobOffers = await _jobOfferService.GetAllJobOffersAsync();
+            var jobOfferDtos = _mapper.Map<IEnumerable<JobOfferDto>>(jobOffers);
 
+            return Ok(jobOfferDtos);
+        }
+
+        [HttpGet("{id}")]
+        public async Task<ActionResult<JobOfferDto>> GetJobOfferById(int id)
+        {
+            var jobOffer = await _jobOfferService.GetJobOfferByIdAsync(id);
+            if (jobOffer == null)
+            {
+                return NotFound();
+            }
             var jobOfferDto = _mapper.Map<JobOfferDto>(jobOffer);
             return Ok(jobOfferDto);
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreateJobOffer(CreateJobOfferDto createJobOfferDto)
+        public async Task<ActionResult<JobOfferDto>> CreateJobOffer(CreateJobOfferDto createJobOfferDto)
         {
-            var jobOffer = _mapper.Map<JobOffer>(createJobOfferDto);
-            _context.JobOffers.Add(jobOffer);
-            await _context.SaveChangesAsync();
+            var createdJobOffer = await _jobOfferService.CreateJobOfferAsync(createJobOfferDto);
 
-            var jobOfferDto = _mapper.Map<JobOfferDto>(jobOffer);
-            return CreatedAtAction(nameof(GetJobOffer), new { id = jobOfferDto.JobOfferId }, jobOfferDto);
+            return CreatedAtAction(nameof(GetJobOfferById), new { id = createdJobOffer.JobOfferId }, createdJobOffer);
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> UpdateJobOffer(int id, UpdateJobOfferDto updateJobOfferDto)
+        public async Task<ActionResult<JobOfferDto>> UpdateJobOffer(int id, UpdateJobOfferDto updateJobOfferDto)
         {
-            var jobOffer = await _context.JobOffers.FindAsync(id);
-            if (jobOffer == null) return NotFound();
+            if (id != updateJobOfferDto.JobOfferId)
+            {
+                return BadRequest();
+            }
 
-            _mapper.Map(updateJobOfferDto, jobOffer);
-            await _context.SaveChangesAsync();
+            var updatedJobOffer = await _jobOfferService.UpdateJobOfferAsync(id, updateJobOfferDto);
+            if (updatedJobOffer == null)
+            {
+                return NotFound();
+            }
 
-            return NoContent();
+            var jobOfferDto = _mapper.Map<JobOfferDto>(updatedJobOffer);
+            return Ok(jobOfferDto);
         }
 
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteJobOffer(int id)
+        public async Task<ActionResult> DeleteJobOffer(int id)
         {
-            var jobOffer = await _context.JobOffers.FindAsync(id);
-            if (jobOffer == null) return NotFound();
-
-            _context.JobOffers.Remove(jobOffer);
-            await _context.SaveChangesAsync();
+            var result = await _jobOfferService.DeleteJobOfferAsync(id);
+            if (!result)
+            {
+                return NotFound();
+            }
 
             return NoContent();
         }

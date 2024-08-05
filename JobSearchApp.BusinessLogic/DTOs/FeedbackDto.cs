@@ -32,6 +32,7 @@ namespace JobSearchApp.BusinessLogic.DTOs
     
     public class UpdateFeedbackDto
     {
+        public int FeedbackId { get; set; }
         public string FeedbackText { get; set; }
     }
 }

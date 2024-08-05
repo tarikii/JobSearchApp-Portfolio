@@ -37,6 +37,7 @@ namespace JobSearchApp.BusinessLogic.DTOs
     
     public class UpdateApplicationDto
     {
+        public int ApplicationId { get; set; }
         public string Status { get; set; }
         public decimal SalaryExpected { get; set; }
     }

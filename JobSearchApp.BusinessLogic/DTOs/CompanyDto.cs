@@ -40,6 +40,7 @@ namespace JobSearchApp.BusinessLogic.DTOs
     }
     public class UpdateCompanyDto
     {
+        public int CompanyId { get; set; }
         public string WebsiteUrl { get; set; }
         public string Industry { get; set; }
         public string Size { get; set; }

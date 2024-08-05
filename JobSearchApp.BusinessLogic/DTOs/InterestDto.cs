@@ -25,6 +25,7 @@ namespace JobSearchApp.BusinessLogic.DTOs
     }
     public class UpdateInterestDto
     {
+        public int InterestId { get; set; }
         public string InterestText { get; set; }
     }
 }

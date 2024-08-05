@@ -1,7 +1,8 @@
+using System.Collections.Generic;
+using System.Threading.Tasks;
 using AutoMapper;
 using JobSearchApp.BusinessLogic.DTOs;
 using JobSearchApp.BusinessLogic.Interfaces;
-using JobSearchApp.Domain.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace JobSearchApp.Web.Controllers
@@ -10,44 +11,42 @@ namespace JobSearchApp.Web.Controllers
     [ApiController]
     public class CompensationBenefitController : ControllerBase
     {
-        private readonly ICompensationBenefitService _compesationBenefitService;
+        private readonly ICompensationBenefitService _compensationBenefitService;
         private readonly IMapper _mapper;
 
         public CompensationBenefitController(ICompensationBenefitService compensationBenefitService, IMapper mapper)
         {
-            _compesationBenefitService = compensationBenefitService;
+            _compensationBenefitService = compensationBenefitService;
             _mapper = mapper;
         }
 
         [HttpGet]
         public async Task<ActionResult<IEnumerable<CompensationBenefitDto>>> GetAllCompensationBenefits()
         {
-            var benefits = await _compesationBenefitService.GetAllCompensationBenefitsAsync();
-            var benefitsDto = _mapper.Map<IEnumerable<CompensationBenefitDto>>(benefits);
+            var benefits = await _compensationBenefitService.GetAllCompensationBenefitsAsync();
+            var benefitDtos = _mapper.Map<IEnumerable<CompensationBenefitDto>>(benefits);
 
-            return Ok(benefitsDto);
+            return Ok(benefitDtos);
         }
 
         [HttpGet("{id}")]
         public async Task<ActionResult<CompensationBenefitDto>> GetCompensationBenefitById(int id)
         {
-            var benefitDto = await _compesationBenefitService.GetCompensationBenefitByIdAsync(id);
-            if (benefitDto == null)
+            var benefit = await _compensationBenefitService.GetCompensationBenefitByIdAsync(id);
+            if (benefit == null)
             {
                 return NotFound();
             }
-            var benefitDtoDto = _mapper.Map<CompensationBenefitDto>(benefitDto);
-            return Ok(benefitDtoDto);
+            var benefitDto = _mapper.Map<CompensationBenefitDto>(benefit);
+            return Ok(benefitDto);
         }
 
         [HttpPost]
-        public async Task<ActionResult<CompensationBenefitDto>> CreateCompensationBenefit(CreateCompensationBenefitDto createCompensationBenefitDto)
+        public async Task<ActionResult<CompensationBenefitDto>> CreateCompensationBenefit(CreateCompensationBenefitDto createBenefitDto)
         {
-            var benefit = _mapper.Map<CompensationBenefit>(createCompensationBenefitDto);
-            var createdCompensationenefit = await _compesationBenefitService.CreateCompensationBenefitAsync(benefit);
-            var benefitDto = _mapper.Map<CompensationBenefitDto>(createdCompensationenefit);
+            var createdBenefit = await _compensationBenefitService.CreateCompensationBenefitAsync(createBenefitDto);
 
-            return CreatedAtAction(nameof(GetCompensationBenefitById), new { id = benefitDto.BenefitId }, benefitDto);
+            return CreatedAtAction(nameof(GetCompensationBenefitById), new { id = createdBenefit.BenefitId }, createdBenefit);
         }
 
         [HttpPut("{id}")]
@@ -58,17 +57,20 @@ namespace JobSearchApp.Web.Controllers
                 return BadRequest();
             }
 
-            var benefitDto = _mapper.Map<CompensationBenefit>(updateBenefitDto);
-            var updatedCompensationBenefit = await _compesationBenefitService.UpdateCompensationBenefitAsync(benefitDto);
-            var benefitDtoDto = _mapper.Map<CompensationBenefitDto>(updatedCompensationBenefit);
+            var updatedBenefit = await _compensationBenefitService.UpdateCompensationBenefitAsync(id, updateBenefitDto);
+            if (updatedBenefit == null)
+            {
+                return NotFound();
+            }
 
-            return Ok(benefitDtoDto);
+            var benefitDto = _mapper.Map<CompensationBenefitDto>(updatedBenefit);
+            return Ok(benefitDto);
         }
 
         [HttpDelete("{id}")]
         public async Task<ActionResult> DeleteCompensationBenefit(int id)
         {
-            var result = await _compesationBenefitService.DeleteCompensationBenefitAsync(id);
+            var result = await _compensationBenefitService.DeleteCompensationBenefitAsync(id);
             if (!result)
             {
                 return NotFound();
