@@ -1,5 +1,3 @@
-using System.Collections.Generic;
-using System.Threading.Tasks;
 using JobSearchApp.Domain.Models;
 using JobSearchApp.Infrastructure.Data;
 using JobSearchApp.Infrastructure.Interfaces;
@@ -21,7 +19,7 @@ namespace JobSearchApp.Infrastructure.Repositories
             return await _context.Permissions.ToListAsync();
         }
 
-        public async Task<Permission> GetPermissionByIdAsync(string permissionName)
+        public async Task<Permission> GetPermissionByNameAsync(string permissionName)
         {
             return await _context.Permissions.FindAsync(permissionName);
         }

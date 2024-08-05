@@ -4,7 +4,7 @@ using AutoMapper;
 using JobSearchApp.BusinessLogic.DTOs;
 using JobSearchApp.BusinessLogic.Interfaces;
 using JobSearchApp.Domain.Models;
-using JobSearchApp.Infraestructure.Interfaces;
+using JobSearchApp.Infrastructure.Interfaces;
 
 namespace JobSearchApp.BusinessLogic.Services
 {
