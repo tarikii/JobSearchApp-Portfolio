@@ -28,6 +28,8 @@ namespace JobSearchApp.BusinessLogic.DTOs
     }
     public class UpdateUserPreferenceDto
     {
+        public int PreferenceId { get; set; }
+
         public string Category { get; set; }
         public string Value { get; set; }
     }
