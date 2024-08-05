@@ -32,7 +32,7 @@ namespace JobSearchApp.Web.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<PermissionDto>> GetPermissionById(string name)
         {
-            var permission = await _permissionService.GetPermissionByIdAsync(name);
+            var permission = await _permissionService.GetPermissionByNameAsync(name);
             if (permission == null)
             {
                 return NotFound();
