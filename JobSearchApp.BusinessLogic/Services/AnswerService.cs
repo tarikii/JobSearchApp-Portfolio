@@ -2,40 +2,38 @@ using AutoMapper;
 using JobSearchApp.BusinessLogic.DTOs;
 using JobSearchApp.BusinessLogic.Interfaces;
 using JobSearchApp.Domain.Models;
-using JobSearchApp.Infrastructure.Data;
-using Microsoft.EntityFrameworkCore;
+using JobSearchApp.Infrastructure.Interfaces;
 
 namespace JobSearchApp.BusinessLogic.Services
 {
     public class AnswerService : IAnswerService
     {
-        private readonly ApplicationDbContext _context;
+        private readonly IAnswerRepository _answerRepository;
         private readonly IMapper _mapper;
 
-        public AnswerService(ApplicationDbContext context, IMapper mapper)
+        public AnswerService(IAnswerRepository answerRepository, IMapper mapper)
         {
-            _context = context;
+            _answerRepository = answerRepository;
             _mapper = mapper;
         }
 
         public async Task<IEnumerable<AnswerDto>> GetAllAnswersAsync()
         {
-            var answers = await _context.Answers.ToListAsync();
+            var answers = await _answerRepository.GetAllAnswersAsync();
             return _mapper.Map<IEnumerable<AnswerDto>>(answers);
         }
 
         public async Task<AnswerDto> GetAnswerByIdAsync(int answerId)
         {
-            var answer = await _context.Answers.FindAsync(answerId);
+            var answer = await _answerRepository.GetAnswerByIdAsync(answerId);
             return answer == null ? null : _mapper.Map<AnswerDto>(answer);
         }
 
         public async Task<AnswerDto> CreateAnswerAsync(CreateAnswerDto createAnswerDto)
         {
             var answer = _mapper.Map<Answer>(createAnswerDto);
-            _context.Answers.Add(answer);
-            await _context.SaveChangesAsync();
-            return _mapper.Map<AnswerDto>(answer);
+            var createdAnswer = await _answerRepository.CreateAnswerAsync(answer);
+            return _mapper.Map<AnswerDto>(createdAnswer);
         }
 
         public async Task<AnswerDto> UpdateAnswerAsync(int answerId, UpdateAnswerDto updateAnswerDto)
@@ -46,22 +44,13 @@ namespace JobSearchApp.BusinessLogic.Services
             }
 
             var answer = _mapper.Map<Answer>(updateAnswerDto);
-            _context.Answers.Update(answer);
-            await _context.SaveChangesAsync();
-            return _mapper.Map<AnswerDto>(answer);
+            var updatedAnswer = await _answerRepository.UpdateAnswerAsync(answer);
+            return _mapper.Map<AnswerDto>(updatedAnswer);
         }
 
         public async Task<bool> DeleteAnswerAsync(int answerId)
         {
-            var answer = await _context.Answers.FindAsync(answerId);
-            if (answer == null)
-            {
-                return false;
-            }
-
-            _context.Answers.Remove(answer);
-            await _context.SaveChangesAsync();
-            return true;
+            return await _answerRepository.DeleteAnswerAsync(answerId);
         }
     }
 }

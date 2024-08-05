@@ -4,40 +4,38 @@ using AutoMapper;
 using JobSearchApp.BusinessLogic.DTOs;
 using JobSearchApp.BusinessLogic.Interfaces;
 using JobSearchApp.Domain.Models;
-using JobSearchApp.Infrastructure.Data;
-using Microsoft.EntityFrameworkCore;
+using JobSearchApp.Infrastructure.Interfaces;
 
 namespace JobSearchApp.BusinessLogic.Services
 {
     public class CompanyService : ICompanyService
     {
-        private readonly ApplicationDbContext _context;
+        private readonly ICompanyRepository _companyRepository;
         private readonly IMapper _mapper;
 
-        public CompanyService(ApplicationDbContext context, IMapper mapper)
+        public CompanyService(ICompanyRepository companyRepository, IMapper mapper)
         {
-            _context = context;
+            _companyRepository = companyRepository;
             _mapper = mapper;
         }
 
         public async Task<IEnumerable<CompanyDto>> GetAllCompaniesAsync()
         {
-            var companies = await _context.Companies.ToListAsync();
+            var companies = await _companyRepository.GetAllCompaniesAsync();
             return _mapper.Map<IEnumerable<CompanyDto>>(companies);
         }
 
         public async Task<CompanyDto> GetCompanyByIdAsync(int companyId)
         {
-            var company = await _context.Companies.FindAsync(companyId);
+            var company = await _companyRepository.GetCompanyByIdAsync(companyId);
             return company == null ? null : _mapper.Map<CompanyDto>(company);
         }
 
         public async Task<CompanyDto> CreateCompanyAsync(CreateCompanyDto createCompanyDto)
         {
             var company = _mapper.Map<Company>(createCompanyDto);
-            _context.Companies.Add(company);
-            await _context.SaveChangesAsync();
-            return _mapper.Map<CompanyDto>(company);
+            var createdCompany = await _companyRepository.CreateCompanyAsync(company);
+            return _mapper.Map<CompanyDto>(createdCompany);
         }
 
         public async Task<CompanyDto> UpdateCompanyAsync(int companyId, UpdateCompanyDto updateCompanyDto)
@@ -48,22 +46,13 @@ namespace JobSearchApp.BusinessLogic.Services
             }
 
             var company = _mapper.Map<Company>(updateCompanyDto);
-            _context.Companies.Update(company);
-            await _context.SaveChangesAsync();
-            return _mapper.Map<CompanyDto>(company);
+            var updatedCompany = await _companyRepository.UpdateCompanyAsync(company);
+            return _mapper.Map<CompanyDto>(updatedCompany);
         }
 
         public async Task<bool> DeleteCompanyAsync(int companyId)
         {
-            var company = await _context.Companies.FindAsync(companyId);
-            if (company == null)
-            {
-                return false;
-            }
-
-            _context.Companies.Remove(company);
-            await _context.SaveChangesAsync();
-            return true;
+            return await _companyRepository.DeleteCompanyAsync(companyId);
         }
     }
 }
