@@ -35,5 +35,6 @@ public class CreateMatchDto
 
 public class UpdateMatchDto
 {
+    public int MatchId { get; set; }
     public bool IsAccepted { get; set; }
 }

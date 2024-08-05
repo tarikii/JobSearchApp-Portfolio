@@ -44,11 +44,9 @@ namespace JobSearchApp.Web.Controllers
         [HttpPost]
         public async Task<ActionResult<JobOfferDto>> CreateJobOffer(CreateJobOfferDto createJobOfferDto)
         {
-            var jobOffer = _mapper.Map<JobOffer>(createJobOfferDto);
-            var createdJobOffer = await _jobOfferService.CreateJobOfferAsync(jobOffer);
-            var jobOfferDto = _mapper.Map<JobOfferDto>(createdJobOffer);
+            var createdJobOffer = await _jobOfferService.CreateJobOfferAsync(createJobOfferDto);
 
-            return CreatedAtAction(nameof(GetJobOfferById), new { id = jobOfferDto.JobOfferId }, jobOfferDto);
+            return CreatedAtAction(nameof(GetJobOfferById), new { id = createdJobOffer.JobOfferId }, createdJobOffer);
         }
 
         [HttpPut("{id}")]
