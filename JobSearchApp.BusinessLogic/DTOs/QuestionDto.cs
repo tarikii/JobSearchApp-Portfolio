@@ -19,6 +19,7 @@ namespace JobSearchApp.BusinessLogic.DTOs
     }
     public class UpdateQuestionDto
     {
+        public int QuestionId { get; set; }
         public string QuestionText { get; set; }
     }
 }
