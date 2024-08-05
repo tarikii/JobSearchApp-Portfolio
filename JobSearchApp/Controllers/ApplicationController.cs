@@ -1,7 +1,8 @@
+using System.Collections.Generic;
+using System.Threading.Tasks;
 using AutoMapper;
 using JobSearchApp.BusinessLogic.DTOs;
-using JobSearchApp.Domain.Models;
-using JobSearchApp.Infrastructure.Data;
+using JobSearchApp.BusinessLogic.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
 namespace JobSearchApp.Web.Controllers
@@ -10,56 +11,71 @@ namespace JobSearchApp.Web.Controllers
     [ApiController]
     public class ApplicationController : ControllerBase
     {
-        private readonly ApplicationDbContext _context;
+        private readonly IApplicationService _applicationService;
         private readonly IMapper _mapper;
 
-        public ApplicationController(ApplicationDbContext context, IMapper mapper)
+        public ApplicationController(IApplicationService applicationService, IMapper mapper)
         {
-            _context = context;
+            _applicationService = applicationService;
             _mapper = mapper;
         }
 
-        [HttpGet("{id}")]
-        public async Task<IActionResult> GetApplication(int id)
+        [HttpGet]
+        public async Task<ActionResult<IEnumerable<ApplicationDto>>> GetAllApplications()
         {
-            var application = await _context.Applications.FindAsync(id);
-            if (application == null) return NotFound();
+            var applications = await _applicationService.GetAllApplicationsAsync();
+            var applicationDtos = _mapper.Map<IEnumerable<ApplicationDto>>(applications);
 
+            return Ok(applicationDtos);
+        }
+
+        [HttpGet("{id}")]
+        public async Task<ActionResult<ApplicationDto>> GetApplicationById(int id)
+        {
+            var application = await _applicationService.GetApplicationByIdAsync(id);
+            if (application == null)
+            {
+                return NotFound();
+            }
             var applicationDto = _mapper.Map<ApplicationDto>(application);
             return Ok(applicationDto);
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreateApplication(CreateApplicationDto createApplicationDto)
+        public async Task<ActionResult<ApplicationDto>> CreateApplication(CreateApplicationDto createApplicationDto)
         {
-            var application = _mapper.Map<Application>(createApplicationDto);
-            _context.Applications.Add(application);
-            await _context.SaveChangesAsync();
+            var createdApplication = await _applicationService.CreateApplicationAsync(createApplicationDto);
+            var applicationDto = _mapper.Map<ApplicationDto>(createdApplication);
 
-            var applicationDto = _mapper.Map<ApplicationDto>(application);
-            return CreatedAtAction(nameof(GetApplication), new { id = applicationDto.ApplicationId }, applicationDto);
+            return CreatedAtAction(nameof(GetApplicationById), new { id = applicationDto.ApplicationId }, applicationDto);
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> UpdateApplication(int id, UpdateApplicationDto updateApplicationDto)
+        public async Task<ActionResult<ApplicationDto>> UpdateApplication(int id, UpdateApplicationDto updateApplicationDto)
         {
-            var application = await _context.Applications.FindAsync(id);
-            if (application == null) return NotFound();
+            if (id != updateApplicationDto.ApplicationId)
+            {
+                return BadRequest();
+            }
 
-            _mapper.Map(updateApplicationDto, application);
-            await _context.SaveChangesAsync();
+            var updatedApplication = await _applicationService.UpdateApplicationAsync(id, updateApplicationDto);
+            if (updatedApplication == null)
+            {
+                return NotFound();
+            }
 
-            return NoContent();
+            var applicationDto = _mapper.Map<ApplicationDto>(updatedApplication);
+            return Ok(applicationDto);
         }
 
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteApplication(int id)
+        public async Task<ActionResult> DeleteApplication(int id)
         {
-            var application = await _context.Applications.FindAsync(id);
-            if (application == null) return NotFound();
-
-            _context.Applications.Remove(application);
-            await _context.SaveChangesAsync();
+            var result = await _applicationService.DeleteApplicationAsync(id);
+            if (!result)
+            {
+                return NotFound();
+            }
 
             return NoContent();
         }
