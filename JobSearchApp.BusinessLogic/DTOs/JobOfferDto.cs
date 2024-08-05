@@ -56,6 +56,7 @@ public class CreateJobOfferDto
 }
 public class UpdateJobOfferDto
 {
+    public int JobOfferId { get; set; }
     public string Title { get; set; }
     public string Description { get; set; }
     public string Location { get; set; }
