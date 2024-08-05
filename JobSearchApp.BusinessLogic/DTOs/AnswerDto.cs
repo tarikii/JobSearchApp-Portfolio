@@ -34,6 +34,7 @@ public class CreateAnswerDto
 
 public class UpdateAnswerDto
 {
+    public int AnswerId { get; set; }
     public string AnswerText { get; set; }
     public bool IsFeatured { get; set; }
 }

@@ -1,7 +1,7 @@
 using AutoMapper;
 using JobSearchApp.BusinessLogic.DTOs;
+using JobSearchApp.BusinessLogic.Interfaces;
 using JobSearchApp.Domain.Models;
-using JobSearchApp.Infrastructure.Data;
 using Microsoft.AspNetCore.Mvc;
 
 namespace JobSearchApp.Web.Controllers
@@ -10,56 +10,71 @@ namespace JobSearchApp.Web.Controllers
     [ApiController]
     public class AnswerController : ControllerBase
     {
-        private readonly ApplicationDbContext _context;
+        private readonly IAnswerService _answerService;
         private readonly IMapper _mapper;
 
-        public AnswerController(ApplicationDbContext context, IMapper mapper)
+        public AnswerController(IAnswerService answerService, IMapper mapper)
         {
-            _context = context;
+            _answerService = answerService;
             _mapper = mapper;
         }
 
-        [HttpGet("{id}")]
-        public async Task<IActionResult> GetAnswer(int id)
+        [HttpGet]
+        public async Task<ActionResult<IEnumerable<AnswerDto>>> GetAllAnswers()
         {
-            var answer = await _context.Answers.FindAsync(id);
-            if (answer == null) return NotFound();
+            var answers = await _answerService.GetAllAnswersAsync();
+            var answerDtos = _mapper.Map<IEnumerable<AnswerDto>>(answers);
 
+            return Ok(answerDtos);
+        }
+
+        [HttpGet("{id}")]
+        public async Task<ActionResult<AnswerDto>> GetAnswerById(int id)
+        {
+            var answer = await _answerService.GetAnswerByIdAsync(id);
+            if (answer == null)
+            {
+                return NotFound();
+            }
             var answerDto = _mapper.Map<AnswerDto>(answer);
             return Ok(answerDto);
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreateAnswer(CreateAnswerDto createAnswerDto)
+        public async Task<ActionResult<AnswerDto>> CreateAnswer(CreateAnswerDto createAnswerDto)
         {
-            var answer = _mapper.Map<Answer>(createAnswerDto);
-            _context.Answers.Add(answer);
-            await _context.SaveChangesAsync();
+            var createdAnswer = await _answerService.CreateAnswerAsync(createAnswerDto);
+            var answerDto = _mapper.Map<AnswerDto>(createdAnswer);
 
-            var answerDto = _mapper.Map<AnswerDto>(answer);
-            return CreatedAtAction(nameof(GetAnswer), new { id = answerDto.AnswerId }, answerDto);
+            return CreatedAtAction(nameof(GetAnswerById), new { id = answerDto.AnswerId }, answerDto);
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> UpdateAnswer(int id, UpdateAnswerDto updateAnswerDto)
+        public async Task<ActionResult<AnswerDto>> UpdateAnswer(int id, UpdateAnswerDto updateAnswerDto)
         {
-            var answer = await _context.Answers.FindAsync(id);
-            if (answer == null) return NotFound();
+            if (id != updateAnswerDto.AnswerId)
+            {
+                return BadRequest();
+            }
 
-            _mapper.Map(updateAnswerDto, answer);
-            await _context.SaveChangesAsync();
+            var updatedAnswer = await _answerService.UpdateAnswerAsync(id, updateAnswerDto);
+            if (updatedAnswer == null)
+            {
+                return NotFound();
+            }
 
-            return NoContent();
+            var answerDto = _mapper.Map<AnswerDto>(updatedAnswer);
+            return Ok(answerDto);
         }
 
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteAnswer(int id)
+        public async Task<ActionResult> DeleteAnswer(int id)
         {
-            var answer = await _context.Answers.FindAsync(id);
-            if (answer == null) return NotFound();
-
-            _context.Answers.Remove(answer);
-            await _context.SaveChangesAsync();
+            var result = await _answerService.DeleteAnswerAsync(id);
+            if (!result)
+            {
+                return NotFound();
+            }
 
             return NoContent();
         }
