@@ -1,12 +1,9 @@
-using System.Collections.Generic;
-using System.Threading.Tasks;
 using AutoMapper;
 using JobSearchApp.BusinessLogic.DTOs;
 using JobSearchApp.BusinessLogic.Services;
 using JobSearchApp.Domain.Models;
 using JobSearchApp.Infrastructure.Interfaces;
 using Moq;
-using Xunit;
 
 namespace JobSearchApp.Tests.Services
 {

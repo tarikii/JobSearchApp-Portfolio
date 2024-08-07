@@ -1,5 +1,6 @@
 using JobSearchApp.Infrastructure.Data;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace JobSearchApp.Web.Controllers;
 
@@ -7,18 +8,19 @@ namespace JobSearchApp.Web.Controllers;
 [ApiController]
 public class DatabaseController : ControllerBase
 {
-    private readonly ApplicationDbContext _context;
+    private readonly IDbContextFactory<ApplicationDbContext> _context;
 
-    public DatabaseController(ApplicationDbContext context)
+    public DatabaseController(IDbContextFactory<ApplicationDbContext> context)
     {
         _context = context;
     }
 
     [HttpGet("test-connection")]
-    public async Task<IActionResult> TestConnection()
+    public async Task<IActionResult> TestConnection(CancellationToken token = default)
     {
-        var result = await _context.TestConnectionAsync();
-        return Ok(result);
+        var result = await _context.CreateDbContextAsync(token);
+        var r = await result.Database.CanConnectAsync(token);
+        return Ok(r);
     }
     
     [HttpPost("revert")]
@@ -26,7 +28,7 @@ public class DatabaseController : ControllerBase
     {
         try
         {
-            DbInitializer.Revert(_context);
+            //DbInitializer.Revert(_context);
             return Ok("Database reverted successfully.");
         }
         catch (Exception ex)

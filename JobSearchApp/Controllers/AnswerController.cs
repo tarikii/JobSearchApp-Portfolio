@@ -4,7 +4,7 @@ using JobSearchApp.BusinessLogic.Interfaces;
 using JobSearchApp.Domain.Models;
 using Microsoft.AspNetCore.Mvc;
 
-namespace JobSearchApp.Web.Controllers
+namespace JobSearchApp.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
