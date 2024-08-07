@@ -3,6 +3,7 @@ using JobSearchApp.BusinessLogic.DTOs;
 using JobSearchApp.BusinessLogic.Interfaces;
 using JobSearchApp.Domain.Models;
 using JobSearchApp.Infrastructure.Interfaces;
+using Microsoft.EntityFrameworkCore;
 
 namespace JobSearchApp.BusinessLogic.Services;
 
@@ -47,6 +48,11 @@ public class UserService : IUserService
         _mapper.Map(updateUserDto, user);
         var updatedUser = await _userRepository.UpdateUserAsync(user);
         return _mapper.Map<UserDto>(updatedUser);
+    }
+
+    public async Task<User> AuthenticateUserAsync(string username, string password)
+    {
+        return await _userRepository.AuthenticateUserAsync(username, password);
     }
 
     public async Task<bool> DeleteUserAsync(int userId)
