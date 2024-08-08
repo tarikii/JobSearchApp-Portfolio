@@ -1,17 +1,81 @@
-﻿import { renderQuestionList } from './question/questionList.js';
+﻿document.addEventListener('DOMContentLoaded', () => {
+    const form = document.getElementById('add-question-form');
+    const questionsList = document.getElementById('questions-list');
+    const apiBaseUrl = 'https://localhost:7056/api/question'; // Usar HTTPS y el puerto correcto
 
-document.addEventListener('DOMContentLoaded', async () => {
-    const app = document.getElementById('app');
+    form.addEventListener('submit', async (event) => {
+        event.preventDefault();
+        const questionText = document.getElementById('question-title').value; // Cambia el nombre de la variable a questionText
+        await addQuestion({ questionText }); // Usa questionText aquí
+        form.reset();
+        await fetchQuestions();
+    });
 
-    const questionSection = document.createElement('section');
-    questionSection.id = 'questions';
-    questionSection.innerHTML = '<h2>Preguntas</h2>';
-    const questionList = await renderQuestionList();
-    questionSection.appendChild(questionList);
-    app.appendChild(questionSection);
+    const addQuestion = async (question) => {
+        try {
+            const response = await fetch(apiBaseUrl, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(question)
+            });
 
-    const questionDetailSection = document.createElement('section');
-    questionDetailSection.id = 'question-details';
-    questionDetailSection.innerHTML = '<h2>Detalles de la Pregunta</h2>';
-    app.appendChild(questionDetailSection);
+            if (!response.ok) {
+                const errorMessage = await response.text();
+                console.log('Error:', errorMessage);
+                alert('Error al agregar la pregunta');
+            }
+        } catch (error) {
+            console.error('Fetch error:', error);
+            alert('Error de red al agregar la pregunta');
+        }
+    };
+
+
+    const fetchQuestions = async () => {
+        const response = await fetch(apiBaseUrl);
+        const questions = await response.json();
+        renderQuestions(questions);
+    };
+
+    const renderQuestions = (questions) => {
+        questionsList.innerHTML = '';
+        questions.forEach(question => {
+            const questionElement = createQuestionElement(question);
+            questionsList.appendChild(questionElement);
+        });
+    };
+
+    const createQuestionElement = (question) => {
+        const container = document.createElement('div');
+        container.className = 'question-container';
+
+        const questionTitle = document.createElement('h3');
+        questionTitle.innerText = question.questionText; // Asegúrate de usar questionText aquí
+        container.appendChild(questionTitle);
+
+        container.addEventListener('click', () => {
+            renderQuestionDetails(question.questionId);
+        });
+
+        return container;
+    };
+
+    const renderQuestionDetails = async (id) => {
+        const response = await fetch(`${apiBaseUrl}/${id}`);
+        const question = await response.json();
+
+        const detailContainer = document.createElement('div');
+        detailContainer.className = 'question-details';
+
+        const questionTitle = document.createElement('h3');
+        questionTitle.innerText = question.questionText; // Asegúrate de usar questionText aquí
+        detailContainer.appendChild(questionTitle);
+
+        questionsList.innerHTML = '';
+        questionsList.appendChild(detailContainer);
+    };
+
+    fetchQuestions();
 });

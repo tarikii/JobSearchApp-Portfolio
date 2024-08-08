@@ -12,6 +12,7 @@ namespace JobSearchApp.BusinessLogic.DTOs
             QuestionId = question.QuestionId;
             QuestionText = question.QuestionText;
         }
+        public QuestionDto(){}
     }
     public class CreateQuestionDto
     {

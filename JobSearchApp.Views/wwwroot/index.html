@@ -7,7 +7,16 @@
     <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-<div id="app"></div>
+<div id="app">
+    <h1>Preguntas</h1>
+    <form id="add-question-form">
+        <input type="text" id="question-title" placeholder="Título de la pregunta" required>
+<!--        <textarea id="question-text" placeholder="Texto de la pregunta" required></textarea>-->
+        <button type="submit">Agregar Pregunta</button>
+    </form>
+    <h2>Lista de Preguntas</h2>
+    <div id="questions-list"></div>
+</div>
 <script type="module" src="js/site.js"></script>
 </body>
 </html>

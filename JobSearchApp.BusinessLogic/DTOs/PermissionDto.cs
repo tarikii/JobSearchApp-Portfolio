@@ -10,6 +10,8 @@ public class PermissionDto
     {
         Name = permission.Name;
     }
+
+    public PermissionDto() { }
 }
 
 public class CreatePermissionDto

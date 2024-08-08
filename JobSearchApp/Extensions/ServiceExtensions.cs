@@ -10,7 +10,7 @@ namespace JobSearchApp.Infrastructure.Extensions
         public static void ConfigureServices(this IServiceCollection services, IConfiguration configuration)
         {
             services.AddControllersWithViews();
-            services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+            //services.AddAutoMapper(typeof(Program));
             // Repositories
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IAnswerRepository, AnswerRepository>();
