@@ -38,6 +38,11 @@ namespace JobSearchApp.Infrastructure.Repositories
             return user;
         }
 
+        public async Task<User> AuthenticateUserAsync(string username, string password)
+        {
+            return await _context.Users.FirstOrDefaultAsync(u => u.UserName == username && u.PasswordHash == password);
+        }
+
         public async Task<bool> DeleteUserAsync(int userId)
         {
             var user = await _context.Users.FindAsync(userId);

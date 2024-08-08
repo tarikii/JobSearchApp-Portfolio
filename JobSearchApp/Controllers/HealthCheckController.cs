@@ -20,6 +20,7 @@ public class HealthCheckController : ControllerBase
     {
         var result = await _context.CreateDbContextAsync(token);
         var r = await result.Database.CanConnectAsync(token);
+        var x = await result.Permissions.ToListAsync(cancellationToken: token);
         return Ok(r);
     }
 }

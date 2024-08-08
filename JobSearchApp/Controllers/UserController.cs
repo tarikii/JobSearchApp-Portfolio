@@ -3,6 +3,7 @@ using JobSearchApp.BusinessLogic.DTOs;
 using JobSearchApp.BusinessLogic.Interfaces;
 using JobSearchApp.Domain.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace JobSearchApp.Web.Controllers;
 
@@ -61,6 +62,18 @@ public class UserController : ControllerBase
 
         var userDto = _mapper.Map<UserDto>(updatedUser);
         return Ok(userDto);
+    }
+
+    [HttpPost("authenticate")]
+
+    public async Task<ActionResult> AuthenticateUser(Authenticate request)
+    {
+        var user = await _userService.AuthenticateUserAsync(request.Username, request.Password);
+
+        if (user == null)
+            return Unauthorized();
+
+        return Ok(new { Message = "User authenticated successfully" });
     }
 
     [HttpDelete("{id}")]

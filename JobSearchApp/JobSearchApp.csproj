@@ -27,6 +27,7 @@
   <ItemGroup>
     <ProjectReference Include="..\JobSearchApp.BusinessLogic\JobSearchApp.BusinessLogic.csproj" />
     <ProjectReference Include="..\JobSearchApp.Infrastructure\JobSearchApp.Infrastructure.csproj" />
+    <ProjectReference Include="..\JobSearchApp.Domain\JobSearchApp.Domain.csproj" />
   </ItemGroup>
 
 </Project>

@@ -20,7 +20,7 @@ namespace JobSearchApp.Infrastructure.Data
             {
                 // Seed Roles
                 var roleController = scope.ServiceProvider.GetRequiredService<RoleController>();
-                await roleController.CreateRole(new CreateRoleDto { Name = "Admin", Description = "Administrator" });
+                await roleController.CreateRole(new CreateRoleDto { Name = "CompanyOwner", Description = "Owner" });
                 await roleController.CreateRole(new CreateRoleDto { Name = "Recruiter", Description = "Recruiter" });
                 await roleController.CreateRole(new CreateRoleDto { Name = "Candidate", Description = "Candidate" });
 
@@ -58,10 +58,12 @@ namespace JobSearchApp.Infrastructure.Data
                 // Seed Applications
                 var applicationController = scope.ServiceProvider.GetRequiredService<ApplicationController>();
                 await applicationController.CreateApplication(new CreateApplicationDto { UserId = createdUser3.UserId, JobOfferId = createdJobOffer1.JobOfferId, SalaryExpected = 80000 });
+                await applicationController.CreateApplication(new CreateApplicationDto { UserId = createdUser1.UserId, JobOfferId = createdJobOffer2.JobOfferId, SalaryExpected = 35000 });
 
                 // Seed Feedbacks
                 var feedbackController = scope.ServiceProvider.GetRequiredService<FeedbackController>();
-                await feedbackController.CreateFeedback(new CreateFeedbackDto { ApplicationId = 1, RecruiterId = createdUser2.UserId, FeedbackText = "Good candidate, proceed to next round." });
+                await feedbackController.CreateFeedback(new CreateFeedbackDto { ApplicationId = 1, RecruiterId = createdUser3.UserId, FeedbackText = "Good candidate, proceed to next round." });
+                await feedbackController.CreateFeedback(new CreateFeedbackDto { ApplicationId = 2, RecruiterId = createdUser1.UserId, FeedbackText = "Thanks for participate, unfortunaly we don't continue with ." });
 
                 // Seed SocialMedia
                 var socialMediaController = scope.ServiceProvider.GetRequiredService<SocialMediaController>();
