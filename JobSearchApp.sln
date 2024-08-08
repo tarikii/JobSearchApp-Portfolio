@@ -20,6 +20,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JobSearchApp.BusinessLogic"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JobSearchApp.Tests", "JobSearchApp.Tests\JobSearchApp.Tests.csproj", "{6591BBB9-9D7D-4F2D-90FF-C382BBF19221}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JobSearchApp.Views", "JobSearchApp.Views\JobSearchApp.Views.csproj", "{C8BA75E4-A0C5-4508-BD6C-B05F7A385C7B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -46,6 +48,10 @@ Global
 		{6591BBB9-9D7D-4F2D-90FF-C382BBF19221}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6591BBB9-9D7D-4F2D-90FF-C382BBF19221}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6591BBB9-9D7D-4F2D-90FF-C382BBF19221}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C8BA75E4-A0C5-4508-BD6C-B05F7A385C7B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C8BA75E4-A0C5-4508-BD6C-B05F7A385C7B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C8BA75E4-A0C5-4508-BD6C-B05F7A385C7B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C8BA75E4-A0C5-4508-BD6C-B05F7A385C7B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
