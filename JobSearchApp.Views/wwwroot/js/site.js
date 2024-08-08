@@ -1,12 +1,12 @@
 ﻿document.addEventListener('DOMContentLoaded', () => {
     const form = document.getElementById('add-question-form');
     const questionsList = document.getElementById('questions-list');
-    const apiBaseUrl = 'https://localhost:7056/api/question'; // Usar HTTPS y el puerto correcto
+    const apiBaseUrl = 'https://localhost:7056/api/question'; 
 
     form.addEventListener('submit', async (event) => {
         event.preventDefault();
-        const questionText = document.getElementById('question-title').value; // Cambia el nombre de la variable a questionText
-        await addQuestion({ questionText }); // Usa questionText aquí
+        const questionText = document.getElementById('question-title').value; 
+        await addQuestion({ questionText }); 
         form.reset();
         await fetchQuestions();
     });
