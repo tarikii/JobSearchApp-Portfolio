@@ -56,13 +56,13 @@ namespace JobSearchApp.Web.Controllers
             {
                 return BadRequest();
             }
-
+        
             var updatedPermission = await _permissionService.UpdatePermissionAsync(name, updatePermissionDto);
             if (updatedPermission == null)
             {
                 return NotFound();
             }
-
+        
             var permissionDto = _mapper.Map<PermissionDto>(updatedPermission);
             return Ok(permissionDto);
         }

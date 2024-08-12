@@ -17,9 +17,13 @@ public class PermissionDto
 public class CreatePermissionDto
 {
     public string Name { get; set; }
+    public CreatePermissionDto() { }
+
 }
 
 public class UpdatePermissionDto
 {
     public string Name { get; set; }
+    public UpdatePermissionDto() { }
+
 }
