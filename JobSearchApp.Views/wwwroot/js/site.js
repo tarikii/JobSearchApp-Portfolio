@@ -6,7 +6,7 @@
     form.addEventListener('submit', async (event) => {
         event.preventDefault();
         const questionText = document.getElementById('question-title').value; 
-        await addQuestion({ questionText }); // Usa questionText aquí
+        await addQuestion({ questionText }); 
         form.reset();
         await fetchQuestions();
     });
