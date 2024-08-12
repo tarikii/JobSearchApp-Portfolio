@@ -8,6 +8,13 @@
     </PropertyGroup>
 
     <ItemGroup>
+      <Compile Remove="wwwroot\pages\question\**" />
+      <Content Remove="wwwroot\pages\question\**" />
+      <EmbeddedResource Remove="wwwroot\pages\question\**" />
+      <None Remove="wwwroot\pages\question\**" />
+    </ItemGroup>
+
+    <ItemGroup>
       <Content Include="..\.dockerignore">
         <Link>.dockerignore</Link>
       </Content>
@@ -21,10 +28,6 @@
       <_ContentIncludedByDefault Remove="Views\Shared\_ValidationScriptsPartial.cshtml" />
       <_ContentIncludedByDefault Remove="Views\_ViewImports.cshtml" />
       <_ContentIncludedByDefault Remove="Views\_ViewStart.cshtml" />
-    </ItemGroup>
-
-    <ItemGroup>
-      <Folder Include="wwwroot\pages\question\" />
     </ItemGroup>
 
 </Project>
