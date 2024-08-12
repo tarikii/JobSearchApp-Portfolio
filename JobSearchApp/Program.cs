@@ -15,7 +15,7 @@ public class Program
         services.ConfigureServices(builder.Configuration);
 
         // Configurar DbContext según el proveedor de base de datos seleccionado
-        var connectionString = config.GetConnectionString("LocalConnection");
+        var connectionString = config.GetConnectionString("AzureConnection");
         services.AddDbContextFactory<ApplicationDbContext>(options =>
             options.UseSqlServer(connectionString));
 

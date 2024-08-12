@@ -1,26 +1,26 @@
-using JobSearchApp.Domain.Models;
+    using JobSearchApp.Domain.Models;
 
-namespace JobSearchApp.BusinessLogic.DTOs
-{
-    public class QuestionDto
+    namespace JobSearchApp.BusinessLogic.DTOs
     {
-        public int QuestionId { get; set; }
-        public string QuestionText { get; set; }
-
-        public QuestionDto(Question question)
+        public class QuestionDto
         {
-            QuestionId = question.QuestionId;
-            QuestionText = question.QuestionText;
+            public int QuestionId { get; set; }
+            public string QuestionText { get; set; }
+
+            public QuestionDto(Question question)
+            {
+                QuestionId = question.QuestionId;
+                QuestionText = question.QuestionText;
+            }
+            public QuestionDto(){}
         }
-        public QuestionDto(){}
+        public class CreateQuestionDto
+        {
+            public string QuestionText { get; set; }
+        }
+        public class UpdateQuestionDto
+        {
+            public int QuestionId { get; set; }
+            public string QuestionText { get; set; }
+        }
     }
-    public class CreateQuestionDto
-    {
-        public string QuestionText { get; set; }
-    }
-    public class UpdateQuestionDto
-    {
-        public int QuestionId { get; set; }
-        public string QuestionText { get; set; }
-    }
-}
