@@ -14,10 +14,25 @@
 
 </head>
 <body>
-<div>
-    <select id="dynamicSelect" class="form-select" aria-label="Selecciona una pregunta">
+<div class="input-group mb-3">
+    <div class="input-group-prepend">
+        <label class="input-group-text" for="inputGroupSelect01">Pregunta</label>
+    </div>
+    <select class="custom-select" id="inputGroupSelect01">
+        <option selected>Elige...</option>
     </select>
 </div>
+
+<div class="input-group mb-3">
+    <div class="input-group-prepend">
+        <span class="input-group-text">Respuesta</span>
+    </div>
+    <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)">
+    <div class="input-group-append">
+        <button class="btn btn-outline-secondary" type="button">Enviar</button>
+    </div>
+</div>
+
 <script src="../../js/components/selectList.js" defer></script>
 </body>
 </html>

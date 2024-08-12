@@ -28,7 +28,7 @@ document.addEventListener('DOMContentLoaded', fetchAndPopulateSelect); // Asegur
 
 // Función para generar dinámicamente las opciones en el select
 function SelectList(options) {
-    const selectElement = document.getElementById('dynamicSelect');
+    const selectElement = document.getElementById('inputGroupSelect01');
 
     // Limpia cualquier opción previa para evitar duplicados si se llama varias veces
     selectElement.innerHTML = '';
