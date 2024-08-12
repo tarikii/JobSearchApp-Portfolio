@@ -27,7 +27,7 @@ namespace JobSearchApp.BusinessLogic.DTOs
             Location = company.Location;
         }
         public CompanyDto(){}
-
+        
     }
     public class CreateCompanyDto
     {
