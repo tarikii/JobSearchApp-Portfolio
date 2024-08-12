@@ -24,8 +24,6 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="wwwroot\css\components\" />
-      <Folder Include="wwwroot\pages\components\" />
       <Folder Include="wwwroot\pages\question\" />
     </ItemGroup>
 
