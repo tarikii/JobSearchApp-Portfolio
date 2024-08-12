@@ -14,6 +14,8 @@ namespace JobSearchApp.BusinessLogic.DTOs
             TagName = tag.TagName;
             ImageUrl = tag.ImageUrl;
         }
+        public TagDto(){}
+
     }
     public class CreateTagDto
     {

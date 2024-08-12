@@ -6,7 +6,7 @@
     form.addEventListener('submit', async (event) => {
         event.preventDefault();
         const questionText = document.getElementById('question-title').value; 
-        await addQuestion({ questionText }); 
+        await addQuestion({ questionText }); // Usa questionText aquí
         form.reset();
         await fetchQuestions();
     });
@@ -31,7 +31,26 @@
             alert('Error de red al agregar la pregunta');
         }
     };
+    const deleteQuestion = async (question) => {
+        try {
+            const response = await fetch(apiBaseUrl, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(question)
+            });
 
+            if (!response.ok) {
+                const errorMessage = await response.text();
+                console.log('Error:', errorMessage);
+                alert('Error al agregar la pregunta');
+            }
+        } catch (error) {
+            console.error('Fetch error:', error);
+            alert('Error de red al agregar la pregunta');
+        }
+    };
 
     const fetchQuestions = async () => {
         const response = await fetch(apiBaseUrl);

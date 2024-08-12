@@ -19,6 +19,8 @@ public class RolePermissionPatentDto
         RoleName = rolePermissionPatent.Role?.Name;
         ResourceName = rolePermissionPatent.Resource?.Name;
     }
+    public RolePermissionPatentDto(){}
+
 }
 
 public class CreateRolePermissionPatentDto

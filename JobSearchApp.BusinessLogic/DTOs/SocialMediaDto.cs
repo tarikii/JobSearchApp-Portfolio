@@ -19,6 +19,8 @@ namespace JobSearchApp.BusinessLogic.DTOs
             Url = socialMedia.Url;
             UserName = socialMedia.User?.UserName;
         }
+        public SocialMediaDto(){}
+
     }
     public class CreateSocialMediaDto
     {

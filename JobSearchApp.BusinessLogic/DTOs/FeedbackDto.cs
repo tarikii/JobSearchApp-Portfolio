@@ -21,6 +21,8 @@ namespace JobSearchApp.BusinessLogic.DTOs
             FeedbackDate = feedback.FeedbackDate;
             RecruiterName = feedback.Recruiter?.UserName;
         }
+        public FeedbackDto(){}
+
     }
     public class CreateFeedbackDto
     {

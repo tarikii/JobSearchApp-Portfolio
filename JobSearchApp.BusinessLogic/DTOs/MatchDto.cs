@@ -23,6 +23,8 @@ public class MatchDto
         JobTitle = match.JobOffer?.Title;
         UserName = match.User?.UserName;
     }
+    public MatchDto(){}
+
 }
 
 public class CreateMatchDto

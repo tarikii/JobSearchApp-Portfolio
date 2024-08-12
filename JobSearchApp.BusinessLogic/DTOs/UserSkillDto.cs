@@ -25,6 +25,8 @@ public class UserSkillDto
         UserName = userSkill.User?.UserName;
         SkillName = userSkill.Skill?.SkillName;
     }
+    public UserSkillDto(){}
+
 }
 
 public class CreateUserSkillDto

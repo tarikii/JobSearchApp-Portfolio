@@ -16,7 +16,9 @@ namespace JobSearchApp.BusinessLogic.DTOs
             CompanyName = companyTag.Company?.Name;
             TagName = companyTag.Tag?.TagName;
         }
-      
+
+        public CompanyTagDto(){}
+
     }
     public class CreateCompanyTagDto
     {

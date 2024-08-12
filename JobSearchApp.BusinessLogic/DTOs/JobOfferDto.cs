@@ -37,6 +37,8 @@ public class JobOfferDto
         MaxSalary = jobOffer.MaxSalary;
         CompanyName = jobOffer.Company?.Name;
     }
+    public JobOfferDto(){}
+
 }
 
 public class CreateJobOfferDto

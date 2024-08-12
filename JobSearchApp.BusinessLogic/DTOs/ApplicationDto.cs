@@ -25,6 +25,8 @@ namespace JobSearchApp.BusinessLogic.DTOs
             UserName = application.User?.UserName;
             JobTitle = application.JobOffer?.Title;
         }
+        public ApplicationDto(){}
+
     }
     public class CreateApplicationDto
     {

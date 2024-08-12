@@ -48,6 +48,8 @@ public class UserDto
         CompanyName = user.Company?.Name;
         IsWorking = user.IsWorking;
     }
+    public UserDto(){}
+
 }
 
 public class CreateUserDto

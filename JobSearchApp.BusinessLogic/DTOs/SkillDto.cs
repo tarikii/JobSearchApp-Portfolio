@@ -14,6 +14,8 @@ public class SkillDto
         SkillName = skill.SkillName;
         SkillType = skill.SkillType;
     }
+    public SkillDto(){}
+
 }
 
 public class CreateSkillDto

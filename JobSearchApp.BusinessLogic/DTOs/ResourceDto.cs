@@ -14,6 +14,8 @@ public class ResourceDto
         Name = resource.Name;
         Description = resource.Description;
     }
+    public ResourceDto(){}
+
 }
 
 public class CreateResourceDto

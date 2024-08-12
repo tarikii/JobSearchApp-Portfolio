@@ -19,6 +19,8 @@ public class CompensationBenefitDto
         Description = compensationBenefit.Description;
         CompanyName = compensationBenefit.Company?.Name;
     }
+    public CompensationBenefitDto(){}
+
 }
 
 public class CreateCompensationBenefitDto

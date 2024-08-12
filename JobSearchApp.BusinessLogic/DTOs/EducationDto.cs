@@ -31,6 +31,8 @@ namespace JobSearchApp.BusinessLogic.DTOs
             Description = education.Description;
             UserName = education.User?.UserName;
         }
+        public EducationDto(){}
+
     }
     public class CreateEducationDto
     {
