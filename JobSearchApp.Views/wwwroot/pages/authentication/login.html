@@ -6,15 +6,25 @@
     <title>Preguntas y Roles</title>
     <link rel="stylesheet" href="css/styles.css">
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script type="text/javascript" src="js/user/login.js" defer></script>
 </head>
 <body>
+    <div id="navbar"></div>
     <div id="app"></div>
     <label>Correo</label>
-    <input type="email" name="email" id="email"/><br />
+    <input type="email" name="email" id="email" /><br />
     <label>Contraseña</label>
     <input type="password" id="password" /><br />
 
     <button id="loginBtn">Login</button>
-    <script type="text/javascript" src="js/user/login.js" defer></script>
+
+
+    <script>
+        fetch('components/navbar.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('navbar').innerHTML = data;
+            });
+    </script>
 </body>
 </html>
