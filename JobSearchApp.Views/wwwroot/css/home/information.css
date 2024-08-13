@@ -1,6 +1,7 @@
 ﻿.story-web {
-    background-color: #f7f7f7;
+    background-color: #f5f5f5;
     padding: 50px 0;
+    width: 100%;
 }
 
 .story-content {
@@ -8,6 +9,11 @@
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
+    width: 100%;
+}
+
+.story-web h1, .story-web h3 {
+    color: #1F4D78;
 }
 
 .story-text, h1 {

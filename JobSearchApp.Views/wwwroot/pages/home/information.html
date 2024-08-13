@@ -9,23 +9,40 @@
     <div id="navbar"></div>
 
 
-    <div class="container">
+    <div class="container-fluid">
         <div class="story-web">
             <h1>Nuestra Historia</h1>
             <div class="story-content">
                 <div class="story-text">
-                    <p>Founded in 2015 by two passionate entrepreneurs, our company was born out of a desire to revolutionize the way people connect with each other.</p>
-                    <p>With a shared vision of creating a platform that would bring people together, our founders embarked on a journey to build a community that would inspire, educate, and empower individuals from all walks of life.</p>
-                    <p>Today, our platform has grown to become a vibrant ecosystem of like-minded individuals who share a common goal of making a positive impact in the world.</p>
-                    <p>We're proud of our journey so far, and we're excited to see what the future holds. Join us on this incredible adventure and become a part of our story!</p>
+                    <br />
+                    <h3>Quienes somos?</h3>
+                    <p>
+                        Somos Tarik Aabouch, Cathy Cardenas y Jaymarc Paragas,
+                        un equipo de Fundación Esplai, formados en la programación y mejorando
+                        cada dia en base a buenas practicas y una programación dinámica.
+                    </p>
+                    <h3>Donde surge la idea?</h3>
+                    <p>La idea nace de la necesidad de crear un espacio inclusivo y justo en el 
+                    proceso de búsqueda de empleo, donde las habilidades y experiencias sean lo que realmente 
+                    importa. En un mundo donde la apariencia y la edad a menudo pueden influir en las decisiones 
+                    de contratación, esta plataforma se enfoca en conectar a candidatos y empleadores de manera 
+                    equitativa, eliminando los sesgos visuales y de edad.</p>
+                    <h3>¿Qué pretendemos conseguir con esto?</h3>
+                    <p>Con esta plataforma, buscamos fomentar un mercado laboral más inclusivo y equitativo, 
+                    donde las oportunidades se basen en el mérito y no en estereotipos. Queremos que tanto los 
+                    candidatos como los empleadores puedan centrarse en lo que realmente importa: las habilidades, 
+                    la experiencia y la cultura de trabajo. Al eliminar la posibilidad de sesgos visuales y etarios,
+                    pretendemos ayudar a construir equipos más diversos, innovadores y justos, donde todos tengan 
+                    la misma oportunidad de destacar y encontrar el trabajo que realmente se ajuste a sus 
+                    capacidades y aspiraciones.</p>
+
                 </div>
-            </div>
         </div>
     </div>
         <div id="footer"></div>
 
         <script>
-        fetch('/pages/components/navbarLoggedComponent.html')
+        fetch('/pages/components/navbarLoggedCandidateComponent.html')
             .then(response => response.text())
             .then(data => {
                 document.getElementById('navbar').innerHTML = data;
