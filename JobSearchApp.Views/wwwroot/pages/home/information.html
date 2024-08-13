@@ -1,0 +1,41 @@
+﻿<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Home</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="js/components/navbarHome.js"></script>
+    <link href="/css/home/information.css" rel="stylesheet" />
+</head>
+<body>
+    <div id="navbar"></div>
+
+
+    <div class="container">
+        <div class="story-web">
+            <h1>Nuestra Historia</h1>
+            <div class="story-content">
+                <div class="story-text">
+                    <p>Founded in 2015 by two passionate entrepreneurs, our company was born out of a desire to revolutionize the way people connect with each other.</p>
+                    <p>With a shared vision of creating a platform that would bring people together, our founders embarked on a journey to build a community that would inspire, educate, and empower individuals from all walks of life.</p>
+                    <p>Today, our platform has grown to become a vibrant ecosystem of like-minded individuals who share a common goal of making a positive impact in the world.</p>
+                    <p>We're proud of our journey so far, and we're excited to see what the future holds. Join us on this incredible adventure and become a part of our story!</p>
+                </div>
+            </div>
+        </div>
+    </div>
+        <div id="footer"></div>
+
+        <script>
+        fetch('/pages/components/navbarLoggedComponent.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('navbar').innerHTML = data;
+            });
+
+        fetch('/pages/components/footerLoggedComponent.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('footer').innerHTML = data;
+            });
+        </script>
+</body>
+</html>
