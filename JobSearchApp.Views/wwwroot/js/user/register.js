@@ -42,7 +42,7 @@
         axios.post('https://localhost:7056/api/User', data)
             .then(function (response) {
                 console.log('Response:', response);
-                window.location.href = "/pages/HomeUserBusinessReclutator.html";
+                window.location.href = "/pages/home/HomeUserBusinessReclutator.html";
             })
             .catch(function (error) {
                 console.error('Error:', error);
