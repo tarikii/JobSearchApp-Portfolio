@@ -137,56 +137,50 @@ function validateLinkedinUrl(inputElement, errorMessageElement) {
     }
 }
 
-document.addEventListener("DOMContentLoaded", function () {
-    var form = document.querySelector(".validate-form");
+function isValidForm(form, event) {
+    var isValid = true;
 
-    form.addEventListener("submit", function (event) {
-        var isValid = true;
+    var inputs = form.querySelectorAll(".validate-input");
+    var errorMessages = form.querySelectorAll(".error-message");
 
-        var inputs = form.querySelectorAll(".validate-input");
-        var errorMessages = form.querySelectorAll(".error-message");
+    inputs.forEach(function (input, index) {
+        var errorMessage = errorMessages[index];
 
-        inputs.forEach(function (input, index) {
-            var errorMessage = errorMessages[index];
-
-            switch (input.type) {
-                case "email":
-                    if (!validateEmail(input, errorMessage)) isValid = false;
-                    break;
-                case "password":
-                    if (input.id === "confirm-password") {
-                        var passwordInput = document.querySelector("#password");
-                        if (!validateConfirmPassword(passwordInput, input, errorMessage)) isValid = false;
-                    } else {
-                        if (!validatePassword(input, errorMessage)) isValid = false;
+        switch (input.type) {
+            case "email":
+                if (!validateEmail(input, errorMessage)) isValid = false;
+                break;
+            case "password":
+                if (input.id === "confirm-password") {
+                    var passwordInput = document.querySelector("#password");
+                    if (!validateConfirmPassword(passwordInput, input, errorMessage)) isValid = false;
+                } else {
+                    if (!validatePassword(input, errorMessage)) isValid = false;
+                }
+                break;
+            case "number":
+                if (input.id === "min-salary" || input.id === "max-salary") {
+                    if (!validateSalary(input, errorMessage)) isValid = false;
+                    if (input.id === "max-salary") {
+                        var minSalaryInput = document.querySelector("#min-salary");
+                        if (!validateSalaryRange(minSalaryInput, input, errorMessage)) isValid = false;
                     }
-                    break;
-                case "number":
-                    if (input.id === "min-salary" || input.id === "max-salary") {
-                        if (!validateSalary(input, errorMessage)) isValid = false;
-                        if (input.id === "max-salary") {
-                            var minSalaryInput = document.querySelector("#min-salary");
-                            if (!validateSalaryRange(minSalaryInput, input, errorMessage)) isValid = false;
-                        }
-                    } else {
-                        if (!validateNumber(input, errorMessage)) isValid = false;
-                    }
-                    break;
-                case "url":
-                    if (input.id === "github-url") {
-                        if (!validateGithubUrl(input, errorMessage)) isValid = false;
-                    } else if (input.id === "linkedin-url") {
-                        if (!validateLinkedinUrl(input, errorMessage)) isValid = false;
-                    } else {
-                    }
-                    break;
-                default:
-                    if (!validateText(input, errorMessage)) isValid = false;
-            }
-        });
-
-        if (!isValid) {
-            event.preventDefault();
+                } else {
+                    if (!validateNumber(input, errorMessage)) isValid = false;
+                }
+                break;
+            case "url":
+                if (input.id === "github-url") {
+                    if (!validateGithubUrl(input, errorMessage)) isValid = false;
+                } else if (input.id === "linkedin-url") {
+                    if (!validateLinkedinUrl(input, errorMessage)) isValid = false;
+                } else {
+                }
+                break;
+            default:
+                if (!validateText(input, errorMessage)) isValid = false;
         }
     });
-});
+
+    return isValid;
+}
