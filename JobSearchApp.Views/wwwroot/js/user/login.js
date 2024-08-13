@@ -15,8 +15,7 @@
         // Realizar la solicitud POST con Axios
         axios.post('https://localhost:7056/api/User/authenticate', data)
             .then(function (response) {
-                console.log(response.data);
-                //window.location.href = "/pages/HomeUserBusinessReclutator.html";
+                window.location.href = "/pages/home/HomeUserBusinessReclutator.html";
             })
             .catch(function (error) {
                 // Manejar los errores
