@@ -2,10 +2,10 @@
     // Capturar los valores de los campos de entrada
 
     const name = document.getElementById("name").value;
-    const lastName = document.getElementById("lastName").value;
+    const lastName = document.getElementById("lastname").value;
     const email = document.getElementById("email").value;
     const password = document.getElementById("password").value;
-    const confirmPassword = document.getElementById("confirmPassword").value;
+    const confirmPassword = document.getElementById("confirm-password").value;
     const username = document.getElementById("username").value;
 
     console.log(username);
@@ -41,10 +41,10 @@
     // Realizar la solicitud POST con Axios
     axios.post('https://localhost:7056/api/User', data)
         .then(function (response) {
-            console.log('Respuesta:', response.data);
+            window.location.href = "/pages/HomeUserBusinessReclutator.html";
         })
         .catch(function (error) {
             // Manejar los errores
-            console.error('Error en la solicitud:', error);
+            console.error('Error en la solicitud:', error.response.data);
         });
 });
