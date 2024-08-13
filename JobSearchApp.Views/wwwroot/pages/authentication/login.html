@@ -4,27 +4,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Preguntas y Roles</title>
-    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="/css/styles.css">
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-    <script type="text/javascript" src="js/user/login.js" defer></script>
+    <script type="text/javascript" src="/js/user/login.js" defer></script>
 </head>
 <body>
-    <div id="navbar"></div>
     <div id="app"></div>
     <label>Correo</label>
     <input type="email" name="email" id="email" /><br />
     <label>Contraseña</label>
     <input type="password" id="password" /><br />
+    <a href="register.html">¿No Tienes Cuenta?</a><br />
 
-    <button id="loginBtn">Login</button>
-
-
-    <script>
-        fetch('components/navbar.html')
-            .then(response => response.text())
-            .then(data => {
-                document.getElementById('navbar').innerHTML = data;
-            });
-    </script>
+    <button type="submit" id="loginBtn">Login</button>
 </body>
 </html>

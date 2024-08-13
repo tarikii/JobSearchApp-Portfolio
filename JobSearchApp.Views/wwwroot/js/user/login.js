@@ -1,4 +1,4 @@
-﻿document.getElementById('loginBtn').addEventListener('click', function() {
+﻿document.getElementById('loginBtn').addEventListener('click', function () {
     // Capturar los valores de los campos de entrada
 
     const username = document.getElementById("email").value;
@@ -10,12 +10,11 @@
         password: password
     };
 
-    console.log("hola");
-
     // Realizar la solicitud POST con Axios
     axios.post('https://localhost:7056/api/User/authenticate', data)
         .then(function (response) {
-            console.log('Respuesta:', response.data);
+            console.log(response.data);
+            //window.location.href = "/pages/HomeUserBusinessReclutator.html";
         })
         .catch(function (error) {
             // Manejar los errores
