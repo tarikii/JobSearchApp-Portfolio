@@ -1,3 +1,8 @@
+using JobSearchApp.BusinessLogic.Mapping;
+using JobSearchApp.Infrastructure.Data;
+using JobSearchApp.Views.Extensions;
+using Microsoft.EntityFrameworkCore;
+
 namespace JobSearchApp.View
 {
     public class Program
@@ -5,9 +10,22 @@ namespace JobSearchApp.View
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
+            var services = builder.Services;
+            var config = builder.Configuration;
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
+            // Add services to the container using the extension method
+
+            services.ConfigureServices(builder.Configuration);
+
+
+            // Configurar DbContext según el proveedor de base de datos seleccionado
+            var connectionString = config.GetConnectionString("AzureConnection");
+            services.AddDbContextFactory<ApplicationDbContext>(options =>
+                options.UseSqlServer(connectionString));
+
+            services.AddAutoMapper(typeof(AutoMapperProfile));
 
             var app = builder.Build();
 
@@ -28,7 +46,7 @@ namespace JobSearchApp.View
 
             app.MapControllerRoute(
                 name: "default",
-                pattern: "{controller=Home}/{action=Index}/{id?}");
+                pattern: "{controller=Home}/{action=HomePage}/{id?}");
 
             app.Run();
         }

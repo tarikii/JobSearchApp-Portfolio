@@ -6,4 +6,8 @@
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\JobSearchApp.BusinessLogic\JobSearchApp.BusinessLogic.csproj" />
+  </ItemGroup>
+
 </Project>

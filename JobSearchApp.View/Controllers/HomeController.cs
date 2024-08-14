@@ -1,3 +1,5 @@
+using JobSearchApp.BusinessLogic.DTOs;
+using JobSearchApp.BusinessLogic.Interfaces;
 using JobSearchApp.View.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
@@ -6,27 +8,45 @@ namespace JobSearchApp.View.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
+        private readonly IUserService _userService;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(IUserService userService)
         {
-            _logger = logger;
+            _userService = userService;
         }
 
-        public IActionResult Index()
+        public IActionResult HomePage()
+        {
+            return View();
+        }
+        public IActionResult ContactFormPage()
+        {
+            return View();
+        }
+        public IActionResult TeamDeveloperPage()
+        {
+            return View();
+        }
+        public IActionResult InformationPage()
         {
             return View();
         }
 
-        public IActionResult Privacy()
+        public IActionResult HomeCandidatePage()
         {
             return View();
         }
+        //public async Task<IActionResult> HomeBusinessOrRecruiterPage(int userId)
+        //{
+        //    UserDTO user = await _userService.GetUserByIdAsync(userId);
 
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
-        {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
-        }
+        //    if (user != null)
+        //    {
+        //        ViewBag.Role = "Admin";
+        //        return View(user);
+        //    }
+
+        //    return View();
+        //}
     }
 }

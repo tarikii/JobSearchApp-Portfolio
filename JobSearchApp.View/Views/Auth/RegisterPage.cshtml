@@ -1,0 +1,125 @@
+﻿<style>
+    /* General container styling */
+    .container {
+        padding: 0; /* Remove padding from the container */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh; /* Ensure container takes up the full viewport height */
+    }
+
+    /* Ensure columns are flush with each other */
+    .col-md-6 {
+        padding: 0; /* Remove padding from columns */
+    }
+
+    .form-label, #title-form {
+        color: #1F4D78;
+    }
+
+    /* Ensure consistent sizing for form container and welcome container */
+    .container-form, .welcome-container {
+        width: 100%; /* Full width of the column */
+        height: 100%; /* Full height of the column */
+    }
+
+    /* Style for form container */
+    .container-form {
+        background-color: #F5F5F5;
+        padding: 20px;
+        border-radius: 50px 15px 5px 30px; /* Mixed radius for form container */
+        display: flex;
+        flex-direction: column;
+        justify-content: center; /* Center content vertically */
+    }
+
+    /* Style for welcome container */
+    .welcome-container {
+        background-color: #1F4D78;
+        color: #FFFFFF; /* Ensure text is visible against the dark background */
+        padding: 20px;
+        border-radius: 15px 50px 30px 5px; /* Mixed radius for welcome container */
+        display: flex;
+        justify-content: center; /* Center content horizontally */
+        align-items: center; /* Center content vertically */
+    }
+
+    /* Style for form inputs */
+    .validate-input {
+        width: 100%; /* Ensure inputs take full width of their container */
+        padding: 10px;
+        margin-top: 10px;
+        margin-bottom: 20px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        font-size: 16px;
+    }
+
+</style>
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 p-0">
+            <!-- Remove padding from the columns -->
+            <div class="container-form">
+                <h1 id="title-form">Registro</h1>
+                <form class="validate-form">
+                    <div class="name-label">
+                        <label for="name" class="form-label">Nombre</label>
+                    </div>
+                    <div class="name-input">
+                        <input type="text" id="name" class="validate-input" />
+                        <span class="error-message"></span>
+                    </div>
+                    <div class="lastname-label">
+                        <label for="lastname" class="form-label">Apellido</label>
+                    </div>
+                    <div class="lastname-input">
+                        <input type="text" id="lastname" class="validate-input" />
+                        <span class="error-message"></span>
+                    </div>
+                    <div class="username-label">
+                        <label for="username" class="form-label">Nombre de usuario</label>
+                    </div>
+                    <div class="username-input">
+                        <input type="text" id="username" class="validate-input" />
+                        <span class="error-message"></span>
+                    </div>
+                    <div class="email-label">
+                        <label for="email" class="form-label">Correo</label>
+                    </div>
+                    <div class="email-input">
+                        <input type="email" id="email" class="validate-input" />
+                        <span class="error-message"></span>
+                    </div>
+                    <div class="password-label">
+                        <label for="password" class="form-label">Contraseña</label>
+                    </div>
+                    <div class="password-input">
+                        <input type="password" id="password" class="validate-input" />
+                        <span class="error-message"></span>
+                    </div>
+                    <div class="confirm-label">
+                        <label for="confirm" class="form-label">Confirmar contraseña</label>
+                    </div>
+                    <div class="confirm-input">
+                        <input type="password" id="confirm-password" class="validate-input" />
+                        <span class="error-message"></span>
+                    </div>
+                    <div class="submit-button">
+                        <button type="submit" id="registerBtn">Registrarse</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="col-md-6 p-0">
+            <!-- Remove padding from the columns -->
+            <div class="welcome-container">
+                <div class="welcome-content">
+                    <h1>Bienvenido a Swipe4Work</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
