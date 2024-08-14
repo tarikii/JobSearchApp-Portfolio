@@ -14,6 +14,8 @@ public class RoleDto
         Name = role.Name;
         Description = role.Description;
     }
+
+    public RoleDto() { }
 }
 
 public class CreateRoleDto

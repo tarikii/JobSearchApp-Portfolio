@@ -16,7 +16,6 @@ namespace JobSearchApp.BusinessLogic.DTOs
 
         public ApplicationDto(Application application)
         {
-            ApplicationId = application.ApplicationId;
             UserId = application.UserId;
             JobOfferId = application.JobOfferId;
             ApplicationDate = application.ApplicationDate;
@@ -25,6 +24,8 @@ namespace JobSearchApp.BusinessLogic.DTOs
             UserName = application.User?.UserName;
             JobTitle = application.JobOffer?.Title;
         }
+
+        public ApplicationDto() { }
     }
     public class CreateApplicationDto
     {

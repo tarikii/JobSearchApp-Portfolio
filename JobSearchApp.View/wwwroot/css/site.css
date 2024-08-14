@@ -12,11 +12,24 @@ html {
   box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
 }
 
-html {
-  position: relative;
-  min-height: 100%;
+footer {
+    width: 100% !important;
 }
 
-body {
-  margin-bottom: 60px;
+/* Target the footer links */
+.footer-links a {
+    color: #ffffff !important;/* Set the color to white */
+    text-decoration: none; /* Remove underline */
+    font-weight: normal; /* Ensure normal font-weight */
+}
+
+    .footer-links a:hover {
+        text-decoration: underline; /* Optional: add underline on hover */
+    }
+
+/* Remove any list styling and margin/padding */
+.footer-links {
+    padding: 0;
+    margin: 0;
+    list-style: none; /* Removes bullet points */
 }

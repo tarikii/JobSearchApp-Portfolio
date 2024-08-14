@@ -21,7 +21,7 @@ namespace JobSearchApp.View
 
 
             // Configurar DbContext según el proveedor de base de datos seleccionado
-            var connectionString = config.GetConnectionString("AzureConnection");
+            var connectionString = config.GetConnectionString("LocalConnection");
             services.AddDbContextFactory<ApplicationDbContext>(options =>
                 options.UseSqlServer(connectionString));
 
