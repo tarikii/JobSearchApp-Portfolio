@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace JobSearchApp.Infrastructure.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240729174320_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20240814112821_initialMigration")]
+    partial class initialMigration
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -53,6 +53,32 @@ namespace JobSearchApp.Infrastructure.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("Answer", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            AnswerId = 1,
+                            AnswerText = "Creo que la tecnología blockchain transformará muchas industrias, especialmente las finanzas.",
+                            IsFeatured = true,
+                            QuestionId = 1,
+                            UserId = 1
+                        },
+                        new
+                        {
+                            AnswerId = 2,
+                            AnswerText = "El aprendizaje automático ya está revolucionando el análisis de datos en el sector salud.",
+                            IsFeatured = false,
+                            QuestionId = 2,
+                            UserId = 2
+                        },
+                        new
+                        {
+                            AnswerId = 3,
+                            AnswerText = "En mi opinión, la realidad aumentada cambiará la manera en que interactuamos con el mundo digital.",
+                            IsFeatured = false,
+                            QuestionId = 1,
+                            UserId = 2
+                        });
                 });
 
             modelBuilder.Entity("JobSearchApp.Domain.Models.Application", b =>
@@ -86,6 +112,26 @@ namespace JobSearchApp.Infrastructure.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("Application", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            ApplicationId = 1,
+                            ApplicationDate = new DateTimeOffset(new DateTime(2024, 1, 5, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 1, 0, 0, 0)),
+                            JobOfferId = 1,
+                            SalaryExpected = 60000m,
+                            Status = "Pendiente",
+                            UserId = 1
+                        },
+                        new
+                        {
+                            ApplicationId = 2,
+                            ApplicationDate = new DateTimeOffset(new DateTime(2024, 2, 20, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 1, 0, 0, 0)),
+                            JobOfferId = 2,
+                            SalaryExpected = 50000m,
+                            Status = "Aceptado",
+                            UserId = 2
+                        });
                 });
 
             modelBuilder.Entity("JobSearchApp.Domain.Models.Company", b =>
@@ -130,6 +176,44 @@ namespace JobSearchApp.Infrastructure.Migrations
                     b.HasKey("CompanyId");
 
                     b.ToTable("Company", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            CompanyId = 1,
+                            Description = "Una empresa dedicada a ofrecer soluciones tecnológicas avanzadas.",
+                            FoundedYear = 2012,
+                            Headquarters = "Ciudad de México, México",
+                            Industry = "Tecnología",
+                            Location = "Ciudad de México, México",
+                            Name = "Innovación Tecnológica S.A.",
+                            Size = "Mediana",
+                            WebsiteUrl = "https://www.innovaciontecnologica.com"
+                        },
+                        new
+                        {
+                            CompanyId = 2,
+                            Description = "Expertos en diseño gráfico y desarrollo de estrategias creativas.",
+                            FoundedYear = 2008,
+                            Headquarters = "Buenos Aires, Argentina",
+                            Industry = "Creatividad",
+                            Location = "Buenos Aires, Argentina",
+                            Name = "Servicios Creativos Ltda.",
+                            Size = "Grande",
+                            WebsiteUrl = "https://www.servicioscreativos.com"
+                        },
+                        new
+                        {
+                            CompanyId = 3,
+                            Description = "Proporciona servicios de consultoría en diversas áreas empresariales.",
+                            FoundedYear = 2000,
+                            Headquarters = "Madrid, España",
+                            Industry = "Consultoría",
+                            Location = "Madrid, España",
+                            Name = "Consultoría Global",
+                            Size = "Grande",
+                            WebsiteUrl = "https://www.consultoriaglobal.com"
+                        });
                 });
 
             modelBuilder.Entity("JobSearchApp.Domain.Models.CompanyTag", b =>
@@ -145,6 +229,18 @@ namespace JobSearchApp.Infrastructure.Migrations
                     b.HasIndex("TagId");
 
                     b.ToTable("CompanyTag", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            CompanyId = 1,
+                            TagId = 1
+                        },
+                        new
+                        {
+                            CompanyId = 2,
+                            TagId = 2
+                        });
                 });
 
             modelBuilder.Entity("JobSearchApp.Domain.Models.CompensationBenefit", b =>
@@ -171,6 +267,36 @@ namespace JobSearchApp.Infrastructure.Migrations
                     b.HasIndex("CompanyId");
 
                     b.ToTable("CompensationBenefit", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            BenefitId = 1,
+                            BenefitType = "Seguro de Salud",
+                            CompanyId = 1,
+                            Description = "Cobertura completa de seguro médico para empleados y sus familias."
+                        },
+                        new
+                        {
+                            BenefitId = 2,
+                            BenefitType = "Bonificación Anual",
+                            CompanyId = 1,
+                            Description = "Bonificación basada en el rendimiento anual del empleado."
+                        },
+                        new
+                        {
+                            BenefitId = 3,
+                            BenefitType = "Estudio y Capacitación",
+                            CompanyId = 2,
+                            Description = "Reembolsos para cursos de desarrollo profesional y capacitación continua."
+                        },
+                        new
+                        {
+                            BenefitId = 4,
+                            BenefitType = "Tiempo de Vacaciones",
+                            CompanyId = 2,
+                            Description = "Tiempo adicional de vacaciones por antigüedad y desempeño."
+                        });
                 });
 
             modelBuilder.Entity("JobSearchApp.Domain.Models.Education", b =>
@@ -219,6 +345,34 @@ namespace JobSearchApp.Infrastructure.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("Education", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            EducationId = 1,
+                            ActivitiesAndSocieties = "Club de Programación",
+                            Degree = "Licenciatura",
+                            Description = "Estudios de ingeniería de software con enfoque en desarrollo web y móvil.",
+                            EndDate = new DateTimeOffset(new DateTime(2019, 6, 15, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 2, 0, 0, 0)),
+                            FieldOfStudy = "Ingeniería de Software",
+                            Grade = "Excelente",
+                            SchoolName = "Universidad de Ejemplo",
+                            StartDate = new DateTimeOffset(new DateTime(2015, 9, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 2, 0, 0, 0)),
+                            UserId = 1
+                        },
+                        new
+                        {
+                            EducationId = 2,
+                            ActivitiesAndSocieties = "Data Science Club",
+                            Degree = "Máster",
+                            Description = "Máster en ciencia de datos con especialización en análisis predictivo y aprendizaje automático.",
+                            EndDate = new DateTimeOffset(new DateTime(2022, 12, 20, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 1, 0, 0, 0)),
+                            FieldOfStudy = "Ciencias de Datos",
+                            Grade = "A",
+                            SchoolName = "Instituto de Ejemplo",
+                            StartDate = new DateTimeOffset(new DateTime(2020, 1, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 1, 0, 0, 0)),
+                            UserId = 2
+                        });
                 });
 
             modelBuilder.Entity("JobSearchApp.Domain.Models.Feedback", b =>
@@ -249,6 +403,24 @@ namespace JobSearchApp.Infrastructure.Migrations
                     b.HasIndex("RecruiterId");
 
                     b.ToTable("Feedback", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            FeedbackId = 1,
+                            ApplicationId = 1,
+                            FeedbackDate = new DateTimeOffset(new DateTime(2024, 5, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 2, 0, 0, 0)),
+                            FeedbackText = "El candidato mostró un gran conocimiento en las tecnologías requeridas y una actitud muy positiva durante la entrevista. Sin embargo, sería beneficioso para él mejorar sus habilidades de comunicación.",
+                            RecruiterId = 1
+                        },
+                        new
+                        {
+                            FeedbackId = 2,
+                            ApplicationId = 2,
+                            FeedbackDate = new DateTimeOffset(new DateTime(2024, 6, 15, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 2, 0, 0, 0)),
+                            FeedbackText = "El candidato tiene una experiencia impresionante en gestión de proyectos y ha demostrado habilidades excepcionales en la resolución de problemas. Recomiendo proceder con una segunda ronda de entrevistas.",
+                            RecruiterId = 2
+                        });
                 });
 
             modelBuilder.Entity("JobSearchApp.Domain.Models.Interest", b =>
@@ -271,6 +443,38 @@ namespace JobSearchApp.Infrastructure.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("Interest", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            InterestId = 1,
+                            InterestText = "Desarrollo de software y tecnologías emergentes",
+                            UserId = 1
+                        },
+                        new
+                        {
+                            InterestId = 2,
+                            InterestText = "Diseño de interfaces de usuario y experiencia de usuario (UI/UX)",
+                            UserId = 2
+                        },
+                        new
+                        {
+                            InterestId = 3,
+                            InterestText = "Gestión de proyectos y metodologías ágiles",
+                            UserId = 2
+                        },
+                        new
+                        {
+                            InterestId = 4,
+                            InterestText = "Inteligencia artificial y aprendizaje automático",
+                            UserId = 1
+                        },
+                        new
+                        {
+                            InterestId = 5,
+                            InterestText = "Ciberseguridad y protección de datos",
+                            UserId = 2
+                        });
                 });
 
             modelBuilder.Entity("JobSearchApp.Domain.Models.JobOffer", b =>
@@ -327,6 +531,40 @@ namespace JobSearchApp.Infrastructure.Migrations
                     b.HasIndex("CompanyId");
 
                     b.ToTable("JobOffer", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            JobOfferId = 1,
+                            CompanyId = 1,
+                            Description = "Buscamos un desarrollador de software senior para trabajar en proyectos innovadores en el área de tecnología.",
+                            EstimatedDurationDays = 30,
+                            ExperienceLevel = "Senior",
+                            ExpiredDate = new DateTimeOffset(new DateTime(2024, 6, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 2, 0, 0, 0)),
+                            IsActive = true,
+                            JobType = "Tiempo completo",
+                            Location = "Ciudad de México, México",
+                            MaxSalary = 80000m,
+                            MinSalary = 60000m,
+                            PostedDate = new DateTimeOffset(new DateTime(2024, 1, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 1, 0, 0, 0)),
+                            Title = "Desarrollador de Software Senior"
+                        },
+                        new
+                        {
+                            JobOfferId = 2,
+                            CompanyId = 2,
+                            Description = "Se busca diseñador gráfico con experiencia para crear material visual atractivo para nuestros clientes.",
+                            EstimatedDurationDays = 45,
+                            ExperienceLevel = "Junior",
+                            ExpiredDate = new DateTimeOffset(new DateTime(2024, 5, 15, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 2, 0, 0, 0)),
+                            IsActive = true,
+                            JobType = "Medio tiempo",
+                            Location = "Buenos Aires, Argentina",
+                            MaxSalary = 40000m,
+                            MinSalary = 30000m,
+                            PostedDate = new DateTimeOffset(new DateTime(2024, 2, 15, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 1, 0, 0, 0)),
+                            Title = "Diseñador Gráfico"
+                        });
                 });
 
             modelBuilder.Entity("JobSearchApp.Domain.Models.Match", b =>
@@ -356,6 +594,24 @@ namespace JobSearchApp.Infrastructure.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("Match", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            MatchId = 1,
+                            IsAccepted = true,
+                            JobOfferId = 1,
+                            MatchDate = new DateTimeOffset(new DateTime(2024, 8, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
+                            UserId = 1
+                        },
+                        new
+                        {
+                            MatchId = 2,
+                            IsAccepted = false,
+                            JobOfferId = 2,
+                            MatchDate = new DateTimeOffset(new DateTime(2024, 8, 12, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
+                            UserId = 2
+                        });
                 });
 
             modelBuilder.Entity("JobSearchApp.Domain.Models.Permission", b =>
@@ -366,6 +622,20 @@ namespace JobSearchApp.Infrastructure.Migrations
                     b.HasKey("Name");
 
                     b.ToTable("Permission", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Name = "Leer"
+                        },
+                        new
+                        {
+                            Name = "Escribir"
+                        },
+                        new
+                        {
+                            Name = "Eliminar"
+                        });
                 });
 
             modelBuilder.Entity("JobSearchApp.Domain.Models.Question", b =>
@@ -383,6 +653,18 @@ namespace JobSearchApp.Infrastructure.Migrations
                     b.HasKey("QuestionId");
 
                     b.ToTable("Question", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            QuestionId = 1,
+                            QuestionText = "¿Por qué quieres trabajar con nosotros?"
+                        },
+                        new
+                        {
+                            QuestionId = 2,
+                            QuestionText = "Describe un desafío que enfrentaste en tu trabajo anterior."
+                        });
                 });
 
             modelBuilder.Entity("JobSearchApp.Domain.Models.Resource", b =>
@@ -404,6 +686,32 @@ namespace JobSearchApp.Infrastructure.Migrations
                     b.HasKey("ResourceId");
 
                     b.ToTable("Resource", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            ResourceId = 1,
+                            Description = "Un recurso que proporciona servicios de autenticación para usuarios en la plataforma.",
+                            Name = "API de Autenticación"
+                        },
+                        new
+                        {
+                            ResourceId = 2,
+                            Description = "Un servicio que gestiona las notificaciones en la aplicación.",
+                            Name = "Servicio de Notificaciones"
+                        },
+                        new
+                        {
+                            ResourceId = 3,
+                            Description = "Recurso que maneja las operaciones relacionadas con los datos de usuario.",
+                            Name = "Gestión de Datos de Usuario"
+                        },
+                        new
+                        {
+                            ResourceId = 4,
+                            Description = "Recurso que permite la búsqueda y filtrado de ofertas de empleo en la plataforma.",
+                            Name = "API de Búsqueda de Empleos"
+                        });
                 });
 
             modelBuilder.Entity("JobSearchApp.Domain.Models.Role", b =>
@@ -425,6 +733,32 @@ namespace JobSearchApp.Infrastructure.Migrations
                     b.HasKey("RoleId");
 
                     b.ToTable("Role", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            RoleId = 1,
+                            Description = "Rol con acceso completo a todas las funcionalidades y configuraciones del sistema.",
+                            Name = "Administrador"
+                        },
+                        new
+                        {
+                            RoleId = 2,
+                            Description = "Rol encargado de gestionar las ofertas de empleo, aplicaciones y procesos de contratación.",
+                            Name = "Reclutador"
+                        },
+                        new
+                        {
+                            RoleId = 3,
+                            Description = "Rol que representa a los usuarios que buscan empleo y postulan a ofertas.",
+                            Name = "Candidato"
+                        },
+                        new
+                        {
+                            RoleId = 4,
+                            Description = "Rol que gestiona los recursos y herramientas disponibles en la plataforma.",
+                            Name = "Empresa"
+                        });
                 });
 
             modelBuilder.Entity("JobSearchApp.Domain.Models.RolePermissionPatent", b =>
@@ -445,6 +779,32 @@ namespace JobSearchApp.Infrastructure.Migrations
                     b.HasIndex("ResourceId");
 
                     b.ToTable("RolePermissionPatent", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            RoleId = 1,
+                            ResourceId = 1,
+                            Permission = "Leer"
+                        },
+                        new
+                        {
+                            RoleId = 1,
+                            ResourceId = 1,
+                            Permission = "Escribir"
+                        },
+                        new
+                        {
+                            RoleId = 1,
+                            ResourceId = 1,
+                            Permission = "Eliminar"
+                        },
+                        new
+                        {
+                            RoleId = 2,
+                            ResourceId = 2,
+                            Permission = "Leer"
+                        });
                 });
 
             modelBuilder.Entity("JobSearchApp.Domain.Models.Skill", b =>
@@ -466,6 +826,26 @@ namespace JobSearchApp.Infrastructure.Migrations
                     b.HasKey("SkillId");
 
                     b.ToTable("Skill", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            SkillId = 1,
+                            SkillName = "C#",
+                            SkillType = "Tech"
+                        },
+                        new
+                        {
+                            SkillId = 2,
+                            SkillName = "C#",
+                            SkillType = "Tech"
+                        },
+                        new
+                        {
+                            SkillId = 3,
+                            SkillName = "C#",
+                            SkillType = "Tech"
+                        });
                 });
 
             modelBuilder.Entity("JobSearchApp.Domain.Models.SocialMedia", b =>
@@ -492,6 +872,22 @@ namespace JobSearchApp.Infrastructure.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("SocialMedia", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            SocialMediaId = 1,
+                            Platform = "LinkedIn",
+                            Url = "https://www.linkedin.com/in/admin",
+                            UserId = 1
+                        },
+                        new
+                        {
+                            SocialMediaId = 2,
+                            Platform = "Twitter",
+                            Url = "https://twitter.com/usuario",
+                            UserId = 2
+                        });
                 });
 
             modelBuilder.Entity("JobSearchApp.Domain.Models.Tag", b =>
@@ -513,6 +909,20 @@ namespace JobSearchApp.Infrastructure.Migrations
                     b.HasKey("TagId");
 
                     b.ToTable("Tag", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            TagId = 1,
+                            ImageUrl = "URL",
+                            TagName = "Remoto"
+                        },
+                        new
+                        {
+                            TagId = 2,
+                            ImageUrl = "URL",
+                            TagName = "Tiempo completo"
+                        });
                 });
 
             modelBuilder.Entity("JobSearchApp.Domain.Models.User", b =>
@@ -617,6 +1027,62 @@ namespace JobSearchApp.Infrastructure.Migrations
                     b.HasIndex("RoleId");
 
                     b.ToTable("User", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            UserId = 1,
+                            CompanyId = 1,
+                            DateJoined = new DateTimeOffset(new DateTime(2019, 8, 14, 13, 28, 21, 292, DateTimeKind.Unspecified).AddTicks(5017), new TimeSpan(0, 2, 0, 0, 0)),
+                            Email = "admin@techcorp.com",
+                            Ethnicity = "Latino",
+                            FirstName = "Carlos",
+                            GenderIdentity = "Masculino",
+                            Headline = "Gerente de TI",
+                            IsWorking = true,
+                            LastName = "Martínez",
+                            LinkedInUrl = "https://www.linkedin.com/in/carlosmartinez",
+                            Location = "San Francisco, CA",
+                            MobileNumber = "555-1234",
+                            PasswordHash = "AQAAAAEAACcQAAAAEDu6ak/YXB+W7W0zY6jEjG5L8/lRxV9NkH5j2Jsfg==",
+                            PortfolioUrl = "https://portfolio.com/carlosmartinez",
+                            ProfilePicture = "https://example.com/perfil1.jpg",
+                            ProfileUrl = "https://example.com/carlosmartinez",
+                            Pronoun = "Él",
+                            RequireVisa = false,
+                            RoleId = 1,
+                            SearchStage = "Activo",
+                            Summary = "Profesional con más de 10 años de experiencia en la gestión de proyectos tecnológicos.",
+                            UserName = "admin",
+                            UserType = "Administrador"
+                        },
+                        new
+                        {
+                            UserId = 2,
+                            CompanyId = 2,
+                            DateJoined = new DateTimeOffset(new DateTime(2021, 8, 14, 13, 28, 21, 292, DateTimeKind.Unspecified).AddTicks(5042), new TimeSpan(0, 2, 0, 0, 0)),
+                            Email = "jane.doe@saludplus.com",
+                            Ethnicity = "Caucásica",
+                            FirstName = "Jane",
+                            GenderIdentity = "Femenino",
+                            Headline = "Científica de Datos",
+                            IsWorking = false,
+                            LastName = "Doe",
+                            LinkedInUrl = "https://www.linkedin.com/in/janedoe",
+                            Location = "Nueva York, NY",
+                            MobileNumber = "555-5678",
+                            PasswordHash = "AQAAAAEAACcQAAAAEBvD5Bb5FVJL/OoYNm4OE4bD81kFfgp1zB/gE4bZg==",
+                            PortfolioUrl = "https://portfolio.com/janedoe",
+                            ProfilePicture = "https://example.com/perfil2.jpg",
+                            ProfileUrl = "https://example.com/janedoe",
+                            Pronoun = "Ella",
+                            RequireVisa = false,
+                            RoleId = 2,
+                            SearchStage = "En búsqueda",
+                            Summary = "Especialista en análisis de datos con un enfoque en el sector salud.",
+                            UserName = "janedoe",
+                            UserType = "Usuario"
+                        });
                 });
 
             modelBuilder.Entity("JobSearchApp.Domain.Models.UserPreference", b =>
@@ -643,6 +1109,43 @@ namespace JobSearchApp.Infrastructure.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("UserPreference", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            PreferenceId = 1,
+                            Category = "Tipo de Trabajo",
+                            UserId = 1,
+                            Value = "Trabajo Remoto"
+                        },
+                        new
+                        {
+                            PreferenceId = 2,
+                            Category = "Tipo de Trabajo",
+                            UserId = 2,
+                            Value = "Posición de tiempo completo"
+                        },
+                        new
+                        {
+                            PreferenceId = 3,
+                            Category = "Salario",
+                            UserId = 2,
+                            Value = "Salario Alto"
+                        },
+                        new
+                        {
+                            PreferenceId = 4,
+                            Category = "Horario",
+                            UserId = 1,
+                            Value = "Horario Flexible"
+                        },
+                        new
+                        {
+                            PreferenceId = 5,
+                            Category = "Oportunidades",
+                            UserId = 2,
+                            Value = "Oportunidades de Crecimiento"
+                        });
                 });
 
             modelBuilder.Entity("JobSearchApp.Domain.Models.UserSkill", b =>
@@ -677,6 +1180,35 @@ namespace JobSearchApp.Infrastructure.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("UserSkill", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            UserSkillId = 1,
+                            ProficiencyLevel = "Experto",
+                            RelatedId = 101,
+                            RelatedTo = "Certificación",
+                            SkillId = 1,
+                            UserId = 1
+                        },
+                        new
+                        {
+                            UserSkillId = 2,
+                            ProficiencyLevel = "Intermedio",
+                            RelatedId = 202,
+                            RelatedTo = "Curso",
+                            SkillId = 2,
+                            UserId = 2
+                        },
+                        new
+                        {
+                            UserSkillId = 3,
+                            ProficiencyLevel = "Básico",
+                            RelatedId = 303,
+                            RelatedTo = "Proyecto",
+                            SkillId = 3,
+                            UserId = 2
+                        });
                 });
 
             modelBuilder.Entity("JobSearchApp.Domain.Models.WorkExperience", b =>
@@ -717,6 +1249,41 @@ namespace JobSearchApp.Infrastructure.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("WorkExperience", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            WorkExperienceId = 1,
+                            CompanyName = "Tech Solutions",
+                            Description = "Desarrollo de aplicaciones web utilizando .NET y JavaScript.",
+                            EndDate = new DateTimeOffset(new DateTime(2022, 8, 31, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 2, 0, 0, 0)),
+                            JobTitle = "Desarrollador de Software",
+                            Location = "Ciudad de México",
+                            StartDate = new DateTimeOffset(new DateTime(2020, 6, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 2, 0, 0, 0)),
+                            UserId = 1
+                        },
+                        new
+                        {
+                            WorkExperienceId = 2,
+                            CompanyName = "Innovate Inc.",
+                            Description = "Gestión y análisis de grandes volúmenes de datos con Python y SQL.",
+                            EndDate = new DateTimeOffset(new DateTime(2023, 7, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 2, 0, 0, 0)),
+                            JobTitle = "Ingeniero de Datos",
+                            Location = "Guadalajara",
+                            StartDate = new DateTimeOffset(new DateTime(2019, 3, 15, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 1, 0, 0, 0)),
+                            UserId = 2
+                        },
+                        new
+                        {
+                            WorkExperienceId = 3,
+                            CompanyName = "Creative Labs",
+                            Description = "Diseño de interfaces de usuario y experiencias de usuario para aplicaciones móviles.",
+                            EndDate = new DateTimeOffset(new DateTime(2024, 5, 30, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 2, 0, 0, 0)),
+                            JobTitle = "Diseñador UX/UI",
+                            Location = "Monterrey",
+                            StartDate = new DateTimeOffset(new DateTime(2021, 1, 5, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 1, 0, 0, 0)),
+                            UserId = 1
+                        });
                 });
 
             modelBuilder.Entity("JobSearchApp.Domain.Models.Answer", b =>

@@ -3,10 +3,12 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
+#pragma warning disable CA1814 // Prefer jagged arrays over multidimensional
+
 namespace JobSearchApp.Infrastructure.Migrations
 {
     /// <inheritdoc />
-    public partial class InitialCreate : Migration
+    public partial class initialMigration : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -514,6 +516,224 @@ namespace JobSearchApp.Infrastructure.Migrations
                         column: x => x.RecruiterId,
                         principalTable: "User",
                         principalColumn: "UserId");
+                });
+
+            migrationBuilder.InsertData(
+                table: "Company",
+                columns: new[] { "CompanyId", "Description", "FoundedYear", "Headquarters", "Industry", "Location", "Name", "Size", "WebsiteUrl" },
+                values: new object[,]
+                {
+                    { 1, "Una empresa dedicada a ofrecer soluciones tecnológicas avanzadas.", 2012, "Ciudad de México, México", "Tecnología", "Ciudad de México, México", "Innovación Tecnológica S.A.", "Mediana", "https://www.innovaciontecnologica.com" },
+                    { 2, "Expertos en diseño gráfico y desarrollo de estrategias creativas.", 2008, "Buenos Aires, Argentina", "Creatividad", "Buenos Aires, Argentina", "Servicios Creativos Ltda.", "Grande", "https://www.servicioscreativos.com" },
+                    { 3, "Proporciona servicios de consultoría en diversas áreas empresariales.", 2000, "Madrid, España", "Consultoría", "Madrid, España", "Consultoría Global", "Grande", "https://www.consultoriaglobal.com" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Permission",
+                column: "Name",
+                values: new object[]
+                {
+                    "Eliminar",
+                    "Escribir",
+                    "Leer"
+                });
+
+            migrationBuilder.InsertData(
+                table: "Question",
+                columns: new[] { "QuestionId", "QuestionText" },
+                values: new object[,]
+                {
+                    { 1, "¿Por qué quieres trabajar con nosotros?" },
+                    { 2, "Describe un desafío que enfrentaste en tu trabajo anterior." }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Resource",
+                columns: new[] { "ResourceId", "Description", "Name" },
+                values: new object[,]
+                {
+                    { 1, "Un recurso que proporciona servicios de autenticación para usuarios en la plataforma.", "API de Autenticación" },
+                    { 2, "Un servicio que gestiona las notificaciones en la aplicación.", "Servicio de Notificaciones" },
+                    { 3, "Recurso que maneja las operaciones relacionadas con los datos de usuario.", "Gestión de Datos de Usuario" },
+                    { 4, "Recurso que permite la búsqueda y filtrado de ofertas de empleo en la plataforma.", "API de Búsqueda de Empleos" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Role",
+                columns: new[] { "RoleId", "Description", "Name" },
+                values: new object[,]
+                {
+                    { 1, "Rol con acceso completo a todas las funcionalidades y configuraciones del sistema.", "Administrador" },
+                    { 2, "Rol encargado de gestionar las ofertas de empleo, aplicaciones y procesos de contratación.", "Reclutador" },
+                    { 3, "Rol que representa a los usuarios que buscan empleo y postulan a ofertas.", "Candidato" },
+                    { 4, "Rol que gestiona los recursos y herramientas disponibles en la plataforma.", "Empresa" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Skill",
+                columns: new[] { "SkillId", "SkillName", "SkillType" },
+                values: new object[,]
+                {
+                    { 1, "C#", "Tech" },
+                    { 2, "C#", "Tech" },
+                    { 3, "C#", "Tech" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Tag",
+                columns: new[] { "TagId", "ImageUrl", "TagName" },
+                values: new object[,]
+                {
+                    { 1, "URL", "Remoto" },
+                    { 2, "URL", "Tiempo completo" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "CompanyTag",
+                columns: new[] { "CompanyId", "TagId" },
+                values: new object[,]
+                {
+                    { 1, 1 },
+                    { 2, 2 }
+                });
+
+            migrationBuilder.InsertData(
+                table: "CompensationBenefit",
+                columns: new[] { "BenefitId", "BenefitType", "CompanyId", "Description" },
+                values: new object[,]
+                {
+                    { 1, "Seguro de Salud", 1, "Cobertura completa de seguro médico para empleados y sus familias." },
+                    { 2, "Bonificación Anual", 1, "Bonificación basada en el rendimiento anual del empleado." },
+                    { 3, "Estudio y Capacitación", 2, "Reembolsos para cursos de desarrollo profesional y capacitación continua." },
+                    { 4, "Tiempo de Vacaciones", 2, "Tiempo adicional de vacaciones por antigüedad y desempeño." }
+                });
+
+            migrationBuilder.InsertData(
+                table: "JobOffer",
+                columns: new[] { "JobOfferId", "CompanyId", "Description", "EstimatedDurationDays", "ExperienceLevel", "ExpiredDate", "IsActive", "JobType", "Location", "MaxSalary", "MinSalary", "PostedDate", "Title" },
+                values: new object[,]
+                {
+                    { 1, 1, "Buscamos un desarrollador de software senior para trabajar en proyectos innovadores en el área de tecnología.", 30, "Senior", new DateTimeOffset(new DateTime(2024, 6, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 2, 0, 0, 0)), true, "Tiempo completo", "Ciudad de México, México", 80000m, 60000m, new DateTimeOffset(new DateTime(2024, 1, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 1, 0, 0, 0)), "Desarrollador de Software Senior" },
+                    { 2, 2, "Se busca diseñador gráfico con experiencia para crear material visual atractivo para nuestros clientes.", 45, "Junior", new DateTimeOffset(new DateTime(2024, 5, 15, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 2, 0, 0, 0)), true, "Medio tiempo", "Buenos Aires, Argentina", 40000m, 30000m, new DateTimeOffset(new DateTime(2024, 2, 15, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 1, 0, 0, 0)), "Diseñador Gráfico" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "RolePermissionPatent",
+                columns: new[] { "Permission", "ResourceId", "RoleId" },
+                values: new object[,]
+                {
+                    { "Eliminar", 1, 1 },
+                    { "Escribir", 1, 1 },
+                    { "Leer", 1, 1 },
+                    { "Leer", 2, 2 }
+                });
+
+            migrationBuilder.InsertData(
+                table: "User",
+                columns: new[] { "UserId", "CompanyId", "DateJoined", "Email", "Ethnicity", "FirstName", "GenderIdentity", "Headline", "IsWorking", "LastName", "LinkedInUrl", "Location", "MobileNumber", "PasswordHash", "PortfolioUrl", "ProfilePicture", "ProfileUrl", "Pronoun", "RequireVisa", "RoleId", "SearchStage", "Summary", "UserName", "UserType" },
+                values: new object[,]
+                {
+                    { 1, 1, new DateTimeOffset(new DateTime(2019, 8, 14, 13, 28, 21, 292, DateTimeKind.Unspecified).AddTicks(5017), new TimeSpan(0, 2, 0, 0, 0)), "admin@techcorp.com", "Latino", "Carlos", "Masculino", "Gerente de TI", true, "Martínez", "https://www.linkedin.com/in/carlosmartinez", "San Francisco, CA", "555-1234", "AQAAAAEAACcQAAAAEDu6ak/YXB+W7W0zY6jEjG5L8/lRxV9NkH5j2Jsfg==", "https://portfolio.com/carlosmartinez", "https://example.com/perfil1.jpg", "https://example.com/carlosmartinez", "Él", false, 1, "Activo", "Profesional con más de 10 años de experiencia en la gestión de proyectos tecnológicos.", "admin", "Administrador" },
+                    { 2, 2, new DateTimeOffset(new DateTime(2021, 8, 14, 13, 28, 21, 292, DateTimeKind.Unspecified).AddTicks(5042), new TimeSpan(0, 2, 0, 0, 0)), "jane.doe@saludplus.com", "Caucásica", "Jane", "Femenino", "Científica de Datos", false, "Doe", "https://www.linkedin.com/in/janedoe", "Nueva York, NY", "555-5678", "AQAAAAEAACcQAAAAEBvD5Bb5FVJL/OoYNm4OE4bD81kFfgp1zB/gE4bZg==", "https://portfolio.com/janedoe", "https://example.com/perfil2.jpg", "https://example.com/janedoe", "Ella", false, 2, "En búsqueda", "Especialista en análisis de datos con un enfoque en el sector salud.", "janedoe", "Usuario" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Answer",
+                columns: new[] { "AnswerId", "AnswerText", "IsFeatured", "QuestionId", "UserId" },
+                values: new object[,]
+                {
+                    { 1, "Creo que la tecnología blockchain transformará muchas industrias, especialmente las finanzas.", true, 1, 1 },
+                    { 2, "El aprendizaje automático ya está revolucionando el análisis de datos en el sector salud.", false, 2, 2 },
+                    { 3, "En mi opinión, la realidad aumentada cambiará la manera en que interactuamos con el mundo digital.", false, 1, 2 }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Application",
+                columns: new[] { "ApplicationId", "ApplicationDate", "JobOfferId", "SalaryExpected", "Status", "UserId" },
+                values: new object[,]
+                {
+                    { 1, new DateTimeOffset(new DateTime(2024, 1, 5, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 1, 0, 0, 0)), 1, 60000m, "Pendiente", 1 },
+                    { 2, new DateTimeOffset(new DateTime(2024, 2, 20, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 1, 0, 0, 0)), 2, 50000m, "Aceptado", 2 }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Education",
+                columns: new[] { "EducationId", "ActivitiesAndSocieties", "Degree", "Description", "EndDate", "FieldOfStudy", "Grade", "SchoolName", "StartDate", "UserId" },
+                values: new object[,]
+                {
+                    { 1, "Club de Programación", "Licenciatura", "Estudios de ingeniería de software con enfoque en desarrollo web y móvil.", new DateTimeOffset(new DateTime(2019, 6, 15, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 2, 0, 0, 0)), "Ingeniería de Software", "Excelente", "Universidad de Ejemplo", new DateTimeOffset(new DateTime(2015, 9, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 2, 0, 0, 0)), 1 },
+                    { 2, "Data Science Club", "Máster", "Máster en ciencia de datos con especialización en análisis predictivo y aprendizaje automático.", new DateTimeOffset(new DateTime(2022, 12, 20, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 1, 0, 0, 0)), "Ciencias de Datos", "A", "Instituto de Ejemplo", new DateTimeOffset(new DateTime(2020, 1, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 1, 0, 0, 0)), 2 }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Interest",
+                columns: new[] { "InterestId", "InterestText", "UserId" },
+                values: new object[,]
+                {
+                    { 1, "Desarrollo de software y tecnologías emergentes", 1 },
+                    { 2, "Diseño de interfaces de usuario y experiencia de usuario (UI/UX)", 2 },
+                    { 3, "Gestión de proyectos y metodologías ágiles", 2 },
+                    { 4, "Inteligencia artificial y aprendizaje automático", 1 },
+                    { 5, "Ciberseguridad y protección de datos", 2 }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Match",
+                columns: new[] { "MatchId", "IsAccepted", "JobOfferId", "MatchDate", "UserId" },
+                values: new object[,]
+                {
+                    { 1, true, 1, new DateTimeOffset(new DateTime(2024, 8, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)), 1 },
+                    { 2, false, 2, new DateTimeOffset(new DateTime(2024, 8, 12, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)), 2 }
+                });
+
+            migrationBuilder.InsertData(
+                table: "SocialMedia",
+                columns: new[] { "SocialMediaId", "Platform", "Url", "UserId" },
+                values: new object[,]
+                {
+                    { 1, "LinkedIn", "https://www.linkedin.com/in/admin", 1 },
+                    { 2, "Twitter", "https://twitter.com/usuario", 2 }
+                });
+
+            migrationBuilder.InsertData(
+                table: "UserPreference",
+                columns: new[] { "PreferenceId", "Category", "UserId", "Value" },
+                values: new object[,]
+                {
+                    { 1, "Tipo de Trabajo", 1, "Trabajo Remoto" },
+                    { 2, "Tipo de Trabajo", 2, "Posición de tiempo completo" },
+                    { 3, "Salario", 2, "Salario Alto" },
+                    { 4, "Horario", 1, "Horario Flexible" },
+                    { 5, "Oportunidades", 2, "Oportunidades de Crecimiento" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "UserSkill",
+                columns: new[] { "UserSkillId", "ProficiencyLevel", "RelatedId", "RelatedTo", "SkillId", "UserId" },
+                values: new object[,]
+                {
+                    { 1, "Experto", 101, "Certificación", 1, 1 },
+                    { 2, "Intermedio", 202, "Curso", 2, 2 },
+                    { 3, "Básico", 303, "Proyecto", 3, 2 }
+                });
+
+            migrationBuilder.InsertData(
+                table: "WorkExperience",
+                columns: new[] { "WorkExperienceId", "CompanyName", "Description", "EndDate", "JobTitle", "Location", "StartDate", "UserId" },
+                values: new object[,]
+                {
+                    { 1, "Tech Solutions", "Desarrollo de aplicaciones web utilizando .NET y JavaScript.", new DateTimeOffset(new DateTime(2022, 8, 31, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 2, 0, 0, 0)), "Desarrollador de Software", "Ciudad de México", new DateTimeOffset(new DateTime(2020, 6, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 2, 0, 0, 0)), 1 },
+                    { 2, "Innovate Inc.", "Gestión y análisis de grandes volúmenes de datos con Python y SQL.", new DateTimeOffset(new DateTime(2023, 7, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 2, 0, 0, 0)), "Ingeniero de Datos", "Guadalajara", new DateTimeOffset(new DateTime(2019, 3, 15, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 1, 0, 0, 0)), 2 },
+                    { 3, "Creative Labs", "Diseño de interfaces de usuario y experiencias de usuario para aplicaciones móviles.", new DateTimeOffset(new DateTime(2024, 5, 30, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 2, 0, 0, 0)), "Diseñador UX/UI", "Monterrey", new DateTimeOffset(new DateTime(2021, 1, 5, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 1, 0, 0, 0)), 1 }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Feedback",
+                columns: new[] { "FeedbackId", "ApplicationId", "FeedbackDate", "FeedbackText", "RecruiterId" },
+                values: new object[,]
+                {
+                    { 1, 1, new DateTimeOffset(new DateTime(2024, 5, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 2, 0, 0, 0)), "El candidato mostró un gran conocimiento en las tecnologías requeridas y una actitud muy positiva durante la entrevista. Sin embargo, sería beneficioso para él mejorar sus habilidades de comunicación.", 1 },
+                    { 2, 2, new DateTimeOffset(new DateTime(2024, 6, 15, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 2, 0, 0, 0)), "El candidato tiene una experiencia impresionante en gestión de proyectos y ha demostrado habilidades excepcionales en la resolución de problemas. Recomiendo proceder con una segunda ronda de entrevistas.", 2 }
                 });
 
             migrationBuilder.CreateIndex(

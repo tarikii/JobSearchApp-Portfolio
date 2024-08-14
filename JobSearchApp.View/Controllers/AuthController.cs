@@ -64,19 +64,18 @@ namespace JobSearchApp.View.Controllers
 
         //}
 
-        //[HttpPost]
-        //public async Task<IActionResult> RegisterBusiness(CreateCompanyDTO company, CreateUserDto user)
-        //{
-        //    CompanyDTO newCompany = await _companyService.CreateCompanyAsync(company); // Crear la nueva Compañia
+        [HttpPost]
+        public async Task<IActionResult> RegisterBusiness(CreateCompanyDto company, CreateUserDto user)
+        {
+            CompanyDto newCompany = await _companyService.CreateCompanyAsync(company); // Crear la nueva Compañia
 
-        //    CreateUserDTO newUserCompany = user;
-        //    newUserCompany.CompanyId = newCompany.CompanyId; // Asignar empresa
-        //    newUserCompany.RoleId = 3; //Asignar Rol
+            CreateUserDto newUserCompany = user;
+            newUserCompany.CompanyId = newCompany.CompanyId; // Asignar empresa
+            newUserCompany.RoleId = 3; //Asignar Rol
 
-        //    UserDTO newUser = await _userService.CreateUserAsync(user);
-
-
-        //    return RedirectToAction("HomeBusinessOrRecruiterPage","Home", new { userId = newUser.UserId });
-        //}
+            UserDto newUser = await _userService.CreateUserAsync(user);
+    
+            return RedirectToAction("HomeBusinessOrRecruiterPage", "Home", new { userId = newUser.UserId });
+        }
     }
 }
