@@ -1,0 +1,63 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.10.35122.118
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Swipe4Work", "Swipe4Work\Swipe4Work.csproj", "{ED6816B0-17FB-4C77-8C4F-6DAF3085C8EC}"
+	ProjectSection(ProjectDependencies) = postProject
+		{235DDE41-3B6D-4CC2-A777-D7C750FB41FE} = {235DDE41-3B6D-4CC2-A777-D7C750FB41FE}
+		{96B1EC08-50B0-4757-B72C-A68AAFA4D579} = {96B1EC08-50B0-4757-B72C-A68AAFA4D579}
+		{BBFAB721-AA85-4D00-923E-3F3D219C97F2} = {BBFAB721-AA85-4D00-923E-3F3D219C97F2}
+		{BDD24C47-788C-4B76-B8CE-F0E424EDD954} = {BDD24C47-788C-4B76-B8CE-F0E424EDD954}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Swipe4Work.BusinessLogic", "Swipe4Work.BusinessLogic\Swipe4Work.BusinessLogic.csproj", "{96B1EC08-50B0-4757-B72C-A68AAFA4D579}"
+	ProjectSection(ProjectDependencies) = postProject
+		{235DDE41-3B6D-4CC2-A777-D7C750FB41FE} = {235DDE41-3B6D-4CC2-A777-D7C750FB41FE}
+		{BBFAB721-AA85-4D00-923E-3F3D219C97F2} = {BBFAB721-AA85-4D00-923E-3F3D219C97F2}
+		{BDD24C47-788C-4B76-B8CE-F0E424EDD954} = {BDD24C47-788C-4B76-B8CE-F0E424EDD954}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Swipe4Work.DataAccessLayer", "Swipe4Work.DataAccessLayer\Swipe4Work.DataAccessLayer.csproj", "{BDD24C47-788C-4B76-B8CE-F0E424EDD954}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Swipe4Work.DataTransferObject", "Swipe4Work.DataTransferObject\Swipe4Work.DataTransferObject.csproj", "{235DDE41-3B6D-4CC2-A777-D7C750FB41FE}"
+	ProjectSection(ProjectDependencies) = postProject
+		{BBFAB721-AA85-4D00-923E-3F3D219C97F2} = {BBFAB721-AA85-4D00-923E-3F3D219C97F2}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Swipe4Work.Domain", "Swipe4Work.Domain\Swipe4Work.Domain.csproj", "{BBFAB721-AA85-4D00-923E-3F3D219C97F2}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{ED6816B0-17FB-4C77-8C4F-6DAF3085C8EC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ED6816B0-17FB-4C77-8C4F-6DAF3085C8EC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ED6816B0-17FB-4C77-8C4F-6DAF3085C8EC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ED6816B0-17FB-4C77-8C4F-6DAF3085C8EC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{96B1EC08-50B0-4757-B72C-A68AAFA4D579}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{96B1EC08-50B0-4757-B72C-A68AAFA4D579}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{96B1EC08-50B0-4757-B72C-A68AAFA4D579}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{96B1EC08-50B0-4757-B72C-A68AAFA4D579}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BDD24C47-788C-4B76-B8CE-F0E424EDD954}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BDD24C47-788C-4B76-B8CE-F0E424EDD954}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BDD24C47-788C-4B76-B8CE-F0E424EDD954}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BDD24C47-788C-4B76-B8CE-F0E424EDD954}.Release|Any CPU.Build.0 = Release|Any CPU
+		{235DDE41-3B6D-4CC2-A777-D7C750FB41FE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{235DDE41-3B6D-4CC2-A777-D7C750FB41FE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{235DDE41-3B6D-4CC2-A777-D7C750FB41FE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{235DDE41-3B6D-4CC2-A777-D7C750FB41FE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BBFAB721-AA85-4D00-923E-3F3D219C97F2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BBFAB721-AA85-4D00-923E-3F3D219C97F2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BBFAB721-AA85-4D00-923E-3F3D219C97F2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BBFAB721-AA85-4D00-923E-3F3D219C97F2}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {80B020A3-C01C-429E-9735-F8B203D061E0}
+	EndGlobalSection
+EndGlobal

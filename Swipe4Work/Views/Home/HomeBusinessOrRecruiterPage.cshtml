@@ -1,0 +1,13 @@
+﻿@if (Model != null)
+{
+    @using Swipe4Work.DataTransferObject
+    @model UserDTO
+
+    <h1>@Model.UserId</h1>
+    <h1>@Model.UserName</h1>
+}
+else
+{
+    <p>No data available.</p>
+}
+
