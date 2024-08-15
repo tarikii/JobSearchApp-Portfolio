@@ -80,7 +80,7 @@ namespace JobSearchApp.View.Controllers
         public async Task<IActionResult> RegisterBusiness(CreateCompanyDto company, CreateUserDto user)
         {
             CompanyDto newCompany = await _companyService.CreateCompanyAsync(company); // Crear la nueva Compañia
-            UserDto newUser = await _userService.CreateUserAsync(user, newCompany.CompanyId, 3);
+            UserDto newUser = await _userService.CreateUserAsync(user, newCompany.CompanyId, 4);
 
             HttpContext.Session.SetString("userId", newUser.UserId.ToString());
 
