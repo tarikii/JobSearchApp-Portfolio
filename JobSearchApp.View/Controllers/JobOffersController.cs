@@ -1,14 +1,6 @@
 ﻿using JobSearchApp.BusinessLogic.DTOs;
 using JobSearchApp.BusinessLogic.Interfaces;
-using JobSearchApp.BusinessLogic.Services;
-using JobSearchApp.Domain.Models;
-using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
-using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
-using static System.Runtime.InteropServices.JavaScript.JSType;
-using System.Diagnostics;
-using System.Reflection.Metadata;
-using System;
 
 namespace JobSearchApp.View.Controllers
 {
@@ -38,7 +30,7 @@ namespace JobSearchApp.View.Controllers
             int userId = int.Parse(HttpContext.Session.GetString("userId"));
 
             // Fetch the updated job offers
-            var jobOffers = await _jobOfferService.GetAllJobOffersAsync();
+            IEnumerable<JobOfferDto> jobOffers = await _jobOfferService.GetAllJobOffersAsync();
 
             // Pass the updated job offers to the view
             return View(jobOffers);
