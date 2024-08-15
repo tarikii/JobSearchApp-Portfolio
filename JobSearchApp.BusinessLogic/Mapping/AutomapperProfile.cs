@@ -9,7 +9,9 @@ namespace JobSearchApp.BusinessLogic.Mapping
         public AutoMapperProfile()
         {
             // User Mapping
-            CreateMap<User, UserDto>().ReverseMap();
+            CreateMap<User, UserDto>()
+                .ForMember(dto => dto.RoleName, opt => opt.MapFrom(r => r.Role.Name))
+                .ReverseMap();
             CreateMap<CreateUserDto, User>().ReverseMap();
             CreateMap<UpdateUserDto, User>().ReverseMap();
 

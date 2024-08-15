@@ -1,0 +1,12 @@
+﻿@using JobSearchApp.BusinessLogic.DTOs
+
+@{
+    var userRole = Context.Session.GetString("userId");
+}
+
+@model UserDto
+
+<h1>@userRole</h1>
+
+<h1>Hola @Model.UserName</h1>
+<h1>Eres @Model.RoleName</h1>

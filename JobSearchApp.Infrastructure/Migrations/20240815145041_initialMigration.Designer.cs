@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace JobSearchApp.Infrastructure.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240814112821_initialMigration")]
+    [Migration("20240815145041_initialMigration")]
     partial class initialMigration
     {
         /// <inheritdoc />
@@ -34,7 +34,6 @@ namespace JobSearchApp.Infrastructure.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("AnswerId"));
 
                     b.Property<string>("AnswerText")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("IsFeatured")
@@ -99,7 +98,6 @@ namespace JobSearchApp.Infrastructure.Migrations
                         .HasColumnType("decimal(18,2)");
 
                     b.Property<string>("Status")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("UserId")
@@ -143,34 +141,27 @@ namespace JobSearchApp.Infrastructure.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CompanyId"));
 
                     b.Property<string>("Description")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("FoundedYear")
                         .HasColumnType("int");
 
                     b.Property<string>("Headquarters")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Industry")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Location")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Size")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("WebsiteUrl")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("CompanyId");
@@ -252,14 +243,12 @@ namespace JobSearchApp.Infrastructure.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("BenefitId"));
 
                     b.Property<string>("BenefitType")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("CompanyId")
                         .HasColumnType("int");
 
                     b.Property<string>("Description")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("BenefitId");
@@ -308,30 +297,24 @@ namespace JobSearchApp.Infrastructure.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("EducationId"));
 
                     b.Property<string>("ActivitiesAndSocieties")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Degree")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Description")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTimeOffset>("EndDate")
                         .HasColumnType("datetimeoffset");
 
                     b.Property<string>("FieldOfStudy")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Grade")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("SchoolName")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTimeOffset>("StartDate")
@@ -390,7 +373,6 @@ namespace JobSearchApp.Infrastructure.Migrations
                         .HasColumnType("datetimeoffset");
 
                     b.Property<string>("FeedbackText")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("RecruiterId")
@@ -432,7 +414,6 @@ namespace JobSearchApp.Infrastructure.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("InterestId"));
 
                     b.Property<string>("InterestText")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("UserId")
@@ -489,14 +470,12 @@ namespace JobSearchApp.Infrastructure.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("Description")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("EstimatedDurationDays")
                         .HasColumnType("int");
 
                     b.Property<string>("ExperienceLevel")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTimeOffset?>("ExpiredDate")
@@ -506,11 +485,9 @@ namespace JobSearchApp.Infrastructure.Migrations
                         .HasColumnType("bit");
 
                     b.Property<string>("JobType")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Location")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<decimal?>("MaxSalary")
@@ -523,7 +500,6 @@ namespace JobSearchApp.Infrastructure.Migrations
                         .HasColumnType("datetimeoffset");
 
                     b.Property<string>("Title")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("JobOfferId");
@@ -647,7 +623,6 @@ namespace JobSearchApp.Infrastructure.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("QuestionId"));
 
                     b.Property<string>("QuestionText")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("QuestionId");
@@ -676,11 +651,9 @@ namespace JobSearchApp.Infrastructure.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ResourceId"));
 
                     b.Property<string>("Description")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("ResourceId");
@@ -723,11 +696,9 @@ namespace JobSearchApp.Infrastructure.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("RoleId"));
 
                     b.Property<string>("Description")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("RoleId");
@@ -816,11 +787,9 @@ namespace JobSearchApp.Infrastructure.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("SkillId"));
 
                     b.Property<string>("SkillName")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("SkillType")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("SkillId");
@@ -857,11 +826,9 @@ namespace JobSearchApp.Infrastructure.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("SocialMediaId"));
 
                     b.Property<string>("Platform")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Url")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("UserId")
@@ -899,11 +866,9 @@ namespace JobSearchApp.Infrastructure.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("TagId"));
 
                     b.Property<string>("ImageUrl")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("TagName")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("TagId");
@@ -933,69 +898,55 @@ namespace JobSearchApp.Infrastructure.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("UserId"));
 
-                    b.Property<int>("CompanyId")
+                    b.Property<int?>("CompanyId")
                         .HasColumnType("int");
 
                     b.Property<DateTimeOffset>("DateJoined")
                         .HasColumnType("datetimeoffset");
 
                     b.Property<string>("Email")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Ethnicity")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("FirstName")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("GenderIdentity")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Headline")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("IsWorking")
                         .HasColumnType("bit");
 
                     b.Property<string>("LastName")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("LinkedInUrl")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Location")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("MobileNumber")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("PasswordHash")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("PortfolioUrl")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ProfilePicture")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ProfileUrl")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Pronoun")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("RequireVisa")
@@ -1005,19 +956,15 @@ namespace JobSearchApp.Infrastructure.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("SearchStage")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Summary")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("UserName")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("UserType")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("UserId");
@@ -1033,7 +980,7 @@ namespace JobSearchApp.Infrastructure.Migrations
                         {
                             UserId = 1,
                             CompanyId = 1,
-                            DateJoined = new DateTimeOffset(new DateTime(2019, 8, 14, 13, 28, 21, 292, DateTimeKind.Unspecified).AddTicks(5017), new TimeSpan(0, 2, 0, 0, 0)),
+                            DateJoined = new DateTimeOffset(new DateTime(2019, 8, 15, 16, 50, 41, 187, DateTimeKind.Unspecified).AddTicks(8024), new TimeSpan(0, 2, 0, 0, 0)),
                             Email = "admin@techcorp.com",
                             Ethnicity = "Latino",
                             FirstName = "Carlos",
@@ -1044,7 +991,7 @@ namespace JobSearchApp.Infrastructure.Migrations
                             LinkedInUrl = "https://www.linkedin.com/in/carlosmartinez",
                             Location = "San Francisco, CA",
                             MobileNumber = "555-1234",
-                            PasswordHash = "AQAAAAEAACcQAAAAEDu6ak/YXB+W7W0zY6jEjG5L8/lRxV9NkH5j2Jsfg==",
+                            PasswordHash = "admin",
                             PortfolioUrl = "https://portfolio.com/carlosmartinez",
                             ProfilePicture = "https://example.com/perfil1.jpg",
                             ProfileUrl = "https://example.com/carlosmartinez",
@@ -1060,7 +1007,7 @@ namespace JobSearchApp.Infrastructure.Migrations
                         {
                             UserId = 2,
                             CompanyId = 2,
-                            DateJoined = new DateTimeOffset(new DateTime(2021, 8, 14, 13, 28, 21, 292, DateTimeKind.Unspecified).AddTicks(5042), new TimeSpan(0, 2, 0, 0, 0)),
+                            DateJoined = new DateTimeOffset(new DateTime(2021, 8, 15, 16, 50, 41, 187, DateTimeKind.Unspecified).AddTicks(8053), new TimeSpan(0, 2, 0, 0, 0)),
                             Email = "jane.doe@saludplus.com",
                             Ethnicity = "Caucásica",
                             FirstName = "Jane",
@@ -1071,7 +1018,7 @@ namespace JobSearchApp.Infrastructure.Migrations
                             LinkedInUrl = "https://www.linkedin.com/in/janedoe",
                             Location = "Nueva York, NY",
                             MobileNumber = "555-5678",
-                            PasswordHash = "AQAAAAEAACcQAAAAEBvD5Bb5FVJL/OoYNm4OE4bD81kFfgp1zB/gE4bZg==",
+                            PasswordHash = "jane",
                             PortfolioUrl = "https://portfolio.com/janedoe",
                             ProfilePicture = "https://example.com/perfil2.jpg",
                             ProfileUrl = "https://example.com/janedoe",
@@ -1094,14 +1041,12 @@ namespace JobSearchApp.Infrastructure.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("PreferenceId"));
 
                     b.Property<string>("Category")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("UserId")
                         .HasColumnType("int");
 
                     b.Property<string>("Value")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("PreferenceId");
@@ -1157,14 +1102,12 @@ namespace JobSearchApp.Infrastructure.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("UserSkillId"));
 
                     b.Property<string>("ProficiencyLevel")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("RelatedId")
                         .HasColumnType("int");
 
                     b.Property<string>("RelatedTo")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("SkillId")
@@ -1220,22 +1163,18 @@ namespace JobSearchApp.Infrastructure.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("WorkExperienceId"));
 
                     b.Property<string>("CompanyName")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Description")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTimeOffset>("EndDate")
                         .HasColumnType("datetimeoffset");
 
                     b.Property<string>("JobTitle")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Location")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTimeOffset>("StartDate")
@@ -1468,8 +1407,7 @@ namespace JobSearchApp.Infrastructure.Migrations
                     b.HasOne("JobSearchApp.Domain.Models.Company", "Company")
                         .WithMany("Users")
                         .HasForeignKey("CompanyId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("JobSearchApp.Domain.Models.Role", "Role")
                         .WithMany("Users")

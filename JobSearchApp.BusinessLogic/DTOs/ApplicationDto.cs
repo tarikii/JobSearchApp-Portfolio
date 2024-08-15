@@ -8,11 +8,11 @@ namespace JobSearchApp.BusinessLogic.DTOs
         public int UserId { get; set; }
         public int JobOfferId { get; set; }
         public DateTimeOffset ApplicationDate { get; set; }
-        public string Status { get; set; }
-        public decimal SalaryExpected { get; set; }
+        public string? Status { get; set; }
+        public decimal? SalaryExpected { get; set; }
 
-        public string UserName { get; set; }
-        public string JobTitle { get; set; }
+        public string? UserName { get; set; }
+        public string? JobTitle { get; set; }
 
         public ApplicationDto(Application application)
         {
@@ -39,7 +39,7 @@ namespace JobSearchApp.BusinessLogic.DTOs
     public class UpdateApplicationDto
     {
         public int ApplicationId { get; set; }
-        public string Status { get; set; }
+        public string? Status { get; set; }
         public decimal SalaryExpected { get; set; }
     }
 }

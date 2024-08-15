@@ -30,9 +30,23 @@ public class UserService : IUserService
         return _mapper.Map<UserDto>(user);
     }
 
-    public async Task<UserDto> CreateUserAsync(CreateUserDto createUserDto)
+    public async Task<UserDto> CreateUserAsync(CreateUserDto createUserDto, int companyId, int roleId)
     {
-        var user = _mapper.Map<User>(createUserDto);
+        CreateUserDto newUser = createUserDto;
+        newUser.CompanyId = companyId;
+        newUser.RoleId = roleId;
+
+        var user = _mapper.Map<User>(newUser);
+        var createdUser = await _userRepository.CreateUserAsync(user);
+        return _mapper.Map<UserDto>(createdUser);
+    }
+
+    public async Task<UserDto> CreateUserAsync(CreateUserDto createUserDto, int roleId)
+    {
+        CreateUserDto newUser = createUserDto;
+        newUser.RoleId = roleId;
+
+        var user = _mapper.Map<User>(newUser);
         var createdUser = await _userRepository.CreateUserAsync(user);
         return _mapper.Map<UserDto>(createdUser);
     }
@@ -50,9 +64,15 @@ public class UserService : IUserService
         return _mapper.Map<UserDto>(updatedUser);
     }
 
-    public async Task<User> AuthenticateUserAsync(string username, string password)
+    public async Task<UserDto> AuthenticateUserAsync(string username, string password)
     {
-        return await _userRepository.AuthenticateUserAsync(username, password);
+        var user = await _userRepository.AuthenticateUserAsync(username, password);
+        if (user == null)
+        {
+            return null;
+        }
+
+        return _mapper.Map<UserDto>(user);
     }
 
     public async Task<bool> DeleteUserAsync(int userId)

@@ -13,14 +13,19 @@ namespace JobSearchApp.View
             var services = builder.Services;
             var config = builder.Configuration;
 
-            // Add services to the container.
-            builder.Services.AddControllersWithViews();
-            // Add services to the container using the extension method
+            // Configuración de servicios
+            services.AddDistributedMemoryCache(); // Almacena la sesión en memoria
+            services.AddSession(options =>
+            {
+                options.Cookie.HttpOnly = true;
+                options.Cookie.IsEssential = true;
+            });
 
+            // Añadir servicios al contenedor
+            builder.Services.AddControllersWithViews();
             services.ConfigureServices(builder.Configuration);
 
-
-            // Configurar DbContext según el proveedor de base de datos seleccionado
+            // Configuración de DbContext
             var connectionString = config.GetConnectionString("LocalConnection");
             services.AddDbContextFactory<ApplicationDbContext>(options =>
                 options.UseSqlServer(connectionString));
@@ -29,11 +34,33 @@ namespace JobSearchApp.View
 
             var app = builder.Build();
 
-            // Configure the HTTP request pipeline.
+            // Aplicar migraciones automáticamente
+            using (var scope = app.Services.CreateScope())
+            {
+                var context = scope.ServiceProvider.GetRequiredService<IDbContextFactory<ApplicationDbContext>>().CreateDbContext();
+                try
+                {
+                    var pendingMigrations = context.Database.GetPendingMigrations();
+                    if (pendingMigrations.Any())
+                    {
+                        context.Database.Migrate();
+                        Console.WriteLine("Migraciones aplicadas.");
+                    }
+                    else
+                    {
+                        Console.WriteLine("Sin migraciones pendientes.");
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"An error occurred while applying migrations: {ex.Message}");
+                }
+            }
+
+            // Configurar el pipeline de solicitud HTTP
             if (!app.Environment.IsDevelopment())
             {
                 app.UseExceptionHandler("/Home/Error");
-                // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
 
@@ -41,6 +68,9 @@ namespace JobSearchApp.View
             app.UseStaticFiles();
 
             app.UseRouting();
+
+            // Aquí se debe colocar UseSession antes de UseAuthorization
+            app.UseSession();
 
             app.UseAuthorization();
 

@@ -6,9 +6,9 @@ namespace JobSearchApp.BusinessLogic.DTOs
     {
         public int InterestId { get; set; }
         public int UserId { get; set; }
-        public string InterestText { get; set; }
+        public string? InterestText { get; set; }
 
-        public string UserName { get; set; }
+        public string? UserName { get; set; }
 
         public InterestDto(Interest interest)
         {
@@ -21,11 +21,11 @@ namespace JobSearchApp.BusinessLogic.DTOs
     public class CreateInterestDto
     {
         public int UserId { get; set; }
-        public string InterestText { get; set; }
+        public string? InterestText { get; set; }
     }
     public class UpdateInterestDto
     {
         public int InterestId { get; set; }
-        public string InterestText { get; set; }
+        public string? InterestText { get; set; }
     }
 }

@@ -10,8 +10,8 @@ namespace JobSearchApp.View.Controllers
         private IUserService _userService;
         private ICompanyService _companyService;
 
-        public AuthController(IUserService userService, ICompanyService companyService) 
-        { 
+        public AuthController(IUserService userService, ICompanyService companyService)
+        {
             _userService = userService;
             _companyService = companyService;
         }
@@ -25,57 +25,66 @@ namespace JobSearchApp.View.Controllers
             return View();
         }
 
-        public IActionResult SelectEntityOptionPage() 
+        public IActionResult SelectEntityOptionPage()
         {
             return View();
         }
 
-        public IActionResult RegisterRecruiterOrCandidatePage() 
-        { 
-            return View();
-        } 
-        
-        public IActionResult RegisterBusinessPage() 
-        { 
-            return View();
-        }
-
-        public IActionResult RegisterPage()
+        public IActionResult RegisterUserPage(string id)
         {
+            ViewBag.Role = id; // Role
             return View();
         }
 
         [HttpPost]
         public async Task<IActionResult> AuthenticateUser(string userName, string password)
         {
-            User user = await _userService.AuthenticateUserAsync(userName, password);
-            if (user != null) 
-            { 
-                return RedirectToAction("HomePage", "Home");
+            UserDto user = await _userService.AuthenticateUserAsync(userName, password);
+
+            if (user != null)
+            {
+                HttpContext.Session.SetString("userId", user.UserId.ToString());
+
+                return RedirectToAction("HomeLoggedPage", "Home");
             }
 
             return RedirectToAction("LoginPage", "Auth");
 
         }
 
-        //[HttpPost]
-        //public async Task<IActionResult> RegisterCandidateOrRecruiter()
-        //{
+        [HttpPost]
+        public async Task<IActionResult> RegisterCandidateOrRecruiter(string role, CreateUserDto user)
+        {
+            if (role == "candidate")
+            {
+                UserDto newUser = await _userService.CreateUserAsync(user, 3);
 
-        //}
+                HttpContext.Session.SetString("userId", newUser.UserId.ToString());
+
+                return RedirectToAction("HomeLoggedPage", "Home");
+            }
+            else if (role == "recruiter")
+            {
+                UserDto newUser = await _userService.CreateUserAsync(user, 2);
+
+                HttpContext.Session.SetString("userId", newUser.UserId.ToString());
+
+                return RedirectToAction("HomeLoggedPage", "Home");
+            }
+
+            ViewBag.Role = role; // Role
+            return RedirectToAction("RegisterUserPage", "Auth");
+        }
 
         [HttpPost]
         public async Task<IActionResult> RegisterBusiness(CreateCompanyDto company, CreateUserDto user)
         {
             CompanyDto newCompany = await _companyService.CreateCompanyAsync(company); // Crear la nueva Compañia
+            UserDto newUser = await _userService.CreateUserAsync(user, newCompany.CompanyId, 3);
 
-            CreateUserDto newUserCompany = user;
-            newUserCompany.CompanyId = newCompany.CompanyId; // Asignar empresa
-            newUserCompany.RoleId = 3; //Asignar Rol
+            HttpContext.Session.SetString("userId", newUser.UserId.ToString());
 
-            UserDto newUser = await _userService.CreateUserAsync(user);
-    
-            return RedirectToAction("HomeBusinessOrRecruiterPage", "Home", new { userId = newUser.UserId });
+            return RedirectToAction("HomeLoggedPage", "Home");
         }
     }
 }

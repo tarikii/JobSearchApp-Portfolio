@@ -1,8 +1,7 @@
 using JobSearchApp.BusinessLogic.DTOs;
 using JobSearchApp.BusinessLogic.Interfaces;
-using JobSearchApp.View.Models;
+using JobSearchApp.Domain.Models;
 using Microsoft.AspNetCore.Mvc;
-using System.Diagnostics;
 
 namespace JobSearchApp.View.Controllers
 {
@@ -32,21 +31,19 @@ namespace JobSearchApp.View.Controllers
             return View();
         }
 
-        public IActionResult HomeCandidatePage()
+        public async Task<IActionResult> HomeLoggedPage()
         {
+            int userId = int.Parse(HttpContext.Session.GetString("userId"));
+
+            UserDto user = await _userService.GetUserByIdAsync(userId);
+
+            if (user != null)
+            {
+                ViewBag.Role = user.RoleName;
+                return View(user);
+            }
+
             return View();
         }
-        //public async Task<IActionResult> HomeBusinessOrRecruiterPage(int userId)
-        //{
-        //    UserDTO user = await _userService.GetUserByIdAsync(userId);
-
-        //    if (user != null)
-        //    {
-        //        ViewBag.Role = "Admin";
-        //        return View(user);
-        //    }
-
-        //    return View();
-        //}
     }
 }

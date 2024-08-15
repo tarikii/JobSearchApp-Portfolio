@@ -10,8 +10,8 @@ public class MatchDto
     public DateTimeOffset MatchDate { get; set; }
     public bool IsAccepted { get; set; }
 
-    public string JobTitle { get; set; }
-    public string UserName { get; set; }
+    public string? JobTitle { get; set; }
+    public string? UserName { get; set; }
 
     public MatchDto(Match match)
     {

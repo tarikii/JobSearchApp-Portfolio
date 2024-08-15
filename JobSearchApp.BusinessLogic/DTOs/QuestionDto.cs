@@ -5,7 +5,7 @@ namespace JobSearchApp.BusinessLogic.DTOs
     public class QuestionDto
     {
         public int QuestionId { get; set; }
-        public string QuestionText { get; set; }
+        public string? QuestionText { get; set; }
 
         public QuestionDto(Question question)
         {
@@ -16,11 +16,11 @@ namespace JobSearchApp.BusinessLogic.DTOs
     }
     public class CreateQuestionDto
     {
-        public string QuestionText { get; set; }
+        public string? QuestionText { get; set; }
     }
     public class UpdateQuestionDto
     {
         public int QuestionId { get; set; }
-        public string QuestionText { get; set; }
+        public string? QuestionText { get; set; }
     }
 }

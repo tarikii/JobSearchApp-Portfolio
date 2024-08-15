@@ -6,10 +6,10 @@ namespace JobSearchApp.BusinessLogic.DTOs
     {
         public int SocialMediaId { get; set; }
         public int UserId { get; set; }
-        public string Platform { get; set; }
-        public string Url { get; set; }
+        public string? Platform { get; set; }
+        public string? Url { get; set; }
 
-        public string UserName { get; set; }
+        public string? UserName { get; set; }
 
         public SocialMediaDto(SocialMedia socialMedia)
         {
@@ -23,14 +23,14 @@ namespace JobSearchApp.BusinessLogic.DTOs
     public class CreateSocialMediaDto
     {
         public int UserId { get; set; }
-        public string Platform { get; set; }
-        public string Url { get; set; }
+        public string? Platform { get; set; }
+        public string? Url { get; set; }
     }
     public class UpdateSocialMediaDto
     {
         public int SocialMediaId { get; set; }
 
-        public string Platform { get; set; }
-        public string Url { get; set; }
+        public string? Platform { get; set; }
+        public string? Url { get; set; }
     }
 }

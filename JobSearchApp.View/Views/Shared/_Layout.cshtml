@@ -36,9 +36,12 @@
                         <li class="nav-item">
                             <a class="nav-link text-white" asp-area="" asp-controller="Home" asp-action="ContactFormPage">Contacto</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link btn btn-primary text-white" asp-area="" asp-controller="Auth" asp-action="LoginPage">Iniciar Sessión</a>
-                        </li>
+                        @if (Context.Session.GetString("userRole") != "Administrador")
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link btn btn-primary text-white" asp-area="" asp-controller="Auth" asp-action="LoginPage">Iniciar Sessión</a>
+                            </li>
+                        }
                     </ul>
                 </div>
             </div>

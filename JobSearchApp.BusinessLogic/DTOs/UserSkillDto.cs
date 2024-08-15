@@ -7,12 +7,12 @@ public class UserSkillDto
     public int UserSkillId { get; set; }
     public int UserId { get; set; }
     public int SkillId { get; set; }
-    public string ProficiencyLevel { get; set; }
-    public string RelatedTo { get; set; }
+    public string? ProficiencyLevel { get; set; }
+    public string? RelatedTo { get; set; }
     public int RelatedId { get; set; }
 
-    public string UserName { get; set; }
-    public string SkillName { get; set; }
+    public string? UserName { get; set; }
+    public string? SkillName { get; set; }
 
     public UserSkillDto(UserSkill userSkill)
     {
@@ -31,8 +31,8 @@ public class CreateUserSkillDto
 {
     public int UserId { get; set; }
     public int SkillId { get; set; }
-    public string ProficiencyLevel { get; set; }
-    public string RelatedTo { get; set; }
+    public string? ProficiencyLevel { get; set; }
+    public string? RelatedTo { get; set; }
     public int RelatedId { get; set; }
 }
 
@@ -40,7 +40,7 @@ public class UpdateUserSkillDto
 {
     public int UserSkillId { get; set; }
 
-    public string ProficiencyLevel { get; set; }
-    public string RelatedTo { get; set; }
+    public string? ProficiencyLevel { get; set; }
+    public string? RelatedTo { get; set; }
     public int RelatedId { get; set; }
 }

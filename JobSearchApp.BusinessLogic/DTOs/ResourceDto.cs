@@ -5,8 +5,8 @@ namespace JobSearchApp.BusinessLogic.DTOs;
 public class ResourceDto
 {
     public int ResourceId { get; set; }
-    public string Name { get; set; }
-    public string Description { get; set; }
+    public string? Name { get; set; }
+    public string? Description { get; set; }
 
     public ResourceDto(Resource resource)
     {
@@ -18,13 +18,13 @@ public class ResourceDto
 
 public class CreateResourceDto
 {
-    public string Name { get; set; }
-    public string Description { get; set; }
+    public string? Name { get; set; }
+    public string? Description { get; set; }
 }
 
 public class UpdateResourceDto
 {
     public int ResourceId { get; set; }
-    public string Name { get; set; }
-    public string Description { get; set; }
+    public string? Name { get; set; }
+    public string? Description { get; set; }
 }

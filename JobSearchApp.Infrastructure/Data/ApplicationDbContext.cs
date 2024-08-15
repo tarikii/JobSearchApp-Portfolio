@@ -242,6 +242,18 @@ namespace JobSearchApp.Infrastructure.Data
                 .HasForeignKey(we => we.UserId)
                 .OnDelete(DeleteBehavior.Cascade);
 
+            modelBuilder.Entity<User>()
+                .HasOne(r => r.Role)
+                .WithMany(u => u.Users)
+                .HasForeignKey(r => r.RoleId)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            modelBuilder.Entity<User>()
+                .HasOne(c => c.Company)
+                .WithMany(u => u.Users)
+                .HasForeignKey(c => c.CompanyId)
+                .OnDelete(DeleteBehavior.Cascade);
+
             modelBuilder.Entity<RolePermissionPatent>()
                 .HasOne(rp => rp.Role)
                 .WithMany(r => r.RolePermissionPatents)
@@ -469,7 +481,7 @@ namespace JobSearchApp.Infrastructure.Data
          UserId = 1,
          Email = "admin@techcorp.com",
          UserName = "admin",
-         PasswordHash = "AQAAAAEAACcQAAAAEDu6ak/YXB+W7W0zY6jEjG5L8/lRxV9NkH5j2Jsfg==", // Hash de ejemplo
+         PasswordHash = "admin", // Hash de ejemplo
          UserType = "Administrador",
          FirstName = "Carlos",
          LastName = "Martínez",
@@ -496,7 +508,7 @@ namespace JobSearchApp.Infrastructure.Data
          UserId = 2,
          Email = "jane.doe@saludplus.com",
          UserName = "janedoe",
-         PasswordHash = "AQAAAAEAACcQAAAAEBvD5Bb5FVJL/OoYNm4OE4bD81kFfgp1zB/gE4bZg==", // Hash de ejemplo
+         PasswordHash = "jane", // Hash de ejemplo
          UserType = "Usuario",
          FirstName = "Jane",
          LastName = "Doe",

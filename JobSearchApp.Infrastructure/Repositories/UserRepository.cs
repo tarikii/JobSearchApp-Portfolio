@@ -21,7 +21,9 @@ namespace JobSearchApp.Infrastructure.Repositories
 
         public async Task<User> GetUserByIdAsync(int userId)
         {
-            return await _context.Users.FindAsync(userId);
+            return await _context.Users
+                            .Include(u => u.Role)
+                            .FirstOrDefaultAsync(u => u.UserId == userId);
         }
 
         public async Task<User> CreateUserAsync(User user)
@@ -40,7 +42,9 @@ namespace JobSearchApp.Infrastructure.Repositories
 
         public async Task<User> AuthenticateUserAsync(string username, string password)
         {
-            return await _context.Users.FirstOrDefaultAsync(u => u.UserName == username && u.PasswordHash == password);
+            return await _context.Users
+                .Include(u => u.Role)
+                .FirstOrDefaultAsync(u => u.UserName == username && u.PasswordHash == password);
         }
 
         public async Task<bool> DeleteUserAsync(int userId)

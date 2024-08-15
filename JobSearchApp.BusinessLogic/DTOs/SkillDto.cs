@@ -5,8 +5,8 @@ namespace JobSearchApp.BusinessLogic.DTOs;
 public class SkillDto
 {
     public int SkillId { get; set; }
-    public string SkillName { get; set; }
-    public string SkillType { get; set; }
+    public string? SkillName { get; set; }
+    public string? SkillType { get; set; }
 
     public SkillDto(Skill skill)
     {
@@ -18,13 +18,13 @@ public class SkillDto
 
 public class CreateSkillDto
 {
-    public string SkillName { get; set; }
-    public string SkillType { get; set; }
+    public string? SkillName { get; set; }
+    public string? SkillType { get; set; }
 }
 
 public class UpdateSkillDto
 {
     public int SkillId { get; set; }
-    public string SkillName { get; set; }
-    public string SkillType { get; set; }
+    public string? SkillName { get; set; }
+    public string? SkillType { get; set; }
 }

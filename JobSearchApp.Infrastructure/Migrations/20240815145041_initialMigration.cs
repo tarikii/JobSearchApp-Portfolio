@@ -19,14 +19,14 @@ namespace JobSearchApp.Infrastructure.Migrations
                 {
                     CompanyId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    WebsiteUrl = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Industry = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Size = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Headquarters = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    WebsiteUrl = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Industry = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Size = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Headquarters = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     FoundedYear = table.Column<int>(type: "int", nullable: false),
-                    Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Location = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Location = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -50,7 +50,7 @@ namespace JobSearchApp.Infrastructure.Migrations
                 {
                     QuestionId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    QuestionText = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    QuestionText = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -63,8 +63,8 @@ namespace JobSearchApp.Infrastructure.Migrations
                 {
                     ResourceId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Description = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -77,8 +77,8 @@ namespace JobSearchApp.Infrastructure.Migrations
                 {
                     RoleId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Description = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -91,8 +91,8 @@ namespace JobSearchApp.Infrastructure.Migrations
                 {
                     SkillId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    SkillName = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    SkillType = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    SkillName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    SkillType = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -105,8 +105,8 @@ namespace JobSearchApp.Infrastructure.Migrations
                 {
                     TagId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    TagName = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    ImageUrl = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    TagName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ImageUrl = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -120,8 +120,8 @@ namespace JobSearchApp.Infrastructure.Migrations
                     BenefitId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     CompanyId = table.Column<int>(type: "int", nullable: false),
-                    BenefitType = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Description = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    BenefitType = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -141,11 +141,11 @@ namespace JobSearchApp.Infrastructure.Migrations
                     JobOfferId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     CompanyId = table.Column<int>(type: "int", nullable: false),
-                    Title = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Location = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    JobType = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    ExperienceLevel = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Title = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Location = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    JobType = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ExperienceLevel = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     PostedDate = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: false),
                     ExpiredDate = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: true),
                     IsActive = table.Column<bool>(type: "bit", nullable: false),
@@ -201,28 +201,28 @@ namespace JobSearchApp.Infrastructure.Migrations
                 {
                     UserId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    UserName = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    PasswordHash = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    UserType = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    FirstName = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    LastName = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Headline = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Summary = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Location = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Email = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    UserName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    PasswordHash = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    UserType = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    FirstName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    LastName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Headline = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Summary = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Location = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     DateJoined = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: false),
-                    LinkedInUrl = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    GenderIdentity = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Pronoun = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Ethnicity = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    MobileNumber = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    LinkedInUrl = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    GenderIdentity = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Pronoun = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Ethnicity = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    MobileNumber = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     RequireVisa = table.Column<bool>(type: "bit", nullable: false),
-                    SearchStage = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    ProfilePicture = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    ProfileUrl = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    PortfolioUrl = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    SearchStage = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ProfilePicture = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ProfileUrl = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    PortfolioUrl = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     RoleId = table.Column<int>(type: "int", nullable: false),
-                    CompanyId = table.Column<int>(type: "int", nullable: false),
+                    CompanyId = table.Column<int>(type: "int", nullable: true),
                     IsWorking = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
@@ -274,7 +274,7 @@ namespace JobSearchApp.Infrastructure.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     UserId = table.Column<int>(type: "int", nullable: false),
                     QuestionId = table.Column<int>(type: "int", nullable: false),
-                    AnswerText = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    AnswerText = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     IsFeatured = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
@@ -303,7 +303,7 @@ namespace JobSearchApp.Infrastructure.Migrations
                     UserId = table.Column<int>(type: "int", nullable: false),
                     JobOfferId = table.Column<int>(type: "int", nullable: false),
                     ApplicationDate = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: false),
-                    Status = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Status = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     SalaryExpected = table.Column<decimal>(type: "decimal(18,2)", nullable: false)
                 },
                 constraints: table =>
@@ -329,14 +329,14 @@ namespace JobSearchApp.Infrastructure.Migrations
                     EducationId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     UserId = table.Column<int>(type: "int", nullable: false),
-                    SchoolName = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Degree = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    FieldOfStudy = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    SchoolName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Degree = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    FieldOfStudy = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     StartDate = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: false),
                     EndDate = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: false),
-                    Grade = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    ActivitiesAndSocieties = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Description = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    Grade = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ActivitiesAndSocieties = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -356,7 +356,7 @@ namespace JobSearchApp.Infrastructure.Migrations
                     InterestId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     UserId = table.Column<int>(type: "int", nullable: false),
-                    InterestText = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    InterestText = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -402,8 +402,8 @@ namespace JobSearchApp.Infrastructure.Migrations
                     SocialMediaId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     UserId = table.Column<int>(type: "int", nullable: false),
-                    Platform = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Url = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    Platform = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Url = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -423,8 +423,8 @@ namespace JobSearchApp.Infrastructure.Migrations
                     PreferenceId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     UserId = table.Column<int>(type: "int", nullable: false),
-                    Category = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Value = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    Category = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Value = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -445,8 +445,8 @@ namespace JobSearchApp.Infrastructure.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     UserId = table.Column<int>(type: "int", nullable: false),
                     SkillId = table.Column<int>(type: "int", nullable: false),
-                    ProficiencyLevel = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    RelatedTo = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    ProficiencyLevel = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    RelatedTo = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     RelatedId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
@@ -473,12 +473,12 @@ namespace JobSearchApp.Infrastructure.Migrations
                     WorkExperienceId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     UserId = table.Column<int>(type: "int", nullable: false),
-                    CompanyName = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    JobTitle = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    CompanyName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    JobTitle = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     StartDate = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: false),
                     EndDate = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: false),
-                    Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Location = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Location = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -499,7 +499,7 @@ namespace JobSearchApp.Infrastructure.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     ApplicationId = table.Column<int>(type: "int", nullable: false),
                     RecruiterId = table.Column<int>(type: "int", nullable: false),
-                    FeedbackText = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    FeedbackText = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     FeedbackDate = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: false)
                 },
                 constraints: table =>
@@ -633,8 +633,8 @@ namespace JobSearchApp.Infrastructure.Migrations
                 columns: new[] { "UserId", "CompanyId", "DateJoined", "Email", "Ethnicity", "FirstName", "GenderIdentity", "Headline", "IsWorking", "LastName", "LinkedInUrl", "Location", "MobileNumber", "PasswordHash", "PortfolioUrl", "ProfilePicture", "ProfileUrl", "Pronoun", "RequireVisa", "RoleId", "SearchStage", "Summary", "UserName", "UserType" },
                 values: new object[,]
                 {
-                    { 1, 1, new DateTimeOffset(new DateTime(2019, 8, 14, 13, 28, 21, 292, DateTimeKind.Unspecified).AddTicks(5017), new TimeSpan(0, 2, 0, 0, 0)), "admin@techcorp.com", "Latino", "Carlos", "Masculino", "Gerente de TI", true, "Martínez", "https://www.linkedin.com/in/carlosmartinez", "San Francisco, CA", "555-1234", "AQAAAAEAACcQAAAAEDu6ak/YXB+W7W0zY6jEjG5L8/lRxV9NkH5j2Jsfg==", "https://portfolio.com/carlosmartinez", "https://example.com/perfil1.jpg", "https://example.com/carlosmartinez", "Él", false, 1, "Activo", "Profesional con más de 10 años de experiencia en la gestión de proyectos tecnológicos.", "admin", "Administrador" },
-                    { 2, 2, new DateTimeOffset(new DateTime(2021, 8, 14, 13, 28, 21, 292, DateTimeKind.Unspecified).AddTicks(5042), new TimeSpan(0, 2, 0, 0, 0)), "jane.doe@saludplus.com", "Caucásica", "Jane", "Femenino", "Científica de Datos", false, "Doe", "https://www.linkedin.com/in/janedoe", "Nueva York, NY", "555-5678", "AQAAAAEAACcQAAAAEBvD5Bb5FVJL/OoYNm4OE4bD81kFfgp1zB/gE4bZg==", "https://portfolio.com/janedoe", "https://example.com/perfil2.jpg", "https://example.com/janedoe", "Ella", false, 2, "En búsqueda", "Especialista en análisis de datos con un enfoque en el sector salud.", "janedoe", "Usuario" }
+                    { 1, 1, new DateTimeOffset(new DateTime(2019, 8, 15, 16, 50, 41, 187, DateTimeKind.Unspecified).AddTicks(8024), new TimeSpan(0, 2, 0, 0, 0)), "admin@techcorp.com", "Latino", "Carlos", "Masculino", "Gerente de TI", true, "Martínez", "https://www.linkedin.com/in/carlosmartinez", "San Francisco, CA", "555-1234", "admin", "https://portfolio.com/carlosmartinez", "https://example.com/perfil1.jpg", "https://example.com/carlosmartinez", "Él", false, 1, "Activo", "Profesional con más de 10 años de experiencia en la gestión de proyectos tecnológicos.", "admin", "Administrador" },
+                    { 2, 2, new DateTimeOffset(new DateTime(2021, 8, 15, 16, 50, 41, 187, DateTimeKind.Unspecified).AddTicks(8053), new TimeSpan(0, 2, 0, 0, 0)), "jane.doe@saludplus.com", "Caucásica", "Jane", "Femenino", "Científica de Datos", false, "Doe", "https://www.linkedin.com/in/janedoe", "Nueva York, NY", "555-5678", "jane", "https://portfolio.com/janedoe", "https://example.com/perfil2.jpg", "https://example.com/janedoe", "Ella", false, 2, "En búsqueda", "Especialista en análisis de datos con un enfoque en el sector salud.", "janedoe", "Usuario" }
                 });
 
             migrationBuilder.InsertData(
