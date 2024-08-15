@@ -1,5 +1,6 @@
 ﻿using JobSearchApp.BusinessLogic.DTOs;
 using JobSearchApp.BusinessLogic.Interfaces;
+using JobSearchApp.Infrastructure.Extensions;
 using Microsoft.AspNetCore.Mvc;
 
 namespace JobSearchApp.View.Controllers
@@ -23,18 +24,31 @@ namespace JobSearchApp.View.Controllers
 
         // CANDIDATE SECTION
         [HttpGet]
-        public async Task<IActionResult> CardsOfJobsOffersPage()
+        public async Task<IActionResult> CardsOfJobsOffersPage(int? currentIndex)
         {
-            // Retrieve the list of disliked job offers for the current user
-            // get current user id from context/session
+            // Get the current user ID from the session
             int userId = int.Parse(HttpContext.Session.GetString("userId"));
 
-            // Fetch the updated job offers
+            // Fetch the list of job offers
             IEnumerable<JobOfferDto> jobOffers = await _jobOfferService.GetAllJobOffersAsync();
 
-            // Pass the updated job offers to the view
-            return View(jobOffers);
+            // Determine the current index, defaulting to 0 if not provided
+            int index = currentIndex ?? 0;
+
+            // If we've gone past the end of the list, redirect to a "No more offers" page or similar
+            if (index >= jobOffers.Count())
+            {
+                return View("HomeLoggedPage", "Home");
+            }
+
+            // Get the current job offer based on the index
+            JobOfferDto currentJobOffer = jobOffers.ElementAt(index);
+
+            // Pass the current job offer and the next index to the view
+            ViewBag.NextIndex = index + 1;
+            return View(currentJobOffer);
         }
+
 
         [HttpGet]
         public IActionResult FilterJobOffersPage()
@@ -54,48 +68,39 @@ namespace JobSearchApp.View.Controllers
             return View();
         }
 
-        /*[HttpPost]
-        public async Task<IActionResult> LikeJobOffer(int userId, int jobOfferId)
+        [HttpPost]
+        public async Task<IActionResult> LikeJobOffer(int jobOfferId, int nextIndex)
         {
-            UserDto user = await _userService.GetUserByIdAsync(userId);
+            int userId = int.Parse(HttpContext.Session.GetString("userId"));
 
-            if (user == null)
-                return NotFound("User not found");
-
-            JobOfferDto jobOffer = await _jobOfferService.GetJobOfferByIdAsync(jobOfferId);
-
-            if (jobOffer == null)
-                return NotFound("Job offer not found");
-
-            var createApplication = new CreateApplicationDto
+            // Create a new CreateApplicationDto instance and populate it
+            var createApplicationDto = new CreateApplicationDto
             {
                 UserId = userId,
-                JobOfferId = jobOffer.JobOfferId,
-                ApplicationDate = DateTime.Now,
-                Status = "En proceso",
-                SalaryExpected = 20000
+                JobOfferId = jobOfferId,
+                ApplicationDate = DateTimeOffset.Now,
+                Status = "Pending",
+                SalaryExpected = 20000 // Set this to an appropriate value or fetch from user input if needed
             };
 
-            await _applicationService.CreateApplicationAsync(createApplication);
+            // Call the application service to create the application
+            await _applicationService.CreateApplicationAsync(createApplicationDto);
 
-            return RedirectToAction("CardsOfJobsOffersPage");
+            // Redirect to the CardsOfJobsOffersPage action with the next job offer index
+            return RedirectToAction("CardsOfJobsOffersPage", new { currentIndex = nextIndex });
         }
 
         [HttpPost]
-        public async Task<IActionResult> DislikeJobOffer(int userId, int jobOfferId)
+        public async Task<IActionResult> DislikeJobOffer(int jobOfferId)
         {
-            UserDto user = await _userService.GetUserByIdAsync(userId);
+            int userId = int.Parse(HttpContext.Session.GetString("userId"));
 
-            if (user == null)
-                return NotFound("User not found");
+            // Logic to dislike the job offer and update the session or database
+            await _jobOfferService.DeleteJobOfferAsync(jobOfferId);
 
-            JobOfferDto jobOffer = await _jobOfferService.GetJobOfferByIdAsync(jobOfferId);
-
-            if (jobOffer == null)
-                return NotFound("Job offer not found");
-
-            return Ok();
-        }*/
+            // Redirect to the page to show the next job offer
+            return RedirectToAction("CardsOfJobsOffersPage");
+        }
 
 
         // RECRUITER BUSINESS SECTION

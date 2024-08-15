@@ -2,6 +2,7 @@ using JobSearchApp.BusinessLogic.Interfaces;
 using JobSearchApp.BusinessLogic.Services;
 using JobSearchApp.Infrastructure.Interfaces;
 using JobSearchApp.Infrastructure.Repositories;
+using Newtonsoft.Json;
 
 namespace JobSearchApp.Infrastructure.Extensions
 {
@@ -56,6 +57,17 @@ namespace JobSearchApp.Infrastructure.Extensions
             services.AddScoped<IUserPreferenceService, UserPreferenceService>();
             services.AddScoped<IUserSkillService, UserSkillService>();
             services.AddScoped<IWorkExperienceService, WorkExperienceService>();
+        }
+
+        public static void SetObjectAsJson(this ISession session, string key, object value)
+        {
+            session.SetString(key, JsonConvert.SerializeObject(value));
+        }
+
+        public static T GetObjectFromJson<T>(this ISession session, string key)
+        {
+            var value = session.GetString(key);
+            return value == null ? default(T) : JsonConvert.DeserializeObject<T>(value);
         }
     }
 }

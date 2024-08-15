@@ -8,6 +8,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\JobSearchApp.BusinessLogic\JobSearchApp.BusinessLogic.csproj" />
+    <ProjectReference Include="..\JobSearchApp\JobSearchApp.csproj" />
   </ItemGroup>
 
 </Project>
