@@ -31,17 +31,17 @@ namespace JobSearchApp.View.Controllers
 
         // CANDIDATE SECTION
         [HttpGet]
-        public IActionResult CardsOfJobsOffersPage()
+        public async Task<IActionResult> CardsOfJobsOffersPage()
         {
             // Retrieve the list of disliked job offers for the current user
             // get current user id from context/session
-
+            int userId = int.Parse(HttpContext.Session.GetString("userId"));
 
             // Fetch the updated job offers
-
+            var jobOffers = await _jobOfferService.GetAllJobOffersAsync();
 
             // Pass the updated job offers to the view
-            return View();
+            return View(jobOffers);
         }
 
         [HttpGet]
@@ -62,7 +62,7 @@ namespace JobSearchApp.View.Controllers
             return View();
         }
 
-        [HttpPost]
+        /*[HttpPost]
         public async Task<IActionResult> LikeJobOffer(int userId, int jobOfferId)
         {
             UserDto user = await _userService.GetUserByIdAsync(userId);
@@ -103,7 +103,7 @@ namespace JobSearchApp.View.Controllers
                 return NotFound("Job offer not found");
 
             return Ok();
-        }
+        }*/
 
 
         // RECRUITER BUSINESS SECTION
@@ -130,11 +130,11 @@ namespace JobSearchApp.View.Controllers
             return View();
         }
 
-        [HttpPost]
+        /*[HttpPost]
         public async Task<IActionResult> CreateNewJobOffer(CreateJobOfferDto dto)
         {
             if (!ModelState.IsValid)
-                return View(dto);
+                return View("FormNewJobOfferPage", dto);
 
             await _jobOfferService.CreateJobOfferAsync(dto);
 
@@ -161,6 +161,6 @@ namespace JobSearchApp.View.Controllers
             await _jobOfferService.DeleteJobOfferAsync(dto.JobOfferId);
 
             return Ok();
-        }
+        }*/
     }
 }

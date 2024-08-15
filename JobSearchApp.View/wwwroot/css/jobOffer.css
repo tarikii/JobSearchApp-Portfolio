@@ -1,0 +1,116 @@
+﻿.job-offer-form {
+    background-color: #F5F5F5;
+    padding: 20px;
+    border-radius: 10px;
+    width: 80%;
+    margin: 0 auto;
+}
+
+h2 {
+    color: #1F4D78;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.form-group {
+    margin-bottom: 15px;
+    position: relative;
+}
+
+    .form-group label {
+        display: block;
+        font-weight: bold;
+        color: #1F4D78;
+        margin-bottom: 5px;
+    }
+
+.button-container {
+    text-align: end;
+    margin: 15px;
+}
+
+.button-filter {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.form-control {
+    width: 100%;
+    padding: 10px;
+    font-size: 14px;
+    border: 1px solid #d1d5da;
+    border-radius: 5px;
+    background-color: #C1C1C1;
+}
+
+    .form-control:focus {
+        outline: none;
+        border-color: #3498db;
+        background-color: #fff;
+    }
+
+.form-row {
+    display: flex;
+    justify-content: space-between;
+}
+
+    .form-row .col {
+        flex: 0 0 48%;
+    }
+
+
+button.btn.btn-primary {
+    background-color: #7AA5CD;
+    color: #fff;
+    font-weight: bold;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 15%;
+}
+
+    button.btn.btn-primary:hover {
+        background-color: #2980b9;
+    }
+
+.job-offers {
+    display: grid;
+    margin-top: 30px;
+    grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+    gap: 20px; /* Space between cards */
+}
+
+.job-offer-card {
+    border: 1px solid #ddd;
+    padding: 20px;
+    border-radius: 8px;
+    position: relative;
+    background-color: #F5F5F5;
+}
+
+    .job-offer-card h3, p {
+        color: #1F4D78;
+        font-weight: bold;
+    }
+
+
+
+.description-placeholder {
+    height: 150px;
+    background-color: #C1C1C1;
+    border-radius: 4px;
+    margin-top: 10px;
+}
+
+.edit-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+}

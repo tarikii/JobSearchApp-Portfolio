@@ -1,13 +1,29 @@
 ﻿@model JobSearchApp.BusinessLogic.DTOs.DeleteJobOfferDto
 
-<form asp-action="DeleteJobOffer" method="post">
-    <div class="form-group">
-        <label for="JobOfferId">Oferta de Trabajo ID</label>
-        <input type="number" id="JobofferId" name="JobOfferId" class="form-control" required />
+<link rel="stylesheet" href="~/css/jobOffer.css" type="text/css" />
+<div class="button-filter">
+	<button type="button" class="btn btn-primary">Filtro</button>
+	<button type="button" class="btn btn-primary">Vista Lista</button>
+</div>
+
+
+<div class="job-offers">
+    <div class="job-offer-card">
+        <h3>Oferta creada</h3>
+        <p>Número de solicitudes</p>
+        <p>Descripción</p>
+        <div class="description-placeholder"></div>
+        <button class="edit-button">✏️</button>
     </div>
-    <div class="form-group">
-        <label for="Title">Titulo de la oferta</label>
-        <input type="text" id="Title" name="Title" class="form-control" required />
+    <!-- Repeat the .job-offer-card div for more offers -->
+    <div class="job-offer-card">
+        <h3>Oferta creada</h3>
+        <p>Número de solicitudes</p>
+        <p>Descripción</p>
+        <div class="description-placeholder">
+            <!-- Añadir la descripcion que contiene el job offer a la hora de recorrer la lista -->
+        </div>
+        <button class="edit-button">✏️</button>
     </div>
-    <button type="submit" class="btn btn-primary">Eliminar Oferta</button>
-</form>
+    <!-- Add more job offer cards as needed -->
+</div>

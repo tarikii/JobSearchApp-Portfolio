@@ -1,41 +1,48 @@
 ﻿@model JobSearchApp.BusinessLogic.DTOs.UpdateJobOfferDto
 
-<form asp-action="UpdateJobOffer" method="post">
+<link rel="stylesheet" href="~/css/jobOffer.css" type="text/css" />
+<h2>Modificar Oferta</h2>
+<form asp-action="UpdateNewJobOffer" method="post" class="job-offer-form">
     <div class="form-group">
-        <label for="CompanyId">Compañia ID</label>
-        <input type="number" id="CompanyId" name="CompanyId" class="form-control" required />
-    </div>
-    <div class="form-group">
-        <label for="Title">Titulo de la oferta</label>
+        <label for="Title">Título Oferta</label>
         <input type="text" id="Title" name="Title" class="form-control" required />
     </div>
     <div class="form-group">
-        <label for="Description">Descripción</label>
-        <textarea id="Description" name="Description" class="form-control"></textarea>
+        <label for="CompanyName">Compañia</label>
+        <input type="text" id="CompanyName" name="CompanyName" class="form-control" required />
     </div>
-    <div class="form-group">
-        <label for="Location">Ubicación</label>
-        <input type="text" id="Location" name="Location" class="form-control" required />
+    <div class="form-row">
+        <div class="form-group col">
+            <label for="Location">Ubicación</label>
+            <input type="text" id="Location" name="Location" class="form-control" required />
+        </div>
+        <div class="form-group col">
+            <label for="JobType">Tipo de Trabajo</label>
+            <input type="text" id="JobType" name="JobType" class="form-control" required />
+        </div>
     </div>
-    <div class="form-group">
-        <label for="JobType">Tipo de Trabajo</label>
-        <input type="text" id="JobType" name="JobType" class="form-control" required />
+    <div class="form-row">
+        <div class="form-group col">
+            <label for="ExperienceLevel">Nivel de Experiencia</label>
+            <input type="text" id="ExperienceLevel" name="ExperienceLevel" class="form-control" required />
+        </div>
+        <div class="form-group col">
+            <label for="ExpiredDate">Fecha de Expiración</label>
+            <input type="date" id="ExpiredDate" name="ExpiredDate" class="form-control" />
+        </div>
     </div>
-    <div class="form-group">
-        <label for="ExperienceLevel">Nivel de Experiencia</label>
-        <input type="text" id="ExperienceLevel" name="ExperienceLevel" class="form-control" required />
+    <div class="form-row">
+        <div class="form-group col">
+            <label for="MinSalary">Salario Mínimo</label>
+            <input type="number" id="MinSalary" name="MinSalary" class="form-control" step="0.01" />
+        </div>
+        <div class="form-group col">
+            <label for="MaxSalary">Salario Máximo</label>
+            <input type="number" id="MaxSalary" name="MaxSalary" class="form-control" step="0.01" />
+        </div>
     </div>
-    <div class="form-group">
-        <label for="ExpiredDate">Fecha de Finalización</label>
-        <input type="date" id="ExpiredDate" name="ExpiredDate" class="form-control" />
+    <div class="form-group button-container">
+        <button type="submit" class="btn btn-primary">Guardar</button>
     </div>
-    <div class="form-group">
-        <label for="MinSalary">Salario Mínimo</label>
-        <input type="number" id="MinSalary" name="MinSalary" class="form-control" step="0.01" />
-    </div>
-    <div class="form-group">
-        <label for="MaxSalary">Salario Máximo</label>
-        <input type="number" id="MaxSalary" name="MaxSalary" class="form-control" step="0.01" />
-    </div>
-    <button type="submit" class="btn btn-primary">Modificar Oferta de Trabajo</button>
+    <br />
 </form>

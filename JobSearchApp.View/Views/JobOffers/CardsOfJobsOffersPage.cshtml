@@ -1,13 +1,19 @@
-﻿<form action="/JobOffers/LikeJobOffer" method="post">
-    <div class="userId-input">
-        <label>User ID: </label>
-        <input type="number" name="userId" />
+﻿<link rel="stylesheet" href="~/css/cardsJobOffers.css" type="text/css" />
+<div class="job-card">
+    <h3>Nombre del puesto</h3>
+    <div class="tags">
+        <span class="tag">Tecnología</span>
+        <span class="tag">Contrato</span>
+        <span class="tag">Ubicación</span>
+        <span class="tag">Salario</span>
     </div>
-    <div class="jobOfferId-input">
-        <label>Job Offer ID: </label>
-        <input type="number" name="jobOfferId" />
+    <p>Descripción</p>
+    <div class="description-placeholder">
+        <!-- Descripcion que tendra el puesto de trabajo -->
     </div>
-    <div class="submit">
-        <button type="submit">Submit</button>
+    <div class="action-buttons">
+        <button class="action-button reject">✖️</button>
+        <button class="action-button save">🔖</button>
+        <button class="action-button accept">✔️</button>
     </div>
-</form>
+</div>
