@@ -70,3 +70,8 @@ public class UpdateJobOfferDto
     public decimal MinSalary { get; set; }
     public decimal MaxSalary { get; set; }
 }
+public class DeleteJobOfferDto
+{
+    public int JobOfferId { get; set; }
+    public string Title { get; set; }
+}

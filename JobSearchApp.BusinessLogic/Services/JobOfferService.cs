@@ -20,6 +20,7 @@ namespace JobSearchApp.BusinessLogic.Services
         public async Task<IEnumerable<JobOfferDto>> GetAllJobOffersAsync()
         {
             var jobOffers = await _jobOfferRepository.GetAllJobOffersAsync();
+
             return _mapper.Map<IEnumerable<JobOfferDto>>(jobOffers);
         }
 

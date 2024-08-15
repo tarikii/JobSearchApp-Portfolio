@@ -1,0 +1,41 @@
+﻿@model JobSearchApp.BusinessLogic.DTOs.CreateJobOfferDto
+
+<form asp-action="CreateNewJobOffer" method="post">
+    <div class="form-group">
+        <label for="CompanyId">Company ID</label>
+        <input type="number" id="CompanyId" name="CompanyId" class="form-control" required />
+    </div>
+    <div class="form-group">
+        <label for="Title">Title</label>
+        <input type="text" id="Title" name="Title" class="form-control" required />
+    </div>
+    <div class="form-group">
+        <label for="Description">Description</label>
+        <textarea id="Description" name="Description" class="form-control"></textarea>
+    </div>
+    <div class="form-group">
+        <label for="Location">Location</label>
+        <input type="text" id="Location" name="Location" class="form-control" required />
+    </div>
+    <div class="form-group">
+        <label for="JobType">Job Type</label>
+        <input type="text" id="JobType" name="JobType" class="form-control" required />
+    </div>
+    <div class="form-group">
+        <label for="ExperienceLevel">Experience Level</label>
+        <input type="text" id="ExperienceLevel" name="ExperienceLevel" class="form-control" required />
+    </div>
+    <div class="form-group">
+        <label for="ExpiredDate">Expiration Date</label>
+        <input type="date" id="ExpiredDate" name="ExpiredDate" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label for="MinSalary">Minimum Salary</label>
+        <input type="number" id="MinSalary" name="MinSalary" class="form-control" step="0.01" />
+    </div>
+    <div class="form-group">
+        <label for="MaxSalary">Maximum Salary</label>
+        <input type="number" id="MaxSalary" name="MaxSalary" class="form-control" step="0.01" />
+    </div>
+    <button type="submit" class="btn btn-primary">Create Job Offer</button>
+</form>
