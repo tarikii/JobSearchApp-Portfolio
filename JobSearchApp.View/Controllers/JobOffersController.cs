@@ -1,6 +1,7 @@
 ﻿using JobSearchApp.BusinessLogic.DTOs;
 using JobSearchApp.BusinessLogic.Interfaces;
 using JobSearchApp.Infrastructure.Extensions;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace JobSearchApp.View.Controllers
@@ -26,29 +27,46 @@ namespace JobSearchApp.View.Controllers
         [HttpGet]
         public async Task<IActionResult> CardsOfJobsOffersPage(int? currentIndex)
         {
-            // Get the current user ID from the session
+            // Get user ID from the session
             int userId = int.Parse(HttpContext.Session.GetString("userId"));
 
             // Fetch the list of job offers
             IEnumerable<JobOfferDto> jobOffers = await _jobOfferService.GetAllJobOffersAsync();
 
-            // Determine the current index, defaulting to 0 if not provided
+            // Retrieve disliked job offers from the session
+            var dislikedOffers = HttpContext.Session.Get<List<int>>($"DislikedOffers_{userId}") ?? new List<int>();
+
+            // Retrieve liked job applications from the session
+            var likedApplications = HttpContext.Session.Get<List<CreateApplicationDto>>($"LikedApplications_{userId}") ?? new List<CreateApplicationDto>();
+
+            // Filter out both disliked job offers and liked job offers (using JobOfferId from CreateApplicationDto)
+            var filteredJobOffers = jobOffers.Where(offer =>
+                !dislikedOffers.Contains(offer.JobOfferId) &&
+                !likedApplications.Any(app => app.JobOfferId == offer.JobOfferId)).ToList();
+
+            // Determine the current index
             int index = currentIndex ?? 0;
 
-            // If we've gone past the end of the list, redirect to a "No more offers" page or similar
-            if (index >= jobOffers.Count())
+            // Adjust the index if it exceeds the count of filtered job offers
+            if (index >= filteredJobOffers.Count())
             {
-                return View("HomeLoggedPage", "Home");
+                // If the list is empty, redirect to the HomeLoggedPage
+                if (filteredJobOffers.Count == 0)
+                {
+                    return View("HomeLoggedPage", "Home");
+                }
+
+                // Reset index to 0 to show the first offer again
+                index = 0;
             }
 
             // Get the current job offer based on the index
-            JobOfferDto currentJobOffer = jobOffers.ElementAt(index);
+            JobOfferDto currentJobOffer = filteredJobOffers.ElementAt(index);
 
             // Pass the current job offer and the next index to the view
             ViewBag.NextIndex = index + 1;
             return View(currentJobOffer);
         }
-
 
         [HttpGet]
         public IActionResult FilterJobOffersPage()
@@ -83,24 +101,45 @@ namespace JobSearchApp.View.Controllers
                 SalaryExpected = 20000 // Set this to an appropriate value or fetch from user input if needed
             };
 
-            // Call the application service to create the application
-            await _applicationService.CreateApplicationAsync(createApplicationDto);
+            // Retrieve liked job offers from the session or initialize an empty list
+            var likedApplications = HttpContext.Session.Get<List<CreateApplicationDto>>($"LikedApplications_{userId}") ?? new List<CreateApplicationDto>();
 
-            // Redirect to the CardsOfJobsOffersPage action with the next job offer index
-            return RedirectToAction("CardsOfJobsOffersPage", new { currentIndex = nextIndex });
+            // Add the CreateApplicationDto to the liked list if not already present
+            if (!likedApplications.Any(app => app.JobOfferId == jobOfferId))
+            {
+                likedApplications.Add(createApplicationDto);
+                // Save the updated list back to the session
+                HttpContext.Session.Set($"LikedApplications_{userId}", likedApplications);
+
+                // Creates the application in the database with the userId
+                await _applicationService.CreateApplicationAsync(createApplicationDto);
+            }
+
+            // Redirect to the page to show the next job offer with the adjusted index
+            return RedirectToAction("CardsOfJobsOffersPage", new { currentIndex = nextIndex - 1 });
         }
 
         [HttpPost]
-        public async Task<IActionResult> DislikeJobOffer(int jobOfferId)
+        public async Task<IActionResult> DislikeJobOffer(int jobOfferId, int nextIndex)
         {
+            // Get user ID from the session
             int userId = int.Parse(HttpContext.Session.GetString("userId"));
 
-            // Logic to dislike the job offer and update the session or database
-            await _jobOfferService.DeleteJobOfferAsync(jobOfferId);
+            // Retrieve disliked job offers from the session or initialize an empty list
+            var dislikedOffers = HttpContext.Session.Get<List<int>>($"DislikedOffers_{userId}") ?? new List<int>();
 
-            // Redirect to the page to show the next job offer
-            return RedirectToAction("CardsOfJobsOffersPage");
+            // Add the job offer ID to the disliked list if not already present
+            if (!dislikedOffers.Contains(jobOfferId))
+            {
+                dislikedOffers.Add(jobOfferId);
+                // Save the updated list back to the session
+                HttpContext.Session.Set($"DislikedOffers_{userId}", dislikedOffers);
+            }
+
+            // Redirect to the page to show the next job offer with the adjusted index
+            return RedirectToAction("CardsOfJobsOffersPage", new { currentIndex = nextIndex - 1 });
         }
+
 
 
         // RECRUITER BUSINESS SECTION
