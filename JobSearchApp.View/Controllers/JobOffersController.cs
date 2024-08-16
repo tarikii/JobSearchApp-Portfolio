@@ -145,14 +145,26 @@ namespace JobSearchApp.View.Controllers
         // RECRUITER BUSINESS SECTION
 
         [HttpGet]
-        public IActionResult FormNewJobOfferPage()
+        public async Task<IActionResult> FormNewJobOfferPage()
         {
+            int userId = int.Parse(HttpContext.Session.GetString("userId"));
+
+            UserDto user = await _userService.GetUserByIdAsync(userId);
+
+            ViewBag.CompanyId = user.CompanyId;
+
             return View();
         }
 
         [HttpGet]
-        public IActionResult FormModificationJobOfferPage()
+        public async Task<IActionResult> FormModificationJobOfferPage()
         {
+            int userId = int.Parse(HttpContext.Session.GetString("userId"));
+
+            UserDto user = await _userService.GetUserByIdAsync(userId);
+
+            ViewBag.CompanyId = user.CompanyId;
+
             return View();
         }
         [HttpGet]
@@ -166,11 +178,13 @@ namespace JobSearchApp.View.Controllers
             return View();
         }
 
-        /*[HttpPost]
+        [HttpPost]
         public async Task<IActionResult> CreateNewJobOffer(CreateJobOfferDto dto)
         {
             if (!ModelState.IsValid)
                 return View("FormNewJobOfferPage", dto);
+
+            
 
             await _jobOfferService.CreateJobOfferAsync(dto);
 
@@ -197,6 +211,6 @@ namespace JobSearchApp.View.Controllers
             await _jobOfferService.DeleteJobOfferAsync(dto.JobOfferId);
 
             return Ok();
-        }*/
+        }
     }
 }

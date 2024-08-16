@@ -23,6 +23,7 @@ public class UserDto
     public string? PortfolioUrl { get; set; }
     public string? RoleName { get; set; }
     public string? CompanyName { get; set; }
+    public int? CompanyId { get; set; }
     public bool IsWorking { get; set; }
 
     public UserDto(User user)
