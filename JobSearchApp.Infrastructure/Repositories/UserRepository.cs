@@ -22,6 +22,8 @@ namespace JobSearchApp.Infrastructure.Repositories
         public async Task<User> GetUserByIdAsync(int userId)
         {
             return await _context.Users
+                            .Include(e => e.Educations)
+                            .Include(e => e.WorkExperiences)
                             .Include(u => u.Role)
                             .FirstOrDefaultAsync(u => u.UserId == userId);
         }

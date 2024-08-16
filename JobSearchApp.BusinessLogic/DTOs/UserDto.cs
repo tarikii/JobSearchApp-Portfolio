@@ -25,6 +25,8 @@ public class UserDto
     public string? CompanyName { get; set; }
     public int? CompanyId { get; set; }
     public bool IsWorking { get; set; }
+    public List<Education> Educations { get; set; }
+    public List<WorkExperience> WorkExperience { get; set; }
 
     public UserDto(User user)
     {

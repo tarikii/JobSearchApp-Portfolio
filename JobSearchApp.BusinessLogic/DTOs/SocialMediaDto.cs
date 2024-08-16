@@ -8,7 +8,6 @@ namespace JobSearchApp.BusinessLogic.DTOs
         public int UserId { get; set; }
         public string? Platform { get; set; }
         public string? Url { get; set; }
-
         public string? UserName { get; set; }
 
         public SocialMediaDto(SocialMedia socialMedia)

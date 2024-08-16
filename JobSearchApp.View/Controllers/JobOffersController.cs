@@ -19,7 +19,7 @@ namespace JobSearchApp.View.Controllers
         {
             _userService = userService;
             _jobOfferService = jobOfferService;
-            _applicationService = applicationService;
+            _applicationService = applicationService;     
         }
 
 
@@ -90,7 +90,6 @@ namespace JobSearchApp.View.Controllers
         public async Task<IActionResult> LikeJobOffer(int jobOfferId, int nextIndex)
         {
             int userId = int.Parse(HttpContext.Session.GetString("userId"));
-
             // Create a new CreateApplicationDto instance and populate it
             var createApplicationDto = new CreateApplicationDto
             {

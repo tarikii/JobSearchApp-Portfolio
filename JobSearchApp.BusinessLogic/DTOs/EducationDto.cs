@@ -14,7 +14,6 @@ namespace JobSearchApp.BusinessLogic.DTOs
         public string? Grade { get; set; }
         public string? ActivitiesAndSocieties { get; set; }
         public string? Description { get; set; }
-
         public string? UserName { get; set; }
 
         public EducationDto(Education education)

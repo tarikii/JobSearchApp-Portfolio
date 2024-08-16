@@ -1,0 +1,12 @@
+﻿@using JobSearchApp.BusinessLogic.DTOs
+@using JobSearchApp.Domain.Models
+
+@model UserDto
+
+
+<h1>@Model.UserName</h1>
+
+@foreach (Education edu in Model.Educations)
+{
+    <h1>@edu.SchoolName</h1>
+}

@@ -17,7 +17,6 @@ public class JobOfferDto
     public int EstimatedDurationDays { get; set; }
     public decimal? MinSalary { get; set; }
     public decimal? MaxSalary { get; set; }
-
     public string? CompanyName { get; set; }
 
     public JobOfferDto(JobOffer jobOffer)

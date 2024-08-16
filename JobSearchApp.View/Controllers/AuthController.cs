@@ -12,7 +12,7 @@ namespace JobSearchApp.View.Controllers
 
         public AuthController(IUserService userService, ICompanyService companyService)
         {
-            _userService = userService;
+            _userService = userService; 
             _companyService = companyService;
         }
         public IActionResult LoginPage()
