@@ -34,6 +34,9 @@ namespace JobSearchApp.View.Controllers
             // Get user ID from the session
             int userId = int.Parse(HttpContext.Session.GetString("userId"));
 
+            // The filtered list works while the session is on, once the app closes, the list resets
+            // It should not do this, the list should mantain even if the app closes
+
             // Fetch the list of job offers
             IEnumerable<JobOfferDto> jobOffers = await _jobOfferService.GetAllJobOffersAsync();
 
@@ -159,6 +162,7 @@ namespace JobSearchApp.View.Controllers
             return View();
         }
 
+        // MODIFICATION NEEDS TO GET CHECKED OUT, FORM POPS UP, BUT MODIFICATION IS NOT BEING DONE
         [HttpGet]
         public async Task<IActionResult> FormModificationJobOfferPage()
         {
