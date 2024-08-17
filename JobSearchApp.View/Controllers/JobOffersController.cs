@@ -170,11 +170,15 @@ namespace JobSearchApp.View.Controllers
 
             return View();
         }
+
         [HttpGet]
-        public IActionResult AdministrationListJobOffersPage()
+        public async Task<IActionResult> AdministrationListJobOffersPage()
         {
-            return View();
+            IEnumerable<JobOfferDto> jobOffers = await _jobOfferService.GetAllJobOffersAsync();
+
+            return View(jobOffers);
         }
+
         [HttpGet]
         public IActionResult ListCandidatesOfJobOfferPage()
         {

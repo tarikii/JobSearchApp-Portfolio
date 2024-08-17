@@ -1,4 +1,4 @@
-﻿@model JobSearchApp.BusinessLogic.DTOs.DeleteJobOfferDto
+﻿@model IEnumerable<JobSearchApp.BusinessLogic.DTOs.JobOfferDto>
 
 <link rel="stylesheet" href="~/css/jobOffer.css" type="text/css" />
 <div class="button-filter">
@@ -6,24 +6,19 @@
 	<button type="button" class="btn btn-primary">Vista Lista</button>
 </div>
 
-
 <div class="job-offers">
-    <div class="job-offer-card">
-        <h3>Oferta creada</h3>
-        <p>Número de solicitudes</p>
-        <p>Descripción</p>
-        <div class="description-placeholder"></div>
-        <button class="edit-button">✏️</button>
-    </div>
     <!-- Repeat the .job-offer-card div for more offers -->
-    <div class="job-offer-card">
-        <h3>Oferta creada</h3>
-        <p>Número de solicitudes</p>
-        <p>Descripción</p>
-        <div class="description-placeholder">
-            <!-- Añadir la descripcion que contiene el job offer a la hora de recorrer la lista -->
+    @foreach (var jobOffer in Model)
+    {
+        <div class="job-offer-card">
+            <h3>@jobOffer.Title</h3>
+            <p>@jobOffer.PostedDate</p>
+            <p>@jobOffer.Description</p>
+            <div class="description-placeholder">
+                <!-- Añadir la descripcion que contiene el job offer a la hora de recorrer la lista -->
+            </div>
+            <button class="edit-button">✏️</button>
         </div>
-        <button class="edit-button">✏️</button>
-    </div>
+    }
     <!-- Add more job offer cards as needed -->
 </div>
