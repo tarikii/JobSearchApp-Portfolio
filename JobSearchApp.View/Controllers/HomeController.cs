@@ -29,7 +29,6 @@ namespace JobSearchApp.View.Controllers
         {
             return View();
         }
-
         public async Task<IActionResult> HomeLoggedPage()
         {
             int userId = int.Parse(HttpContext.Session.GetString("userId"));

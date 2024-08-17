@@ -1,0 +1,53 @@
+﻿@using JobSearchApp.BusinessLogic.DTOs
+
+@model EducationDto
+
+<h1>Editar Educación</h1>
+<form action="~/Education/UpdateEducation" method="post">
+    <input type="hidden" name="EducationId" value="@Model.EducationId"/>
+    <input type="hidden" name="UserId" value="@Model.UserId" />
+    <div class="container">
+        <div class="row">
+            <div class="col mb-3">
+                <label>Centro Educativo</label>
+                <input type="text" class="form-control" name="SchoolName" value="@Model.SchoolName">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col mb-3">
+                <label>Título</label>
+                <input type="text" class="form-control" name="Degree" value="@Model.Degree">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col mb-3">
+                <label>Campo de Estudio</label>
+                <input type="text" class="form-control" name="FieldOfStudy" value="@Model.FieldOfStudy">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6 mb-3">
+                <label>Fecha Inicio</label>
+                <input type="date" class="form-control" name="StartDate" placeholder="Fecha Inicio" value="@Model.StartDate.ToString("yyyy-MM-dd")">
+            </div>
+            <div class="col-md-6 mb-3">
+                <label>Fecha Finalización</label>
+                <input type="date" class="form-control" name="EndDate" placeholder="Fecha de Finalización" value="@Model.EndDate.ToString("yyyy-MM-dd")">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col mb-3">
+                <label>Actividades y Sociedades</label>
+                <textarea class="form-control" name="ActivitiesAndSocieties">@Model.ActivitiesAndSocieties</textarea>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col mb-3">
+                <label>Descripción</label>
+                <textarea class="form-control" name="Description">@Model.Description</textarea>
+            </div>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </div>
+
+</form>

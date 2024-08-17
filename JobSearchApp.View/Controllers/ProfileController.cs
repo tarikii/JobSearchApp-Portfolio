@@ -1,6 +1,5 @@
 ﻿using JobSearchApp.BusinessLogic.DTOs;
 using JobSearchApp.BusinessLogic.Interfaces;
-using JobSearchApp.Domain.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace JobSearchApp.View.Controllers

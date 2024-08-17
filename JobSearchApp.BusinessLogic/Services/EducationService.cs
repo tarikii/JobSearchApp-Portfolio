@@ -29,9 +29,12 @@ namespace JobSearchApp.BusinessLogic.Services
             return education == null ? null : _mapper.Map<EducationDto>(education);
         }
 
-        public async Task<EducationDto> CreateEducationAsync(CreateEducationDto createEducationDto)
+        public async Task<EducationDto> CreateEducationAsync(CreateEducationDto createEducationDto, int userId)
         {
-            var education = _mapper.Map<Education>(createEducationDto);
+            CreateEducationDto newEducation = createEducationDto;
+            newEducation.UserId = userId;
+
+            var education = _mapper.Map<Education>(newEducation);
             var createdEducation = await _educationRepository.CreateEducationAsync(education);
             return _mapper.Map<EducationDto>(createdEducation);
         }

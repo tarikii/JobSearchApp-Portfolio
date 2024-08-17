@@ -4,9 +4,34 @@
 @model UserDto
 
 
+
 <h1>@Model.UserName</h1>
 
-@foreach (Education edu in Model.Educations)
-{
-    <h1>@edu.SchoolName</h1>
-}
+<div class="container p-1" style="background-color:red;">
+    @foreach (Education edu in Model.Educations)
+    {
+        <div class="row p-5 m-4" style="background-color: #F5F5F5; border-radius: 15px;">
+            <div class="d-flex flex-column flex-md-row align-items-center">
+                <!-- Contenedor para el título y la descripción -->
+                <div class="flex-grow-1 mb-3 mb-md-0">
+                    <h1 class="mb-0">@edu.SchoolName</h1>
+                    <h3 class="mb-0">Descripción</h3>
+                    <p class="mb-0">lorem ipsum</p>
+                </div>
+
+                <!-- Contenedor para los botones -->
+                <div class="ms-auto d-flex align-items-center">
+                    <a class="btn btn-primary me-2" asp-area="" asp-controller="Education" asp-action="FormEditEducationPage" asp-route-id="@edu.EducationId">Editar</a>
+                    <form asp-controller="Education" asp-action="DeleteEducation" method="post" class="mb-0">
+                        <input type="hidden" name="id" value="@edu.EducationId" />
+                        <button type="submit" class="btn btn-primary">Eliminar</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+
+    }
+</div>
+
+<a class="btn btn-primary" asp-area="" asp-controller="Education" asp-action="FormNewEducationPage">Educación</a>

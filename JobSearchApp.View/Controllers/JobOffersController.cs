@@ -78,19 +78,19 @@ namespace JobSearchApp.View.Controllers
         [HttpGet]
         public async Task<IActionResult> FilterJobOffersPage()
         {
-            return View(_userService.GetUserByIdAsync(GetUserId()));
+            return View();
         }
 
         [HttpGet]
         public async Task<IActionResult> ListOfJobsAppliedPage()
         {
-            return View(await _userService.GetUserByIdAsync(GetUserId()));
+            return View();
         }
 
         [HttpGet]
         public async Task<IActionResult>ApplyFilterJobOffers()
         {
-            return View(_userService.GetUserByIdAsync(int.Parse(HttpContext.Session.GetString("userId"))));
+            return View();
         }
 
         [HttpPost]
@@ -145,8 +145,6 @@ namespace JobSearchApp.View.Controllers
             // Redirect to the page to show the next job offer with the adjusted index
             return RedirectToAction("CardsOfJobsOffersPage", new { currentIndex = nextIndex - 1 });
         }
-
-
 
         // RECRUITER BUSINESS SECTION
 
