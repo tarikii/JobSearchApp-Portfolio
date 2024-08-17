@@ -1,14 +1,27 @@
 ﻿using JobSearchApp.BusinessLogic.DTOs;
+using JobSearchApp.BusinessLogic.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
 namespace JobSearchApp.View.Controllers
 {
     public class HardSoftSkillsController : Controller
     {
-        [HttpGet]
-        public IActionResult ListHardSoftSkillsPage()
+        private readonly IUserService _userService;
+
+        public HardSoftSkillsController(IUserService userService)
         {
-            return View();
+            _userService = userService;
+        }
+
+        public int GetUserId()
+        {
+            return int.Parse(HttpContext.Session.GetString("userId"));
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> ListHardSoftSkillsPage()
+        {
+            return View(await _userService.GetUserByIdAsync(GetUserId()));
         }
 
         [HttpPost]

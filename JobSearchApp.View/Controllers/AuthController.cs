@@ -37,6 +37,14 @@ namespace JobSearchApp.View.Controllers
         }
 
         [HttpPost]
+        public IActionResult LogOut()
+        {
+            HttpContext.Session.Remove("userId");
+
+            return RedirectToAction("HomePage", "Home");
+        }
+
+        [HttpPost]
         public async Task<IActionResult> AuthenticateUser(string userName, string password)
         {
             UserDto user = await _userService.AuthenticateUserAsync(userName, password);

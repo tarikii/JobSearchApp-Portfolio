@@ -8,10 +8,10 @@ namespace JobSearchApp.View.Controllers
 {
     public class JobOffersController : Controller
     {
-        private IUserService _userService;
-        private IJobOfferService _jobOfferService;
-        private ICompanyService _companyService;
-        private IApplicationService _applicationService;
+        private readonly IUserService _userService;
+        private readonly IJobOfferService _jobOfferService;
+        private readonly ICompanyService _companyService;
+        private readonly IApplicationService _applicationService;
 
         public JobOffersController(IUserService userService, 
             IJobOfferService jobOfferService,
@@ -20,6 +20,11 @@ namespace JobSearchApp.View.Controllers
             _userService = userService;
             _jobOfferService = jobOfferService;
             _applicationService = applicationService;     
+        }
+
+        public int GetUserId()
+        {
+            return int.Parse(HttpContext.Session.GetString("userId"));
         }
 
 
@@ -69,21 +74,21 @@ namespace JobSearchApp.View.Controllers
         }
 
         [HttpGet]
-        public IActionResult FilterJobOffersPage()
+        public async Task<IActionResult> FilterJobOffersPage()
         {
-            return View();
+            return View(_userService.GetUserByIdAsync(GetUserId()));
         }
 
         [HttpGet]
-        public IActionResult ListOfJobsAppliedPage()
+        public async Task<IActionResult> ListOfJobsAppliedPage()
         {
-            return View();
+            return View(await _userService.GetUserByIdAsync(GetUserId()));
         }
 
         [HttpGet]
-        public IActionResult ApplyFilterJobOffers()
+        public async Task<IActionResult>ApplyFilterJobOffers()
         {
-            return View();
+            return View(_userService.GetUserByIdAsync(int.Parse(HttpContext.Session.GetString("userId"))));
         }
 
         [HttpPost]

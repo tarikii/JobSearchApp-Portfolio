@@ -14,11 +14,14 @@ namespace JobSearchApp.View.Controllers
             _userService = userService;
         }
 
+        public int GetUserId()
+        {
+            return int.Parse(HttpContext.Session.GetString("userId"));
+        }
+
         public async Task<IActionResult> ProfileOwnerUserPage()
         {
-            int userId = int.Parse(HttpContext.Session.GetString("userId"));
-
-            UserDto user = await _userService.GetUserByIdAsync(userId);
+            UserDto user = await _userService.GetUserByIdAsync(GetUserId());
 
             return View(user);
         }

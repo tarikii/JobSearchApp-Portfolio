@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/JobSearchApp.View.styles.css" asp-append-version="true" />
 </head>
-<body>
+<body class="d-flex flex-column min-vh-100">
     <header>
         <nav style="background-color: #1F4D78;" class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light border-bottom box-shadow mb-3">
             <div class="container-fluid">
@@ -23,7 +23,7 @@
                 </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
-                        @if (ViewBag.Role == null)
+                        @if (Context.Session.GetString("userId") == null)
                         {
                             <li class="nav-item">
                                 <a class="nav-link text-white" asp-area="" asp-controller="Home" asp-action="HomePage">Inicio</a>
@@ -37,35 +37,52 @@
                         }
                     </ul>
                     <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                        <li class="nav-itimgem">
-                            <a class="nav-link text-white" asp-area="" asp-controller="Home" asp-action="ContactFormPage">Contacto</a>
-                        </li>
-                        @if (ViewBag.Role == null)
+                        @if (Context.Session.GetString("userId") == null)
                         {
-                            <li class="nav-item">
-                                <a class="nav-link btn btn-primary text-white" asp-area="" asp-controller="Auth" asp-action="LoginPage">Iniciar Sessión</a>
+                            <li class="nav-item d-flex align-items-center">
+                                <a id="contactLink" class="nav-link text-white" asp-area="" asp-controller="Home" asp-action="ContactFormPage">Contacto</a>
+                            </li>
+                            <li class="nav-item d-flex align-items-center">
+                                <a class="nav-link btn btn-primary text-white" asp-area="" asp-controller="Auth" asp-action="LoginPage">Iniciar Sesión</a>
                             </li>
                         }
-                        else
+                        else if (Context.Session.GetString("userId") != null)
                         {
-                            <img src="~/lib/" />
-                            <h1>@Model.UserName</h1>
-                        }
+                            <li class="nav-item d-flex align-items-center">
+                                <div class="dropdown">
+                                    <a class="d-flex align-items-center text-decoration-none" href="#" id="dropdownUser" data-bs-toggle="dropdown" aria-expanded="false">
+                                        <h3 id="username" class="mb-0">@Model.UserName</h3>
+                                        <img style="border-radius: 1200px; height:50px; margin-left: 10px;" src="~/lib/img/perifl-icon.jpg" alt="Perfil" />
+                                    </a>
+                                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownUser">
+                                        <li><a class="dropdown-item" href="#">Link 1</a></li>
+                                        <li><a class="dropdown-item" href="#">Link 2</a></li>
+                                        <li><a class="dropdown-item" href="#">Link 3</a></li>
+                                        <li><hr class="dropdown-divider"></li>
+                                        <li>
+                                            <form action="~/Auth/LogOut" method="post">
+                                                <button type="submit" class="dropdown-item">Cerrar Sessión</button>
+                                            </form>
+                                        </li>
+                                    </ul>
+                                </div>
 
-                      
+                            </li>
+                        }
                     </ul>
+
                 </div>
             </div>
         </nav>
     </header>
-    <div class="container">
+
+    <div class="container flex-fill">
         <main role="main" class="pb-3">
             @RenderBody()
         </main>
     </div>
 
-    <footer class="text-center text-lg-start text-white"
-            style="background-color: #1f4d78">
+    <footer class="mt-auto text-center text-lg-start text-white" style="background-color: #1f4d78;">
         <div class="container-fluid p-4 pb-0">
             <section class="">
                 <div class="row">
@@ -102,6 +119,7 @@
             <hr class="mb-4" />
         </div>
     </footer>
+
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
