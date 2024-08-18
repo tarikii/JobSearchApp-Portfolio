@@ -24,5 +24,10 @@ namespace JobSearchApp.View.Controllers
 
             return View(user);
         }
+
+        //public async Task<IActionResult> EditUserPersonalDataPage()
+        //{
+
+        //}
     }
 }
