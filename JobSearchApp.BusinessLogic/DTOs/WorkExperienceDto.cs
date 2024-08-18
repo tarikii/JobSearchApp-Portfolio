@@ -27,6 +27,7 @@ namespace JobSearchApp.BusinessLogic.DTOs
             Location = workExperience.Location;
             UserName = workExperience.User?.UserName;
         }
+        public WorkExperienceDto() { }
     }
     public class CreateWorkExperienceDto
     {
@@ -41,6 +42,7 @@ namespace JobSearchApp.BusinessLogic.DTOs
     public class UpdateWorkExperienceDto
     {
         public int WorkExperienceId { get; set; }
+        public int UserId { get; set; }
         public string? CompanyName { get; set; }
         public string? JobTitle { get; set; }
         public DateTimeOffset StartDate { get; set; }

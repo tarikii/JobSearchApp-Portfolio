@@ -1,0 +1,46 @@
+﻿@using JobSearchApp.BusinessLogic.DTOs
+
+@model WorkExperienceDto
+
+<h1>Editar Experiencia Laboral</h1>
+<form action="~/WorkExperience/UpdateExperience" method="post">
+    <input type="hidden" name="WorkExperienceId" value="@Model.WorkExperienceId" />
+    <input type="hidden" name="UserId" value="@Model.UserId" />
+    <div class="container">
+        <div class="row">
+            <div class="col mb-3">
+                <label>Nombre de Compañia</label>
+                <input type="text" class="form-control" name="CompanyName" value="@Model.CompanyName">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col mb-3">
+                <label>Puesto de Trabajo</label>
+                <input type="text" class="form-control" name="JobTitle" value="@Model.JobTitle">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6 mb-3">
+                <label>Fecha Inicio</label>
+                <input type="date" class="form-control" name="StartDate" placeholder="Fecha Inicio" value="@Model.StartDate.ToString("yyyy-MM-dd")">
+            </div>
+            <div class="col-md-6 mb-3">
+                <label>Fecha Finalización</label>
+                <input type="date" class="form-control" name="EndDate" placeholder="Fecha de Finalización" value="@Model.EndDate.ToString("yyyy-MM-dd")">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col mb-3">
+                <label>Descripción</label>
+                <textarea class="form-control" name="Description">@Model.Description</textarea>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col mb-3">
+                <label>Ubicación</label>
+                <textarea class="form-control" name="Location">@Model.Location</textarea>
+            </div>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </div>
+</form>
