@@ -46,7 +46,7 @@ namespace JobSearchApp.View.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreateInterest([FromBody]CreateInterestDto dto)
+        public async Task<IActionResult> CreateInterest(CreateInterestDto dto)
         {
             return View(dto);
         }
