@@ -30,8 +30,6 @@ button.btn.btn-primary {
     display: flex;
     flex-wrap: wrap;
     gap: 30px;
-    margin: 0 auto;
-    width: fit-content; /* Adjust width based on content or set a fixed width */
 }
 
 .tag {

@@ -1,0 +1,32 @@
+﻿@using JobSearchApp.BusinessLogic.DTOs
+
+@model IEnumerable<InterestDto>
+
+<link rel="stylesheet" href="~/css/preference.css" type="text/css" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+<div class="title-edit-container">
+    <h1>MIS INTERESES</h1>
+    <button type="button" class="btn btn-primary">Ver Todo</button>
+</div>
+
+<div class="preference-tags">
+    @foreach (var interest in Model)
+    {
+        <span class="tag">
+            @interest.InterestText
+            <i class="fa fa-pencil edit-icon ms-3" aria-hidden="true"></i>
+            <i class="fa fa-times delete-icon ms-3" aria-hidden="true"></i>
+        </span>
+    }
+</div>
+<div class="input-container mt-5">
+    <h4 style="color: #1F4D78; font-weight: bold;" class="mt-4">Nombre Interés</h4>
+    <form asp-action="CreateInterest" method="post">
+        @Html.AntiForgeryToken();
+        <div class="custom-form-group">
+            <input type="number" value="@ViewBag.UserId" id="UserId" name="UserId" class="form-control" hidden />
+            <input type="text" name="InterestText" class="custom-form-control" placeholder="Ingrese el nombre">
+        </div>
+        <button type="submit" class="btn btn-primary mt-4">Añadir</button>
+    </form>
+</div>

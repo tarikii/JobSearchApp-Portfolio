@@ -1,24 +1,17 @@
-﻿
+﻿@using JobSearchApp.BusinessLogic.DTOs
+
+@model IEnumerable<UserPreferenceDto>
 
 <link rel="stylesheet" href="~/css/preference.css" type="text/css" />
+
 <div class="title-edit-container">
-	<h1>MIS PREFERENCIAS</h1>
-	<button type="button" class="btn btn-primary">Editar</button>
+    <h1>MIS PREFERENCIAS</h1>
+    <button type="button" class="btn btn-primary">Editar</button>
 </div>
 
 <div class="preference-tags">
-	<span class="tag">Tecnología</span>
-	<span class="tag">Horario Flexible</span>
-	<span class="tag">Trabajo Dinámico</span>
-	<span class="tag">Barcelona</span>
-	<span class="tag">Trabajo Telemático/Presencial</span>
-	<span class="tag">Ejemplo 1</span>
-	<span class="tag">Ejemplo 2</span>
-	<span class="tag">Trabajo Telemático/Presencial</span>
-	<span class="tag">Trabajo Telemático/Presencial</span>
-	<span class="tag">Trabajo Telemático/Presencial</span>
-	<span class="tag">Trabajo Telemático/Presencial</span>
-	<span class="tag">Trabajo Telemático/Presencial</span>
-	<span class="tag">Trabajo Telemático/Presencial</span>
-	<span class="tag">Trabajo Telemático/Presencial</span>
+    @foreach (var preference in Model)
+    {
+        <span class="tag ms-3">@preference.Category: @preference.Value</span>
+    }
 </div>

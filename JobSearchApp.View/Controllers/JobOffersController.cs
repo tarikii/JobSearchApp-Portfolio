@@ -192,7 +192,6 @@ namespace JobSearchApp.View.Controllers
         {
             if (!ModelState.IsValid)
                 return View("FormNewJobOfferPage", dto);
-
             
 
             await _jobOfferService.CreateJobOfferAsync(dto);
