@@ -15,6 +15,11 @@ namespace JobSearchApp.View.Controllers
             _interestService = interestService;
         }
 
+        public int GetUserId()
+        {
+            return int.Parse(HttpContext.Session.GetString("userId"));
+        }
+
         [HttpGet]
         public async Task<IActionResult> ListInterestPage()
         {
@@ -48,7 +53,12 @@ namespace JobSearchApp.View.Controllers
         [HttpPost]
         public async Task<IActionResult> CreateInterest(CreateInterestDto dto)
         {
-            return View(dto);
+            // Proceed with creating the interest
+            InterestDto interest = await _interestService.CreateInterestAsync(dto, GetUserId());
+
+            // Redirect or return to the list page after successful creation
+            return RedirectToAction("EditListInterestPage", "Interest");
         }
+
     }
 }

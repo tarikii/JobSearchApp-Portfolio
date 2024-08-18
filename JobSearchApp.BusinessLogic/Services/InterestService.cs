@@ -3,6 +3,7 @@ using JobSearchApp.BusinessLogic.DTOs;
 using JobSearchApp.BusinessLogic.Interfaces;
 using JobSearchApp.Domain.Models;
 using JobSearchApp.Infrastructure.Interfaces;
+using JobSearchApp.Infrastructure.Repositories;
 
 namespace JobSearchApp.BusinessLogic.Services
 {
@@ -29,9 +30,12 @@ namespace JobSearchApp.BusinessLogic.Services
             return interest == null ? null : _mapper.Map<InterestDto>(interest);
         }
 
-        public async Task<InterestDto> CreateInterestAsync(CreateInterestDto createInterestDto)
+        public async Task<InterestDto> CreateInterestAsync(CreateInterestDto createInterestDto, int userId)
         {
-            var interest = _mapper.Map<Interest>(createInterestDto);
+            CreateInterestDto newInterest = createInterestDto;
+            newInterest.UserId = userId;
+
+            var interest = _mapper.Map<Interest>(newInterest);
             var createdInterest = await _interestRepository.CreateInterestAsync(interest);
             return _mapper.Map<InterestDto>(createdInterest);
         }

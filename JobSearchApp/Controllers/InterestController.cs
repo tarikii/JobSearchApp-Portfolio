@@ -44,7 +44,7 @@ namespace JobSearchApp.Web.Controllers
         [HttpPost]
         public async Task<ActionResult<InterestDto>> CreateInterest(CreateInterestDto createInterestDto)
         {
-            var createdInterest = await _interestService.CreateInterestAsync(createInterestDto);
+            var createdInterest = await _interestService.CreateInterestAsync(createInterestDto, 1);
 
             return CreatedAtAction(nameof(GetInterestById), new { id = createdInterest.InterestId }, createdInterest);
         }

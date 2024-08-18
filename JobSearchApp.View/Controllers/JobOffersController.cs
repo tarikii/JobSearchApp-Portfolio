@@ -162,7 +162,7 @@ namespace JobSearchApp.View.Controllers
 
         // MODIFICATION NEEDS TO GET CHECKED OUT, FORM POPS UP, BUT MODIFICATION IS NOT BEING DONE
         [HttpGet]
-        public async Task<IActionResult> FormModificationJobOfferPage()
+        public async Task<IActionResult> FormModificationJobOfferPage(int jobOfferId)
         {
             int userId = int.Parse(HttpContext.Session.GetString("userId"));
 
@@ -170,8 +170,27 @@ namespace JobSearchApp.View.Controllers
 
             ViewBag.CompanyId = user.CompanyId;
 
-            return View();
+            var jobOffer = await _jobOfferService.GetJobOfferByIdAsync(jobOfferId);
+            if (jobOffer == null)
+            {
+                return NotFound();
+            }
+
+            var updateJobOfferDto = new UpdateJobOfferDto
+            {
+                JobOfferId = jobOffer.JobOfferId,
+                Title = jobOffer.Title,
+                Location = jobOffer.Location,
+                JobType = jobOffer.JobType,
+                ExperienceLevel = jobOffer.ExperienceLevel,
+                ExpiredDate = jobOffer.ExpiredDate,
+                MinSalary = jobOffer.MinSalary ?? 0,
+                MaxSalary = jobOffer.MaxSalary ?? 0
+            };
+
+            return View(updateJobOfferDto);
         }
+
 
         [HttpGet]
         public async Task<IActionResult> AdministrationListJobOffersPage()
@@ -200,15 +219,21 @@ namespace JobSearchApp.View.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> UpdateJobOffer(int jobOfferId, UpdateJobOfferDto dto)
+        public async Task<IActionResult> UpdateJobOffer(UpdateJobOfferDto dto)
         {
             if (!ModelState.IsValid)
-                return View(dto);
+            {
+                // If validation fails, reload the view with the dto
+                return View("FormModificationJobOfferPage", dto);
+            }
 
+            // Update the job offer using the jobOfferId
             await _jobOfferService.UpdateJobOfferAsync(3, dto);
 
-            return Ok();
+            // Redirect to a page after successful update, like a list or detail view
+            return RedirectToAction("AdministrationListJobOffersPage");
         }
+
 
         [HttpPost]
         public async Task<IActionResult> DeleteJobOffer(DeleteJobOfferDto dto)
