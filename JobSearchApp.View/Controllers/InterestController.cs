@@ -60,5 +60,20 @@ namespace JobSearchApp.View.Controllers
             return RedirectToAction("EditListInterestPage", "Interest");
         }
 
+        [HttpPost]
+        public async Task<IActionResult> UpdateInterest(UpdateInterestDto dto)
+        {
+            InterestDto interest = await _interestService.UpdateInterestAsync(dto.InterestId, dto);
+
+            return RedirectToAction("EditListInterestPage", "Interest");
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> DeleteInterest(int id)
+        {
+            bool educationDeleted = await _interestService.DeleteInterestAsync(id);
+
+            return RedirectToAction("EditListInterestPage", "Interest");
+        }
     }
 }
