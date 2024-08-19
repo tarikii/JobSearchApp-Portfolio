@@ -6,6 +6,7 @@ public interface IJobOfferService
 {
     Task<IEnumerable<JobOfferDto>> GetAllJobOffersAsync();
     Task<JobOfferDto> GetJobOfferByIdAsync(int jobOfferId);
+    Task<JobOfferDto> GetJobOfferByCompanyIdAsync(int companyId);
     Task<JobOfferDto> CreateJobOfferAsync(CreateJobOfferDto createJobOfferDto);
     Task<JobOfferDto> UpdateJobOfferAsync(int jobOfferId, UpdateJobOfferDto updateJobOfferDto);
     Task<bool> DeleteJobOfferAsync(int jobOfferId);

@@ -1,8 +1,4 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
-}
+﻿@using JobSearchApp.BusinessLogic.DTOs
 
 
 <input type="hidden" name="role" value="@ViewBag.Role" />
@@ -11,7 +7,7 @@
     <label for="name" class="form-label">Nombre</label>
 </div>
 <div class="name-input">
-    <input type="text" name="Name" class="validate-input" />
+    <input type="text" name="FirstName" class="validate-input" />
     <span class="error-message"></span>
 </div>
 
@@ -55,6 +51,13 @@
     <span class="error-message"></span>
 </div>
 
+<select class="form-select" aria-label="Default select example" name="CompanyId">
+    <option>Actualmente estoy desempleado</option>
+    @foreach (CompanyDto company in Model)
+    {
+        <option value="@company.CompanyId">@company.Name</option>
+    }
+</select>
 
 <div class="submit-button">
     <button type="submit">Registrarse</button>

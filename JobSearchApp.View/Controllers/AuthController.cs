@@ -30,10 +30,10 @@ namespace JobSearchApp.View.Controllers
             return View();
         }
 
-        public IActionResult RegisterUserPage(string id)
+        public async Task<IActionResult> RegisterUserPage(string id)
         {
             ViewBag.Role = id; // Role
-            return View();
+            return View(await _companyService.GetAllCompaniesAsync());
         }
 
         [HttpPost]

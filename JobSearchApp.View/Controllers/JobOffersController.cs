@@ -26,7 +26,6 @@ namespace JobSearchApp.View.Controllers
             return int.Parse(HttpContext.Session.GetString("userId"));
         }
 
-
         // CANDIDATE SECTION
         [HttpGet]
         public async Task<IActionResult> CardsOfJobsOffersPage(int? currentIndex)
@@ -192,13 +191,15 @@ namespace JobSearchApp.View.Controllers
         }
 
 
-        [HttpGet]
-        public async Task<IActionResult> AdministrationListJobOffersPage()
-        {
-            IEnumerable<JobOfferDto> jobOffers = await _jobOfferService.GetAllJobOffersAsync();
+        //[HttpGet]
+        //public async Task<IActionResult> AdministrationListJobOffersPage()
+        //{
+        //    //UserDto user = await _userService.GetUserByIdAsync(GetUserId());
 
-            return View(jobOffers);
-        }
+        //    ////IEnumerable<JobOfferDto> jobOffers = await _jobOfferService.GetJobOfferByCompanyIdAsync(user.CompanyId);
+
+        //    //return View(jobOffers);
+        //}
 
         [HttpGet]
         public IActionResult ListCandidatesOfJobOfferPage()
@@ -209,13 +210,9 @@ namespace JobSearchApp.View.Controllers
         [HttpPost]
         public async Task<IActionResult> CreateNewJobOffer(CreateJobOfferDto dto)
         {
-            if (!ModelState.IsValid)
-                return View("FormNewJobOfferPage", dto);
-            
+            JobOfferDto newJobOffer = await _jobOfferService.CreateJobOfferAsync(dto);
 
-            await _jobOfferService.CreateJobOfferAsync(dto);
-
-            return Ok();
+            return RedirectToAction("AdministrationListJobOffersPage", "JobOffers");
         }
 
         [HttpPost]

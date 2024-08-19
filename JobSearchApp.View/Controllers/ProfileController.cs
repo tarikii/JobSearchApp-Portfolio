@@ -25,9 +25,19 @@ namespace JobSearchApp.View.Controllers
             return View(user);
         }
 
-        //public async Task<IActionResult> EditUserPersonalDataPage()
-        //{
+        public async Task<IActionResult> EditUserPersonalDataPage(UpdateUserDto updateUser)
+        {
+            UserDto user = await _userService.UpdateUserAsync(GetUserId(), updateUser);
 
-        //}
+            return RedirectToAction("ProfileOwnerUserPage", "Profile");
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> UpdateUserPersonalData(UpdateUserDto updateUser)
+        {
+            UserDto user = await _userService.UpdateUserAsync(GetUserId(), updateUser);
+
+            return RedirectToAction("ProfileOwnerUserPage", "Profile");
+        }
     }
 }

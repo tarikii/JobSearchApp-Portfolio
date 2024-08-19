@@ -59,7 +59,14 @@ public class UserService : IUserService
             return null;
         }
 
-        _mapper.Map(updateUserDto, user);
+        user.FirstName = updateUserDto.FirstName;
+        user.LastName = updateUserDto.LastName; 
+        user.GenderIdentity = updateUserDto.GenderIdentity;
+        user.Location = updateUserDto.Location;
+        user.LinkedInUrl = updateUserDto.LinkedInUrl;
+        user.Headline = updateUserDto.Headline;
+        user.MobileNumber = updateUserDto.MobileNumber;
+
         var updatedUser = await _userRepository.UpdateUserAsync(user);
         return _mapper.Map<UserDto>(updatedUser);
     }
