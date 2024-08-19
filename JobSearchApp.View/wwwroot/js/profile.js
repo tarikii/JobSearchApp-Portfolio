@@ -10,7 +10,7 @@
         editButtons.style.display = 'none';  // Oculta el div
     }
 
-    const fields = ['UserName','FirstName', 'LastName', 'GenderIdentity', 'Location', 'LinkedInUrl', 'Headline', 'MobileNumber'];
+    const fields = ['UserName','FirstName', 'LastName', 'GenderIdentity', 'Location', 'LinkedInUrl', 'Headline', 'MobileNumber', 'Summary'];
     fields.forEach(field => {
         const element = document.getElementById(field);
         const currentValue = element.innerText;

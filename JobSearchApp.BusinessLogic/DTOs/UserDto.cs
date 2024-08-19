@@ -26,7 +26,7 @@ public class UserDto
     public string? PortfolioUrl { get; set; }
     public int RoleId { get; set; }
     public string RoleName { get; set; }
-    public int? CompanyId { get; set; }
+    public int CompanyId { get; set; }
     public bool IsWorking { get; set; }
     public List<Education> Educations { get; set; }
     public List<WorkExperience> WorkExperiences { get; set; }

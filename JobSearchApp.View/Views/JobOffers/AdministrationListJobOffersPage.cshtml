@@ -1,8 +1,10 @@
 ﻿@model IEnumerable<JobSearchApp.BusinessLogic.DTOs.JobOfferDto>
 
+<h1>@ViewBag.Title</h1>
+
 <link rel="stylesheet" href="~/css/jobOffer.css" type="text/css" />
 <div class="button-filter">
-	<button type="button" class="btn btn-primary">Filtro</button>
+    <button type="button" class="btn btn-primary">Filtro</button>
     <a class="btn btn-primary" class="nav-link text-white" asp-area="" asp-controller="JobOffers" asp-action="FormNewJobOfferPage">Añadir Nueva</a>
 
 </div>
@@ -13,12 +15,17 @@
     {
         <div class="job-offer-card">
             <h3>@jobOffer.Title</h3>
-            <p>@jobOffer.PostedDate</p>
             <p>@jobOffer.Description</p>
-            <div class="description-placeholder">
-                <!-- Añadir la descripcion que contiene el job offer a la hora de recorrer la lista -->
-            </div>
-            <button class="edit-button">✏️</button>
+            @if (ViewBag.SearchCandidate == "False")
+            {
+                <p>@jobOffer.PostedDate</p> 
+                <div class="description-placeholder">
+                    <!-- Añadir la descripcion que contiene el job offer a la hora de recorrer la lista -->
+                </div>
+                <button class="edit-button">✏️</button>
+            }
+            <a class="btn btn-primary" class="nav-link text-white" asp-area="" asp-controller="Candidates" asp-action="CardsOfCandidatesPage" asp-route-id="@jobOffer.JobOfferId">Buscar Candidato</a>
+
         </div>
     }
     <!-- Add more job offer cards as needed -->

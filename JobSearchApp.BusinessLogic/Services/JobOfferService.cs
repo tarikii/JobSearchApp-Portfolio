@@ -3,6 +3,7 @@ using JobSearchApp.BusinessLogic.DTOs;
 using JobSearchApp.BusinessLogic.Interfaces;
 using JobSearchApp.Domain.Models;
 using JobSearchApp.Infrastructure.Interfaces;
+using System.Collections;
 
 namespace JobSearchApp.BusinessLogic.Services
 {
@@ -30,11 +31,11 @@ namespace JobSearchApp.BusinessLogic.Services
             return jobOffer == null ? null : _mapper.Map<JobOfferDto>(jobOffer);
         }
 
-        public async Task<JobOfferDto> GetJobOfferByCompanyIdAsync(int companyId)
+        public async Task<IEnumerable<JobOfferDto>> GetJobOfferByCompanyIdAsync(int companyId)
         {
             var jobOffers= await _jobOfferRepository.GetAllJobOffersAsync();
 
-            return jobOffers == null ? null : _mapper.Map<JobOfferDto>(jobOffers.Where(c => c.CompanyId == companyId));
+            return jobOffers == null ? null : _mapper.Map<IEnumerable<JobOfferDto>>(jobOffers.Where(c => c.CompanyId == companyId));
         }
 
         public async Task<JobOfferDto> CreateJobOfferAsync(CreateJobOfferDto createJobOfferDto)

@@ -145,6 +145,8 @@ namespace JobSearchApp.View.Controllers
             return RedirectToAction("CardsOfJobsOffersPage", new { currentIndex = nextIndex - 1 });
         }
 
+        
+        
         // RECRUITER BUSINESS SECTION
 
         [HttpGet]
@@ -190,16 +192,26 @@ namespace JobSearchApp.View.Controllers
             return View(updateJobOfferDto);
         }
 
+        [HttpGet]
+        public async Task<IActionResult> AdministrationListJobOffersPage(int id = 0)
+        {
+            if (id == 1)
+            {
+                ViewBag.Title = "Selecciona una Oferta para buscar Candidatos";
+                ViewBag.SearchCandidate = "True";
+            }
+            else
+            {
+                ViewBag.Title = "Administración de Ofertas de Trabajo";
+                ViewBag.SearchCandidate = "False";
+            }
 
-        //[HttpGet]
-        //public async Task<IActionResult> AdministrationListJobOffersPage()
-        //{
-        //    //UserDto user = await _userService.GetUserByIdAsync(GetUserId());
+            UserDto user = await _userService.GetUserByIdAsync(GetUserId());
 
-        //    ////IEnumerable<JobOfferDto> jobOffers = await _jobOfferService.GetJobOfferByCompanyIdAsync(user.CompanyId);
+            IEnumerable<JobOfferDto> jobOffers = await _jobOfferService.GetJobOfferByCompanyIdAsync(user.CompanyId);
 
-        //    //return View(jobOffers);
-        //}
+            return View(jobOffers);
+        }
 
         [HttpGet]
         public IActionResult ListCandidatesOfJobOfferPage()
@@ -230,7 +242,6 @@ namespace JobSearchApp.View.Controllers
             // Redirect to a page after successful update, like a list or detail view
             return RedirectToAction("AdministrationListJobOffersPage");
         }
-
 
         [HttpPost]
         public async Task<IActionResult> DeleteJobOffer(DeleteJobOfferDto dto)

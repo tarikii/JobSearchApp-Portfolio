@@ -6,16 +6,22 @@ namespace JobSearchApp.View.Controllers
 {
     public class CandidatesController : Controller
     {
-        IUserService _userService;
+        private readonly IUserService _userService;
+        private readonly IJobOfferService _jobOfferService;
 
-        public CandidatesController(IUserService userService)
+        public CandidatesController(IUserService userService, IJobOfferService jobOfferService)
         {
             _userService = userService;
+            _jobOfferService = jobOfferService;
         }
 
         [HttpGet]
-        public async Task<IActionResult> CardsOfCandidatesPage()
+        public async Task<IActionResult> CardsOfCandidatesPage(int id)
         {
+            JobOfferDto jobOffer = await _jobOfferService.GetJobOfferByIdAsync(id);
+
+            ViewBag.NameOffer = jobOffer.Title;
+
             int userId = int.Parse(HttpContext.Session.GetString("userId"));
 
             IEnumerable<UserDto> users = await _userService.GetAllUsersAsync();

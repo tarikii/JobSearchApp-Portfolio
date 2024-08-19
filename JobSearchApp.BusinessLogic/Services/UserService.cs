@@ -66,6 +66,7 @@ public class UserService : IUserService
         user.LinkedInUrl = updateUserDto.LinkedInUrl;
         user.Headline = updateUserDto.Headline;
         user.MobileNumber = updateUserDto.MobileNumber;
+        user.Summary = updateUserDto.Summary;   
 
         var updatedUser = await _userRepository.UpdateUserAsync(user);
         return _mapper.Map<UserDto>(updatedUser);
