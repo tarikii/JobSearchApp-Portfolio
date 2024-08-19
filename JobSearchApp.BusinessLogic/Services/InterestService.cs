@@ -42,13 +42,20 @@ namespace JobSearchApp.BusinessLogic.Services
 
         public async Task<InterestDto> UpdateInterestAsync(int interestId, UpdateInterestDto updateInterestDto)
         {
-            if (interestId != updateInterestDto.InterestId)
+            var existingInterest = await _interestRepository.GetInterestByIdAsync(interestId);
+            if (existingInterest == null)
             {
-                return null;
+                // Handle the case where the interest does not exist
+                throw new Exception($"Interest with ID {interestId} not found.");
             }
 
-            var interest = _mapper.Map<Interest>(updateInterestDto);
-            var updatedInterest = await _interestRepository.UpdateInterestAsync(interest);
+            // Update properties on the existing interest
+            _mapper.Map(updateInterestDto, existingInterest);
+
+            // Save the updated interest entity
+            var updatedInterest = await _interestRepository.UpdateInterestAsync(existingInterest);
+
+            // Map the updated entity back to a DTO
             return _mapper.Map<InterestDto>(updatedInterest);
         }
 

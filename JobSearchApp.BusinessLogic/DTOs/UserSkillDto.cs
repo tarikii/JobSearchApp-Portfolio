@@ -13,6 +13,7 @@ public class UserSkillDto
 
     public string? UserName { get; set; }
     public string? SkillName { get; set; }
+    public SkillDto Skill { get; set; }
 
     public UserSkillDto(UserSkill userSkill)
     {
@@ -25,6 +26,8 @@ public class UserSkillDto
         UserName = userSkill.User?.UserName;
         SkillName = userSkill.Skill?.SkillName;
     }
+
+    public UserSkillDto() { }
 }
 
 public class CreateUserSkillDto

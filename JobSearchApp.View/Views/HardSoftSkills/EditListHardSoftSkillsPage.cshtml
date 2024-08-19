@@ -1,0 +1,109 @@
+﻿@using JobSearchApp.BusinessLogic.DTOs
+
+@model IEnumerable<UserSkillDto>
+
+<link rel="stylesheet" href="~/css/preference.css" type="text/css" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+<div class="title-edit-container">
+    <h1>MIS SOFT SKILLS</h1>
+    <button type="button" class="btn btn-primary">Editar</button>
+</div>
+
+<div class="preference-tags">
+    @foreach (var skills in Model)
+    {
+        @if (skills.Skill.SkillType == "Soft")
+        {
+            <div class="tag">
+                <!-- Display the interest text -->
+                <span class="skill-name" data-id="@skills.SkillId">@skills.Skill.SkillName</span>
+
+                <!-- Edit Form (initially hidden) -->
+                <form class="edit-form" action="~/Interest/UpdateInterest" method="post" style="display:none;">
+                    <input type="hidden" name="SkillId" value="@skills.SkillId" />
+                    <input type="text" name="InterestText" value="@skills.Skill.SkillName" />
+                    <button type="submit" class="btn btn-link p-0">
+                        <i class="fa fa-check save-icon" aria-hidden="true"></i>
+                    </button>
+                </form>
+
+                <!-- Delete Form -->
+                <form action="~/Interest/DeleteInterest" method="post" style="display:inline;">
+                    <input type="hidden" name="id" value="@skills.SkillId" />
+                    <button type="submit" class="btn btn-link p-0">
+                        <i class="fa fa-times delete-icon ms-3" aria-hidden="true"></i>
+                    </button>
+                </form>
+
+                <!-- Edit Icon -->
+                <i class="fa fa-pencil edit-icon ms-3" aria-hidden="true"></i>
+            </div>
+        }
+    }
+</div>
+
+<div class="input-container mt-5">
+    <h4 style="color: #1F4D78; font-weight: bold;" class="mt-4">Nombre Soft Skill</h4>
+    <form action="~/Interest/CreateInterest" method="post">
+        <div class="custom-form-group">
+            <input type="number" value="@ViewBag.UserId" id="UserId" name="UserId" class="form-control" hidden />
+            <input type="text" name="InterestText" class="custom-form-control" placeholder="Ingrese el soft skill">
+        </div>
+        <button type="submit" class="btn btn-primary mt-4">Añadir</button>
+    </form>
+</div>
+
+<br />
+<br />
+<br />
+
+<div class="title-edit-container">
+    <h1>MIS HARD SKILLS</h1>
+    <button type="button" class="btn btn-primary">Editar</button>
+</div>
+
+<div class="preference-tags">
+    @foreach (var skills in Model)
+    {
+        @if (skills.Skill.SkillType == "Hard")
+        {
+            <div class="tag">
+                <!-- Display the interest text -->
+                <span class="skill-name" data-id="@skills.SkillId">@skills.Skill.SkillName</span>
+
+                <!-- Edit Form (initially hidden) -->
+                <form class="edit-form" action="~/Interest/UpdateInterest" method="post" style="display:none;">
+                    <input type="hidden" name="SkillId" value="@skills.SkillId" />
+                    <input type="text" name="InterestText" value="@skills.Skill.SkillName" />
+                    <button type="submit" class="btn btn-link p-0">
+                        <i class="fa fa-check save-icon" aria-hidden="true"></i>
+                    </button>
+                </form>
+
+                <!-- Delete Form -->
+                <form action="~/Interest/DeleteInterest" method="post" style="display:inline;">
+                    <input type="hidden" name="id" value="@skills.SkillId" />
+                    <button type="submit" class="btn btn-link p-0">
+                        <i class="fa fa-times delete-icon ms-3" aria-hidden="true"></i>
+                    </button>
+                </form>
+
+                <!-- Edit Icon -->
+                <i class="fa fa-pencil edit-icon ms-3" aria-hidden="true"></i>
+            </div>
+        }
+    }
+</div>
+
+<div class="input-container mt-5">
+    <h4 style="color: #1F4D78; font-weight: bold;" class="mt-4">Nombre Hard Skill</h4>
+    <form action="~/Interest/CreateInterest" method="post">
+        <div class="custom-form-group">
+            <input type="number" value="@ViewBag.UserId" id="UserId" name="UserId" class="form-control" hidden />
+            <input type="text" name="InterestText" class="custom-form-control" placeholder="Ingrese el hard skill">
+        </div>
+        <button type="submit" class="btn btn-primary mt-4">Añadir</button>
+    </form>
+</div>
+<script type="text/javascript" src="~/js/editInterest.js"></script>

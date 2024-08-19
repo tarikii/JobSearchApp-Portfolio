@@ -1,16 +1,17 @@
 ﻿using JobSearchApp.BusinessLogic.DTOs;
 using JobSearchApp.BusinessLogic.Interfaces;
+using JobSearchApp.BusinessLogic.Services;
 using Microsoft.AspNetCore.Mvc;
 
 namespace JobSearchApp.View.Controllers
 {
     public class HardSoftSkillsController : Controller
     {
-        private readonly IUserService _userService;
+        private readonly IUserSkillService _userSkillService;
 
-        public HardSoftSkillsController(IUserService userService)
+        public HardSoftSkillsController(IUserSkillService userSkillService)
         {
-            _userService = userService;
+            _userSkillService = userSkillService;
         }
 
         public int GetUserId()
@@ -21,9 +22,34 @@ namespace JobSearchApp.View.Controllers
         [HttpGet]
         public async Task<IActionResult> ListHardSoftSkillsPage()
         {
-            return View(await _userService.GetUserByIdAsync(GetUserId()));
+            int userId = GetUserId();
+
+            // Fetch all user skills
+            IEnumerable<UserSkillDto> allUserSkills = await
+                _userSkillService.GetAllUserSkillsAsync();
+
+            // Filter user skills based on userId
+            IEnumerable<UserSkillDto> userSkills = allUserSkills
+                .Where(i => i.UserId == userId);
+
+            return View(userSkills);
         }
 
+        [HttpGet]
+        public async Task<IActionResult> EditListHardSoftSkillsPage()
+        {
+            int userId = GetUserId();
+
+            // Fetch all user skills
+            IEnumerable<UserSkillDto> allUserSkills = await
+                _userSkillService.GetAllUserSkillsAsync();
+
+            // Filter user skills based on userId
+            IEnumerable<UserSkillDto> userSkills = allUserSkills
+                .Where(i => i.UserId == userId);
+
+            return View(userSkills);
+        }
         [HttpPost]
         public async Task<IActionResult> CreateNewSoftSkill(CreateSkillDto dto)
         {

@@ -71,7 +71,7 @@ namespace JobSearchApp.View.Controllers
         [HttpPost]
         public async Task<IActionResult> DeleteInterest(int id)
         {
-            bool educationDeleted = await _interestService.DeleteInterestAsync(id);
+            bool interestDeleted = await _interestService.DeleteInterestAsync(id);
 
             return RedirectToAction("EditListInterestPage", "Interest");
         }
