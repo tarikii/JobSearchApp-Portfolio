@@ -23,7 +23,10 @@ namespace JobSearchApp.Infrastructure.Repositories
 
         public async Task<Feedback> GetFeedbackByIdAsync(int feedbackId)
         {
-            return await _context.Feedbacks.FindAsync(feedbackId);
+            return await _context.Feedbacks
+                        .Include(u => u.Recruiter)
+                        .Include(a => a.Application)
+                        .FirstOrDefaultAsync(f => f.FeedbackId == feedbackId);
         }
 
         public async Task<Feedback> CreateFeedbackAsync(Feedback feedback)

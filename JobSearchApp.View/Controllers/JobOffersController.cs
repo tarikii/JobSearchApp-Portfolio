@@ -216,6 +216,16 @@ namespace JobSearchApp.View.Controllers
         }
 
         [HttpGet]
+        public async Task<IActionResult> ListCandidatesPostulatedJobOfferPage(int id)
+        {
+            JobOfferDto jobOffer = await _jobOfferService.GetJobOfferByIdAsync(id);
+
+            IEnumerable<ApplicationDto> applications = await _applicationService.GetAllApplicationsAsync();
+
+            return View(applications.Where(j => j.JobOfferId == id));
+        }
+
+        [HttpGet]
         public IActionResult ListCandidatesOfJobOfferPage()
         {
             return View();

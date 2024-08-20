@@ -1,0 +1,14 @@
+﻿@using JobSearchApp.BusinessLogic.DTOs
+
+@model ApplicationDto
+
+<h1>@Model.JobOffer.Title</h1>
+<h1>Candidato: @Model.User.FirstName</h1>
+
+<form action="~/Feedback/CreateNewFeedBack" method="post">
+    <input type="hidden" name="ApplicationId" value="@Model.ApplicationId"/>
+    <input type="hidden" name="RecruiterId" value="@ViewBag.RecruiterId" />
+    <textarea name="FeedbackText"></textarea>
+
+    <button type="submit">Enviar</button>
+</form>

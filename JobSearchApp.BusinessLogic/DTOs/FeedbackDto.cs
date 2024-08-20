@@ -9,8 +9,9 @@ namespace JobSearchApp.BusinessLogic.DTOs
         public int RecruiterId { get; set; }
         public string? FeedbackText { get; set; }
         public DateTimeOffset FeedbackDate { get; set; }
-
         public string? RecruiterName { get; set; }
+        public JobOffer JobOffer { get; set; }
+        public User Recruiter {  get; set; } 
 
         public FeedbackDto(Feedback feedback)
         {
@@ -20,6 +21,12 @@ namespace JobSearchApp.BusinessLogic.DTOs
             FeedbackText = feedback.FeedbackText;
             FeedbackDate = feedback.FeedbackDate;
             RecruiterName = feedback.Recruiter?.UserName;
+        }
+
+        public FeedbackDto()
+        {
+
+
         }
     }
     public class CreateFeedbackDto

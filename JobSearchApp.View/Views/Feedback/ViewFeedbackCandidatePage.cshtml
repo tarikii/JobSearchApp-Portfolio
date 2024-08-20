@@ -1,0 +1,18 @@
+﻿@using JobSearchApp.BusinessLogic.DTOs
+
+@model FeedbackDto
+
+@if (Model != null)
+{
+@*     <h1>@Model.JobOffer.Title</h1>
+
+    <h2>recruiter: @Model.Recruiter.FirstName</h2> *@
+
+    <h1>@Model.FeedbackText</h1>
+
+    <a class="btn btn-primary" asp-controller="Application" asp-action="ListApplicationJobOfferPage">Volver</a>
+}
+else
+{
+    <h1>Aun no tienes feedback, sigue postulandote!</h1>
+}

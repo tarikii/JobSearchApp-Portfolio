@@ -10,9 +10,10 @@ namespace JobSearchApp.BusinessLogic.DTOs
         public DateTimeOffset ApplicationDate { get; set; }
         public string? Status { get; set; }
         public decimal? SalaryExpected { get; set; }
-
         public string? UserName { get; set; }
         public string? JobTitle { get; set; }
+        public User User { get; set; }
+        public JobOffer JobOffer { get; set; }
 
         public ApplicationDto(Application application)
         {
