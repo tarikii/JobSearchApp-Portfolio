@@ -7,7 +7,7 @@
 
 <div class="title-edit-container">
     <h1>MIS SOFT SKILLS</h1>
-    <button type="button" class="btn btn-primary">Editar</button>
+    <button type="button" class="btn btn-primary">Ver Todo</button>
 </div>
 
 <div class="preference-tags">
@@ -16,20 +16,20 @@
         @if (skills.Skill.SkillType == "Soft")
         {
             <div class="tag">
-                <!-- Display the interest text -->
-                <span class="skill-name" data-id="@skills.SkillId">@skills.Skill.SkillName</span>
+                <!-- Display the skill name -->
+                <span class="SkillName" data-id="@skills.Skill.SkillId">@skills.Skill.SkillName</span>
 
                 <!-- Edit Form (initially hidden) -->
-                <form class="edit-form" action="~/Interest/UpdateInterest" method="post" style="display:none;">
-                    <input type="hidden" name="SkillId" value="@skills.SkillId" />
-                    <input type="text" name="InterestText" value="@skills.Skill.SkillName" />
+                <form class="edit-form" action="~/HardSoftSkills/UpdateSkill" method="post" style="display:none;">
+                    <input type="hidden" name="SkillId" value="@skills.Skill.SkillId" />
+                    <input type="text" name="SkillName" value="@skills.Skill.SkillName" />
                     <button type="submit" class="btn btn-link p-0">
                         <i class="fa fa-check save-icon" aria-hidden="true"></i>
                     </button>
                 </form>
 
                 <!-- Delete Form -->
-                <form action="~/Interest/DeleteInterest" method="post" style="display:inline;">
+                <form action="~/HardSoftSkills/DeleteSoftSkill" method="post" style="display:inline;">
                     <input type="hidden" name="id" value="@skills.SkillId" />
                     <button type="submit" class="btn btn-link p-0">
                         <i class="fa fa-times delete-icon ms-3" aria-hidden="true"></i>
@@ -45,10 +45,11 @@
 
 <div class="input-container mt-5">
     <h4 style="color: #1F4D78; font-weight: bold;" class="mt-4">Nombre Soft Skill</h4>
-    <form action="~/Interest/CreateInterest" method="post">
+    <form action="~/HardSoftSkills/CreateNewSoftSkill" method="post">
         <div class="custom-form-group">
             <input type="number" value="@ViewBag.UserId" id="UserId" name="UserId" class="form-control" hidden />
-            <input type="text" name="InterestText" class="custom-form-control" placeholder="Ingrese el soft skill">
+            <input type="text" name="SkillName" class="custom-form-control" placeholder="Ingrese el soft skill">
+            <input type="hidden" name="SkillType" value="Soft" />
         </div>
         <button type="submit" class="btn btn-primary mt-4">Añadir</button>
     </form>
@@ -60,7 +61,7 @@
 
 <div class="title-edit-container">
     <h1>MIS HARD SKILLS</h1>
-    <button type="button" class="btn btn-primary">Editar</button>
+    <button type="button" class="btn btn-primary">Ver Todo</button>
 </div>
 
 <div class="preference-tags">
@@ -70,10 +71,10 @@
         {
             <div class="tag">
                 <!-- Display the interest text -->
-                <span class="skill-name" data-id="@skills.SkillId">@skills.Skill.SkillName</span>
+                <span class="SkillName" data-id="@skills.SkillId">@skills.Skill.SkillName</span>
 
                 <!-- Edit Form (initially hidden) -->
-                <form class="edit-form" action="~/Interest/UpdateInterest" method="post" style="display:none;">
+                <form class="edit-form" action="~/HardSoftSkills/UpdateHardSkill" method="post" style="display:none;">
                     <input type="hidden" name="SkillId" value="@skills.SkillId" />
                     <input type="text" name="InterestText" value="@skills.Skill.SkillName" />
                     <button type="submit" class="btn btn-link p-0">
@@ -82,7 +83,7 @@
                 </form>
 
                 <!-- Delete Form -->
-                <form action="~/Interest/DeleteInterest" method="post" style="display:inline;">
+                <form action="~/HardSoftSkills/DeleteHardSkill" method="post" style="display:inline;">
                     <input type="hidden" name="id" value="@skills.SkillId" />
                     <button type="submit" class="btn btn-link p-0">
                         <i class="fa fa-times delete-icon ms-3" aria-hidden="true"></i>
@@ -98,12 +99,13 @@
 
 <div class="input-container mt-5">
     <h4 style="color: #1F4D78; font-weight: bold;" class="mt-4">Nombre Hard Skill</h4>
-    <form action="~/Interest/CreateInterest" method="post">
+    <form action="~/HardSoftSkills/CreateNewHardSkill" method="post">
         <div class="custom-form-group">
             <input type="number" value="@ViewBag.UserId" id="UserId" name="UserId" class="form-control" hidden />
-            <input type="text" name="InterestText" class="custom-form-control" placeholder="Ingrese el hard skill">
+            <input type="text" name="SkillName" class="custom-form-control" placeholder="Ingrese el hard skill">
+            <input type="hidden" name="SkillType" value="Hard" />
         </div>
         <button type="submit" class="btn btn-primary mt-4">Añadir</button>
     </form>
 </div>
-<script type="text/javascript" src="~/js/editInterest.js"></script>
+<script type="text/javascript" src="~/js/editSkills.js"></script>
