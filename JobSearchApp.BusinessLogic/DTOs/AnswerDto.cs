@@ -22,6 +22,8 @@ public class AnswerDto
         UserName = answer.User?.UserName;
         QuestionText = answer.Question?.QuestionText;
     }
+
+    public AnswerDto() { }
 }
 
 public class CreateAnswerDto

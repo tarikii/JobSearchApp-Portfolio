@@ -1,0 +1,42 @@
+﻿@using JobSearchApp.BusinessLogic.DTOs
+
+@model IEnumerable<QuestionAnswerDto>
+
+<h2>Preguntas y Respuestas</h2>
+<div class="container mt-5">
+    <!-- Dropdown for selecting a question -->
+    <label for="questionSelect" class="form-label fw-bold">Selecciona una pregunta:</label>
+    <select id="questionSelect" class="form-select mb-3">
+        <option value="" selected disabled>Seleccione una pregunta</option>
+        @foreach (var item in Model)
+        {
+            <option value="@item.QuestionId" data-answer="@item.Answer?.AnswerText">@item.QuestionText</option>
+        }
+    </select>
+
+    <!-- Textarea to display the answer -->
+    <div id="answerContainer" class="card">
+        <div class="card-header bg-primary text-white">
+            Respuesta
+        </div>
+        <div class="card-body">
+            <textarea id="answerText" class="form-control" rows="4" readonly></textarea>
+        </div>
+        <div class="card-button text-end">
+            <button type="submit" class="btn btn-primary me-3">Editar respuesta</button>
+            <br />
+            <br />
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        // Handle the change event for the question dropdown
+        document.getElementById('questionSelect').addEventListener('change', function () {
+            var selectedOption = this.options[this.selectedIndex];
+            var answerText = selectedOption.getAttribute('data-answer') || 'No has respondido todavia a esta pregunta.';
+            document.getElementById('answerText').value = answerText;
+        });
+    </script>
+}
