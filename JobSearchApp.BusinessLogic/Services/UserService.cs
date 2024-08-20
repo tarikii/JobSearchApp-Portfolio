@@ -24,6 +24,17 @@ public class UserService : IUserService
         return _mapper.Map<IEnumerable<UserDto>>(users);
     }
 
+    public async Task<IEnumerable<UserDto>> GetAllUsersCandidateAsync()
+    {
+        var users = await _userRepository.GetAllUsersAsync();
+        var usersCandidates = users.Where(c => c.Role.Name == "Candidato");
+        
+        return _mapper.Map<IEnumerable<UserDto>>(usersCandidates);
+
+    }
+
+
+
     public async Task<UserDto> GetUserByIdAsync(int userId)
     {
         var user = await _userRepository.GetUserByIdAsync(userId);

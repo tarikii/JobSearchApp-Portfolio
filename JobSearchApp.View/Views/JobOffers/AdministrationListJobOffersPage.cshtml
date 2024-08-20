@@ -24,8 +24,8 @@
                 </div>
                 <button class="edit-button">✏️</button>
             }
-            <a class="btn btn-primary" class="nav-link text-white" asp-area="" asp-controller="Candidates" asp-action="CardsOfCandidatesPage" asp-route-id="@jobOffer.JobOfferId">Buscar Candidato</a>
 
+            <a class="btn btn-primary nav-link text-white" asp-area="" asp-controller="JobOffers" asp-action="SaveJobOfferIdAndSearchCandidate" asp-route-id="@jobOffer.JobOfferId">Buscar Candidato</a>
         </div>
     }
     <!-- Add more job offer cards as needed -->

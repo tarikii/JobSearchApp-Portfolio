@@ -23,14 +23,16 @@ public class MatchDto
         JobTitle = match.JobOffer?.Title;
         UserName = match.User?.UserName;
     }
+    
+    public MatchDto() { }
 }
 
 public class CreateMatchDto
 {
     public int JobOfferId { get; set; }
     public int UserId { get; set; }
-    public DateTimeOffset MatchDate { get; set; } = DateTimeOffset.Now;
-    public bool IsAccepted { get; set; } = false;
+    public DateTimeOffset? MatchDate { get; set; } = DateTimeOffset.Now;
+    public bool? IsAccepted { get; set; } = false;
 }
 
 public class UpdateMatchDto

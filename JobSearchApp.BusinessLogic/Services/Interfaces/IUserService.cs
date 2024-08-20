@@ -6,6 +6,7 @@ namespace JobSearchApp.BusinessLogic.Interfaces;
 public interface IUserService
 {
     Task<IEnumerable<UserDto>> GetAllUsersAsync();
+    Task<IEnumerable<UserDto>> GetAllUsersCandidateAsync();
     Task<UserDto> GetUserByIdAsync(int userId);
     Task<UserDto> CreateUserAsync(CreateUserDto createUserDto, int companyId, int roleId);
     Task<UserDto> CreateUserAsync(CreateUserDto createUserDto, int roleId);

@@ -92,14 +92,21 @@ namespace JobSearchApp.View.Controllers
             return View();
         }
 
+        [HttpGet]
+        public async Task<IActionResult> SaveJobOfferIdAndSearchCandidate(int id)
+        {
+            HttpContext.Session.Set("jobOfferIdForSeach", id);
+
+            return RedirectToAction("CardsOfCandidatesPage", "Candidates");
+        }
+
         [HttpPost]
         public async Task<IActionResult> LikeJobOffer(int jobOfferId, int nextIndex)
         {
-            int userId = int.Parse(HttpContext.Session.GetString("userId"));
             // Create a new CreateApplicationDto instance and populate it
             var createApplicationDto = new CreateApplicationDto
             {
-                UserId = userId,
+                UserId = GetUserId(),
                 JobOfferId = jobOfferId,
                 ApplicationDate = DateTimeOffset.Now,
                 Status = "Pending",
@@ -107,14 +114,14 @@ namespace JobSearchApp.View.Controllers
             };
 
             // Retrieve liked job offers from the session or initialize an empty list
-            var likedApplications = HttpContext.Session.Get<List<CreateApplicationDto>>($"LikedApplications_{userId}") ?? new List<CreateApplicationDto>();
+            var likedApplications = HttpContext.Session.Get<List<CreateApplicationDto>>($"LikedApplications_{GetUserId()}") ?? new List<CreateApplicationDto>();
 
             // Add the CreateApplicationDto to the liked list if not already present
             if (!likedApplications.Any(app => app.JobOfferId == jobOfferId))
             {
                 likedApplications.Add(createApplicationDto);
                 // Save the updated list back to the session
-                HttpContext.Session.Set($"LikedApplications_{userId}", likedApplications);
+                HttpContext.Session.Set($"LikedApplications_{GetUserId()}", likedApplications);
 
                 // Creates the application in the database with the userId
                 await _applicationService.CreateApplicationAsync(createApplicationDto);
@@ -127,28 +134,23 @@ namespace JobSearchApp.View.Controllers
         [HttpPost]
         public async Task<IActionResult> DislikeJobOffer(int jobOfferId, int nextIndex)
         {
-            // Get user ID from the session
-            int userId = int.Parse(HttpContext.Session.GetString("userId"));
-
             // Retrieve disliked job offers from the session or initialize an empty list
-            var dislikedOffers = HttpContext.Session.Get<List<int>>($"DislikedOffers_{userId}") ?? new List<int>();
+            var dislikedOffers = HttpContext.Session.Get<List<int>>($"DislikedOffers_{GetUserId()}") ?? new List<int>();
 
             // Add the job offer ID to the disliked list if not already present
             if (!dislikedOffers.Contains(jobOfferId))
             {
                 dislikedOffers.Add(jobOfferId);
                 // Save the updated list back to the session
-                HttpContext.Session.Set($"DislikedOffers_{userId}", dislikedOffers);
+                HttpContext.Session.Set($"DislikedOffers_{GetUserId()}", dislikedOffers);
             }
 
             // Redirect to the page to show the next job offer with the adjusted index
             return RedirectToAction("CardsOfJobsOffersPage", new { currentIndex = nextIndex - 1 });
         }
+   
 
-        
-        
         // RECRUITER BUSINESS SECTION
-
         [HttpGet]
         public async Task<IActionResult> FormNewJobOfferPage()
         {
