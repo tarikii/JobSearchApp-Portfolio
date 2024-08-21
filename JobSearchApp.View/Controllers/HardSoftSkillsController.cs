@@ -92,7 +92,7 @@ namespace JobSearchApp.View.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> UpdateSkill(UpdateSkillDto dto)
+        public async Task<IActionResult> UpdateSoftSkill(UpdateSkillDto dto)
         {
             try
             {
@@ -110,8 +110,16 @@ namespace JobSearchApp.View.Controllers
         [HttpPost]
         public async Task<IActionResult> UpdateHardSkill(UpdateSkillDto dto)
         {
-            // Pendiente de ver como se actualizara la skill y como se mostrara
-            return Ok();
+            try
+            {
+                SkillDto skill = await _skillService.UpdateSkillAsync(dto.SkillId, dto);
+
+                return Json(new { skillName = skill.SkillName });
+            }
+            catch (Exception ex)
+            {
+                return Json(new { error = ex.Message });
+            }
         }
 
         [HttpPost]

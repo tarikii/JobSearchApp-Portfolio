@@ -20,8 +20,9 @@
                 <span class="SkillName" data-id="@skills.Skill.SkillId">@skills.Skill.SkillName</span>
 
                 <!-- Edit Form (initially hidden) -->
-                <form class="edit-form" action="~/HardSoftSkills/UpdateSkill" method="post" style="display:none;">
+                <form class="edit-form" action="~/HardSoftSkills/UpdateSoftSkill" method="post" style="display:none;">
                     <input type="hidden" name="SkillId" value="@skills.Skill.SkillId" />
+                    <input type="hidden" name="SkillType" value="Soft" />
                     <input type="text" name="SkillName" value="@skills.Skill.SkillName" />
                     <button type="submit" class="btn btn-link p-0">
                         <i class="fa fa-check save-icon" aria-hidden="true"></i>
@@ -76,7 +77,8 @@
                 <!-- Edit Form (initially hidden) -->
                 <form class="edit-form" action="~/HardSoftSkills/UpdateHardSkill" method="post" style="display:none;">
                     <input type="hidden" name="SkillId" value="@skills.SkillId" />
-                    <input type="text" name="InterestText" value="@skills.Skill.SkillName" />
+                    <input type="hidden" name="SkillType" value="Hard" />
+                    <input type="text" name="SkillName" value="@skills.Skill.SkillName" />
                     <button type="submit" class="btn btn-link p-0">
                         <i class="fa fa-check save-icon" aria-hidden="true"></i>
                     </button>
