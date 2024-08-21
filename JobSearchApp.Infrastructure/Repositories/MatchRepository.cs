@@ -18,7 +18,10 @@ namespace JobSearchApp.Infrastructure.Repositories
 
         public async Task<IEnumerable<Match>> GetAllMatchesAsync()
         {
-            return await _context.Matches.ToListAsync();
+            return await _context.Matches
+                            .Include(u => u.User)
+                            .Include(j => j.JobOffer)
+                            .ToListAsync();
         }
 
         public async Task<Match> GetMatchByIdAsync(int matchId)

@@ -1,4 +1,5 @@
-﻿using JobSearchApp.BusinessLogic.Interfaces;
+﻿using JobSearchApp.BusinessLogic.DTOs;
+using JobSearchApp.BusinessLogic.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
 namespace JobSearchApp.View.Controllers
@@ -6,10 +7,12 @@ namespace JobSearchApp.View.Controllers
     public class MatchController : Controller
     {
         private readonly IUserService _userService;
+        private readonly IMatchService _matchService;
 
-        public MatchController(IUserService userService)
+        public MatchController(IUserService userService, IMatchService matchService)
         {
             _userService = userService;
+            _matchService = matchService;
         }
 
         [HttpGet]
@@ -26,7 +29,9 @@ namespace JobSearchApp.View.Controllers
         [HttpGet]
         public async Task<IActionResult> ListOfMatchesPage()
         {
-            return View(await _userService.GetUserByIdAsync(GetUserId()));
+            IEnumerable<MatchDto> matches = await _matchService.GetAllMatchesAsync();
+
+            return View(matches.Where(u => u.UserId == GetUserId() && u.IsAccepted));
         }
     }
 }

@@ -1,5 +1,18 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
+﻿@using JobSearchApp.BusinessLogic.DTOs
+
+@model IEnumerable<MatchDto>
+
+@if(Model.Count() != 0)
+{
+    foreach (MatchDto m in Model)
+    {
+        <h1>Hola</h1>
+        <h1>@m.JobTitle</h1>
+        <h3>@m.IsAccepted</h3>
+        <h4>@m.UserName</h4>
+    }
+}
+else
+{
+    <h1>Aun no tienes matches, sigue intentando que lo conseguiras!</h1>
 }

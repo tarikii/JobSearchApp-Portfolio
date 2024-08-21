@@ -31,7 +31,7 @@ public class UserService : IUserService
         
         return _mapper.Map<IEnumerable<UserDto>>(usersCandidates);
 
-    }
+        }
 
 
 

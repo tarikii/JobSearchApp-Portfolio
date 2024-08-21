@@ -49,23 +49,23 @@ namespace JobSearchApp.Web.Controllers
             return CreatedAtAction(nameof(GetMatchById), new { id = createdMatch.MatchId }, createdMatch);
         }
 
-        [HttpPut("{id}")]
-        public async Task<ActionResult<MatchDto>> UpdateMatch(int id, UpdateMatchDto updateMatchDto)
-        {
-            if (id != updateMatchDto.MatchId)
-            {
-                return BadRequest();
-            }
+        //[HttpPut("{id}")]
+        //public async Task<ActionResult<MatchDto>> UpdateMatch(int id, UpdateMatchDto updateMatchDto)
+        //{
+        //    //if (id != updateMatchDto.MatchId)
+        //    //{
+        //    //    return BadRequest();
+        //    //}
 
-            var updatedMatch = await _matchService.UpdateMatchAsync(id, updateMatchDto);
-            if (updatedMatch == null)
-            {
-                return NotFound();
-            }
+        //    //var updatedMatch = await _matchService.UpdateMatchAsync(id, updateMatchDto);
+        //    //if (updatedMatch == null)
+        //    //{
+        //    //    return NotFound();
+        //    //}
 
-            var matchDto = _mapper.Map<MatchDto>(updatedMatch);
-            return Ok(matchDto);
-        }
+        //    //var matchDto = _mapper.Map<MatchDto>(updatedMatch);
+        //    //return Ok(matchDto);
+        //}
 
         [HttpDelete("{id}")]
         public async Task<ActionResult> DeleteMatch(int id)

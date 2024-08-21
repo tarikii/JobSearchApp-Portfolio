@@ -47,12 +47,23 @@ namespace JobSearchApp.BusinessLogic.Services
 
         public async Task<JobOfferDto> UpdateJobOfferAsync(int jobOfferId, UpdateJobOfferDto updateJobOfferDto)
         {
+            JobOffer jobOffer = await _jobOfferRepository.GetJobOfferByIdAsync(jobOfferId);
             if (jobOfferId != updateJobOfferDto.JobOfferId)
             {
                 return null;
             }
 
-            var jobOffer = _mapper.Map<JobOffer>(updateJobOfferDto);
+            jobOffer.Title = updateJobOfferDto.Title;
+            jobOffer.Description = updateJobOfferDto.Description;
+            jobOffer.Location = updateJobOfferDto.Location;
+            jobOffer.JobType = updateJobOfferDto.JobType;
+            jobOffer.ExperienceLevel = updateJobOfferDto.ExperienceLevel;
+            jobOffer.ExpiredDate = updateJobOfferDto.ExpiredDate;
+            jobOffer.IsActive = updateJobOfferDto.IsActive;
+            jobOffer.EstimatedDurationDays = updateJobOfferDto.EstimatedDurationDays;
+            jobOffer.MinSalary = updateJobOfferDto.MinSalary;
+            jobOffer.MaxSalary = updateJobOfferDto.MaxSalary;
+
             var updatedJobOffer = await _jobOfferRepository.UpdateJobOfferAsync(jobOffer);
             return _mapper.Map<JobOfferDto>(updatedJobOffer);
         }

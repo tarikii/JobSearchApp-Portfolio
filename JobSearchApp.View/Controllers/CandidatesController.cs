@@ -45,12 +45,13 @@ namespace JobSearchApp.View.Controllers
             var dislikedCandidates = HttpContext.Session.Get<List<int>>($"DislikedCandidates_{jobOffer.JobOfferId}") ?? new List<int>();
 
             //Pillar la lista de likes de Candidatos
-            var likedCandidates = HttpContext.Session.Get<List<int>>($"LikedCandidates_{jobOffer.JobOfferId}") ?? new List<int>();
+            IEnumerable<MatchDto> matches = await _matchService.GetAllMatchesAsync();
+            var likedCandidates = matches.Where(j => j.JobOfferId == jobOffer.JobOfferId).ToList();
 
             //Filtro de usuarios
             var filteredCandidates = candidates.Where(cd =>
                 !dislikedCandidates.Contains(cd.UserId) &&
-                !likedCandidates.Any(cl => cl == cd.UserId)).ToList();
+                !likedCandidates.Any(cl => cl.UserId == cd.UserId)).ToList();
 
             //Determinar el index actual
             int index = currentIndex ?? 0;
@@ -83,22 +84,20 @@ namespace JobSearchApp.View.Controllers
             JobOfferDto jobOffer = await GetJobOffer();
             bool existsMatch = false;
 
-            // Comprobar si se ha aplicado el match
+            // Comprobar si se ha registrado la applicación del candidato en el match
             IEnumerable<MatchDto> matches = await _matchService.GetAllMatchesAsync();
 
-            MatchDto match = matches
+            MatchDto? match = matches
                 .Where(m => m.UserId == userId && m.JobOfferId == jobOffer.JobOfferId)
                 .FirstOrDefault();
 
-
-            // Comprobar si el match existe entre el candidato
+            // Comprobar si existe la postulación del candidato
             IEnumerable<ApplicationDto> aplications = await _applicationService.GetAllApplicationsAsync();
 
-            ApplicationDto application = aplications
+            ApplicationDto? application = aplications
                                             .Where(c => c.UserId == userId && c.JobOfferId == jobOffer.JobOfferId)
                                             .FirstOrDefault();
 
-            // Comprobar si la aplication del candidato es existente
             if (application != null)
                 existsMatch = true;
 
@@ -106,24 +105,13 @@ namespace JobSearchApp.View.Controllers
             var createMatchDto = new CreateMatchDto
             {
                 JobOfferId = jobOffer.JobOfferId,
-                UserId = GetUserId(),
+                UserId = userId,
                 IsAccepted = existsMatch
             };
 
-            // Retrieve liked Candidates from the session or initialize an empty list
-            var likedCandidates = HttpContext.Session.Get<List<int>>($"LikedCandidates_{jobOffer.JobOfferId}") ?? new List<int>();
-
-            // Add the CreateMatchDto to the liked list if not already present
-            if (!likedCandidates.Any(c => c == userId))
+            if (match == null)
             {
-                likedCandidates.Add(userId);
-                // Save the updated list back to the session
-                HttpContext.Session.Set($"LikedCandidates_{jobOffer.JobOfferId}", likedCandidates);
-             
-
-                // If the match is null add to the database
-                if(match == null)
-                    await _matchService.CreateMatchAsync(createMatchDto);
+                await _matchService.CreateMatchAsync(createMatchDto);
             }
 
             // Redirect to the page to show the next job offer with the adjusted index

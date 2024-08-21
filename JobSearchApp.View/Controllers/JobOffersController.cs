@@ -11,14 +11,19 @@ namespace JobSearchApp.View.Controllers
         private readonly IJobOfferService _jobOfferService;
         private readonly ICompanyService _companyService;
         private readonly IApplicationService _applicationService;
+        private readonly IMatchService _matchService;
 
-        public JobOffersController(IUserService userService, 
+        public JobOffersController(IUserService userService,
             IJobOfferService jobOfferService,
-            IApplicationService applicationService)
+            IApplicationService applicationService, 
+            IMatchService matchService,
+            ICompanyService companyService)
         {
             _userService = userService;
             _jobOfferService = jobOfferService;
-            _applicationService = applicationService;     
+            _applicationService = applicationService;
+            _matchService = matchService;
+            _companyService = companyService;
         }
 
         public int GetUserId()
@@ -33,9 +38,6 @@ namespace JobSearchApp.View.Controllers
             // Get user ID from the session
             int userId = int.Parse(HttpContext.Session.GetString("userId"));
 
-            // The filtered list works while the session is on, once the app closes, the list resets
-            // It should not do this, the list should mantain even if the app closes
-
             // Fetch the list of job offers
             IEnumerable<JobOfferDto> jobOffers = await _jobOfferService.GetAllJobOffersAsync();
 
@@ -43,7 +45,8 @@ namespace JobSearchApp.View.Controllers
             var dislikedOffers = HttpContext.Session.Get<List<int>>($"DislikedOffers_{userId}") ?? new List<int>();
 
             // Retrieve liked job applications from the session
-            var likedApplications = HttpContext.Session.Get<List<CreateApplicationDto>>($"LikedApplications_{userId}") ?? new List<CreateApplicationDto>();
+            IEnumerable<ApplicationDto> applications = await _applicationService.GetAllApplicationsAsync();
+            var likedApplications = applications.Where(u => u.UserId == GetUserId());
 
             // Filter out both disliked job offers and liked job offers (using JobOfferId from CreateApplicationDto)
             var filteredJobOffers = jobOffers.Where(offer =>
@@ -59,7 +62,7 @@ namespace JobSearchApp.View.Controllers
                 // If the list is empty, redirect to the HomeLoggedPage
                 if (filteredJobOffers.Count == 0)
                 {
-                    return View("HomeLoggedPage", "Home");
+                    return View();
                 }
 
                 // Reset index to 0 to show the first offer again
@@ -87,7 +90,7 @@ namespace JobSearchApp.View.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult>ApplyFilterJobOffers()
+        public async Task<IActionResult> ApplyFilterJobOffers()
         {
             return View();
         }
@@ -113,19 +116,22 @@ namespace JobSearchApp.View.Controllers
                 SalaryExpected = 20000 // Set this to an appropriate value or fetch from user input if needed
             };
 
-            // Retrieve liked job offers from the session or initialize an empty list
-            var likedApplications = HttpContext.Session.Get<List<CreateApplicationDto>>($"LikedApplications_{GetUserId()}") ?? new List<CreateApplicationDto>();
+            IEnumerable<MatchDto>? matches = await _matchService.GetAllMatchesAsync();
 
-            // Add the CreateApplicationDto to the liked list if not already present
-            if (!likedApplications.Any(app => app.JobOfferId == jobOfferId))
+
+            MatchDto matchUser = matches.SingleOrDefault(u => u.UserId == GetUserId() && u.JobOfferId == jobOfferId);
+
+
+            if(matchUser != null)
             {
-                likedApplications.Add(createApplicationDto);
-                // Save the updated list back to the session
-                HttpContext.Session.Set($"LikedApplications_{GetUserId()}", likedApplications);
+                matchUser.IsAccepted = true;
 
-                // Creates the application in the database with the userId
-                await _applicationService.CreateApplicationAsync(createApplicationDto);
+                await _matchService.UpdateMatchAsync(matchUser.MatchId, matchUser);
             }
+
+            // Creates the application in the database with the userId
+            await _applicationService.CreateApplicationAsync(createApplicationDto);
+
 
             // Redirect to the page to show the next job offer with the adjusted index
             return RedirectToAction("CardsOfJobsOffersPage", new { currentIndex = nextIndex - 1 });
@@ -148,7 +154,7 @@ namespace JobSearchApp.View.Controllers
             // Redirect to the page to show the next job offer with the adjusted index
             return RedirectToAction("CardsOfJobsOffersPage", new { currentIndex = nextIndex - 1 });
         }
-   
+
 
         // RECRUITER BUSINESS SECTION
         [HttpGet]
@@ -165,33 +171,16 @@ namespace JobSearchApp.View.Controllers
 
         // MODIFICATION NEEDS TO GET CHECKED OUT, FORM POPS UP, BUT MODIFICATION IS NOT BEING DONE
         [HttpGet]
-        public async Task<IActionResult> FormModificationJobOfferPage(int jobOfferId)
-        {
-            int userId = int.Parse(HttpContext.Session.GetString("userId"));
-
-            UserDto user = await _userService.GetUserByIdAsync(userId);
+        public async Task<IActionResult> FormModificationJobOfferPage(int id)
+        { 
+            UserDto user = await _userService.GetUserByIdAsync(GetUserId());
 
             ViewBag.CompanyId = user.CompanyId;
+            ViewBag.JobbOfferId = id;
 
-            var jobOffer = await _jobOfferService.GetJobOfferByIdAsync(jobOfferId);
-            if (jobOffer == null)
-            {
-                return NotFound();
-            }
+            var jobOffer = await _jobOfferService.GetJobOfferByIdAsync(id);
 
-            var updateJobOfferDto = new UpdateJobOfferDto
-            {
-                JobOfferId = jobOffer.JobOfferId,
-                Title = jobOffer.Title,
-                Location = jobOffer.Location,
-                JobType = jobOffer.JobType,
-                ExperienceLevel = jobOffer.ExperienceLevel,
-                ExpiredDate = jobOffer.ExpiredDate,
-                MinSalary = jobOffer.MinSalary ?? 0,
-                MaxSalary = jobOffer.MaxSalary ?? 0
-            };
-
-            return View(updateJobOfferDto);
+            return View(jobOffer);
         }
 
         [HttpGet]
@@ -249,21 +238,19 @@ namespace JobSearchApp.View.Controllers
             }
 
             // Update the job offer using the jobOfferId
-            await _jobOfferService.UpdateJobOfferAsync(3, dto);
+            await _jobOfferService.UpdateJobOfferAsync(dto.JobOfferId, dto);
 
             // Redirect to a page after successful update, like a list or detail view
             return RedirectToAction("AdministrationListJobOffersPage");
         }
 
         [HttpPost]
-        public async Task<IActionResult> DeleteJobOffer(DeleteJobOfferDto dto)
+        public async Task<IActionResult> DeleteJobOffer(int id)
         {
-            if (!ModelState.IsValid)
-                return View(dto);
 
-            await _jobOfferService.DeleteJobOfferAsync(dto.JobOfferId);
+            await _jobOfferService.DeleteJobOfferAsync(id);
 
-            return Ok();
+            return RedirectToAction("AdministrationListJobOffersPage");
         }
     }
 }

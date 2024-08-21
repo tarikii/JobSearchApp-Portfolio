@@ -3,35 +3,43 @@
 
 <link rel="stylesheet" href="~/css/cardsJobOffers.css" type="text/css" />
 
-<div class="job-card container mt-4">
-    <h3>@Model.Title</h3>
-    <div class="tags mb-2">
-        <span class="tag">@Model.ExperienceLevel</span>
-        <span class="tag">@Model.JobType</span>
-        <span class="tag">@Model.Location</span>
-        <span class="tag">Rango Salarial: @Model.MinSalary - @Model.MaxSalary</span>
-    </div>
-    <p>Descripción</p>
-    <div class="description-placeholder mb-5">
-        <p>@Model.Description</p>
-    </div>
-    <div class="action-buttons">
-        <div class="action-buttons-container">
-            <form asp-action="DislikeJobOffer" method="post">
-                <input type="hidden" name="jobOfferId" value="@Model.JobOfferId" />
-                <input type="hidden" name="nextIndex" value="@ViewBag.NextIndex" />
-                <button type="submit" class="action-button reject">✖️</button>
-            </form>
-            <form asp-action="SaveJobOffer" method="post">
-                <input type="hidden" name="jobOfferId" value="@Model.JobOfferId" />
-                <input type="hidden" name="nextIndex" value="@ViewBag.NextIndex" />
-                <button type="submit" class="action-button save">🔖</button>
-            </form>
-            <form asp-action="LikeJobOffer" method="post">
-                <input type="hidden" name="jobOfferId" value="@Model.JobOfferId" />
-                <input type="hidden" name="nextIndex" value="@ViewBag.NextIndex" />
-                <button type="submit" class="action-button accept">✔️</button>
-            </form>
+@if (Model != null)
+{
+
+    <div class="job-card container mt-4">
+        <h3>@Model.Title</h3>
+        <div class="tags mb-2">
+            <span class="tag">@Model.ExperienceLevel</span>
+            <span class="tag">@Model.JobType</span>
+            <span class="tag">@Model.Location</span>
+            <span class="tag">Rango Salarial: @Model.MinSalary - @Model.MaxSalary</span>
+        </div>
+        <p>Descripción</p>
+        <div class="description-placeholder mb-5">
+            <p>@Model.Description</p>
+        </div>
+        <div class="action-buttons">
+            <div class="action-buttons-container">
+                <form asp-action="DislikeJobOffer" method="post">
+                    <input type="hidden" name="jobOfferId" value="@Model.JobOfferId" />
+                    <input type="hidden" name="nextIndex" value="@ViewBag.NextIndex" />
+                    <button type="submit" class="action-button reject">✖️</button>
+                </form>
+                <form asp-action="SaveJobOffer" method="post">
+                    <input type="hidden" name="jobOfferId" value="@Model.JobOfferId" />
+                    <input type="hidden" name="nextIndex" value="@ViewBag.NextIndex" />
+                    <button type="submit" class="action-button save">🔖</button>
+                </form>
+                <form asp-action="LikeJobOffer" method="post">
+                    <input type="hidden" name="jobOfferId" value="@Model.JobOfferId" />
+                    <input type="hidden" name="nextIndex" value="@ViewBag.NextIndex" />
+                    <button type="submit" class="action-button accept">✔️</button>
+                </form>
+            </div>
         </div>
     </div>
-</div>
+}
+else
+{
+    <h1>Estas al dia enhorabuena!</h1>
+}
