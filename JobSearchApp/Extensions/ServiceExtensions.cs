@@ -1,5 +1,6 @@
 using JobSearchApp.BusinessLogic.Interfaces;
 using JobSearchApp.BusinessLogic.Services;
+using JobSearchApp.BusinessLogic.Services.Interfaces;
 using JobSearchApp.Infrastructure.Interfaces;
 using JobSearchApp.Infrastructure.Repositories;
 using Newtonsoft.Json;

@@ -1,6 +1,6 @@
 using AutoMapper;
 using JobSearchApp.BusinessLogic.DTOs;
-using JobSearchApp.BusinessLogic.Interfaces;
+using JobSearchApp.BusinessLogic.Services.Interfaces;
 using JobSearchApp.Domain.Models;
 using Microsoft.AspNetCore.Mvc;
 
@@ -41,9 +41,9 @@ namespace JobSearchApp.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult<AnswerDto>> CreateAnswer(CreateAnswerDto createAnswerDto)
+        public async Task<ActionResult<AnswerDto>> CreateAnswer(CreateAnswerDto createAnswerDto, int userId)
         {
-            var createdAnswer = await _answerService.CreateAnswerAsync(createAnswerDto);
+            var createdAnswer = await _answerService.CreateAnswerAsync(createAnswerDto, 1);
             var answerDto = _mapper.Map<AnswerDto>(createdAnswer);
 
             return CreatedAtAction(nameof(GetAnswerById), new { id = answerDto.AnswerId }, answerDto);
