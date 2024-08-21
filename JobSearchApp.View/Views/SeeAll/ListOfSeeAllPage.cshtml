@@ -1,0 +1,71 @@
+﻿@using JobSearchApp.BusinessLogic.DTOs
+
+@model SeeAllDto
+
+<link rel="stylesheet" href="~/css/preference.css" type="text/css" />
+
+<div class="title-edit-container">
+    <h1>MIS INTERESES</h1>
+    <button type="button" class="btn btn-primary">Editar</button>
+</div>
+
+<div class="preference-tags">
+    @foreach (var interest in Model.UserInterests)
+    {
+        <span class="tag ms-3">@interest.InterestText</span>
+    }
+</div>
+
+<br />
+<br />
+<br />
+
+<div class="title-edit-container">
+    <h1>MIS PREFERENCIAS</h1>
+    <button type="button" class="btn btn-primary">Editar</button>
+</div>
+
+<div class="preference-tags">
+    @foreach (var preference in Model.UserPreferences)
+    {
+        <span class="tag ms-3">@preference.Value</span>
+    }
+</div>
+
+<br />
+<br />
+<br />
+
+<div class="title-edit-container">
+    <h1>MIS SOFT SKILLS</h1>
+    <button type="button" class="btn btn-primary">Editar</button>
+</div>
+
+<div class="preference-tags">
+    @foreach (var skills in Model.UserSkills)
+    {
+        @if (skills.Skill.SkillType == "Soft")
+        {
+            <span class="tag ms-3">@skills.Skill.SkillName</span>
+        }
+    }
+</div>
+
+<br />
+<br />
+<br />
+
+<div class="title-edit-container">
+    <h1>MIS HARD SKILLS</h1>
+    <button type="button" class="btn btn-primary">Editar</button>
+</div>
+
+<div class="preference-tags">
+    @foreach (var skills in Model.UserSkills)
+    {
+        @if (skills.Skill.SkillType == "Hard")
+        {
+            <span class="tag ms-3">@skills.Skill.SkillName</span>
+        }
+    }
+</div>
