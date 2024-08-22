@@ -3,14 +3,14 @@
 
 @model UserDto
 
-<div class="container mt-5">
+<div class="container mt-2">
     <form action="~/Profile/UpdateUserPersonalData" method="post">
         <div class="card p-3">
             <div class="row position-relative">
                 <div class="col-2">
-                    <img src="https://via.placeholder.com/100" alt="Profile Image" class="rounded-circle mb-3">
-                    <h5 class="fw-bold mb-1" id="UserName">@Model.UserName</h5>
-                    <p class="text-muted">Titular</p>
+                    <img src="~/lib/img/perifl-icon.jpg" alt="Profile Image" class="rounded-circle mb-3" width="150" height="150">
+                    <h5 class="fw-bold mb-1">@Model.UserName</h5>
+                    <p class="fw-bold mb-1 text-muted" id="Headline">@Model.Headline</p>
                 </div>
 
                 <div class="col-10">
@@ -23,42 +23,37 @@
                     </div>
 
                     <div style="display: flex; align-items: center; margin-bottom: 8px;">
-                        <p style="margin: 0; width: 100px;"><strong>Nombre:</strong></p>
+                        <p style="margin: 0; width: 100px;"><strong>Nombre</strong></p>
                         <div class="bg-opacity-25 rounded" style="padding: 5px; flex-grow: 1;" id="FirstName">@Model.FirstName</div>
                     </div>
 
                     <div style="display: flex; align-items: center; margin-bottom: 8px;">
-                        <p style="margin: 0; width: 100px;"><strong>Apellidos:</strong></p>
+                        <p style="margin: 0; width: 100px;"><strong>Apellidos</strong></p>
                         <div class="bg-opacity-25 rounded" style="padding: 5px; flex-grow: 1;" id="LastName">@Model.LastName</div>
                     </div>
 
                     <div style="display: flex; align-items: center; margin-bottom: 8px;">
-                        <p style="margin: 0; width: 100px;"><strong>Género:</strong></p>
+                        <p style="margin: 0; width: 100px;"><strong>Género</strong></p>
                         <div class="bg-opacity-25 rounded" style="padding: 5px; width: 75%;" id="GenderIdentity">@Model.GenderIdentity</div>
                     </div>
 
                     <div style="display: flex; align-items: center; margin-bottom: 8px;">
-                        <p style="margin: 0; width: 100px;"><strong>Ubicación:</strong></p>
+                        <p style="margin: 0; width: 100px;"><strong>Ubicación</strong></p>
                         <div class="bg-opacity-25 rounded" style="padding: 5px; flex-grow: 1;" id="Location">@Model.Location</div>
                     </div>
 
                     <div style="display: flex; align-items: center; margin-bottom: 8px;">
-                        <p style="margin: 0; width: 100px;"><strong>LinkedIn:</strong></p>
+                        <p style="margin: 0; width: 100px;"><strong>LinkedIn</strong></p>
                         <div class="bg-opacity-25 rounded" style="padding: 5px; width: 75%;" id="LinkedInUrl">@Model.LinkedInUrl</div>
                     </div>
 
                     <div style="display: flex; align-items: center; margin-bottom: 8px;">
-                        <p style="margin: 0; width: 100px;"><strong>Apodo:</strong></p>
-                        <div class="bg-opacity-25 rounded" style="padding: 5px; width: 50%;" id="Headline">@Model.Headline</div>
-                    </div>
-
-                    <div style="display: flex; align-items: center; margin-bottom: 8px;">
-                        <p style="margin: 0; width: 100px;"><strong>Teléfono:</strong></p>
+                        <p style="margin: 0; width: 100px;"><strong>Teléfono</strong></p>
                         <div class="bg-opacity-25 rounded" style="padding: 5px; width: 50%;" id="MobileNumber">@Model.MobileNumber</div>
                     </div>
 
                     <div style="display: flex; align-items: center; margin-bottom: 8px;">
-                        <p style="margin: 0; width: 100px;"><strong>Correo:</strong></p>
+                        <p style="margin: 0; width: 100px;"><strong>Correo</strong></p>
                         <div class="bg-opacity-25 rounded" style="padding: 5px; width: 50%;">@Model.Email</div>
                     </div>
 
@@ -75,14 +70,17 @@
     </form>
 </div>
 
-<h1>@Model.UserName</h1>
-
 @if (Model.Educations != null)
 {
-    <div class="container p-1" style="background-color:red;">
+    <div class="card container p-1" style="border-radius: 10px; margin-top: 3%; background-color: #F5F5F5;">
+        <div class="d-flex justify-content-between align-items-center mb-2 mt-4">
+            <h1 style="margin-left: 20px;">Educaciones📚</h1>
+            <a class="btn btn-primary" style="margin-right:15px;" asp-area="" asp-controller="Education" asp-action="FormNewEducationPage">Añadir</a>
+        </div>
+
         @foreach (Education edu in Model.Educations)
         {
-            <div class="row p-5 m-4" style="background-color: #F5F5F5; border-radius: 15px;">
+            <div class="card row p-5 m-3" style=" border-radius: 10px;">
                 <div class="d-flex flex-column flex-md-row align-items-center">
                     <!-- Contenedor para el título y la descripción -->
                     <div class="flex-grow-1 mb-3 mb-md-0">
@@ -103,14 +101,20 @@
             </div>
         }
     </div>
+    <br />
+
 }
 
 @if (Model.WorkExperiences != null)
 {
-    <div class="container p-1" style="background-color:red;">
+    <div class="card container " style="padding:12px; border-radius: 10px; background-color: #F5F5F5;">
+        <div class="d-flex justify-content-between align-items-center mb-2 mt-4">
+            <h1 style="margin-left: 20px;">Experiencia Laboral💼</h1>
+            <a class="btn btn-primary" style="margin-right:15px;" asp-area="" asp-controller="WorkExperience" asp-action="FormNewExperiencePage">Añadir</a>
+        </div>
         @foreach (WorkExperience we in Model.WorkExperiences)
         {
-            <div class="row p-5 m-4" style="background-color: #F5F5F5; border-radius: 15px;">
+            <div class="card row p-5 m-3" style=" border-radius: 10px;">
                 <div class="d-flex flex-column flex-md-row align-items-center">
                     <!-- Contenedor para el título y la descripción -->
                     <div class="flex-grow-1 mb-3 mb-md-0">
@@ -133,7 +137,5 @@
     </div>
 }
 
-<a class="btn btn-primary" asp-area="" asp-controller="Education" asp-action="FormNewEducationPage">Añaidr nueva Educación</a>
-<a class="btn btn-primary" asp-area="" asp-controller="WorkExperience" asp-action="FormNewExperiencePage">Añadir Nueva Experiencia</a>
 
 <script src="~/js/profile.js"></script>
