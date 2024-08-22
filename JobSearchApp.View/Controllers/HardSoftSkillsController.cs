@@ -23,33 +23,15 @@ namespace JobSearchApp.View.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> ListHardSoftSkillsPage()
-        {
-            int userId = GetUserId();
-
-            // Fetch all user skills
-            IEnumerable<UserSkillDto> allUserSkills = await
-                _userSkillService.GetAllUserSkillsAsync();
-
-            // Filter user skills based on userId
-            IEnumerable<UserSkillDto> userSkills = allUserSkills
-                .Where(i => i.UserId == userId);
-
-            return View(userSkills);
-        }
-
-        [HttpGet]
         public async Task<IActionResult> EditListHardSoftSkillsPage()
         {
-            int userId = GetUserId();
-
             // Fetch all user skills
             IEnumerable<UserSkillDto> allUserSkills = await
                 _userSkillService.GetAllUserSkillsAsync();
 
             // Filter user skills based on userId
             IEnumerable<UserSkillDto> userSkills = allUserSkills
-                .Where(i => i.UserId == userId);
+                .Where(i => i.UserId == GetUserId());
 
             return View(userSkills);
         }

@@ -25,8 +25,6 @@ namespace JobSearchApp.View.Controllers
         [HttpGet]
         public async Task<IActionResult> QuestionAndAnswerPage(int? selectedQuestionId)
         {
-            int userId = GetUserId();
-
             // Fetch all questions
             IEnumerable<QuestionDto> allQuestions = await _questionService.GetAllQuestionsAsync();
 
@@ -35,7 +33,7 @@ namespace JobSearchApp.View.Controllers
 
             // Get the answers only that the user made
             IEnumerable<AnswerDto> userAnswers = allAnswers
-                .Where(a => a.UserId == userId);
+                .Where(a => a.UserId == GetUserId());
 
             // Combine questions with their corresponding answers
             IEnumerable<QuestionAnswerDto> userQuestionsAndAnswers = allQuestions

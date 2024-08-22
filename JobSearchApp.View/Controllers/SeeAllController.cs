@@ -25,19 +25,17 @@ namespace JobSearchApp.View.Controllers
         [HttpGet]
         public async Task<IActionResult> ListOfSeeAllPage()
         {
-            int userId = GetUserId();
-
             // Fetch and filter user skills
             var allUserSkills = await _userSkillService.GetAllUserSkillsAsync();
-            var userSkills = allUserSkills.Where(i => i.UserId == userId);
+            var userSkills = allUserSkills.Where(i => i.UserId == GetUserId());
 
             // Fetch and filter user interests
             var allInterests = await _interestService.GetAllInterestsAsync();
-            var userInterests = allInterests.Where(i => i.UserId == userId);
+            var userInterests = allInterests.Where(i => i.UserId == GetUserId());
 
             // Fetch and filter user preferences
             var allPreferences = await _userPreferenceService.GetAllUserPreferencesAsync();
-            var userPreferences = allPreferences.Where(i => i.UserId == userId);
+            var userPreferences = allPreferences.Where(i => i.UserId == GetUserId());
 
             // Create the view model
             var viewModel = new SeeAllDto

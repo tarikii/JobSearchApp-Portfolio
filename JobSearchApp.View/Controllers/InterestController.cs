@@ -21,31 +21,15 @@ namespace JobSearchApp.View.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> ListInterestPage()
-        {
-            int userId = int.Parse(HttpContext.Session.GetString("userId"));
-
-            // Fetch all interests
-            IEnumerable<InterestDto> allInterests = await _interestService.GetAllInterestsAsync();
-
-            // Filter interests based on userId
-            IEnumerable<InterestDto> userInterests = allInterests
-                .Where(i => i.UserId == userId);
-
-            return View(userInterests);
-        }
-
-        [HttpGet]
         public async Task<IActionResult> EditListInterestPage()
         {
-            int userId = int.Parse(HttpContext.Session.GetString("userId"));
 
             // Fetch all interests
             IEnumerable<InterestDto> allInterests = await _interestService.GetAllInterestsAsync();
 
             // Filter interests based on userId
             IEnumerable<InterestDto> userInterests = allInterests
-                .Where(i => i.UserId == userId);
+                .Where(i => i.UserId == GetUserId());
 
             return View(userInterests);
         }

@@ -35,14 +35,12 @@ namespace JobSearchApp.View.Controllers
         [HttpGet]
         public async Task<IActionResult> CardsOfJobsOffersPage(int? currentIndex)
         {
-            // Get user ID from the session
-            int userId = int.Parse(HttpContext.Session.GetString("userId"));
 
             // Fetch the list of job offers
             IEnumerable<JobOfferDto> jobOffers = await _jobOfferService.GetAllJobOffersAsync();
 
             // Retrieve disliked job offers from the session
-            var dislikedOffers = HttpContext.Session.Get<List<int>>($"DislikedOffers_{userId}") ?? new List<int>();
+            var dislikedOffers = HttpContext.Session.Get<List<int>>($"DislikedOffers_{GetUserId()}") ?? new List<int>();
 
             // Retrieve liked job applications from the session
             IEnumerable<ApplicationDto> applications = await _applicationService.GetAllApplicationsAsync();
@@ -77,7 +75,7 @@ namespace JobSearchApp.View.Controllers
             return View(currentJobOffer);
         }
 
-        [HttpGet]
+        /*[HttpGet]
         public async Task<IActionResult> FilterJobOffersPage()
         {
             return View();
@@ -93,7 +91,7 @@ namespace JobSearchApp.View.Controllers
         public async Task<IActionResult> ApplyFilterJobOffers()
         {
             return View();
-        }
+        }*/
 
         [HttpGet]
         public async Task<IActionResult> SaveJobOfferIdAndSearchCandidate(int id)
@@ -160,9 +158,7 @@ namespace JobSearchApp.View.Controllers
         [HttpGet]
         public async Task<IActionResult> FormNewJobOfferPage()
         {
-            int userId = int.Parse(HttpContext.Session.GetString("userId"));
-
-            UserDto user = await _userService.GetUserByIdAsync(userId);
+            UserDto user = await _userService.GetUserByIdAsync(GetUserId());
 
             ViewBag.CompanyId = user.CompanyId;
 
@@ -214,11 +210,11 @@ namespace JobSearchApp.View.Controllers
             return View(applications.Where(j => j.JobOfferId == id));
         }
 
-        [HttpGet]
+        /*[HttpGet]
         public IActionResult ListCandidatesOfJobOfferPage()
         {
             return View();
-        }
+        }*/
 
         [HttpPost]
         public async Task<IActionResult> CreateNewJobOffer(CreateJobOfferDto dto)

@@ -19,33 +19,15 @@ namespace JobSearchApp.View.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> ListPreferencePage()
-        {
-            int userId = int.Parse(HttpContext.Session.GetString("userId"));
-
-            // Fetch all interests
-            IEnumerable<UserPreferenceDto> allPreferences = await 
-                _userPreferenceService.GetAllUserPreferencesAsync();
-
-            // Filter interests based on userId
-            IEnumerable<UserPreferenceDto> userPreferences = allPreferences
-                .Where(i => i.UserId == userId);
-
-            return View(userPreferences);
-        }
-
-        [HttpGet]
         public async Task<IActionResult> EditListPreferencePage() 
         {
-            int userId = int.Parse(HttpContext.Session.GetString("userId"));
-
             // Fetch all preferences
             IEnumerable<UserPreferenceDto> allPreferences = 
                 await _userPreferenceService.GetAllUserPreferencesAsync();
 
             // Filter preferences based on userId
             IEnumerable<UserPreferenceDto> userPreferences = allPreferences
-                .Where(i => i.UserId == userId);
+                .Where(i => i.UserId == GetUserId());
 
             return View(userPreferences);
         }
