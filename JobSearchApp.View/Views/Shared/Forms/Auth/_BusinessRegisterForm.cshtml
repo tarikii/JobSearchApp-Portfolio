@@ -1,57 +1,38 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
-}
-<div class="name-label">
-    <label for="name" class="form-label">Nombre Empresa</label>
-</div>
+﻿<br />
 <div class="name-input">
-    <input type="text" name="FirstName" class="validate-input" />
+    <input class="form-control" type="text" name="FirstName" class="validate-input" placeholder="Nombre Empresa"/>
+    <span class="error-message"></span>
+</div><br />
+
+<div class="name-input">
+    <input class="form-control" type="text" name="FoundedYear" class="validate-input" placeholder="Año Fundación" />
     <span class="error-message"></span>
 </div>
+<br />
 
-<div class="name-label">
-    <label class="form-label">Año Fundación</label>
-</div>
 <div class="name-input">
-    <input type="text" name="FoundedYear" class="validate-input" />
+    <input class="form-control" type="text" name="Email" class="validate-input" placeholder="Correo" />
     <span class="error-message"></span>
 </div>
+<br />
 
-<div class="name-label">
-    <label class="form-label">Correo</label>
-</div>
 <div class="name-input">
-    <input type="text" name="Email" class="validate-input" />
+    <input class="form-control" type="text" name="UserName" class="validate-input" placeholder="Nombre Usuario" />
     <span class="error-message"></span>
 </div>
+<br />
 
-<div class="name-label">
-    <label class="form-label">Nombre Usuario</label>
-</div>
 <div class="name-input">
-    <input type="text" name="UserName" class="validate-input" />
+    <input class="form-control" type="password" name="PasswordHash" class="validate-input" placeholder="Constraseña" />
     <span class="error-message"></span>
 </div>
+<br />
 
-<div class="name-label">
-    <label class="form-label">Contraseña</label>
-</div>
 <div class="name-input">
-    <input type="text" name="PasswordHash" class="validate-input" />
+    <input class="form-control" type="text" class="validate-input" placeholder="Confirmar Contraseña" />
     <span class="error-message"></span>
-</div>
-
-<div class="name-label">
-    <label class="form-label">Confirmar Contraseña</label>
-</div>
-<div class="name-input">
-    <input type="text" class="validate-input" />
-    <span class="error-message"></span>
-</div>
-
+</div><br />
 
 <div class="submit-button">
-    <button type="submit">Registrarse</button>
+    <button type="submit" class="btn btn-primary w-100">Registrarse</button>
 </div>

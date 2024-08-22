@@ -1,55 +1,43 @@
 ﻿@using JobSearchApp.BusinessLogic.DTOs
-
+<br />
 
 <input type="hidden" name="role" value="@ViewBag.Role" />
 
-<div class="name-label">
-    <label for="name" class="form-label">Nombre</label>
-</div>
 <div class="name-input">
-    <input type="text" name="FirstName" class="validate-input" />
+    <input class="form-control" type="text" name="FirstName" class="validate-input" placeholder="Nombre"/>
     <span class="error-message"></span>
-</div>
+</div><br />
 
-<div class="name-label">
-    <label for="lastname" class="form-label">Apellido</label>
-</div>
 <div class="name-input">
-    <input type="text" name="LastName" class="validate-input" />
+    <input class="form-control" type="text" name="LastName" class="validate-input" placeholder="Apellido" />
     <span class="error-message"></span>
 </div>
+<br />
 
-<div class="name-label">
-    <label class="form-label">Correo</label>
-</div>
-<div class="name-input">
-    <input type="text" name="Email" class="validate-input" />
-    <span class="error-message"></span>
-</div>
 
-<div class="name-label">
-    <label class="form-label">Nombre Usuario</label>
-</div>
 <div class="name-input">
-    <input type="text" name="UserName" class="validate-input" />
+    <input class="form-control" type="text" name="Email" class="validate-input" placeholder="Correo" />
     <span class="error-message"></span>
 </div>
+<br />
 
-<div class="name-label">
-    <label class="form-label">Contraseña</label>
-</div>
 <div class="name-input">
-    <input type="text" name="PasswordHash" class="validate-input" />
+    <input class="form-control" type="text" name="UserName" class="validate-input" placeholder="Nombre Usuario" />
     <span class="error-message"></span>
 </div>
+<br />
 
-<div class="name-label">
-    <label class="form-label">Confirmar Contraseña</label>
-</div>
 <div class="name-input">
-    <input type="text" class="validate-input" />
+    <input class="form-control" type="text" name="PasswordHash" class="validate-input" placeholder="Contraseña" />
     <span class="error-message"></span>
 </div>
+<br />
+
+<div class="name-input">
+    <input class="form-control" type="text" class="validate-input" placeholder="Confirmar Contraseña" />
+    <span class="error-message"></span>
+</div>
+<br />
 
 @if (ViewBag.Role == "recruiter")
 {
