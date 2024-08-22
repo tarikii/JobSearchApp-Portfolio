@@ -17,21 +17,25 @@ namespace JobSearchApp.View.Controllers
         }
         public IActionResult LoginPage()
         {
+            ViewBag.Carrousel = "No";
             return View();
         }
 
         public IActionResult ForgotPasswordPage()
         {
+            ViewBag.Carrousel = "No";
             return View();
         }
 
         public IActionResult SelectEntityOptionPage()
         {
+            ViewBag.Carrousel = "No";
             return View();
         }
 
         public async Task<IActionResult> RegisterUserPage(string id)
         {
+            ViewBag.Carrousel = "No";
             ViewBag.Role = id; // Role
             return View(await _companyService.GetAllCompaniesAsync());
         }

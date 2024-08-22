@@ -1,4 +1,36 @@
-﻿<form action="/Auth/AuthenticateUser" method="post">
+﻿<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card login-container">
+                <div class="row g-0">
+                    <div class="col-md-5 bg-white p-5">
+                        <h4 class="mb-4">Usuario</h4>
+                        <form action="/Auth/AuthenticateUser" method="post">
+                            <div class="mb-3">
+                                <input class="form-control" type="text" id="username" name="username" placeholder="Usuario" required>
+                            </div>
+                            <div class="mb-3">
+                                <input class="form-control" type="password" id="password" name="password" placeholder="Contraseña" required>
+                            </div>
+                            <div class="mb-3">
+                                <a href="#" class="text-decoration-none">Contraseña olvidada</a>
+                            </div>
+                            <div class="mb-3">
+                                <a href="#" class="text-decoration-none">Registrarse</a>
+                            </div>
+                            <button type="submit" class="btn btn-primary w-100">Iniciar sesión</button>
+                        </form>
+                    </div>
+                    <div style="background-color: black;" class="col-md-7 bg-custom-blue text-white p-5">
+                        <h2 class="display-4">Bienvenido a<br>Swipe4Work</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<form action="/Auth/AuthenticateUser" method="post">
     <div>
         <input type="text" id="username" name="username" placeholder="Usuario" required>
     </div>
