@@ -20,7 +20,7 @@
             <!-- Edit Form (initially hidden) -->
             <form class="edit-form" action="~/Interest/UpdateInterest" method="post" style="display:none;">
                 <input type="hidden" name="InterestId" value="@interest.InterestId" />
-                <input type="text" name="InterestText" value="@interest.InterestText" />
+                <input type="text" name="InterestText" value="@interest.InterestText" required />
                 <button type="submit" class="btn btn-link p-0">
                     <i class="fa fa-check save-icon" aria-hidden="true"></i>
                 </button>
@@ -45,7 +45,7 @@
     <form action="~/Interest/CreateInterest" method="post">
         <div class="custom-form-group">
             <input type="number" value="@ViewBag.UserId" id="UserId" name="UserId" class="form-control" hidden />
-            <input type="text" name="InterestText" class="custom-form-control" placeholder="Ingrese el interés">
+            <input type="text" name="InterestText" class="custom-form-control" placeholder="Ingrese el interés" required>
         </div>
         <button type="submit" class="btn btn-primary mt-4">Añadir</button>
     </form>

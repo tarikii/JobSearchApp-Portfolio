@@ -21,7 +21,7 @@
             <form class="edit-form" action="~/Preference/UpdatePreference" method="post" style="display:none;">
                 @Html.AntiForgeryToken()
                 <input type="hidden" name="PreferenceId" value="@preference.PreferenceId" />
-                <input type="text" name="Value" value="@preference.Value" />
+                <input type="text" name="Value" value="@preference.Value" required />
                 <button type="submit" class="btn btn-link p-0">
                     <i class="fa fa-check save-icon" aria-hidden="true"></i>
                 </button>
@@ -46,7 +46,7 @@
     <form action="~/Preference/CreatePreference" method="post">
         <div class="custom-form-group">
             <input type="number" value="@ViewBag.UserId" id="UserId" name="UserId" class="form-control" hidden />
-            <input type="text" name="Value" class="custom-form-control" placeholder="Ingrese la preferencia">
+            <input type="text" name="Value" class="custom-form-control" placeholder="Ingrese la preferencia" required>
         </div>
         <button type="submit" class="btn btn-primary mt-4">Añadir</button>
     </form>
