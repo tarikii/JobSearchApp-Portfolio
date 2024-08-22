@@ -29,7 +29,10 @@
                             <p class="card-text" style="background-color: #C1C1C1; height: 150px; border-radius: 
                                 4px; padding: 10px;">@m.JobOffer.Description</p>
                             <div class="d-flex justify-content-end">
-                                <a asp-controller="Feedback" asp-action="ViewFeedBackCandidatePage" asp-route-id="@m.ApplicationId" class="btn btn-primary">Ver Feedback</a>
+                                <a asp-controller="Feedback" asp-action="ViewFeedBackCandidatePage"
+                                   asp-route-id="@m.ApplicationId" 
+                                   asp-route-returnUrl="@Url.Action("ListOfMatchesPage", "Match")" 
+                                   class="btn btn-primary">Ver Feedback</a>
                             </div>
                         </div>
                     </div>

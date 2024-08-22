@@ -32,10 +32,11 @@ namespace JobSearchApp.View.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> ViewFeedbackCandidatePage(int id)
+        public async Task<IActionResult> ViewFeedbackCandidatePage(int id, string returnUrl = null)
         {
             FeedbackDto feedback = await _feedbackService.GetFeedbackByIdAsync(id);
 
+            ViewBag.ReturnUrl = returnUrl ?? Url.Action("ListApplicationJobOfferPage", "Application");
             return View(feedback);
         }
 
