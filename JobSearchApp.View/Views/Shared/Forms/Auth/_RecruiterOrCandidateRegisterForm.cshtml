@@ -1,4 +1,12 @@
 ﻿@using JobSearchApp.BusinessLogic.DTOs
+@if (ViewBag.Role == "recruiter")
+{
+    <h1>Registro Reclutador</h1>
+}
+else
+{
+    <h1>Registro Candidato</h1>
+}
 <br />
 
 <input type="hidden" name="role" value="@ViewBag.Role" />
@@ -28,13 +36,13 @@
 <br />
 
 <div class="name-input">
-    <input class="form-control" type="text" name="PasswordHash" class="validate-input" placeholder="Contraseña" />
+    <input class="form-control" type="password" name="PasswordHash" class="validate-input" placeholder="Contraseña" />
     <span class="error-message"></span>
 </div>
 <br />
 
 <div class="name-input">
-    <input class="form-control" type="text" class="validate-input" placeholder="Confirmar Contraseña" />
+    <input class="form-control" type="password" class="validate-input" placeholder="Confirmar Contraseña" />
     <span class="error-message"></span>
 </div>
 <br />
@@ -42,14 +50,17 @@
 @if (ViewBag.Role == "recruiter")
 {
     <select class="form-select" aria-label="Default select example" name="CompanyId">
-        <option>Actualmente estoy desempleado</option>
         @foreach (CompanyDto company in Model)
         {
             <option value="@company.CompanyId">@company.Name</option>
         }
     </select>
+    <br />
 }
 
+<a href="/Auth/LoginPage" class="text-decoration-none">¿Ya Tienes Cuenta?</a>
+<br /><br />
+
 <div class="submit-button">
-    <button type="submit">Registrarse</button>
+    <button class ="btn btn-primary w-100" type="submit">Registrarse</button>
 </div>
