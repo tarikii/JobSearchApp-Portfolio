@@ -1,4 +1,5 @@
 using JobSearchApp.Domain.Models;
+using System.Text.RegularExpressions;
 
 namespace JobSearchApp.BusinessLogic.DTOs
 {
@@ -13,7 +14,7 @@ namespace JobSearchApp.BusinessLogic.DTOs
         public string? UserName { get; set; }
         public string? JobTitle { get; set; }
         public User User { get; set; }
-        public JobOffer JobOffer { get; set; }
+        public JobOfferDto JobOffer { get; set; }
 
         public ApplicationDto(Application application)
         {
@@ -24,6 +25,8 @@ namespace JobSearchApp.BusinessLogic.DTOs
             SalaryExpected = application.SalaryExpected;
             UserName = application.User?.UserName;
             JobTitle = application.JobOffer?.Title;
+
+            JobOffer = new JobOfferDto(application.JobOffer);
         }
 
         public ApplicationDto() { }

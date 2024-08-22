@@ -16,7 +16,7 @@ public class MatchDto
     public string? UserName { get; set; }
     public JobOfferDto JobOffer { get; set; }
 
-    public MatchDto(Match match, IApplicationService applicationService)
+    public MatchDto(Match match)
     {
         MatchId = match.MatchId;
         JobOfferId = match.JobOfferId;
@@ -27,11 +27,6 @@ public class MatchDto
         UserName = match.User?.UserName;
 
         JobOffer = new JobOfferDto(match.JobOffer);
-
-        var applications = applicationService.GetAllApplicationsAsync().Result;
-        var matchingApplication = applications.FirstOrDefault(a => a.JobOfferId == JobOfferId && 
-        a.UserId == UserId);
-        ApplicationId = matchingApplication?.ApplicationId;
     }
     
     public MatchDto() { }

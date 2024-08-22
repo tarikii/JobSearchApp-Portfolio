@@ -19,7 +19,10 @@
                         <div class="card-body">
                             <h5 class="card-title" style="color: #1d3e81;">@m.JobTitle</h5>
                             <p class="card-text" style="color: #000;">Fecha del match: @m.MatchDate.ToString("yyyy-MM-dd")</p>
-                            <p class="card-text" style="color: #000; font-weight: bold;">Estado de la oferta: @m.IsAccepted</p>
+                            @if (m.IsAccepted == true)
+                            {
+                                <p class="card-text" style="color: #000; font-weight: bold;">Estado de la oferta: Has sido seleccionado! Pronto te contactaran :)</p>
+                            }
                             <p class="card-text" style="background-color: #e9ecef; padding: 10px; border-radius: 4px; color: #000;">
                                 Nombre de la compañia: @m.JobOffer.CompanyName
                             </p>

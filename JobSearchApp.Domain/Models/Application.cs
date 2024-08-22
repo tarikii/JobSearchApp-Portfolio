@@ -8,7 +8,6 @@ public class Application
     public DateTimeOffset ApplicationDate { get; set; }
     public string? Status { get; set; }
     public decimal SalaryExpected { get; set; }
-    
     public User? User { get; set; }
     public JobOffer? JobOffer { get; set; }
     public ICollection<Feedback>? Feedbacks { get; set; }
