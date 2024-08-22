@@ -10,7 +10,7 @@
     </svg>
 </a>
 
-<h2 style="margin-left: 10rem;">Modificar Oferta</h2>
+<h2 style="margin-left: 8.6rem; color: #1F4D78;">Modificar Oferta</h2>
 <form action="~/JobOffers/UpdateJobOffer" method="post" class="job-offer-form">
     <div class="form-group">
         <label for="Title">Título Oferta</label>
@@ -48,7 +48,7 @@
             <input type="number" id="MaxSalary" name="MaxSalary" class="form-control"  value="@((int)Model.MaxSalary)"  step="0.01"/>
         </div>
     </div>
-    <div class="form-group button-container">
-        <button type="submit" class="btn btn-primary">Guardar</button>
+    <div class="form-group button-container text-end">
+        <button type="submit" class="btn btn-primary">Guardar Oferta</button>
     </div>
 </form>
