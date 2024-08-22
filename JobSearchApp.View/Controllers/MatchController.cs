@@ -15,11 +15,11 @@ namespace JobSearchApp.View.Controllers
             _matchService = matchService;
         }
 
-        [HttpGet]
+        /*[HttpGet]
         public IActionResult MatchesListPage()
         {
             return View();
-        }
+        }*/
 
         public int GetUserId()
         {

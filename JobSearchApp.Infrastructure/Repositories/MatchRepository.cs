@@ -21,6 +21,7 @@ namespace JobSearchApp.Infrastructure.Repositories
             return await _context.Matches
                             .Include(u => u.User)
                             .Include(j => j.JobOffer)
+                            .ThenInclude(co => co.Company)
                             .ToListAsync();
         }
 

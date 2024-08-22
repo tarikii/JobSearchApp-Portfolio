@@ -18,7 +18,6 @@ public class JobOfferDto
     public decimal? MinSalary { get; set; }
     public decimal? MaxSalary { get; set; }
     public string? CompanyName { get; set; }
-
     public JobOfferDto(JobOffer jobOffer)
     {
         JobOfferId = jobOffer.JobOfferId;
