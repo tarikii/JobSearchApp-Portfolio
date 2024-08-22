@@ -2,20 +2,33 @@
     <div class="row">
         <div class="col-2"></div>
         <div class="col-8 mt-5">
-            <h1>Contacto</h1>
-            <form>
+            <form style="background-color: #F5F5F5; padding: 20px; border-radius: 10px;">
                 <div class="form-group">
-                    <input type="email" class="form-control" placeholder="Correo"><br />
+                    <label for="email" style="color: #1F4D78; font-weight: bold;">Correo</label>
+                    <input type="email" id="email" class="form-control" placeholder="Correo"
+                           style="background-color: #E0E0E0; border-radius: 15px; border: none; padding: 10px;">
                 </div>
+                <br />
                 <div class="form-group">
-                    <input type="text" class="form-control" placeholder="Asunto"><br />
+                    <label for="subject" style="color: #1F4D78; font-weight: bold;">Asunto</label>
+                    <input type="text" id="subject" class="form-control" placeholder="Asunto"
+                           style="background-color: #E0E0E0; border-radius: 15px; border: none; padding: 10px;">
                 </div>
+                <br />
                 <div class="form-group">
-                    <textarea placeholder="Descripcion" class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-                </div><br />
-                <button type="submit" class="btn btn-primary">Submit</button>
+                    <label for="description" style="color: #1F4D78; font-weight: bold;">Descripción</label>
+                    <textarea id="description" placeholder="Descripcion" class="form-control"
+                              rows="3" style="background-color: #E0E0E0; border-radius: 15px; border: none; padding: 10px;"></textarea>
+                </div>
+                <br />
+                <br />
+                <div class="form-group text-end">
+                    <button type="submit" class="btn btn-primary" style="background-color: #85A9D6; border-radius: 15px; border: none; padding: 10px 20px;">Enviar</button>
+                </div>
             </form>
         </div>
         <div class="col-2"></div>
     </div>
 </div>
+<br />
+<br />
