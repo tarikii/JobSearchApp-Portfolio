@@ -30,6 +30,41 @@ public class UserDto
     public bool IsWorking { get; set; }
     public List<Education> Educations { get; set; }
     public List<WorkExperience> WorkExperiences { get; set; }
+    public IEnumerable<InterestDto> Interests { get; set; }
+
+    public UserDto(User user)
+    {
+        UserId = user.UserId;
+        Email = user.Email;
+        UserName = user.UserName;
+        FirstName = user.FirstName;
+        LastName = user.LastName;
+        Headline = user.Headline;
+        Summary = user.Summary;
+        Location = user.Location;
+        DateJoined = user.DateJoined;
+        LinkedInUrl = user.LinkedInUrl;
+        GenderIdentity = user.GenderIdentity;
+        Pronoun = user.Pronoun;
+        Ethnicity = user.Ethnicity;
+        MobileNumber = user.MobileNumber;
+        RequireVisa = user.RequireVisa;
+        SearchStage = user.SearchStage;
+        ProfilePicture = user.ProfilePicture;
+        ProfileUrl = user.ProfileUrl;
+        PortfolioUrl = user.PortfolioUrl;
+        RoleId = user.RoleId;
+        RoleName = user.Role.Name; // Assuming Role is a navigation property
+        IsWorking = user.IsWorking;
+        Educations = user.Educations.ToList();
+        WorkExperiences = user.WorkExperiences.ToList();
+        Interests = user.Interests.Select(i => new InterestDto
+        {
+            InterestId = i.InterestId,
+            UserId = i.UserId,
+            InterestText = i.InterestText
+        }).ToList();
+    }
 
 
     public UserDto() { }

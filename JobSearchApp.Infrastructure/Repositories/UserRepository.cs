@@ -17,7 +17,8 @@ namespace JobSearchApp.Infrastructure.Repositories
         public async Task<IEnumerable<User>> GetAllUsersAsync()
         {
             return await _context.Users
-                                    .Include(r => r.Role) 
+                                    .Include(r => r.Role)
+                                    .Include(i => i.Interests)
                                     .ToListAsync();
         }
 
