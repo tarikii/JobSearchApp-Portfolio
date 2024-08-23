@@ -1,6 +1,7 @@
 ﻿using JobSearchApp.BusinessLogic.DTOs;
 using JobSearchApp.BusinessLogic.Interfaces;
 using JobSearchApp.BusinessLogic.Services;
+using JobSearchApp.Domain.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace JobSearchApp.View.Controllers
@@ -18,15 +19,36 @@ namespace JobSearchApp.View.Controllers
             _applicationService = applicationService;
         }
 
-        /*[HttpGet]
-        public IActionResult MatchesListPage()
-        {
-            return View();
-        }*/
-
         public int GetUserId()
         {
             return int.Parse(HttpContext.Session.GetString("userId"));
+        }
+
+
+        [HttpGet]
+        public async  Task<IActionResult> ListMatchesBusinessRecruiterPage()
+        {
+            IEnumerable<MatchDto> matches = await _matchService.GetAllMatchesAsync();
+            UserDto user = await _userService.GetUserByIdAsync(GetUserId());
+
+            var applications = await _applicationService.GetAllApplicationsAsync();
+
+            IEnumerable<MatchDto> matchesOfBusiness = matches.Where(j => j.JobOffer.CompanyId == user.CompanyId && j.IsAccepted);
+
+            foreach(MatchDto match in matchesOfBusiness)
+            {
+                // Find the application that matches the job offer and user
+                var matchingApplication = applications
+                    .FirstOrDefault(a => a.JobOfferId == match.JobOfferId && a.UserId == GetUserId());
+
+                // If a matching application is found, set the ApplicationId
+                if (matchingApplication != null)
+                {
+                    match.ApplicationId = matchingApplication.ApplicationId;
+                }
+            }
+
+            return View(matchesOfBusiness);
         }
 
         [HttpGet]

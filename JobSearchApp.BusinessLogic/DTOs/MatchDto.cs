@@ -15,6 +15,7 @@ public class MatchDto
     public string? JobTitle { get; set; }
     public string? UserName { get; set; }
     public JobOfferDto JobOffer { get; set; }
+    public UserDto User { get; set; }
 
     public MatchDto(Match match)
     {
@@ -26,7 +27,6 @@ public class MatchDto
         JobTitle = match.JobOffer?.Title;
         UserName = match.User?.UserName;
 
-        JobOffer = new JobOfferDto(match.JobOffer);
     }
     
     public MatchDto() { }

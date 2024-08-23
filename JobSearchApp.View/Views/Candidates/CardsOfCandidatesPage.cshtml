@@ -90,7 +90,7 @@ else
             <p>Por favor, vuelve más tarde para ver nuevos candidatos.</p>
             <br />
             <br />
-            <a asp-controller="JobOffers" asp-action="ListCandidatesPostulatedJobOfferPage" asp-route-id="@Model.JoOfferId" class="btn btn-primary">Revisar candidatos de la oferta</a>
+            <a asp-controller="JobOffers" asp-action="ListCandidatesPostulatedJobOfferPage" asp-route-id="@ViewBag.JobOfferId" class="btn btn-primary">Revisar candidatos de la oferta</a>
         </div>
     </div>
 }

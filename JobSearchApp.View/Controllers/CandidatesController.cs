@@ -37,7 +37,7 @@ namespace JobSearchApp.View.Controllers
         {
             JobOfferDto jobOffer = await GetJobOffer();
             ViewBag.NameOffer = jobOffer.Title;
-
+            ViewBag.JobOfferId = jobOffer.JobOfferId;
             // Pillar Usuarios Candidatos
             IEnumerable<UserDto> candidates = await _userService.GetAllUsersCandidateAsync();
 

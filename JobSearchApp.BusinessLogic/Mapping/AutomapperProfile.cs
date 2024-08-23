@@ -92,9 +92,12 @@ namespace JobSearchApp.BusinessLogic.Mapping
 
             // Match Mapping
             CreateMap<Match, MatchDto>()
-                        .ForMember(dto => dto.JobTitle, opt => opt.MapFrom(r => r.JobOffer.Title))
-                        .ForMember(dto => dto.UserName, opt => opt.MapFrom(r => r.User.UserName))
-                        .ReverseMap();
+             .ForMember(dto => dto.JobOffer, opt => opt.MapFrom(src => src.JobOffer))
+             .ForMember(dto => dto.User, opt => opt.MapFrom(src => src.User))
+             .ForMember(dto => dto.JobTitle, opt => opt.MapFrom(src => src.JobOffer.Title))
+             .ForMember(dto => dto.UserName, opt => opt.MapFrom(src => src.User.UserName))
+             .ReverseMap();
+
             CreateMap<CreateMatchDto, Match>().ReverseMap();
             CreateMap<UpdateMatchDto, Match>().ReverseMap();
 

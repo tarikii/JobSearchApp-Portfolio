@@ -22,11 +22,12 @@ namespace JobSearchApp.View.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> FormNewFeedbackPage(int id)
+        public async Task<IActionResult> FormNewFeedbackPage(int id, string page = "")
         {
             ApplicationDto application = await _applicationService.GetApplicationByIdAsync(id);
 
             ViewBag.RecruiterId = GetUserId();
+            ViewBag.Page = page;
 
             return View(application);
         }
@@ -41,10 +42,13 @@ namespace JobSearchApp.View.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreateNewFeedBack(CreateFeedbackDto newFeedback)
+        public async Task<IActionResult> CreateNewFeedBack(CreateFeedbackDto newFeedback, string page)
         {
             FeedbackDto feedback = await _feedbackService.CreateFeedbackAsync(newFeedback);
             ApplicationDto application = await _applicationService.GetApplicationByIdAsync(feedback.ApplicationId);
+
+            if(page == "match")
+                return RedirectToAction("ListMatchesBusinessRecruiterPage", "Match");
 
             return RedirectToAction("ListCandidatesPostulatedJobOfferPage", "JobOffers", new { id = application.JobOfferId }); 
         }
