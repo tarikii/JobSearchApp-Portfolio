@@ -1,23 +1,28 @@
 ﻿@model IEnumerable<JobSearchApp.BusinessLogic.DTOs.JobOfferDto>
 
-
-<a asp-controller="Home" asp-action="HomeLoggedPage" style="margin-left: 1rem; display: inline-flex; align-items: center;">
+<a asp-controller="Home" asp-action="HomeLoggedPage"
+   asp-route-searchCandidate="@ViewBag.SearchCandidate"
+   style="margin-left: 1rem; display: inline-flex; align-items: center;">
     <svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" fill="currentColor" class="bi bi-arrow-left" viewBox="0 0 16 16">
         <path style="color: #1F4D78;" fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8" />
     </svg>
 </a>
 
+
 <link rel="stylesheet" href="~/css/jobOffer.css" type="text/css" />
 <div style="margin-top: 1rem;" class="button-filter">
     <h1 style="margin-left: 1rem;">@ViewBag.Title</h1>
-    <a style="margin-right: 1rem;" class="btn btn-primary" class="nav-link text-white" asp-area="" asp-controller="JobOffers" asp-action="FormNewJobOfferPage">Añadir Nueva</a>
+    @if (ViewBag.SearchCandidate == "False")
+    {
+        <a style="margin-right: 1rem;" class="btn btn-primary" class="nav-link text-white" asp-area="" asp-controller="JobOffers" asp-action="FormNewJobOfferPage">Añadir Nueva</a>
+
+    }
 </div>
 
 <div class="job-offers">
     <!-- Repeat the .job-offer-card div for more offers -->
     @foreach (var jobOffer in Model)
     {
-
         <div style="margin-left: 2rem; margin-right: 2rem;" class="job-offer-card">
             <div style="display: flex; justify-content: space-between; align-items: center;">
                 <h3>@jobOffer.Title</h3>
@@ -41,24 +46,24 @@
                 }
             </div>
 
-
-
-            @if (ViewBag.SearchCandidate == "False")
-            {
-                <p>Fecha de creación: <span style="font-weight:200">@jobOffer.PostedDate.ToString("dd/MM/yyyy")</span></p>
-            }
             <h5 style="font-weight:bold; color: #1F4D78;">Descripción</h5>
             <p style="font-weight:500">@jobOffer.Description</p>
 
-            <div style="display: flex; justify-content: right; gap: 10px;">
+            @if (ViewBag.SearchCandidate == "True")
+            {
+                <p>Fecha de creación: <span style="font-weight:200">@jobOffer.PostedDate.ToString("dd/MM/yyyy")</span></p>
                 <a class="btn btn-primary nav-link text-white" asp-area="" asp-controller="JobOffers" asp-action="SaveJobOfferIdAndSearchCandidate" asp-route-id="@jobOffer.JobOfferId">Buscar Candidato</a>
-                <a class="btn btn-primary nav-link text-white" asp-area="" asp-controller="JobOffers" asp-action="ListCandidatesPostulatedJobOfferPage" asp-route-id="@jobOffer.JobOfferId">Revisar candidatos postulados</a>
-            </div>
 
+            }
+
+            @if (ViewBag.SearchCandidate == "False")
+            {
+                <div style="display: flex; justify-content: right; gap: 10px;">
+                    <a class="btn btn-primary nav-link text-white" asp-area="" asp-controller="JobOffers" asp-action="SaveJobOfferIdAndSearchCandidate" asp-route-id="@jobOffer.JobOfferId">Buscar Candidato</a>
+                    <a class="btn btn-primary nav-link text-white" asp-area="" asp-controller="JobOffers" asp-action="ListCandidatesPostulatedJobOfferPage" asp-route-id="@jobOffer.JobOfferId">Revisar candidatos postulados</a>
+                </div>
+            }
         </div>
-
-
-
     }
     <!-- Add more job offer cards as needed -->
 </div>

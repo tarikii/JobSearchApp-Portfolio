@@ -3,6 +3,12 @@
 
 @model UserDto
 
+<a asp-controller="Home" asp-action="HomeLoggedPage" style="margin-left: 2rem;">
+    <svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" fill="currentColor" class="bi bi-arrow-left" viewBox="0 0 16 16">
+        <path style="color: #1F4D78;" fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8" />
+    </svg>
+</a>
+
 <div class="container mt-2">
     <form action="~/Profile/UpdateUserPersonalData" method="post">
         <div class="card p-3">
@@ -10,6 +16,8 @@
                 <div class="col-2">
                     <img src="~/lib/img/perifl-icon.jpg" alt="Profile Image" class="rounded-circle mb-3" width="150" height="150">
                     <h5 class="fw-bold mb-1">@Model.UserName</h5>
+                    <br />
+                    <h6 style="font-weight: bold;">Título Profesional</h6>
                     <p class="fw-bold mb-1 text-muted" id="Headline">@Model.Headline</p>
                 </div>
 

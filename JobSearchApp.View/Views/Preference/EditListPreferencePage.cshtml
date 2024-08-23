@@ -4,13 +4,20 @@
 
 <link rel="stylesheet" href="~/css/preference.css" type="text/css" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/css/bootstrap.min.css">
 
-<div class="title-edit-container">
+<a asp-controller="Home" asp-action="HomeLoggedPage" style="margin-left: 0.5rem;">
+    <svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" fill="currentColor" class="bi bi-arrow-left" viewBox="0 0 16 16">
+        <path style="color: #1F4D78;" fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8" />
+    </svg>
+</a>
+
+<div class="title-edit-container mb-4 ms-3 me-3">
     <h1>MIS PREFERENCIAS</h1>
-    <a asp-controller="SeeAll" asp-action="ListOfSeeAllPage" class="btn btn-primary">Ver Todo</a>
+    <a asp-controller="SeeAll" asp-action="ListOfSeeAllPage" style="width: 15%; margin-right: 6rem;" class="btn btn-primary">Ver Todo</a>
 </div>
 
-<div class="preference-tags">
+<div class="preference-tags ms-3 me-3">
     @foreach (var preference in Model)
     {
         <div class="tag">
@@ -41,12 +48,12 @@
     }
 </div>
 
-<div class="input-container mt-5">
-    <h4 style="color: #1F4D78; font-weight: bold;" class="mt-4">Nombre Preferencia</h4>
+<div class="input-container mt-5 ms-3 me-3">
+    <h4 class="mb-3">Nombre Preferencia</h4>
     <form action="~/Preference/CreatePreference" method="post">
-        <div class="custom-form-group">
-            <input type="number" value="@ViewBag.UserId" id="UserId" name="UserId" class="form-control" hidden />
-            <input type="text" name="Value" class="custom-form-control" placeholder="Ingrese la preferencia" required>
+        <div class="mb-3">
+            <input type="number" value="@ViewBag.UserId" id="UserId" name="UserId" class="form-control d-none" />
+            <input type="text" name="Value" class="form-control" placeholder="Ingrese la preferencia" required>
         </div>
         <button type="submit" class="btn btn-primary mt-4">Añadir</button>
     </form>

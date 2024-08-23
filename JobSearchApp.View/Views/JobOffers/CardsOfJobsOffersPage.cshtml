@@ -48,5 +48,20 @@
 }
 else
 {
-    <h1>Estas al dia enhorabuena!</h1>
+    <a asp-controller="Home" asp-action="HomeLoggedPage" style="margin-left: 1rem; display: inline-flex; align-items: center;">
+        <svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" fill="currentColor" class="bi bi-arrow-left" viewBox="0 0 16 16">
+            <path style="color: #1F4D78;" fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8" />
+        </svg>
+    </a>
+
+    <div style="background-color: #f5f5f5; border: 1px solid #dee2e6; border-radius: 5px; padding: 20px; margin-top: 20px;" class="no-candidates-message container mt-4">
+        <div class="message-content text-center">
+            <h1 style="color: #1F4D78; font-weight: bold;">No hay más ofertas disponibles</h1>
+            <p>Actualmente no hay más ofertas disponibles para postularte :(</p>
+            <p>Por favor, vuelve más tarde para ver nuevas ofertas.</p>
+            <br />
+            <br />
+            <a asp-controller="Application" asp-action="ListApplicationJobOfferPage" asp-route-id="@ViewBag.JobOfferId" class="btn btn-primary">Revisar ofertas postuladas</a>
+        </div>
+    </div>
 }
