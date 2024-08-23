@@ -30,7 +30,8 @@ public class UserDto
     public bool IsWorking { get; set; }
     public List<Education> Educations { get; set; }
     public List<WorkExperience> WorkExperiences { get; set; }
-    public IEnumerable<InterestDto> Interests { get; set; }
+    public List<Interest> Interests { get; set; }
+    public List<UserPreference> UserPreferences { get; set; }
 
     public UserDto(User user)
     {
@@ -58,12 +59,8 @@ public class UserDto
         IsWorking = user.IsWorking;
         Educations = user.Educations.ToList();
         WorkExperiences = user.WorkExperiences.ToList();
-        Interests = user.Interests.Select(i => new InterestDto
-        {
-            InterestId = i.InterestId,
-            UserId = i.UserId,
-            InterestText = i.InterestText
-        }).ToList();
+        Interests = user.Interests.ToList();
+        UserPreferences = user.UserPreferences.ToList();
     }
 
 

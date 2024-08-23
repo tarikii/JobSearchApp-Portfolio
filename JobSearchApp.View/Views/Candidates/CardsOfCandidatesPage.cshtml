@@ -9,11 +9,12 @@
 
     <div class="job-card container mt-4">
         <h3>@Model.Headline</h3>
+        <br />
         <div class="tags mb-2">
             <span class="tag">@Model.Location</span>
             <span class="tag">@Model.MobileNumber</span>
             <span class="tag">
-                Interests:
+                Intereses:
                 @if (Model.Interests != null && Model.Interests.Any())
                 {
                     @foreach (var interest in Model.Interests)
@@ -21,18 +22,42 @@
                         @if (!string.IsNullOrEmpty(interest.InterestText))
                         {
                             <span>@interest.InterestText</span>
-
                             @(interest != Model.Interests.Last() ? ", " : "")
                         }
                     }
                 }
-                else
+            </span>
+            <span class="tag">
+                Experiencia en:
+                @if (Model.WorkExperiences != null && Model.WorkExperiences.Any())
                 {
-                    <span>No interests available</span>
+                    @foreach (var experience in Model.WorkExperiences)
+                    {
+                        @if (!string.IsNullOrEmpty(experience.JobTitle))
+                        {
+                            <span>@experience.JobTitle</span>
+                            @(experience != Model.WorkExperiences.Last() ? ", " : "")
+                        }
+                    }
+                }
+            </span>
+            <span class="tag">
+                Preferencias:
+                @if (Model.UserPreferences != null && Model.UserPreferences.Any())
+                {
+                    @foreach (var preference in Model.UserPreferences)
+                    {
+                        @if (!string.IsNullOrEmpty(preference.Value))
+                        {
+                            <span>@preference.Value</span>
+                            @(preference != Model.UserPreferences.Last() ? ", " : "")
+                        }
+                    }
                 }
             </span>
         </div>
-        <p>Descripción</p>
+        <br />
+        <h4>Acerca de</h4>
         <div class="description-placeholder mb-5">
             <p>@Model.Summary</p>
         </div>
@@ -58,5 +83,14 @@
 }
 else
 {
-    <h1>Ya Has revisado a todos los candidatos de la oferta @ViewBag.NameOffer</h1>
+    <div style="background-color: #f5f5f5; border: 1px solid #dee2e6; border-radius: 5px; padding: 20px; margin-top: 20px;" class="no-candidates-message container mt-4">
+        <div class="message-content text-center">
+            <h1 style="color: #1F4D78; font-weight: bold;">No hay más candidatos disponibles</h1>
+            <p>Actualmente no hay más candidatos disponibles para la oferta: @ViewBag.NameOffer</p>
+            <p>Por favor, vuelve más tarde para ver nuevos candidatos.</p>
+            <br />
+            <br />
+            <a asp-controller="JobOffers" asp-action="ListCandidatesPostulatedJobOfferPage" asp-route-id="@Model.JoOfferId" class="btn btn-primary">Revisar candidatos de la oferta</a>
+        </div>
+    </div>
 }

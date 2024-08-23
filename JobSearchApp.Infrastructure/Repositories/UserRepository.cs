@@ -19,6 +19,8 @@ namespace JobSearchApp.Infrastructure.Repositories
             return await _context.Users
                                     .Include(r => r.Role)
                                     .Include(i => i.Interests)
+                                    .Include(p => p.UserPreferences)
+                                    .Include(we => we.WorkExperiences)
                                     .ToListAsync();
         }
 
