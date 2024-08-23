@@ -34,22 +34,22 @@
         </div>
         <div class="form-group col">
             <label for="ExpiredDate">Fecha de Expiración</label>
-            <input type="date" data-date-format="YYYY MMMM DD" id="ExpiredDate" name="ExpiredDate" class="form-control" />
+            <input type="date" data-date-format="YYYY MMMM DD" id="ExpiredDate" name="ExpiredDate" class="form-control" required />
         </div>
     </div>
     <div class="form-row">
         <div class="form-group col">
             <label for="MinSalary">Salario Mínimo</label>
-            <input type="number" id="MinSalary" name="MinSalary" class="form-control" step="0.01" />
+            <input type="number" id="MinSalary" name="MinSalary" class="form-control" step="0.01" required />
         </div>
         <div class="form-group col">
             <label for="MaxSalary">Salario Máximo</label>
-            <input type="number" id="MaxSalary" name="MaxSalary" class="form-control" step="0.01" />
+            <input type="number" id="MaxSalary" name="MaxSalary" class="form-control" step="0.01" required />
         </div>
     </div>
     <div class="form-group">
         <label for="Description">Descripción</label>
-        <textarea style="height: 120px;" type="text" id="Description" name="Description" class="form-control desription-textarea" step="0.01"></textarea>
+        <textarea style="height: 120px;" type="text" id="Description" name="Description" class="form-control desription-textarea" step="0.01" required></textarea>
     </div>
     <div class="form-group button-container text-end">
         <button type="submit" class="btn btn-primary">Crear Oferta</button>
