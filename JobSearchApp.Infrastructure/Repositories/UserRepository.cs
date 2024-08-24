@@ -30,6 +30,8 @@ namespace JobSearchApp.Infrastructure.Repositories
                             .Include(e => e.Educations)
                             .Include(e => e.WorkExperiences)
                             .Include(u => u.Role)
+                            .Include(c => c.Company)
+                            .ThenInclude(b => b.CompensationBenefits)
                             .FirstOrDefaultAsync(u => u.UserId == userId);
         }
 

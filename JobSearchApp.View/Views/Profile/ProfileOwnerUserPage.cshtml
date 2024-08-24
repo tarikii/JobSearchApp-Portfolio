@@ -8,6 +8,9 @@
         <path style="color: #1F4D78;" fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8" />
     </svg>
 </a>
+<h1 style="margin-left: 2rem;">Mi Perfil</h1>
+
+<hr />
 
 <div class="container mt-2">
     <form action="~/Profile/UpdateUserPersonalData" method="post">
@@ -77,72 +80,162 @@
     </form>
 </div>
 
-
-
-@if (Model.Educations != null)
+@if (Model.RoleName == "Reclutador" || Model.RoleName == "Candidato")
 {
-    <div class="card container p-1" style="border-radius: 10px; margin-top: 3%; background-color: #F5F5F5;">
-        <div class="d-flex justify-content-between align-items-center mb-2 mt-4">
-            <h1 style="margin-left: 20px;">Educaciones📚</h1>
-            <a class="btn btn-primary" style="margin-right:15px;" asp-area="" asp-controller="Education" asp-action="FormNewEducationPage">Añadir</a>
-        </div>
 
-        @foreach (Education edu in Model.Educations)
-        {
-            <div class="card row p-5 m-3" style=" border-radius: 10px;">
-                <div class="d-flex flex-column flex-md-row align-items-center">
-                    <!-- Contenedor para el título y la descripción -->
-                    <div class="flex-grow-1 mb-3 mb-md-0">
-                        <h1 class="mb-0">@edu.SchoolName</h1>
-                        <h3 class="mb-0">Descripción</h3>
-                        <p class="mb-0">lorem ipsum</p>
-                    </div>
+    @if (Model.Educations != null)
+    {
+        <div class="card container p-1" style="border-radius: 10px; margin-top: 3%; background-color: #F5F5F5;">
+            <div class="d-flex justify-content-between align-items-center mb-2 mt-4">
+                <h1 style="margin-left: 20px;">Educaciones📚</h1>
+                <a class="btn btn-primary" style="margin-right:15px;" asp-area="" asp-controller="Education" asp-action="FormNewEducationPage">Añadir</a>
+            </div>
 
-                    <!-- Contenedor para los botones -->
-                    <div class="ms-auto d-flex align-items-center">
-                        <a class="btn btn-primary me-2" asp-area="" asp-controller="Education" asp-action="FormEditEducationPage" asp-route-id="@edu.EducationId">Editar</a>
-                        <form asp-controller="Education" asp-action="DeleteEducation" method="post" class="mb-0">
-                            <input type="hidden" name="id" value="@edu.EducationId" />
-                            <button type="button" class="btn btn-primary" onclick="confirmDelete('@edu.EducationId', '@Url.Action("DeleteEducation", "Education")')">Eliminar</button>
-                        </form>
+            @foreach (Education edu in Model.Educations)
+            {
+                <div class="card row p-5 m-3" style=" border-radius: 10px;">
+                    <div class="d-flex flex-column flex-md-row align-items-center">
+                        <!-- Contenedor para el título y la descripción -->
+                        <div class="flex-grow-1 mb-3 mb-md-0">
+                            <h1 class="mb-0">@edu.SchoolName</h1>
+                            <h3 class="mb-0">Descripción</h3>
+                            <p class="mb-0">lorem ipsum</p>
+                        </div>
+
+                        <!-- Contenedor para los botones -->
+                        <div class="ms-auto d-flex align-items-center">
+                            <a class="btn btn-primary me-2" asp-area="" asp-controller="Education" asp-action="FormEditEducationPage" asp-route-id="@edu.EducationId">Editar</a>
+                            <form asp-controller="Education" asp-action="DeleteEducation" method="post" class="mb-0">
+                                <input type="hidden" name="id" value="@edu.EducationId" />
+                                <button type="button" class="btn btn-primary" onclick="confirmDelete('@edu.EducationId', '@Url.Action("DeleteEducation", "Education")')">Eliminar</button>
+                            </form>
+                        </div>
                     </div>
                 </div>
+            }
+        </div>
+        <br />
+    }
+
+    @if (Model.WorkExperiences != null)
+    {
+        <div class="card container " style="padding:12px; border-radius: 10px; background-color: #F5F5F5;">
+            <div class="d-flex justify-content-between align-items-center mb-2 mt-4">
+                <h1 style="margin-left: 20px;">Experiencia Laboral💼</h1>
+                <a class="btn btn-primary" style="margin-right:15px;" asp-area="" asp-controller="WorkExperience" asp-action="FormNewExperiencePage">Añadir</a>
             </div>
-        }
-    </div>
-    <br />
+            @foreach (WorkExperience we in Model.WorkExperiences)
+            {
+                <div class="card row p-5 m-3" style=" border-radius: 10px;">
+                    <div class="d-flex flex-column flex-md-row align-items-center">
+                        <!-- Contenedor para el título y la descripción -->
+                        <div class="flex-grow-1 mb-3 mb-md-0">
+                            <h1 class="mb-0">@we.CompanyName</h1>
+                            <h3 class="mb-0">Descripción</h3>
+                            <p class="mb-0">lorem ipsum</p>
+                        </div>
+
+                        <!-- Contenedor para los botones -->
+                        <div class="ms-auto d-flex align-items-center">
+                            <a class="btn btn-primary me-2" asp-area="" asp-controller="WorkExperience" asp-action="FormEditExperiencePage" asp-route-id="@we.WorkExperienceId">Editar</a>
+                            <form asp-controller="WorkExperience" asp-action="DeleteExperience" method="post" class="mb-0">
+                                <input type="hidden" name="id" value="@we.WorkExperienceId" />
+                                <button type="button" class="btn btn-primary" onclick="confirmDelete('@we.WorkExperienceId', '@Url.Action("DeleteExperience", "WorkExperience")')">Eliminar</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    }
 }
 
-@if (Model.WorkExperiences != null)
+@if (Model.RoleName == "Empresa")
 {
-    <div class="card container " style="padding:12px; border-radius: 10px; background-color: #F5F5F5;">
-        <div class="d-flex justify-content-between align-items-center mb-2 mt-4">
-            <h1 style="margin-left: 20px;">Experiencia Laboral💼</h1>
-            <a class="btn btn-primary" style="margin-right:15px;" asp-area="" asp-controller="WorkExperience" asp-action="FormNewExperiencePage">Añadir</a>
-        </div>
-        @foreach (WorkExperience we in Model.WorkExperiences)
-        {
-            <div class="card row p-5 m-3" style=" border-radius: 10px;">
-                <div class="d-flex flex-column flex-md-row align-items-center">
-                    <!-- Contenedor para el título y la descripción -->
-                    <div class="flex-grow-1 mb-3 mb-md-0">
-                        <h1 class="mb-0">@we.CompanyName</h1>
-                        <h3 class="mb-0">Descripción</h3>
-                        <p class="mb-0">lorem ipsum</p>
+    <script src="~/js/editCompany.js"></script>
+    <div class="container mt-2">
+        <form action="~/Profile/UpdateUserPersonalData" method="post">
+            <div class="card p-3 position-relative">
+                <!-- Botón Editar -->
+                <button id="editButton" type="button" class="btn btn-primary position-absolute" style="top: 20px; right: 20px;" onclick="showEditOptions()">
+                    Editar
+                </button>
+
+                <!-- Botones Confirmar y Cancelar -->
+                <div id="editOptions" class="d-none position-absolute" style="top: 20px; right: 20px;">
+                    <button type="button" class="btn btn-primary me-2" onclick="confirmEdit()">Confirmar</button>
+                    <button type="button" class="btn btn-secondary" onclick="cancelEdit()">Cancelar</button>
+                </div>
+
+                <div class="row mt-5">
+                    <h1>Acerca de nosotros</h1>
+
+                    <!-- Sección Nombre Empresa -->
+                    <h3>Nombre Empresa</h3>
+                    <div id="nameSection">
+                        <p class="d-none">@Model.Company.Name</p>
+                        <input id="nameInput" type="text" class="form-control d-none" value="@Model.Company.Name" />
                     </div>
 
-                    <!-- Contenedor para los botones -->
-                    <div class="ms-auto d-flex align-items-center">
-                        <a class="btn btn-primary me-2" asp-area="" asp-controller="WorkExperience" asp-action="FormEditExperiencePage" asp-route-id="@we.WorkExperienceId">Editar</a>
-                        <form asp-controller="WorkExperience" asp-action="DeleteExperience" method="post" class="mb-0">
-                            <input type="hidden" name="id" value="@we.WorkExperienceId" />
-                            <button type="button" class="btn btn-primary" onclick="confirmDelete('@we.WorkExperienceId', '@Url.Action("DeleteExperience", "WorkExperience")')">Eliminar</button>
-                        </form>
+                    <!-- Sección Descripción -->
+                    <h3>Descripción</h3>
+                    <br />
+                    <div id="descriptionSection">
+                        <p class="d-none">@Model.Company.Description</p>
+                        <textarea id="descriptionInput" class="form-control d-none" rows="3">@Model.Company.Description</textarea>
                     </div>
+
+                    <br />
+                    <h3>Tamaño Empresa</h3>
+                    <div id="sizeSection">
+                        <p class="d-none">@Model.Company.Size</p>
+                        <input id="sizeInput" type="text" class="form-control d-none" value="@Model.Company.Size" />
+                    </div>
+
+                    <br />
+                    <h3>Ubicación</h3>
+                    <div id="locationSection">
+                        <p class="d-none">@Model.Company.Location</p>
+                        <input id="locationInput" type="text" class="form-control d-none" value="@Model.Company.Location" />
+                    </div>
+
+                    <br />
+                    <h3>Enlace de la empresa</h3>
+                    <div id="websiteSection">
+                        <p class="d-none">@Model.Company.WebsiteUrl</p>
+                        <input id="websiteInput" type="text" class="form-control d-none" value="@Model.Company.WebsiteUrl" />
+                    </div>
+
+                    <div class="container">
+                        <div class="row">
+                            <div class="col">
+                                <h3>Numero de Empleados</h3>
+                                <div id="employeeCountSection">
+                                    <p class="d-none">@Model.Company.Size</p>
+                                    <input id="employeeCountInput" type="text" class="form-control d-none" value="@Model.Company.Size" />
+                                </div>
+                            </div>
+                            <div class="col">
+                                <h3>Año Fundación de empresa</h3>
+                                <div id="foundedYearSection">
+                                    <p class="d-none">@Model.Company.FoundedYear</p>
+                                    <input id="foundedYearInput" type="text" class="form-control d-none" value="@Model.Company.FoundedYear" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <h3>Beneficios Complementarios</h3>
+                    @foreach (var benefit in Model.Company.CompensationBenefits)
+                    {
+                        <h1>@benefit.BenefitType</h1>
+                        <h1>@benefit.Description</h1>
+                    }
                 </div>
             </div>
-        }
+        </form>
     </div>
+
 }
 
 <!-- Bootstrap Modal for Confirmation -->

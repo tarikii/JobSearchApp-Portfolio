@@ -28,6 +28,7 @@ public class UserDto
     public string RoleName { get; set; }
     public int CompanyId { get; set; }
     public bool IsWorking { get; set; }
+    public Company Company { get; set; }
     public List<Education> Educations { get; set; }
     public List<WorkExperience> WorkExperiences { get; set; }
     public List<Interest> Interests { get; set; }
