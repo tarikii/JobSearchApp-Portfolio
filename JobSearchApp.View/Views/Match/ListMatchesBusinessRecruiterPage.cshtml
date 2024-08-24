@@ -59,6 +59,14 @@
 }
 else
 {
-    <h1>Postulate a una oferta</h1>
+    <div style="background-color: #f5f5f5; border: 1px solid #dee2e6; border-radius: 5px; padding: 20px; margin-top: 20px;" class="no-candidates-message container mt-4">
+        <div class="message-content text-center">
+            <h1 style="color: #1F4D78; font-weight: bold;">Aun no tienes matches con candidatos :(</h1>
+            <br />
+            <h4 style="font-weight: bold;">Sigue buscando candidatos para tener más probabilidad de un match!</h4>
+            <br />
+            <a asp-controller="JobOffers" asp-action="AdministrationListJobOffersPage" class="btn btn-primary">Buscar Candidatos</a>
+        </div>
+    </div>
 }
 

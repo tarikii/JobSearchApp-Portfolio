@@ -8,7 +8,6 @@
     </svg>
 </a>
 
-
 <hr />
 <link rel="stylesheet" href="~/css/jobOffer.css" type="text/css" />
 <div style="margin-top: 1rem;" class="button-filter">
@@ -19,48 +18,76 @@
     }
 </div>
 
-<div class="job-offers">
-    @foreach (var jobOffer in Model)
+@if (!Model.Any())
+{
+    @if (ViewBag.SearchCandidate == "False")
     {
-        <div style="margin-left: 2rem; margin-right: 2rem;" class="job-offer-card">
-            <div style="display: flex; justify-content: space-between; align-items: center;">
-                <h3>@jobOffer.Title</h3>
+        <div style="background-color: #f5f5f5; border: 1px solid #dee2e6; border-radius: 5px; padding: 20px; margin-top: 20px;" class="no-candidates-message container mt-4">
+            <div class="message-content text-center">
+                <h1 style="color: #1F4D78; font-weight: bold;">No has creado ofertas todavía</h1>
+                <p>Actualmente no tienes creada ninguna oferta, es el momento de crear una!</p>
+                <br />
+                <a asp-controller="JobOffers" asp-action="FormNewJobOfferPage" class="btn btn-primary">Crear una oferta</a>
+            </div>
+        </div>
+    }
+
+    @if (ViewBag.SearchCandidate == "True")
+    {
+        <div style="background-color: #f5f5f5; border: 1px solid #dee2e6; border-radius: 5px; padding: 20px; margin-top: 20px;" class="no-candidates-message container mt-4">
+            <div class="message-content text-center">
+                <h1 style="color: #1F4D78; font-weight: bold;">No hay candidatos disponibles</h1>
+                <p>Actualmente no hay candidatos que hayan postulado a tus ofertas</p>
+                <p>Por favor, vuelve más tarde para ver posibles candidatos.</p>
+            </div>
+        </div>
+    }
+}
+else
+{
+    <div class="job-offers">
+        @foreach (var jobOffer in Model)
+        {
+            <div style="margin-left: 2rem; margin-right: 2rem;" class="job-offer-card">
+                <div style="display: flex; justify-content: space-between; align-items: center;">
+                    <h3>@jobOffer.Title</h3>
+                    @if (ViewBag.SearchCandidate == "False")
+                    {
+                        <div style="display: flex; gap: 5px;">
+                            <a class="btn btn-primary nav-link text-white" style="padding: 5px;" asp-area="" asp-controller="JobOffers" asp-action="FormModificationJobOfferPage" asp-route-id="@jobOffer.JobOfferId">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-fill" viewBox="0 0 16 16">
+                                    <path d="M12.854.146a.5.5 0 0 0-.707 0L10.5 1.793 14.207 5.5l1.647-1.646a.5.5 0 0 0 0-.708zm.646 6.061L9.793 2.5 3.293 9H3.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.207zm-7.468 7.468A.5.5 0 0 1 6 13.5V13h-.5a.5.5 0 0 1-.5-.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.5-.5V10h-.5a.5.5 0 0 1-.175-.032l-.179.178a.5.5 0 0 0-.11.168l-2 5a.5.5 0 0 0 .65.65l5-2a.5.5 0 0 0 .168-.11z" />
+                                </svg>
+                            </a>
+                            <a href="#" class="btn btn-danger" onclick="confirmDelete('@jobOffer.JobOfferId')">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash-fill" viewBox="0 0 16 16">
+                                    <path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5M8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5m3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0" />
+                                </svg>
+                            </a>
+                        </div>
+                    }
+                </div>
+
+                <h5 style="font-weight:bold; color: #1F4D78;">Descripción</h5>
+                <p style="font-weight:500">@jobOffer.Description</p>
+
+                @if (ViewBag.SearchCandidate == "True")
+                {
+                    <p>Fecha de creación: <span style="font-weight:200">@jobOffer.PostedDate.ToString("dd/MM/yyyy")</span></p>
+                    <a class="btn btn-primary nav-link text-white" asp-area="" asp-controller="JobOffers" asp-action="SaveJobOfferIdAndSearchCandidate" asp-route-id="@jobOffer.JobOfferId">Buscar Candidato</a>
+                }
+
                 @if (ViewBag.SearchCandidate == "False")
                 {
-                    <div style="display: flex; gap: 5px;">
-                        <a class="btn btn-primary nav-link text-white" style="padding: 5px;" asp-area="" asp-controller="JobOffers" asp-action="FormModificationJobOfferPage" asp-route-id="@jobOffer.JobOfferId">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-fill" viewBox="0 0 16 16">
-                                <path d="M12.854.146a.5.5 0 0 0-.707 0L10.5 1.793 14.207 5.5l1.647-1.646a.5.5 0 0 0 0-.708zm.646 6.061L9.793 2.5 3.293 9H3.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.207zm-7.468 7.468A.5.5 0 0 1 6 13.5V13h-.5a.5.5 0 0 1-.5-.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.5-.5V10h-.5a.5.5 0 0 1-.175-.032l-.179.178a.5.5 0 0 0-.11.168l-2 5a.5.5 0 0 0 .65.65l5-2a.5.5 0 0 0 .168-.11z" />
-                            </svg>
-                        </a>
-                        <a href="#" class="btn btn-danger" onclick="confirmDelete('@jobOffer.JobOfferId')">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash-fill" viewBox="0 0 16 16">
-                                <path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5M8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5m3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0" />
-                            </svg>
-                        </a>
+                    <div style="display: flex; justify-content: right; gap: 10px;">
+                        <a class="btn btn-primary nav-link text-white" asp-area="" asp-controller="JobOffers" asp-action="SaveJobOfferIdAndSearchCandidate" asp-route-id="@jobOffer.JobOfferId">Buscar Candidato</a>
+                        <a class="btn btn-primary nav-link text-white" asp-area="" asp-controller="JobOffers" asp-action="ListCandidatesPostulatedJobOfferPage" asp-route-id="@jobOffer.JobOfferId">Revisar candidatos postulados</a>
                     </div>
                 }
             </div>
-
-            <h5 style="font-weight:bold; color: #1F4D78;">Descripción</h5>
-            <p style="font-weight:500">@jobOffer.Description</p>
-
-            @if (ViewBag.SearchCandidate == "True")
-            {
-                <p>Fecha de creación: <span style="font-weight:200">@jobOffer.PostedDate.ToString("dd/MM/yyyy")</span></p>
-                <a class="btn btn-primary nav-link text-white" asp-area="" asp-controller="JobOffers" asp-action="SaveJobOfferIdAndSearchCandidate" asp-route-id="@jobOffer.JobOfferId">Buscar Candidato</a>
-            }
-
-            @if (ViewBag.SearchCandidate == "False")
-            {
-                <div style="display: flex; justify-content: right; gap: 10px;">
-                    <a class="btn btn-primary nav-link text-white" asp-area="" asp-controller="JobOffers" asp-action="SaveJobOfferIdAndSearchCandidate" asp-route-id="@jobOffer.JobOfferId">Buscar Candidato</a>
-                    <a class="btn btn-primary nav-link text-white" asp-area="" asp-controller="JobOffers" asp-action="ListCandidatesPostulatedJobOfferPage" asp-route-id="@jobOffer.JobOfferId">Revisar candidatos postulados</a>
-                </div>
-            }
-        </div>
-    }
-</div>
+        }
+    </div>
+}
 
 <!-- Bootstrap Modal for Confirmation -->
 <div class="modal fade" id="confirmDeleteModal" tabindex="-1" aria-labelledby="confirmDeleteModalLabel" aria-hidden="true">
@@ -87,8 +114,8 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 <script>
     function confirmDelete(jobOfferId) {
-        var form = document.getElementById('deleteForm-' + jobOfferId);
-        var formAction = form ? form.action : '';
+        // Retrieve the form's action from the delete button (form might be missing in your HTML)
+        var formAction = '/JobOffers/DeleteJobOffer/' + jobOfferId;
 
         // Set the form action URL and ID
         var confirmForm = document.getElementById('confirmDeleteForm');
@@ -99,4 +126,5 @@
         var myModal = new bootstrap.Modal(document.getElementById('confirmDeleteModal'));
         myModal.show();
     }
+
 </script>
