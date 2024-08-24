@@ -1,15 +1,24 @@
 ﻿@using JobSearchApp.BusinessLogic.DTOs
-
 @model ApplicationDto
 
-<h1>@Model.JobOffer.Title</h1>
-<h1>Candidato: @Model.User.FirstName</h1>
+<div class="container mt-5">
+    <div class="card p-4 shadow">
+        <h1 class="mb-4">@Model.JobOffer.Title</h1>
+        <h2 class="mb-4 text-secondary">Candidato: @Model.User.FirstName</h2>
 
-<form action="~/Feedback/CreateNewFeedBack" method="post">
-    <input type="hidden" name="ApplicationId" value="@Model.ApplicationId"/>
-    <input type="hidden" name="RecruiterId" value="@ViewBag.RecruiterId" />
-    <input type="hidden" name="page" value="@ViewBag.Page" />
-    <textarea name="FeedbackText"></textarea>
+        <form action="~/Feedback/CreateNewFeedBack" method="post">
+            <input type="hidden" name="ApplicationId" value="@Model.ApplicationId" />
+            <input type="hidden" name="RecruiterId" value="@ViewBag.RecruiterId" />
+            <input type="hidden" name="page" value="@ViewBag.Page" />
 
-    <button type="submit">Enviar</button>
-</form>
+            <div class="form-group mb-4">
+                <label for="feedbackText" class="form-label" style="font-weight: bold;">Feedback</label>
+                <textarea id="feedbackText" name="FeedbackText" class="form-control" rows="5" placeholder="Escribe tu feedback aquí..." style="border-radius: 10px; padding: 15px;"></textarea>
+            </div>
+
+            <div class="d-grid">
+                <button type="submit" class="btn btn-primary" style="border-radius: 10px; padding: 10px;">Enviar Feedback</button>
+            </div>
+        </form>
+    </div>
+</div>
