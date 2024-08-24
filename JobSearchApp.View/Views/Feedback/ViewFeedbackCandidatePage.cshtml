@@ -8,7 +8,25 @@
         <div class="message-content text-center">
             <h1 style="color: #1F4D78; font-weight: bold;">Feedback: @Model.FeedbackText</h1>
             <br />
-            <a class="btn btn-primary" href="@ViewBag.ReturnUrl">Volver a tus postulaciones</a>
+            @{
+                var returnUrl = ViewBag.ReturnUrl;
+                string buttonText;
+
+                if (returnUrl.Contains("ListApplicationJobOfferPage"))
+                {
+                    buttonText = "Volver a tus postulaciones";
+                }
+                else if (returnUrl.Contains("ListOfMatchesPage"))
+                {
+                    buttonText = "Volver a tus matches";
+                }
+                else
+                {
+                    buttonText = "Volver";
+                }
+            }
+
+            <a class="btn btn-primary" href="@returnUrl">@buttonText</a>
         </div>
     </div>
 }

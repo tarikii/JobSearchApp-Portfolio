@@ -47,7 +47,15 @@
 }
 else
 {
-    <div class="alert alert-info" style="background-color: #e9ecef; color: #1d3e81; border-radius: 8px;">
-        Aun no tienes matches, sigue intentando que lo conseguiras!
+    <div style="background-color: #f5f5f5; border: 1px solid #dee2e6; border-radius: 5px; padding: 20px; margin-top: 20px;" class="no-candidates-message container mt-4">
+        <div class="message-content text-center">
+            <h1 style="color: #1F4D78; font-weight: bold;">Aun no tienes matches :(</h1>
+            <br />
+            <br />
+            <h4 style="font-weight: bold;">Sigue aplicando para tener más probabilidad de un match!</h4>
+            <br />
+            <br />
+            <a asp-controller="JobOffers" asp-action="CardsOfJobsOffersPage" class="btn btn-primary">Aplicar ofertas</a>
+        </div>
     </div>
 }
