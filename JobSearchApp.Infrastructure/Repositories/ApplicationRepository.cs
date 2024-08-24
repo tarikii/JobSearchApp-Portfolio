@@ -18,6 +18,7 @@ namespace JobSearchApp.Infrastructure.Repositories
         {
             return await _context.Applications
                     .Include(u => u.User)
+                    .ThenInclude(u => u.Role)
                     .Include(j => j.JobOffer)
                     .ThenInclude(j => j.Company)
                     .ToListAsync();

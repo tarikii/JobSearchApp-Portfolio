@@ -13,6 +13,7 @@ namespace JobSearchApp.BusinessLogic.DTOs
         public decimal? SalaryExpected { get; set; }
         public string? UserName { get; set; }
         public string? JobTitle { get; set; }
+        public string? RoleName { get; set; }
         public User User { get; set; }
         public JobOfferDto JobOffer { get; set; }
 
@@ -25,6 +26,7 @@ namespace JobSearchApp.BusinessLogic.DTOs
             SalaryExpected = application.SalaryExpected;
             UserName = application.User?.UserName;
             JobTitle = application.JobOffer?.Title;
+            RoleName = application.User?.Role?.Name;
 
             JobOffer = new JobOfferDto(application.JobOffer);
         }

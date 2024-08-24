@@ -21,12 +21,13 @@
                     <p class="fw-bold mb-1 text-muted" id="Headline">@Model.Headline</p>
                 </div>
 
-                <div class="col-10">
-                    <button type="button" class="btn btn-primary position-absolute" style="top: 0; right: 0;margin-right:10px;" onclick="enableEditing()" id="button-edit">Editar</button>
-
-                    <div id="edit-buttons" style="display: none; flex; justify-content: flex-end; position: absolute; top: 0; right: 0;">
-                        <button type="submit" class="btn btn-primary" style="margin-right: 10px;">Confirmar</button>
-                        <button class="btn btn-primary" onclick="edit2()">Cancelar</button>
+                <div class="col-10 position-relative">
+                    <button type="button" class="btn btn-primary position-absolute" style="bottom: 0; right: 0; margin: 10px;" onclick="enableEditing()" id="button-edit">Editar</button>
+                    <div id="edit-buttons" style="display: none; margin-top: 20px; position: absolute; right: 0; bottom: 0;">
+                        <div class="d-flex justify-content-end">
+                            <button type="submit" class="btn btn-primary me-2">Confirmar</button>
+                            <button type="button" class="btn btn-secondary" onclick="edit2()">Cancelar</button>
+                        </div>
                     </div>
 
                     <!-- User Information -->
@@ -64,7 +65,6 @@
                         <p style="margin: 0; width: 100px;"><strong>Correo</strong></p>
                         <div class="bg-opacity-25 rounded" style="padding: 5px; width: 50%;">@Model.Email</div>
                     </div>
-
                 </div>
             </div>
 
@@ -73,10 +73,11 @@
                 <h5 class="fw-bold mb-1">Descripción</h5>
                 <div class="bg-opacity-25 rounded mb-2" style="height: 20px;" id="Summary">@Model.Summary</div>
             </div>
-
         </div>
     </form>
 </div>
+
+
 
 @if (Model.Educations != null)
 {
