@@ -205,9 +205,11 @@ namespace JobSearchApp.View.Controllers
         {
             JobOfferDto jobOffer = await _jobOfferService.GetJobOfferByIdAsync(id);
 
-            IEnumerable<ApplicationDto> applications = await _applicationService.GetAllApplicationsAsync();
+            ViewBag.JobTitle = jobOffer.Title;
+            ViewBag.JobDescription = jobOffer.Description;
 
-            
+            IEnumerable<ApplicationDto> applications = await _applicationService.GetAllApplicationsAsync();
+      
 
             return View(applications.Where(j => j.JobOfferId == id));
         }
