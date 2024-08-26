@@ -33,7 +33,9 @@ namespace JobSearchApp.View.Controllers
 
             var applications = await _applicationService.GetAllApplicationsAsync();
 
-            IEnumerable<MatchDto> matchesOfBusiness = matches.Where(j => j.JobOffer.CompanyId == user.CompanyId && j.IsAccepted);
+            IEnumerable<MatchDto> matchesOfBusiness = matches
+                                .Where(j => j.JobOffer.CompanyId == user.CompanyId && j.IsAccepted)
+                                .ToList();
 
             foreach(MatchDto match in matchesOfBusiness)
             {
