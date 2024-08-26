@@ -28,7 +28,7 @@
                 <div class="col-md-4 mb-4">
                     <div class="card h-100" style="background-color: #f5f5f5; border: none; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); border-radius: 8px;">
                         <div class="card-body">
-                            <h2 class="card-title" style="color: #1d3e81;">@m.JobTitle</h2>
+                            <h3 class="card-title" style="color: #1d3e81;">@m.JobTitle</h3>
                             <p class="card-text" style="background-color: #e9ecef; padding: 10px; border-radius: 4px; color: #000;">
                                 Nombre Candidato: @m.User.FirstName @m.User.LastName
                             </p>
@@ -48,7 +48,9 @@
                                 4px; padding: 10px;">@m.User.Summary</p>
                             <div class="d-flex justify-content-end">
                                 <a class="btn btn-primary" asp-area="" asp-controller="Feedback" asp-action="FormNewFeedbackPage" asp-route-id="@m.ApplicationId" asp-route-page="match">Dar Feedback</a>
-                             
+                                <a class="btn btn-danger" style="padding: 8px 16px;" asp-area=""
+                                   asp-controller="Home"
+                                   asp-action="HomePage">Ver perfil</a>
                             </div>
                         </div>
                     </div>
