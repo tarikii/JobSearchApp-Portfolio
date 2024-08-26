@@ -1,0 +1,61 @@
+﻿@using JobSearchApp.BusinessLogic.DTOs
+@model IEnumerable<MatchDto>
+
+
+<a asp-controller="Home" asp-action="HomeLoggedPage" style="margin-left: 3rem; display: inline-flex; align-items: center;">
+    <svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" fill="currentColor" class="bi bi-arrow-left" viewBox="0 0 16 16">
+        <path style="color: #1F4D78;" fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8" />
+    </svg>
+</a>
+
+<h1 style="margin-left: 2rem;">Mis Matches</h1>
+
+<hr />
+
+@if (Model.Any())
+{
+    <div class="container" style="padding-left: 5px; padding-right: 5px;">
+        <div class="row">
+            @foreach (var m in Model)
+            {
+                <div class="col-md-4 mb-4">
+                    <div class="card h-100" style="background-color: #f5f5f5; border: none; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); border-radius: 8px;">
+                        <div class="card-body">
+                            <h3 class="card-title" style="color: #1d3e81;">@m.JobTitle</h3>
+                            <p class="card-text" style="color: #000;">Fecha del match: @m.MatchDate.ToString("yyyy-MM-dd")</p>
+                            @if (m.IsAccepted == true)
+                            {
+                                <p class="card-text" style="color: #000; font-weight: bold;">Estado de la oferta: Has sido seleccionado! Pronto te contactaran :)</p>
+                            }
+                            <p class="card-text" style="background-color: #e9ecef; padding: 10px; border-radius: 4px; color: #000;">
+                                Nombre de la compañia: @m.JobOffer.CompanyName
+                            </p>
+                            <p class="card-text" style="background-color: #C1C1C1; height: 150px; border-radius: 
+                                4px; padding: 10px;">@m.JobOffer.Description</p>
+                            <div class="d-flex justify-content-end">
+                                <a asp-controller="Feedback" asp-action="ViewFeedBackCandidatePage"
+                                   asp-route-id="@m.ApplicationId" 
+                                   asp-route-returnUrl="@Url.Action("ListOfMatchesPage", "Match")" 
+                                   class="btn btn-primary">Ver Feedback</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+}
+else
+{
+    <div style="background-color: #f5f5f5; border: 1px solid #dee2e6; border-radius: 5px; padding: 20px; margin-top: 20px;" class="no-candidates-message container mt-4">
+        <div class="message-content text-center">
+            <h1 style="color: #1F4D78; font-weight: bold;">Aun no tienes matches :(</h1>
+            <br />
+            <br />
+            <h4 style="font-weight: bold;">Sigue aplicando para tener más probabilidad de un match!</h4>
+            <br />
+            <br />
+            <a asp-controller="JobOffers" asp-action="CardsOfJobsOffersPage" class="btn btn-primary">Aplicar ofertas</a>
+        </div>
+    </div>
+}

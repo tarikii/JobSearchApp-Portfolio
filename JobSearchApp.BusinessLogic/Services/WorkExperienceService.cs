@@ -29,8 +29,11 @@ namespace JobSearchApp.BusinessLogic.Services
             return workExperience == null ? null : _mapper.Map<WorkExperienceDto>(workExperience);
         }
 
-        public async Task<WorkExperienceDto> CreateWorkExperienceAsync(CreateWorkExperienceDto createWorkExperienceDto)
+        public async Task<WorkExperienceDto> CreateWorkExperienceAsync(CreateWorkExperienceDto createWorkExperienceDto, int userId)
         {
+            CreateWorkExperienceDto newWorkExperience = createWorkExperienceDto;
+            newWorkExperience.UserId = userId;
+
             var workExperience = _mapper.Map<WorkExperience>(createWorkExperienceDto);
             var createdWorkExperience = await _workExperienceRepository.CreateWorkExperienceAsync(workExperience);
             return _mapper.Map<WorkExperienceDto>(createdWorkExperience);

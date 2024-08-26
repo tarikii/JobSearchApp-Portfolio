@@ -3,6 +3,7 @@ using JobSearchApp.BusinessLogic.DTOs;
 using JobSearchApp.BusinessLogic.Interfaces;
 using JobSearchApp.Domain.Models;
 using JobSearchApp.Infrastructure.Interfaces;
+using JobSearchApp.Infrastructure.Repositories;
 
 namespace JobSearchApp.BusinessLogic.Services
 {
@@ -38,13 +39,21 @@ namespace JobSearchApp.BusinessLogic.Services
 
         public async Task<UserSkillDto> UpdateUserSkillAsync(int userSkillId, UpdateUserSkillDto updateUserSkillDto)
         {
-            if (userSkillId != updateUserSkillDto.UserSkillId)
+            var existingUserSkill = await _userSkillRepository.GetUserSkillByIdAsync(userSkillId);
+
+            if (existingUserSkill == null)
             {
-                return null;
+                // Handle the case where the interest does not exist
+                throw new Exception($"User Skill with ID {userSkillId} not found.");
             }
 
-            var userSkill = _mapper.Map<UserSkill>(updateUserSkillDto);
-            var updatedUserSkill = await _userSkillRepository.UpdateUserSkillAsync(userSkill);
+            // Update properties on the existing user skill
+            _mapper.Map(updateUserSkillDto, existingUserSkill);
+
+            // Save the updated user skill entity
+            var updatedUserSkill = await _userSkillRepository.UpdateUserSkillAsync(existingUserSkill);
+
+            // Map the updated entity back to a DTO
             return _mapper.Map<UserSkillDto>(updatedUserSkill);
         }
 

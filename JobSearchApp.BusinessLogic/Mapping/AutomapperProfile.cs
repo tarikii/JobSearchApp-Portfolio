@@ -9,7 +9,9 @@ namespace JobSearchApp.BusinessLogic.Mapping
         public AutoMapperProfile()
         {
             // User Mapping
-            CreateMap<User, UserDto>().ReverseMap();
+            CreateMap<User, UserDto>()
+                .ForMember(dto => dto.RoleName, opt => opt.MapFrom(r => r.Role.Name))
+                .ReverseMap();
             CreateMap<CreateUserDto, User>().ReverseMap();
             CreateMap<UpdateUserDto, User>().ReverseMap();
 
@@ -89,7 +91,13 @@ namespace JobSearchApp.BusinessLogic.Mapping
             CreateMap<UpdateInterestDto, Interest>().ReverseMap();
 
             // Match Mapping
-            CreateMap<Match, MatchDto>().ReverseMap();
+            CreateMap<Match, MatchDto>()
+             .ForMember(dto => dto.JobOffer, opt => opt.MapFrom(src => src.JobOffer))
+             .ForMember(dto => dto.User, opt => opt.MapFrom(src => src.User))
+             .ForMember(dto => dto.JobTitle, opt => opt.MapFrom(src => src.JobOffer.Title))
+             .ForMember(dto => dto.UserName, opt => opt.MapFrom(src => src.User.UserName))
+             .ReverseMap();
+
             CreateMap<CreateMatchDto, Match>().ReverseMap();
             CreateMap<UpdateMatchDto, Match>().ReverseMap();
 

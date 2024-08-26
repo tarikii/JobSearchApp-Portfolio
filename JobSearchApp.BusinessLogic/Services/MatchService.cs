@@ -38,14 +38,17 @@ namespace JobSearchApp.BusinessLogic.Services
             return _mapper.Map<MatchDto>(createdMatch);
         }
 
-        public async Task<MatchDto> UpdateMatchAsync(int matchId, UpdateMatchDto updateMatchDto)
+        public async Task<MatchDto> UpdateMatchAsync(int matchId, MatchDto updateMatchDto)
         {
+            var match = await _matchRepository.GetMatchByIdAsync(matchId);
+
             if (matchId != updateMatchDto.MatchId)
             {
                 return null;
             }
 
-            var match = _mapper.Map<Match>(updateMatchDto);
+            match.IsAccepted = updateMatchDto.IsAccepted;
+
             var updatedMatch = await _matchRepository.UpdateMatchAsync(match);
             return _mapper.Map<MatchDto>(updatedMatch);
         }

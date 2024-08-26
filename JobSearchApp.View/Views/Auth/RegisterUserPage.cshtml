@@ -1,0 +1,40 @@
+﻿@using JobSearchApp.BusinessLogic.DTOs
+@model List<CompanyDto>
+
+
+<div class="container" style="margin-top: 1%; margin-bottom: 10%;">
+    @if (ViewBag.Role == "business")
+    {
+        <div class="row">
+            <div style="background-color: #F5F5F5;  border-radius: 15px 0px 0px 15px;" class="col-md-5  p-5">
+                <h1>Registro Empresa</h1>
+                <form class="validate-form" method="post" action="~/Auth/RegisterBusiness">
+                    @Html.Partial("~/Views/Shared/Forms/Auth/_BusinessRegisterForm.cshtml")
+                </form>
+            </div>
+            <div style="background-color: #1F4D78; border-radius: 0px 15px 15px 0px;" class="col-md-7 bg-custom-blue text-white p-5">
+                <h1 style="font-weight:bold;">Crea tu cuenta en Swipe4Work y conecta con candidatos que impulsarán tu negocio.</h1>
+            </div>
+        </div>
+    }
+    else
+    {
+        <div class="row">
+            <div style="background-color: #F5F5F5;  border-radius: 15px 0px 0px 15px;" class="col-md-5  p-5">
+                <form class="validate-form" method="post" action="~/Auth/RegisterCandidateOrRecruiter">
+                    @Html.Partial("~/Views/Shared/Forms/Auth/_RecruiterOrCandidateRegisterForm.cshtml")
+                </form>
+            </div>
+            <div style="background-color: #1F4D78; border-radius: 0px 15px 15px 0px;" class="col-md-7 bg-custom-blue text-white p-5">
+                @if (ViewBag.Role == "recruiter")
+                {
+                    <h2 style="font-weight:bold;" class="display-5">Únete a Swipe4Work y encuentra a los mejores talentos para tu equipo.</h2>
+                }
+                else
+                {
+                    <h2 style="font-weight:bold;" class="display-6">Regístrate en Swipe4Work<br /> y descubre las oportunidades laborales que mejor<br /> se adaptan a ti.</h2>
+                }
+            </div>
+        </div>
+    }
+</div>

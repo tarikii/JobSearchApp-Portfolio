@@ -1,0 +1,43 @@
+﻿.title-edit-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+    .title-edit-container h1 {
+        color: #1F4D78;
+        font-weight: bold;
+        margin-bottom: 20px;
+    }
+
+button.btn.btn-primary {
+    background-color: #7AA5CD;
+    color: #fff;
+    font-weight: bold;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 15%;
+}
+
+    button.btn.btn-primary:hover {
+        background-color: #2980b9;
+    }
+
+.preference-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+}
+
+
+.tag {
+    background-color: #B0C8E0;
+    font-weight: bold;
+    color: #1F4D78;
+    padding: 5px 10px;
+    font-size: 20px;
+    margin-top: 25px; /* Adjust the value as needed */
+}

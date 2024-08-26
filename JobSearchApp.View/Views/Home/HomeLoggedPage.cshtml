@@ -1,0 +1,11 @@
+﻿@using JobSearchApp.BusinessLogic.DTOs
+
+@model UserDto
+
+<div style="margin-bottom: 5%">
+    @if (Model.RoleName == "Candidato")
+        @Html.Partial("~/Views/Shared/Home/_HomeCandidatePage.cshtml")
+    else
+        @Html.Partial("~/Views/Shared/Home/_HomeBusinessRecruiterPage.cshtml")
+
+</div>

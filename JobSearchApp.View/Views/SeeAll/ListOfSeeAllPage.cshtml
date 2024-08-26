@@ -1,0 +1,80 @@
+﻿@using JobSearchApp.BusinessLogic.DTOs
+
+@model SeeAllDto
+
+<link rel="stylesheet" href="~/css/preference.css" type="text/css" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/css/bootstrap.min.css">
+
+<a asp-controller="Home" asp-action="HomeLoggedPage" style="margin-left: 0.5rem;">
+    <svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" fill="currentColor" class="bi bi-arrow-left" viewBox="0 0 16 16">
+        <path style="color: #1F4D78;" fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8" />
+    </svg>
+</a>
+
+<div class="title-edit-container mb-4 ms-3 me-3">
+    <h1>MIS INTERESES</h1>
+    <a asp-controller="Interest" asp-action="EditListInterestPage" style="width: 15%; margin-right: 10rem;" class="btn btn-primary">Editar</a>
+</div>
+
+<div class="preference-tags ms-3 me-3">
+    @foreach (var interest in Model.UserInterests)
+    {
+        <span class="tag ms-3">@interest.InterestText</span>
+    }
+</div>
+
+<br />
+<br />
+<br />
+
+<div class="title-edit-container mb-4 ms-3 me-3">
+    <h1>MIS PREFERENCIAS</h1>
+    <a asp-controller="Preference" asp-action="EditListPreferencePage" style="width: 15%; margin-right: 10rem;" class="btn btn-primary">Editar</a>
+</div>
+
+<div class="preference-tags ms-3 me-3">
+    @foreach (var preference in Model.UserPreferences)
+    {
+        <span class="tag ms-3">@preference.Value</span>
+    }
+</div>
+
+<br />
+<br />
+<br />
+
+<div class="title-edit-container mb-4 ms-3 me-3">
+    <h1>MIS SOFT SKILLS</h1>
+    <a asp-controller="HardSoftSkills" asp-action="EditListHardSoftSkillsPage" style="width: 15%; margin-right: 10rem;" class="btn btn-primary">Editar</a>
+</div>
+
+<div class="preference-tags ms-3 me-3">
+    @foreach (var skills in Model.UserSkills)
+    {
+        @if (skills.Skill.SkillType == "Soft")
+        {
+            <span class="tag ms-3">@skills.Skill.SkillName</span>
+        }
+    }
+</div>
+
+<br />
+<br />
+<br />
+
+<div class="title-edit-container mb-4 ms-3 me-3">
+    <h1>MIS HARD SKILLS</h1>
+</div>
+
+<div class="preference-tags ms-3 me-3">
+    @foreach (var skills in Model.UserSkills)
+    {
+        @if (skills.Skill.SkillType == "Hard")
+        {
+            <span class="tag ms-3">@skills.Skill.SkillName</span>
+        }
+    }
+</div>
+
+<script type="text/javascript" src="~/js/editSkills.js"></script>

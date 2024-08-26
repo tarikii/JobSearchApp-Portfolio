@@ -24,15 +24,40 @@ public class UserService : IUserService
         return _mapper.Map<IEnumerable<UserDto>>(users);
     }
 
+    public async Task<IEnumerable<UserDto>> GetAllUsersCandidateAsync()
+    {
+        var users = await _userRepository.GetAllUsersAsync();
+        var usersCandidates = users.Where(c => c.Role.Name == "Candidato");
+        
+        return _mapper.Map<IEnumerable<UserDto>>(usersCandidates);
+
+        }
+
+
+
     public async Task<UserDto> GetUserByIdAsync(int userId)
     {
         var user = await _userRepository.GetUserByIdAsync(userId);
         return _mapper.Map<UserDto>(user);
     }
 
-    public async Task<UserDto> CreateUserAsync(CreateUserDto createUserDto)
+    public async Task<UserDto> CreateUserAsync(CreateUserDto createUserDto, int companyId, int roleId)
     {
-        var user = _mapper.Map<User>(createUserDto);
+        CreateUserDto newUser = createUserDto;
+        newUser.CompanyId = companyId;
+        newUser.RoleId = roleId;
+
+        var user = _mapper.Map<User>(newUser);
+        var createdUser = await _userRepository.CreateUserAsync(user);
+        return _mapper.Map<UserDto>(createdUser);
+    }
+
+    public async Task<UserDto> CreateUserAsync(CreateUserDto createUserDto, int roleId)
+    {
+        CreateUserDto newUser = createUserDto;
+        newUser.RoleId = roleId;
+
+        var user = _mapper.Map<User>(newUser);
         var createdUser = await _userRepository.CreateUserAsync(user);
         return _mapper.Map<UserDto>(createdUser);
     }
@@ -45,14 +70,28 @@ public class UserService : IUserService
             return null;
         }
 
-        _mapper.Map(updateUserDto, user);
+        user.FirstName = updateUserDto.FirstName;
+        user.LastName = updateUserDto.LastName; 
+        user.GenderIdentity = updateUserDto.GenderIdentity;
+        user.Location = updateUserDto.Location;
+        user.LinkedInUrl = updateUserDto.LinkedInUrl;
+        user.Headline = updateUserDto.Headline;
+        user.MobileNumber = updateUserDto.MobileNumber;
+        user.Summary = updateUserDto.Summary;   
+
         var updatedUser = await _userRepository.UpdateUserAsync(user);
         return _mapper.Map<UserDto>(updatedUser);
     }
 
-    public async Task<User> AuthenticateUserAsync(string username, string password)
+    public async Task<UserDto> AuthenticateUserAsync(string username, string password)
     {
-        return await _userRepository.AuthenticateUserAsync(username, password);
+        var user = await _userRepository.AuthenticateUserAsync(username, password);
+        if (user == null)
+        {
+            return null;
+        }
+
+        return _mapper.Map<UserDto>(user);
     }
 
     public async Task<bool> DeleteUserAsync(int userId)

@@ -3,6 +3,7 @@ using JobSearchApp.BusinessLogic.DTOs;
 using JobSearchApp.BusinessLogic.Interfaces;
 using JobSearchApp.Domain.Models;
 using JobSearchApp.Infrastructure.Interfaces;
+using JobSearchApp.Infrastructure.Repositories;
 
 namespace JobSearchApp.BusinessLogic.Services
 {
@@ -29,22 +30,32 @@ namespace JobSearchApp.BusinessLogic.Services
             return interest == null ? null : _mapper.Map<InterestDto>(interest);
         }
 
-        public async Task<InterestDto> CreateInterestAsync(CreateInterestDto createInterestDto)
+        public async Task<InterestDto> CreateInterestAsync(CreateInterestDto createInterestDto, int userId)
         {
-            var interest = _mapper.Map<Interest>(createInterestDto);
+            CreateInterestDto newInterest = createInterestDto;
+            newInterest.UserId = userId;
+
+            var interest = _mapper.Map<Interest>(newInterest);
             var createdInterest = await _interestRepository.CreateInterestAsync(interest);
             return _mapper.Map<InterestDto>(createdInterest);
         }
 
         public async Task<InterestDto> UpdateInterestAsync(int interestId, UpdateInterestDto updateInterestDto)
         {
-            if (interestId != updateInterestDto.InterestId)
+            var existingInterest = await _interestRepository.GetInterestByIdAsync(interestId);
+            if (existingInterest == null)
             {
-                return null;
+                // Handle the case where the interest does not exist
+                throw new Exception($"Interest with ID {interestId} not found.");
             }
 
-            var interest = _mapper.Map<Interest>(updateInterestDto);
-            var updatedInterest = await _interestRepository.UpdateInterestAsync(interest);
+            // Update properties on the existing interest
+            _mapper.Map(updateInterestDto, existingInterest);
+
+            // Save the updated interest entity
+            var updatedInterest = await _interestRepository.UpdateInterestAsync(existingInterest);
+
+            // Map the updated entity back to a DTO
             return _mapper.Map<InterestDto>(updatedInterest);
         }
 

@@ -1,4 +1,5 @@
 using JobSearchApp.Domain.Models;
+using System.Text.RegularExpressions;
 
 namespace JobSearchApp.BusinessLogic.DTOs
 {
@@ -8,15 +9,16 @@ namespace JobSearchApp.BusinessLogic.DTOs
         public int UserId { get; set; }
         public int JobOfferId { get; set; }
         public DateTimeOffset ApplicationDate { get; set; }
-        public string Status { get; set; }
-        public decimal SalaryExpected { get; set; }
-
-        public string UserName { get; set; }
-        public string JobTitle { get; set; }
+        public string? Status { get; set; }
+        public decimal? SalaryExpected { get; set; }
+        public string? UserName { get; set; }
+        public string? JobTitle { get; set; }
+        public string? RoleName { get; set; }
+        public User User { get; set; }
+        public JobOfferDto JobOffer { get; set; }
 
         public ApplicationDto(Application application)
         {
-            ApplicationId = application.ApplicationId;
             UserId = application.UserId;
             JobOfferId = application.JobOfferId;
             ApplicationDate = application.ApplicationDate;
@@ -24,9 +26,12 @@ namespace JobSearchApp.BusinessLogic.DTOs
             SalaryExpected = application.SalaryExpected;
             UserName = application.User?.UserName;
             JobTitle = application.JobOffer?.Title;
-        }
-        public ApplicationDto(){}
+            RoleName = application.User?.Role?.Name;
 
+            JobOffer = new JobOfferDto(application.JobOffer);
+        }
+
+        public ApplicationDto() { }
     }
     public class CreateApplicationDto
     {
@@ -40,7 +45,7 @@ namespace JobSearchApp.BusinessLogic.DTOs
     public class UpdateApplicationDto
     {
         public int ApplicationId { get; set; }
-        public string Status { get; set; }
+        public string? Status { get; set; }
         public decimal SalaryExpected { get; set; }
     }
 }

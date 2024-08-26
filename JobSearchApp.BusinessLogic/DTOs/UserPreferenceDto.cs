@@ -6,10 +6,10 @@ namespace JobSearchApp.BusinessLogic.DTOs
     {
         public int PreferenceId { get; set; }
         public int UserId { get; set; }
-        public string Category { get; set; }
-        public string Value { get; set; }
+        public string? Category { get; set; }
+        public string? Value { get; set; }
 
-        public string UserName { get; set; }
+        public string? UserName { get; set; }
 
         public UserPreferenceDto(UserPreference userPreference)
         {
@@ -19,20 +19,20 @@ namespace JobSearchApp.BusinessLogic.DTOs
             Value = userPreference.Value;
             UserName = userPreference.User?.UserName;
         }
-        public UserPreferenceDto(){}
 
+        public UserPreferenceDto() { }
     }
     public class CreateUserPreferenceDto
     {
         public int UserId { get; set; }
-        public string Category { get; set; }
-        public string Value { get; set; }
+        public string? Category { get; set; }
+        public string? Value { get; set; }
     }
     public class UpdateUserPreferenceDto
     {
         public int PreferenceId { get; set; }
 
-        public string Category { get; set; }
-        public string Value { get; set; }
+        public string? Category { get; set; }
+        public string? Value { get; set; }
     }
 }

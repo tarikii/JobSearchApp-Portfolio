@@ -6,20 +6,18 @@ public class JobOfferDto
 {
     public int JobOfferId { get; set; }
     public int CompanyId { get; set; }
-    public string Title { get; set; }
-    public string Description { get; set; }
-    public string Location { get; set; }
-    public string JobType { get; set; }
-    public string ExperienceLevel { get; set; }
+    public string? Title { get; set; }
+    public string? Description { get; set; }
+    public string? Location { get; set; }
+    public string? JobType { get; set; }
+    public string? ExperienceLevel { get; set; }
     public DateTimeOffset PostedDate { get; set; }
     public DateTimeOffset? ExpiredDate { get; set; }
     public bool IsActive { get; set; }
     public int EstimatedDurationDays { get; set; }
     public decimal? MinSalary { get; set; }
     public decimal? MaxSalary { get; set; }
-
-    public string CompanyName { get; set; }
-
+    public string? CompanyName { get; set; }
     public JobOfferDto(JobOffer jobOffer)
     {
         JobOfferId = jobOffer.JobOfferId;
@@ -37,18 +35,18 @@ public class JobOfferDto
         MaxSalary = jobOffer.MaxSalary;
         CompanyName = jobOffer.Company?.Name;
     }
-    public JobOfferDto(){}
 
+    public JobOfferDto() { }
 }
 
 public class CreateJobOfferDto
 {
     public int CompanyId { get; set; }
-    public string Title { get; set; }
-    public string Description { get; set; }
-    public string Location { get; set; }
-    public string JobType { get; set; }
-    public string ExperienceLevel { get; set; }
+    public string? Title { get; set; }
+    public string? Description { get; set; }
+    public string? Location { get; set; }
+    public string? JobType { get; set; }
+    public string? ExperienceLevel { get; set; }
     public DateTimeOffset PostedDate { get; set; } = DateTimeOffset.Now;
     public DateTimeOffset? ExpiredDate { get; set; }
     public bool IsActive { get; set; } = true;
@@ -59,14 +57,19 @@ public class CreateJobOfferDto
 public class UpdateJobOfferDto
 {
     public int JobOfferId { get; set; }
-    public string Title { get; set; }
-    public string Description { get; set; }
-    public string Location { get; set; }
-    public string JobType { get; set; }
-    public string ExperienceLevel { get; set; }
+    public string? Title { get; set; }
+    public string? Description { get; set; }
+    public string? Location { get; set; }
+    public string? JobType { get; set; }
+    public string? ExperienceLevel { get; set; }
     public DateTimeOffset? ExpiredDate { get; set; }
     public bool IsActive { get; set; }
     public int EstimatedDurationDays { get; set; }
     public decimal MinSalary { get; set; }
     public decimal MaxSalary { get; set; }
+}
+public class DeleteJobOfferDto
+{
+    public int JobOfferId { get; set; }
+    public string Title { get; set; }
 }

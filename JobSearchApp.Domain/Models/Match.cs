@@ -8,6 +8,6 @@ public class Match
     public DateTimeOffset MatchDate { get; set; }
     public bool IsAccepted { get; set; }
     
-    public JobOffer JobOffer { get; set; }
-    public User User { get; set; }
+    public JobOffer? JobOffer { get; set; }
+    public User? User { get; set; }
 }

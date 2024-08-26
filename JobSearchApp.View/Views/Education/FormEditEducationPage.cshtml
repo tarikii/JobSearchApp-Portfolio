@@ -1,0 +1,53 @@
+﻿@using JobSearchApp.BusinessLogic.DTOs
+
+@model EducationDto
+
+<link rel="stylesheet" href="~/css/education.css" type="text/css" />
+
+<a asp-controller="Profile" asp-action="ProfileOwnerUserPage" style="margin-left: 3rem;">
+    <svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" fill="currentColor" class="bi bi-arrow-left" viewBox="0 0 16 16">
+        <path style="color: #1F4D78;" fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8" />
+    </svg>
+</a>
+
+<h2 style="margin-left: 8.6rem; color: #1F4D78; font-weight: bold;">Editar Educación</h2>
+<form action="~/Education/UpdateEducation" method="post" class="education-form">
+    <input type="hidden" name="EducationId" value="@Model.EducationId" />
+    <input type="hidden" name="UserId" value="@Model.UserId" />
+    <div class="form-group">
+        <label style="color: #1F4D78; font-weight: bold;" for="SchoolName">Centro Educativo</label>
+        <input type="text" id="SchoolName" name="SchoolName" class="form-control" value="@Model.SchoolName" required />
+    </div>
+    <div class="form-group">
+        <label style="color: #1F4D78; font-weight: bold;" for="Degree">Título</label>
+        <input type="text" id="Degree" name="Degree" class="form-control" value="@Model.Degree" required />
+    </div>
+    <div class="form-group">
+        <label style="color: #1F4D78; font-weight: bold;" for="FieldOfStudy">Campo de Estudio</label>
+        <input type="text" id="FieldOfStudy" name="FieldOfStudy" class="form-control" value="@Model.FieldOfStudy" required />
+    </div>
+    <div class="row">
+        <div class="form-group col-md-6">
+            <label style="color: #1F4D78; font-weight: bold;" for="StartDate">Fecha Inicio</label>
+            <input type="date" id="StartDate" name="StartDate" class="form-control" value="@Model.StartDate.ToString("yyyy-MM-dd")" required />
+        </div>
+        <div class="form-group col-md-6">
+            <label style="color: #1F4D78; font-weight: bold;" for="EndDate">Fecha Finalización</label>
+            <input type="date" id="EndDate" name="EndDate" class="form-control" value="@Model.EndDate.ToString("yyyy-MM-dd")" required />
+        </div>
+    </div>
+    <div class="form-group">
+        <label style="color: #1F4D78; font-weight: bold;" for="ActivitiesAndSocieties">Actividades y Sociedades</label>
+        <textarea id="ActivitiesAndSocieties" name="ActivitiesAndSocieties" class="form-control" required>@Model.ActivitiesAndSocieties</textarea>
+    </div>
+    <div class="form-group">
+        <label style="color: #1F4D78; font-weight: bold;" for="Description">Descripción</label>
+        <textarea id="Description" name="Description" class="form-control" required>@Model.Description</textarea>
+    </div>
+
+    <br />
+
+    <div class="button-container text-end">
+        <button type="submit" class="btn btn-primary">Guardar Educación</button>
+    </div>
+</form>

@@ -44,7 +44,7 @@ namespace JobSearchApp.Web.Controllers
         [HttpPost]
         public async Task<ActionResult<WorkExperienceDto>> CreateWorkExperience(CreateWorkExperienceDto createExperienceDto)
         {
-            var createdExperience = await _workExperienceService.CreateWorkExperienceAsync(createExperienceDto);
+            var createdExperience = await _workExperienceService.CreateWorkExperienceAsync(createExperienceDto,1);
 
             return CreatedAtAction(nameof(GetWorkExperienceById), new { id = createdExperience.WorkExperienceId }, createdExperience);
         }

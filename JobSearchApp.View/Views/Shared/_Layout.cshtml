@@ -1,0 +1,257 @@
+﻿@using JobSearchApp.BusinessLogic.DTOs
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - JobSearchApp.View</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/JobSearchApp.View.styles.css" asp-append-version="true" />
+    <style>
+        html, body {
+            height: 100%;
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+        }
+
+        main {
+            flex: 1;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav style="background-color: #1F4D78;" class="navbar navbar-expand-md fixed-top">
+            <div class="container-fluid">
+                <a style="color:white;" class="navbar-brand" asp-area="" asp-controller="Home" asp-action="HomePage">Swipe4Work</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                    <ul class="navbar-nav flex-grow-1">
+                        @if (Context.Session.GetString("userId") == null)
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link text-white" asp-area="" asp-controller="Home" asp-action="HomePage">Inicio</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-white" href="#about">Información</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-white" href="#team">Equipo</a>
+                            </li>
+                        }
+                        else
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link text-white" asp-area="" asp-controller="Home" asp-action="HomeLoggedPage">Inicio</a>
+                            </li>
+                        }
+                    </ul>
+                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                        @if (Context.Session.GetString("userId") == null)
+                        {
+                            <li class="nav-item d-flex align-items-center">
+                                <a id="contactLink" class="nav-link text-white" href="#contact">Contacto</a>
+                            </li>
+                            <li class="nav-item d-flex align-items-center">
+                                <a class="nav-link btn btn-primary text-white" asp-area="" asp-controller="Auth" asp-action="LoginPage">Iniciar Sesión</a>
+                            </li>
+                        }
+                        else
+                        {
+                            <li class="nav-item d-flex align-items-center">
+                                <div class="dropdown">
+                                    <a class="d-flex align-items-center text-decoration-none" href="#" id="dropdownUser" data-bs-toggle="dropdown" aria-expanded="false">
+                                        <img style="border-radius: 1200px; height:50px; margin-left: 10px;" src="~/lib/img/perifl-icon.jpg" alt="Perfil" />
+                                    </a>
+                                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownUser">
+                                        <li><a style="color:black;" class="dropdown-item text-white" asp-area="" asp-controller="Profile" asp-action="ProfileOwnerUserPage">Mi Perfil</a></li>
+                                        <li><hr class="dropdown-divider"></li>
+                                        <li>
+                                            <form action="~/Auth/LogOut" method="post">
+                                                <button type="submit" class="dropdown-item">Cerrar Sesión</button>
+                                            </form>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </li>
+                        }
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    @if (Context.Session.GetString("userId") == null && ViewBag.Carrousel != "No")
+    {
+        <div id="myCarousel" class="carousel slide" data-bs-ride="carousel" style="margin-top:0px;">
+            <div class="carousel-indicators">
+                <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+            </div>
+            <div class="carousel-inner">
+                <!-- Slide 1: Candidatos -->
+                <div class="carousel-item active">
+                    <img src="~/lib/img/slider1.jpg" class="d-block w-100" alt="Imagen de Candidatos" />
+                    <div class="container">
+                        <div class="carousel-caption d-none d-md-block">
+                            <h1 style="text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.5);">¡Desliza y Encuentra tu Empleo Ideal Hoy!</h1>
+                            <p style="text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.5);">Explora oportunidades de empleo que se alinean con tus habilidades y aspiraciones, de manera anónima. Empieza a deslizar y conecta con empresas que buscan talentos como tú.</p>
+                            <p><a class="btn btn-lg btn-primary" href="#">Empieza a Deslizar</a></p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Slide 2: Empresas -->
+                <div class="carousel-item">
+                    <img src="~/lib/img/slider2.jpg" class="d-block w-100" alt="Imagen de Empresas" />
+                    <div class="container">
+                        <div class="carousel-caption d-none d-md-block">
+                            <h1 style="text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.5);">
+                                Descubre Talento que Impulsará tu Negocio
+                            </h1>
+                            <p style="text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.5);">
+                                Accede a una amplia base de candidatos calificados, todos ellos presentados de manera anónima para que te concentres en el talento. Desliza y encuentra el ajuste perfecto para tu equipo.
+                            </p>
+
+                            <p><a class="btn btn-lg btn-primary" href="#">Encuentra Talento</a></p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Slide 3: Reclutadores -->
+                <div class="carousel-item">
+                    <img src="~/lib/img/slider3.jpg" class="d-block w-100" alt="Imagen de Reclutadores" />
+                    <div class="container">
+                        <div class="carousel-caption d-none d-md-block">
+                            <h1 style="text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.5);">Conecta Talentos con Oportunidades Reales</h1>
+                            <p style="text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.5);">Maximiza tu eficiencia como reclutador con nuestra herramienta intuitiva. Desliza entre perfiles y conecta candidatos calificados con las mejores oportunidades laborales.</p>
+                            <p><a class="btn btn-lg btn-primary" href="#">Optimiza tu Reclutamiento</a></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#myCarousel" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#myCarousel" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>
+
+
+
+    }
+
+    @if (Context.Session.GetString("userId") == null && ViewBag.Carrousel != "No")
+    {
+        <main role="main" class="flex-grow-1 pb-3" style="margin-top: 15px;">
+            @RenderBody()
+        </main>
+    }
+    else
+    {
+        <main role="main" class="flex-grow-1 pb-3" style="margin-top: 100px;">
+            @RenderBody()
+        </main>
+    }
+
+
+    <footer class="mt-auto text-center text-lg-start text-white" style="background-color: #1f4d78;">
+        <div class="container-fluid p-4 pb-0">
+            @if (Context.Session.GetString("userId") == null)
+            {
+                <section>
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-4 col-md-6 mb-4 mb-md-0 d-flex flex-column align-items-start">
+                                <h5 class="text-uppercase mb-2">Legal</h5>
+                                <ul class="list-unstyled footer-links mb-0">
+                                    <li><a href="#">Privacidad</a></li>
+                                    <li><a href="#">Condiciones</a></li>
+                                    <li><a href="#">Política de cookies</a></li>
+                                    <li><a href="#">Propiedad intelectual</a></li>
+                                </ul>
+                            </div>
+                            <div class="col-md-4 d-flex flex-column align-items-center">
+                                <h5 class="text-uppercase mb-2">REDES SOCIALES</h5>
+                                <ul class="list-unstyled d-flex flex-row mb-0">
+                                    <li><a href="#" class="text-white me-4">Facebook</a></li>
+                                    <li><a href="#" class="text-white me-4">Twitter</a></li>
+                                    <li><a href="#" class="text-white me-4">Instagram</a></li>
+                                </ul>
+                            </div>
+                            <div class="col-lg-4 col-md-6 mb-4 mb-md-0">
+                                <h5 class="text-uppercase mb-2">Contacto</h5>
+                                <ul class="list-unstyled">
+                                    <li><i class="bi bi-house-door me-2"></i> Calle Mayor 22, Madrid</li>
+                                    <li><i class="bi bi-envelope me-2"></i> info@swipe4work.com</li>
+                                    <li><i class="bi bi-telephone me-2"></i> +34 91 000 0000</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            }
+            else
+            {
+                <!-- Footer for logged-in users -->
+                <section class="">
+                    <div class="row">
+                        <div class="col-lg-4 col-md-6 mb-4 mb-md-0">
+                            <h5 class="text-uppercase">TU CUENTA</h5>
+                            <ul class="list-unstyled footer-links">
+                                <li><a href="@Url.Action("ProfileOwnerUserPage", "Profile")">Perfil</a></li>
+                                <li><a href="#">Configuración</a></li>
+                                <li>
+                                    <form action="~/Auth/LogOut" method="post" class="mb-0">
+                                        <button type="submit" class="btn btn-link text-white p-0" style="font-size: 1rem; border: none; background: none; padding: 0; margin: 0; text-decoration: none; transition: text-decoration 0.3s;">
+                                            <span style="text-decoration: none;">Cerrar Sesión</span>
+                                        </button>
+                                    </form>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="col-md-4 d-flex justify-content-center align-items-center">
+                            <img src="~/lib/img/perifl-icon.jpg" alt="Profile" class="img-fluid rounded-circle" style="width: 80px;">
+                        </div>
+                        <div class="col-md-4">
+                            <h5 class="text-uppercase">DANOS TU FEEDBACK</h5>
+                            <ul class="list-unstyled footer-links">
+                                <li><a href="#">Enviar feedback</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+
+                <hr class="mb-4" />
+
+                <section class="">
+                    <div class="text-center footer-links">
+                        <a href="#">Preguntas frecuentes</a> /
+                        <a href="#">Consejos de seguridad</a> /
+                        <a href="#">Condiciones</a>
+                    </div>
+                </section>
+
+                <hr class="mb-4" />
+
+            }
+        </div>
+    </footer>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/basicCarrusel.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

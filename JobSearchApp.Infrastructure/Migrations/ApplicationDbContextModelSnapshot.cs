@@ -31,7 +31,6 @@ namespace JobSearchApp.Infrastructure.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("AnswerId"));
 
                     b.Property<string>("AnswerText")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("IsFeatured")
@@ -50,6 +49,88 @@ namespace JobSearchApp.Infrastructure.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("Answer", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            AnswerId = 1,
+                            AnswerText = "Manejo el estrés organizando mi tiempo y estableciendo prioridades claras. También me aseguro de tomar breves descansos para despejar la mente.",
+                            IsFeatured = true,
+                            QuestionId = 1,
+                            UserId = 1
+                        },
+                        new
+                        {
+                            AnswerId = 2,
+                            AnswerText = "Divido los problemas complejos en partes más pequeñas y abordo cada una de manera sistemática, buscando diferentes perspectivas para llegar a una solución.",
+                            IsFeatured = true,
+                            QuestionId = 2,
+                            UserId = 2
+                        },
+                        new
+                        {
+                            AnswerId = 3,
+                            AnswerText = "Priorizo mis tareas utilizando una matriz de urgencia e importancia, lo que me permite enfocarme en lo que realmente importa y gestionar el tiempo eficientemente.",
+                            IsFeatured = true,
+                            QuestionId = 3,
+                            UserId = 3
+                        },
+                        new
+                        {
+                            AnswerId = 4,
+                            AnswerText = "Me mantengo actualizado participando en cursos en línea, asistiendo a conferencias y leyendo publicaciones relevantes en mi campo.",
+                            IsFeatured = true,
+                            QuestionId = 4,
+                            UserId = 4
+                        },
+                        new
+                        {
+                            AnswerId = 5,
+                            AnswerText = "Aprendí rápidamente una nueva habilidad cuando me pidieron que liderara un proyecto de análisis de datos, dedicando tiempo extra y solicitando retroalimentación constante.",
+                            IsFeatured = true,
+                            QuestionId = 5,
+                            UserId = 5
+                        },
+                        new
+                        {
+                            AnswerId = 6,
+                            AnswerText = "Reviso mi trabajo varias veces y utilizo herramientas de verificación antes de presentarlo. Además, pido a un colega que lo revise para asegurarme de su precisión.",
+                            IsFeatured = true,
+                            QuestionId = 6,
+                            UserId = 6
+                        },
+                        new
+                        {
+                            AnswerId = 7,
+                            AnswerText = "Fomento la comunicación abierta en mi equipo organizando reuniones periódicas y utilizando herramientas de colaboración para asegurarnos de que todos estén alineados.",
+                            IsFeatured = true,
+                            QuestionId = 7,
+                            UserId = 7
+                        },
+                        new
+                        {
+                            AnswerId = 8,
+                            AnswerText = "Veo la retroalimentación negativa como una oportunidad para mejorar. Escucho atentamente, analizo la crítica y hago los cambios necesarios.",
+                            IsFeatured = true,
+                            QuestionId = 8,
+                            UserId = 8
+                        },
+                        new
+                        {
+                            AnswerId = 9,
+                            AnswerText = "Lo que más me motiva es ver el impacto positivo de mi trabajo y el reconocimiento por parte de mis colegas y superiores.",
+                            IsFeatured = true,
+                            QuestionId = 9,
+                            UserId = 9
+                        },
+                        new
+                        {
+                            AnswerId = 10,
+                            AnswerText = "Gestiono los conflictos abordando los problemas de manera directa y honesta, buscando soluciones que beneficien a ambas partes.",
+                            IsFeatured = true,
+                            QuestionId = 10,
+                            UserId = 10
+                        });
                 });
 
             modelBuilder.Entity("JobSearchApp.Domain.Models.Application", b =>
@@ -70,7 +151,6 @@ namespace JobSearchApp.Infrastructure.Migrations
                         .HasColumnType("decimal(18,2)");
 
                     b.Property<string>("Status")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("UserId")
@@ -83,6 +163,98 @@ namespace JobSearchApp.Infrastructure.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("Application", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            ApplicationId = 1,
+                            ApplicationDate = new DateTimeOffset(new DateTime(2024, 1, 5, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 1, 0, 0, 0)),
+                            JobOfferId = 12,
+                            SalaryExpected = 60000m,
+                            Status = "Pendiente",
+                            UserId = 11
+                        },
+                        new
+                        {
+                            ApplicationId = 2,
+                            ApplicationDate = new DateTimeOffset(new DateTime(2024, 2, 20, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 1, 0, 0, 0)),
+                            JobOfferId = 8,
+                            SalaryExpected = 50000m,
+                            Status = "Aceptado",
+                            UserId = 12
+                        },
+                        new
+                        {
+                            ApplicationId = 3,
+                            ApplicationDate = new DateTimeOffset(new DateTime(2024, 3, 15, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 1, 0, 0, 0)),
+                            JobOfferId = 19,
+                            SalaryExpected = 55000m,
+                            Status = "Pendiente",
+                            UserId = 13
+                        },
+                        new
+                        {
+                            ApplicationId = 4,
+                            ApplicationDate = new DateTimeOffset(new DateTime(2024, 4, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 2, 0, 0, 0)),
+                            JobOfferId = 14,
+                            SalaryExpected = 52000m,
+                            Status = "Rechazado",
+                            UserId = 14
+                        },
+                        new
+                        {
+                            ApplicationId = 5,
+                            ApplicationDate = new DateTimeOffset(new DateTime(2024, 5, 18, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 2, 0, 0, 0)),
+                            JobOfferId = 13,
+                            SalaryExpected = 58000m,
+                            Status = "Pendiente",
+                            UserId = 15
+                        },
+                        new
+                        {
+                            ApplicationId = 6,
+                            ApplicationDate = new DateTimeOffset(new DateTime(2024, 6, 22, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 2, 0, 0, 0)),
+                            JobOfferId = 3,
+                            SalaryExpected = 61000m,
+                            Status = "Aceptado",
+                            UserId = 16
+                        },
+                        new
+                        {
+                            ApplicationId = 7,
+                            ApplicationDate = new DateTimeOffset(new DateTime(2024, 7, 25, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 2, 0, 0, 0)),
+                            JobOfferId = 20,
+                            SalaryExpected = 59000m,
+                            Status = "Rechazado",
+                            UserId = 17
+                        },
+                        new
+                        {
+                            ApplicationId = 8,
+                            ApplicationDate = new DateTimeOffset(new DateTime(2024, 8, 15, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 2, 0, 0, 0)),
+                            JobOfferId = 16,
+                            SalaryExpected = 62000m,
+                            Status = "Pendiente",
+                            UserId = 18
+                        },
+                        new
+                        {
+                            ApplicationId = 9,
+                            ApplicationDate = new DateTimeOffset(new DateTime(2024, 9, 5, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 2, 0, 0, 0)),
+                            JobOfferId = 16,
+                            SalaryExpected = 53000m,
+                            Status = "Aceptado",
+                            UserId = 19
+                        },
+                        new
+                        {
+                            ApplicationId = 10,
+                            ApplicationDate = new DateTimeOffset(new DateTime(2024, 10, 12, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 2, 0, 0, 0)),
+                            JobOfferId = 18,
+                            SalaryExpected = 56000m,
+                            Status = "Rechazado",
+                            UserId = 20
+                        });
                 });
 
             modelBuilder.Entity("JobSearchApp.Domain.Models.Company", b =>
@@ -94,39 +266,154 @@ namespace JobSearchApp.Infrastructure.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CompanyId"));
 
                     b.Property<string>("Description")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("FoundedYear")
                         .HasColumnType("int");
 
                     b.Property<string>("Headquarters")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Industry")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Location")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Size")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("WebsiteUrl")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("CompanyId");
 
                     b.ToTable("Company", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            CompanyId = 1,
+                            Description = "Fundación Esplai promueve la inclusión social, el voluntariado, y el uso de tecnologías de la información para la ciudadanía.",
+                            FoundedYear = 1999,
+                            Headquarters = "El Prat de Llobregat, España",
+                            Industry = "ONG",
+                            Location = "El Prat de Llobregat, España",
+                            Name = "Fundación Esplai",
+                            Size = "Mediana",
+                            WebsiteUrl = "https://fundacionesplai.org/"
+                        },
+                        new
+                        {
+                            CompanyId = 2,
+                            Description = "Empresa dedicada a la investigación y desarrollo de energías renovables y sostenibilidad ambiental.",
+                            FoundedYear = 2015,
+                            Headquarters = "Barcelona, España",
+                            Industry = "Energía Renovable",
+                            Location = "Barcelona, España",
+                            Name = "Innovación Verde S.L.",
+                            Size = "Mediana",
+                            WebsiteUrl = "https://www.innovacionverde.com"
+                        },
+                        new
+                        {
+                            CompanyId = 3,
+                            Description = "Especialistas en protección de datos y ciberseguridad para empresas.",
+                            FoundedYear = 2018,
+                            Headquarters = "Madrid, España",
+                            Industry = "Seguridad Informática",
+                            Location = "Madrid, España",
+                            Name = "CiberSeguridad Total S.A.",
+                            Size = "Pequeña",
+                            WebsiteUrl = "https://www.ciberseguridadtotal.com"
+                        },
+                        new
+                        {
+                            CompanyId = 4,
+                            Description = "Empresa especializada en el desarrollo de aplicaciones móviles innovadoras.",
+                            FoundedYear = 2010,
+                            Headquarters = "Valencia, España",
+                            Industry = "Desarrollo de Software",
+                            Location = "Valencia, España",
+                            Name = "Desarrollos Móviles SL",
+                            Size = "Mediana",
+                            WebsiteUrl = "https://www.desarrollosmoviles.com"
+                        },
+                        new
+                        {
+                            CompanyId = 5,
+                            Description = "Líder en la creación de experiencias turísticas personalizadas y tecnológicas.",
+                            FoundedYear = 2005,
+                            Headquarters = "Sevilla, España",
+                            Industry = "Turismo",
+                            Location = "Sevilla, España",
+                            Name = "Turismo Inteligente S.A.",
+                            Size = "Grande",
+                            WebsiteUrl = "https://www.turismo-inteligente.com"
+                        },
+                        new
+                        {
+                            CompanyId = 6,
+                            Description = "Proporciona soluciones de tratamiento y purificación de agua para uso doméstico e industrial.",
+                            FoundedYear = 2012,
+                            Headquarters = "Málaga, España",
+                            Industry = "Agua y Saneamiento",
+                            Location = "Málaga, España",
+                            Name = "Agua Pura S.L.",
+                            Size = "Mediana",
+                            WebsiteUrl = "https://www.aguapura.com"
+                        },
+                        new
+                        {
+                            CompanyId = 7,
+                            Description = "Productores y distribuidores de alimentos ecológicos y orgánicos en España.",
+                            FoundedYear = 2000,
+                            Headquarters = "Bilbao, España",
+                            Industry = "Alimentación",
+                            Location = "Bilbao, España",
+                            Name = "Alimentos Ecológicos S.A.",
+                            Size = "Grande",
+                            WebsiteUrl = "https://www.alimentosecologicos.com"
+                        },
+                        new
+                        {
+                            CompanyId = 8,
+                            Description = "Empresa constructora líder en proyectos residenciales y comerciales.",
+                            FoundedYear = 1995,
+                            Headquarters = "Madrid, España",
+                            Industry = "Construcción",
+                            Location = "Madrid, España",
+                            Name = "Construcciones Modernas SL",
+                            Size = "Grande",
+                            WebsiteUrl = "https://www.construccionesmodernas.com"
+                        },
+                        new
+                        {
+                            CompanyId = 9,
+                            Description = "Especialistas en logística y transporte de mercancías de manera eficiente y sostenible.",
+                            FoundedYear = 2010,
+                            Headquarters = "Zaragoza, España",
+                            Industry = "Logística y Transporte",
+                            Location = "Zaragoza, España",
+                            Name = "Transporte Eficiente S.A.",
+                            Size = "Mediana",
+                            WebsiteUrl = "https://www.transporteeficiente.com"
+                        },
+                        new
+                        {
+                            CompanyId = 10,
+                            Description = "Innovación en tecnología médica para mejorar la calidad de vida.",
+                            FoundedYear = 2015,
+                            Headquarters = "Granada, España",
+                            Industry = "Salud",
+                            Location = "Granada, España",
+                            Name = "Tecnología Médica Avanzada S.L.",
+                            Size = "Mediana",
+                            WebsiteUrl = "https://www.tecnologiamedica.com"
+                        });
                 });
 
             modelBuilder.Entity("JobSearchApp.Domain.Models.CompanyTag", b =>
@@ -142,6 +429,408 @@ namespace JobSearchApp.Infrastructure.Migrations
                     b.HasIndex("TagId");
 
                     b.ToTable("CompanyTag", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            CompanyId = 1,
+                            TagId = 1
+                        },
+                        new
+                        {
+                            CompanyId = 1,
+                            TagId = 3
+                        },
+                        new
+                        {
+                            CompanyId = 1,
+                            TagId = 5
+                        },
+                        new
+                        {
+                            CompanyId = 1,
+                            TagId = 7
+                        },
+                        new
+                        {
+                            CompanyId = 1,
+                            TagId = 9
+                        },
+                        new
+                        {
+                            CompanyId = 1,
+                            TagId = 11
+                        },
+                        new
+                        {
+                            CompanyId = 1,
+                            TagId = 13
+                        },
+                        new
+                        {
+                            CompanyId = 1,
+                            TagId = 15
+                        },
+                        new
+                        {
+                            CompanyId = 2,
+                            TagId = 2
+                        },
+                        new
+                        {
+                            CompanyId = 2,
+                            TagId = 4
+                        },
+                        new
+                        {
+                            CompanyId = 2,
+                            TagId = 6
+                        },
+                        new
+                        {
+                            CompanyId = 2,
+                            TagId = 8
+                        },
+                        new
+                        {
+                            CompanyId = 2,
+                            TagId = 10
+                        },
+                        new
+                        {
+                            CompanyId = 2,
+                            TagId = 12
+                        },
+                        new
+                        {
+                            CompanyId = 2,
+                            TagId = 14
+                        },
+                        new
+                        {
+                            CompanyId = 2,
+                            TagId = 16
+                        },
+                        new
+                        {
+                            CompanyId = 3,
+                            TagId = 3
+                        },
+                        new
+                        {
+                            CompanyId = 3,
+                            TagId = 5
+                        },
+                        new
+                        {
+                            CompanyId = 3,
+                            TagId = 7
+                        },
+                        new
+                        {
+                            CompanyId = 3,
+                            TagId = 9
+                        },
+                        new
+                        {
+                            CompanyId = 3,
+                            TagId = 11
+                        },
+                        new
+                        {
+                            CompanyId = 3,
+                            TagId = 13
+                        },
+                        new
+                        {
+                            CompanyId = 3,
+                            TagId = 15
+                        },
+                        new
+                        {
+                            CompanyId = 3,
+                            TagId = 17
+                        },
+                        new
+                        {
+                            CompanyId = 4,
+                            TagId = 4
+                        },
+                        new
+                        {
+                            CompanyId = 4,
+                            TagId = 6
+                        },
+                        new
+                        {
+                            CompanyId = 4,
+                            TagId = 8
+                        },
+                        new
+                        {
+                            CompanyId = 4,
+                            TagId = 10
+                        },
+                        new
+                        {
+                            CompanyId = 4,
+                            TagId = 12
+                        },
+                        new
+                        {
+                            CompanyId = 4,
+                            TagId = 14
+                        },
+                        new
+                        {
+                            CompanyId = 4,
+                            TagId = 16
+                        },
+                        new
+                        {
+                            CompanyId = 4,
+                            TagId = 18
+                        },
+                        new
+                        {
+                            CompanyId = 5,
+                            TagId = 5
+                        },
+                        new
+                        {
+                            CompanyId = 5,
+                            TagId = 7
+                        },
+                        new
+                        {
+                            CompanyId = 5,
+                            TagId = 9
+                        },
+                        new
+                        {
+                            CompanyId = 5,
+                            TagId = 11
+                        },
+                        new
+                        {
+                            CompanyId = 5,
+                            TagId = 13
+                        },
+                        new
+                        {
+                            CompanyId = 5,
+                            TagId = 15
+                        },
+                        new
+                        {
+                            CompanyId = 5,
+                            TagId = 17
+                        },
+                        new
+                        {
+                            CompanyId = 5,
+                            TagId = 19
+                        },
+                        new
+                        {
+                            CompanyId = 6,
+                            TagId = 6
+                        },
+                        new
+                        {
+                            CompanyId = 6,
+                            TagId = 8
+                        },
+                        new
+                        {
+                            CompanyId = 6,
+                            TagId = 10
+                        },
+                        new
+                        {
+                            CompanyId = 6,
+                            TagId = 12
+                        },
+                        new
+                        {
+                            CompanyId = 6,
+                            TagId = 14
+                        },
+                        new
+                        {
+                            CompanyId = 6,
+                            TagId = 16
+                        },
+                        new
+                        {
+                            CompanyId = 6,
+                            TagId = 18
+                        },
+                        new
+                        {
+                            CompanyId = 6,
+                            TagId = 20
+                        },
+                        new
+                        {
+                            CompanyId = 7,
+                            TagId = 7
+                        },
+                        new
+                        {
+                            CompanyId = 7,
+                            TagId = 9
+                        },
+                        new
+                        {
+                            CompanyId = 7,
+                            TagId = 11
+                        },
+                        new
+                        {
+                            CompanyId = 7,
+                            TagId = 13
+                        },
+                        new
+                        {
+                            CompanyId = 7,
+                            TagId = 15
+                        },
+                        new
+                        {
+                            CompanyId = 7,
+                            TagId = 17
+                        },
+                        new
+                        {
+                            CompanyId = 7,
+                            TagId = 19
+                        },
+                        new
+                        {
+                            CompanyId = 7,
+                            TagId = 1
+                        },
+                        new
+                        {
+                            CompanyId = 8,
+                            TagId = 8
+                        },
+                        new
+                        {
+                            CompanyId = 8,
+                            TagId = 10
+                        },
+                        new
+                        {
+                            CompanyId = 8,
+                            TagId = 12
+                        },
+                        new
+                        {
+                            CompanyId = 8,
+                            TagId = 14
+                        },
+                        new
+                        {
+                            CompanyId = 8,
+                            TagId = 16
+                        },
+                        new
+                        {
+                            CompanyId = 8,
+                            TagId = 18
+                        },
+                        new
+                        {
+                            CompanyId = 8,
+                            TagId = 20
+                        },
+                        new
+                        {
+                            CompanyId = 8,
+                            TagId = 2
+                        },
+                        new
+                        {
+                            CompanyId = 9,
+                            TagId = 9
+                        },
+                        new
+                        {
+                            CompanyId = 9,
+                            TagId = 11
+                        },
+                        new
+                        {
+                            CompanyId = 9,
+                            TagId = 13
+                        },
+                        new
+                        {
+                            CompanyId = 9,
+                            TagId = 15
+                        },
+                        new
+                        {
+                            CompanyId = 9,
+                            TagId = 17
+                        },
+                        new
+                        {
+                            CompanyId = 9,
+                            TagId = 19
+                        },
+                        new
+                        {
+                            CompanyId = 9,
+                            TagId = 1
+                        },
+                        new
+                        {
+                            CompanyId = 9,
+                            TagId = 3
+                        },
+                        new
+                        {
+                            CompanyId = 10,
+                            TagId = 10
+                        },
+                        new
+                        {
+                            CompanyId = 10,
+                            TagId = 12
+                        },
+                        new
+                        {
+                            CompanyId = 10,
+                            TagId = 14
+                        },
+                        new
+                        {
+                            CompanyId = 10,
+                            TagId = 16
+                        },
+                        new
+                        {
+                            CompanyId = 10,
+                            TagId = 18
+                        },
+                        new
+                        {
+                            CompanyId = 10,
+                            TagId = 20
+                        },
+                        new
+                        {
+                            CompanyId = 10,
+                            TagId = 2
+                        },
+                        new
+                        {
+                            CompanyId = 10,
+                            TagId = 4
+                        });
                 });
 
             modelBuilder.Entity("JobSearchApp.Domain.Models.CompensationBenefit", b =>
@@ -153,14 +842,12 @@ namespace JobSearchApp.Infrastructure.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("BenefitId"));
 
                     b.Property<string>("BenefitType")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("CompanyId")
                         .HasColumnType("int");
 
                     b.Property<string>("Description")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("BenefitId");
@@ -168,6 +855,148 @@ namespace JobSearchApp.Infrastructure.Migrations
                     b.HasIndex("CompanyId");
 
                     b.ToTable("CompensationBenefit", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            BenefitId = 1,
+                            BenefitType = "Seguro de Salud",
+                            CompanyId = 1,
+                            Description = "Cobertura completa de seguro médico para empleados y sus familias."
+                        },
+                        new
+                        {
+                            BenefitId = 2,
+                            BenefitType = "Bonificación Anual",
+                            CompanyId = 1,
+                            Description = "Bonificación basada en el rendimiento anual del empleado."
+                        },
+                        new
+                        {
+                            BenefitId = 3,
+                            BenefitType = "Estudio y Capacitación",
+                            CompanyId = 2,
+                            Description = "Reembolsos para cursos de desarrollo profesional y capacitación continua."
+                        },
+                        new
+                        {
+                            BenefitId = 4,
+                            BenefitType = "Tiempo de Vacaciones",
+                            CompanyId = 2,
+                            Description = "Tiempo adicional de vacaciones por antigüedad y desempeño."
+                        },
+                        new
+                        {
+                            BenefitId = 5,
+                            BenefitType = "Plan de Pensiones",
+                            CompanyId = 3,
+                            Description = "Contribuciones a un plan de pensiones privado para empleados."
+                        },
+                        new
+                        {
+                            BenefitId = 6,
+                            BenefitType = "Seguro de Vida",
+                            CompanyId = 3,
+                            Description = "Cobertura de seguro de vida para empleados y sus familias."
+                        },
+                        new
+                        {
+                            BenefitId = 7,
+                            BenefitType = "Trabajo Remoto",
+                            CompanyId = 4,
+                            Description = "Posibilidad de trabajar de forma remota varios días a la semana."
+                        },
+                        new
+                        {
+                            BenefitId = 8,
+                            BenefitType = "Gimnasio en la Empresa",
+                            CompanyId = 4,
+                            Description = "Acceso gratuito a gimnasio dentro de las instalaciones de la empresa."
+                        },
+                        new
+                        {
+                            BenefitId = 9,
+                            BenefitType = "Descuentos en Viajes",
+                            CompanyId = 5,
+                            Description = "Descuentos exclusivos en paquetes de viajes y alojamientos."
+                        },
+                        new
+                        {
+                            BenefitId = 10,
+                            BenefitType = "Días de Vacaciones Adicionales",
+                            CompanyId = 5,
+                            Description = "Días adicionales de vacaciones por cada año de servicio."
+                        },
+                        new
+                        {
+                            BenefitId = 11,
+                            BenefitType = "Seguro Dental",
+                            CompanyId = 6,
+                            Description = "Cobertura completa de seguro dental para empleados."
+                        },
+                        new
+                        {
+                            BenefitId = 12,
+                            BenefitType = "Horario Flexible",
+                            CompanyId = 6,
+                            Description = "Flexibilidad en los horarios de entrada y salida del trabajo."
+                        },
+                        new
+                        {
+                            BenefitId = 13,
+                            BenefitType = "Vales de Comida",
+                            CompanyId = 7,
+                            Description = "Vales mensuales para comida en restaurantes y supermercados."
+                        },
+                        new
+                        {
+                            BenefitId = 14,
+                            BenefitType = "Seguro de Viaje",
+                            CompanyId = 7,
+                            Description = "Cobertura de seguro de viaje para empleados en viajes de negocios."
+                        },
+                        new
+                        {
+                            BenefitId = 15,
+                            BenefitType = "Bono de Rendimiento",
+                            CompanyId = 8,
+                            Description = "Bonificación mensual basada en el rendimiento individual."
+                        },
+                        new
+                        {
+                            BenefitId = 16,
+                            BenefitType = "Desarrollo Profesional",
+                            CompanyId = 8,
+                            Description = "Oportunidades para participar en talleres y seminarios profesionales."
+                        },
+                        new
+                        {
+                            BenefitId = 17,
+                            BenefitType = "Transporte Gratis",
+                            CompanyId = 9,
+                            Description = "Servicio de transporte gratuito para empleados desde puntos clave de la ciudad."
+                        },
+                        new
+                        {
+                            BenefitId = 18,
+                            BenefitType = "Cobertura de Guardería",
+                            CompanyId = 9,
+                            Description = "Cobertura total o parcial de los gastos de guardería para hijos de empleados."
+                        },
+                        new
+                        {
+                            BenefitId = 19,
+                            BenefitType = "Seguro Médico Privado",
+                            CompanyId = 10,
+                            Description = "Acceso a seguro médico privado con cobertura total para empleados."
+                        },
+                        new
+                        {
+                            BenefitId = 20,
+                            BenefitType = "Plan de Ahorro",
+                            CompanyId = 10,
+                            Description = "Plan de ahorro con aportaciones de la empresa y del empleado."
+                        });
                 });
 
             modelBuilder.Entity("JobSearchApp.Domain.Models.Education", b =>
@@ -179,30 +1008,24 @@ namespace JobSearchApp.Infrastructure.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("EducationId"));
 
                     b.Property<string>("ActivitiesAndSocieties")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Degree")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Description")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTimeOffset>("EndDate")
                         .HasColumnType("datetimeoffset");
 
                     b.Property<string>("FieldOfStudy")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Grade")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("SchoolName")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTimeOffset>("StartDate")
@@ -216,6 +1039,138 @@ namespace JobSearchApp.Infrastructure.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("Education", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            EducationId = 1,
+                            ActivitiesAndSocieties = "Asociación de Empresarios",
+                            Degree = "Licenciatura",
+                            Description = "Enfoque en gestión empresarial y emprendimiento.",
+                            EndDate = new DateTimeOffset(new DateTime(2020, 6, 15, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 2, 0, 0, 0)),
+                            FieldOfStudy = "Administración de Empresas",
+                            Grade = "Sobresaliente",
+                            SchoolName = "Universidad Nacional",
+                            StartDate = new DateTimeOffset(new DateTime(2016, 9, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 2, 0, 0, 0)),
+                            UserId = 3
+                        },
+                        new
+                        {
+                            EducationId = 2,
+                            ActivitiesAndSocieties = "Club de Marketing",
+                            Degree = "Diplomado",
+                            Description = "Diplomado en estrategias de marketing digital y redes sociales.",
+                            EndDate = new DateTimeOffset(new DateTime(2019, 12, 20, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 1, 0, 0, 0)),
+                            FieldOfStudy = "Marketing Digital",
+                            Grade = "A",
+                            SchoolName = "Instituto Tecnológico Superior",
+                            StartDate = new DateTimeOffset(new DateTime(2018, 3, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 1, 0, 0, 0)),
+                            UserId = 4
+                        },
+                        new
+                        {
+                            EducationId = 3,
+                            ActivitiesAndSocieties = "Foro de Finanzas",
+                            Degree = "MBA",
+                            Description = "Máster en administración de negocios con especialización en finanzas corporativas.",
+                            EndDate = new DateTimeOffset(new DateTime(2019, 6, 30, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 2, 0, 0, 0)),
+                            FieldOfStudy = "Finanzas",
+                            Grade = "Excelente",
+                            SchoolName = "Escuela de Negocios Internacional",
+                            StartDate = new DateTimeOffset(new DateTime(2017, 1, 15, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 1, 0, 0, 0)),
+                            UserId = 5
+                        },
+                        new
+                        {
+                            EducationId = 4,
+                            ActivitiesAndSocieties = "Sociedad de Ingenieros",
+                            Degree = "Ingeniería",
+                            Description = "Especialización en desarrollo de software y sistemas integrados.",
+                            EndDate = new DateTimeOffset(new DateTime(2018, 5, 15, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 2, 0, 0, 0)),
+                            FieldOfStudy = "Ingeniería de Sistemas",
+                            Grade = "Muy Bueno",
+                            SchoolName = "Universidad de Tecnología",
+                            StartDate = new DateTimeOffset(new DateTime(2014, 8, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 2, 0, 0, 0)),
+                            UserId = 6
+                        },
+                        new
+                        {
+                            EducationId = 5,
+                            ActivitiesAndSocieties = "Investigación en Cambio Climático",
+                            Degree = "Doctorado",
+                            Description = "Doctorado en ciencias ambientales con investigación en sostenibilidad y cambio climático.",
+                            EndDate = new DateTimeOffset(new DateTime(2021, 12, 15, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 1, 0, 0, 0)),
+                            FieldOfStudy = "Ciencias Ambientales",
+                            Grade = "A+",
+                            SchoolName = "Colegio de Artes y Ciencias",
+                            StartDate = new DateTimeOffset(new DateTime(2015, 9, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 2, 0, 0, 0)),
+                            UserId = 7
+                        },
+                        new
+                        {
+                            EducationId = 6,
+                            ActivitiesAndSocieties = "Club de Investigación Biotecnológica",
+                            Degree = "Licenciatura",
+                            Description = "Enfoque en desarrollo de tecnologías para la salud y el medio ambiente.",
+                            EndDate = new DateTimeOffset(new DateTime(2017, 6, 15, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 2, 0, 0, 0)),
+                            FieldOfStudy = "Biotecnología",
+                            Grade = "Sobresaliente",
+                            SchoolName = "Universidad de Ciencias Aplicadas",
+                            StartDate = new DateTimeOffset(new DateTime(2013, 9, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 2, 0, 0, 0)),
+                            UserId = 11
+                        },
+                        new
+                        {
+                            EducationId = 7,
+                            ActivitiesAndSocieties = "Club de Diseño",
+                            Degree = "Licenciatura",
+                            Description = "Especialización en diseño gráfico y comunicación visual.",
+                            EndDate = new DateTimeOffset(new DateTime(2019, 6, 15, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 2, 0, 0, 0)),
+                            FieldOfStudy = "Diseño Gráfico",
+                            Grade = "Excelente",
+                            SchoolName = "Instituto Superior de Artes",
+                            StartDate = new DateTimeOffset(new DateTime(2015, 9, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 2, 0, 0, 0)),
+                            UserId = 12
+                        },
+                        new
+                        {
+                            EducationId = 8,
+                            ActivitiesAndSocieties = "Sociedad de Ingenieros Civiles",
+                            Degree = "Máster",
+                            Description = "Máster en ingeniería civil con especialización en estructuras.",
+                            EndDate = new DateTimeOffset(new DateTime(2021, 12, 20, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 1, 0, 0, 0)),
+                            FieldOfStudy = "Ingeniería Civil",
+                            Grade = "A",
+                            SchoolName = "Escuela Politécnica Nacional",
+                            StartDate = new DateTimeOffset(new DateTime(2017, 1, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 1, 0, 0, 0)),
+                            UserId = 13
+                        },
+                        new
+                        {
+                            EducationId = 9,
+                            ActivitiesAndSocieties = "Asociación de Científicos de Datos",
+                            Degree = "Diplomado",
+                            Description = "Diplomado en ciencia de datos con enfoque en análisis y modelado predictivo.",
+                            EndDate = new DateTimeOffset(new DateTime(2020, 12, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 1, 0, 0, 0)),
+                            FieldOfStudy = "Ciencia de Datos",
+                            Grade = "Muy Bueno",
+                            SchoolName = "Academia Internacional de Ciencias",
+                            StartDate = new DateTimeOffset(new DateTime(2019, 3, 15, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 1, 0, 0, 0)),
+                            UserId = 14
+                        },
+                        new
+                        {
+                            EducationId = 10,
+                            ActivitiesAndSocieties = "Club de Fotografía",
+                            Degree = "Licenciatura",
+                            Description = "Especialización en fotografía artística y comercial.",
+                            EndDate = new DateTimeOffset(new DateTime(2020, 6, 15, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 2, 0, 0, 0)),
+                            FieldOfStudy = "Fotografía",
+                            Grade = "Excelente",
+                            SchoolName = "Escuela de Artes Visuales",
+                            StartDate = new DateTimeOffset(new DateTime(2016, 9, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 2, 0, 0, 0)),
+                            UserId = 15
+                        });
                 });
 
             modelBuilder.Entity("JobSearchApp.Domain.Models.Feedback", b =>
@@ -233,7 +1188,6 @@ namespace JobSearchApp.Infrastructure.Migrations
                         .HasColumnType("datetimeoffset");
 
                     b.Property<string>("FeedbackText")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("RecruiterId")
@@ -246,6 +1200,88 @@ namespace JobSearchApp.Infrastructure.Migrations
                     b.HasIndex("RecruiterId");
 
                     b.ToTable("Feedback", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            FeedbackId = 1,
+                            ApplicationId = 1,
+                            FeedbackDate = new DateTimeOffset(new DateTime(2024, 5, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 2, 0, 0, 0)),
+                            FeedbackText = "Gracias por tu tiempo y esfuerzo en la entrevista. Mostraste un buen entendimiento técnico, pero podrías mejorar en la claridad de tus respuestas.",
+                            RecruiterId = 1
+                        },
+                        new
+                        {
+                            FeedbackId = 2,
+                            ApplicationId = 2,
+                            FeedbackDate = new DateTimeOffset(new DateTime(2024, 6, 15, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 2, 0, 0, 0)),
+                            FeedbackText = "Impresionante experiencia en gestión de proyectos. Tus habilidades en resolución de problemas destacaron. Considera practicar más entrevistas para pulir tu presentación.",
+                            RecruiterId = 2
+                        },
+                        new
+                        {
+                            FeedbackId = 3,
+                            ApplicationId = 3,
+                            FeedbackDate = new DateTimeOffset(new DateTime(2024, 7, 20, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 2, 0, 0, 0)),
+                            FeedbackText = "Demostraste un excelente conocimiento en desarrollo de software. Sin embargo, te recomendaría trabajar en la forma en que comunicas tus ideas durante entrevistas.",
+                            RecruiterId = 3
+                        },
+                        new
+                        {
+                            FeedbackId = 4,
+                            ApplicationId = 4,
+                            FeedbackDate = new DateTimeOffset(new DateTime(2024, 8, 25, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 2, 0, 0, 0)),
+                            FeedbackText = "Tu experiencia en finanzas es notable. Sin embargo, podrías beneficiarte al mejorar tus habilidades en la presentación y comunicación de informes.",
+                            RecruiterId = 4
+                        },
+                        new
+                        {
+                            FeedbackId = 5,
+                            ApplicationId = 5,
+                            FeedbackDate = new DateTimeOffset(new DateTime(2024, 9, 30, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 2, 0, 0, 0)),
+                            FeedbackText = "Tienes un enfoque innovador en soluciones. Para fortalecer tu perfil, te recomendaría mejorar en la gestión de equipos y coordinación de proyectos.",
+                            RecruiterId = 5
+                        },
+                        new
+                        {
+                            FeedbackId = 6,
+                            ApplicationId = 6,
+                            FeedbackDate = new DateTimeOffset(new DateTime(2024, 10, 15, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 2, 0, 0, 0)),
+                            FeedbackText = "Tus conocimientos en sostenibilidad son valiosos. Para futuros procesos, trabaja en la articulación clara de tus logros y experiencias.",
+                            RecruiterId = 6
+                        },
+                        new
+                        {
+                            FeedbackId = 7,
+                            ApplicationId = 7,
+                            FeedbackDate = new DateTimeOffset(new DateTime(2024, 11, 5, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 1, 0, 0, 0)),
+                            FeedbackText = "Tienes una sólida base en DevOps. Para mejorar, considera enfocarte más en la documentación técnica y en la comunicación de tu trabajo.",
+                            RecruiterId = 7
+                        },
+                        new
+                        {
+                            FeedbackId = 8,
+                            ApplicationId = 8,
+                            FeedbackDate = new DateTimeOffset(new DateTime(2024, 12, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 1, 0, 0, 0)),
+                            FeedbackText = "Tu experiencia en investigación biomédica es destacable. Te sugiero trabajar en cómo presentar tus hallazgos de manera más efectiva en futuras entrevistas.",
+                            RecruiterId = 8
+                        },
+                        new
+                        {
+                            FeedbackId = 9,
+                            ApplicationId = 9,
+                            FeedbackDate = new DateTimeOffset(new DateTime(2024, 12, 15, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 1, 0, 0, 0)),
+                            FeedbackText = "Mostraste habilidades fuertes en análisis de datos. Te recomendaría enfocarte en la presentación visual de tus resultados y en cómo comunicar tus conclusiones.",
+                            RecruiterId = 9
+                        },
+                        new
+                        {
+                            FeedbackId = 10,
+                            ApplicationId = 10,
+                            FeedbackDate = new DateTimeOffset(new DateTime(2024, 12, 30, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 1, 0, 0, 0)),
+                            FeedbackText = "Tienes una visión estratégica impresionante. Para mejorar tu perfil, trabaja en el desarrollo de habilidades de liderazgo y gestión de equipos.",
+                            RecruiterId = 10
+                        });
                 });
 
             modelBuilder.Entity("JobSearchApp.Domain.Models.Interest", b =>
@@ -257,7 +1293,6 @@ namespace JobSearchApp.Infrastructure.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("InterestId"));
 
                     b.Property<string>("InterestText")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("UserId")
@@ -268,6 +1303,68 @@ namespace JobSearchApp.Infrastructure.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("Interest", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            InterestId = 1,
+                            InterestText = "Viajes y aventuras",
+                            UserId = 11
+                        },
+                        new
+                        {
+                            InterestId = 2,
+                            InterestText = "Cocina y gastronomía",
+                            UserId = 12
+                        },
+                        new
+                        {
+                            InterestId = 3,
+                            InterestText = "Lectura y escritura",
+                            UserId = 13
+                        },
+                        new
+                        {
+                            InterestId = 4,
+                            InterestText = "Fotografía y video",
+                            UserId = 14
+                        },
+                        new
+                        {
+                            InterestId = 5,
+                            InterestText = "Música y conciertos",
+                            UserId = 15
+                        },
+                        new
+                        {
+                            InterestId = 6,
+                            InterestText = "Deportes y fitness",
+                            UserId = 16
+                        },
+                        new
+                        {
+                            InterestId = 7,
+                            InterestText = "Jardinería y naturaleza",
+                            UserId = 17
+                        },
+                        new
+                        {
+                            InterestId = 8,
+                            InterestText = "Tecnología y gadgets",
+                            UserId = 18
+                        },
+                        new
+                        {
+                            InterestId = 9,
+                            InterestText = "Artes y manualidades",
+                            UserId = 19
+                        },
+                        new
+                        {
+                            InterestId = 10,
+                            InterestText = "Voluntariado y causas sociales",
+                            UserId = 20
+                        });
                 });
 
             modelBuilder.Entity("JobSearchApp.Domain.Models.JobOffer", b =>
@@ -282,14 +1379,12 @@ namespace JobSearchApp.Infrastructure.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("Description")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("EstimatedDurationDays")
                         .HasColumnType("int");
 
                     b.Property<string>("ExperienceLevel")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTimeOffset?>("ExpiredDate")
@@ -299,11 +1394,9 @@ namespace JobSearchApp.Infrastructure.Migrations
                         .HasColumnType("bit");
 
                     b.Property<string>("JobType")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Location")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<decimal?>("MaxSalary")
@@ -316,7 +1409,6 @@ namespace JobSearchApp.Infrastructure.Migrations
                         .HasColumnType("datetimeoffset");
 
                     b.Property<string>("Title")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("JobOfferId");
@@ -324,6 +1416,328 @@ namespace JobSearchApp.Infrastructure.Migrations
                     b.HasIndex("CompanyId");
 
                     b.ToTable("JobOffer", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            JobOfferId = 1,
+                            CompanyId = 1,
+                            Description = "Responsable de la coordinación de proyectos sociales y educativos con enfoque en inclusión digital.",
+                            EstimatedDurationDays = 120,
+                            ExperienceLevel = "Senior",
+                            ExpiredDate = new DateTimeOffset(new DateTime(2024, 7, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 2, 0, 0, 0)),
+                            IsActive = true,
+                            JobType = "Tiempo completo",
+                            Location = "El Prat de Llobregat, España",
+                            MaxSalary = 50000m,
+                            MinSalary = 40000m,
+                            PostedDate = new DateTimeOffset(new DateTime(2024, 3, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 1, 0, 0, 0)),
+                            Title = "Coordinador de Proyectos Sociales"
+                        },
+                        new
+                        {
+                            JobOfferId = 2,
+                            CompanyId = 1,
+                            Description = "Encargado de gestionar las comunicaciones digitales y redes sociales de la fundación.",
+                            EstimatedDurationDays = 90,
+                            ExperienceLevel = "Mid",
+                            ExpiredDate = new DateTimeOffset(new DateTime(2024, 6, 5, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 2, 0, 0, 0)),
+                            IsActive = true,
+                            JobType = "Medio tiempo",
+                            Location = "El Prat de Llobregat, España",
+                            MaxSalary = 35000m,
+                            MinSalary = 25000m,
+                            PostedDate = new DateTimeOffset(new DateTime(2024, 3, 5, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 1, 0, 0, 0)),
+                            Title = "Especialista en Comunicación Digital"
+                        },
+                        new
+                        {
+                            JobOfferId = 3,
+                            CompanyId = 1,
+                            Description = "Buscamos formador para impartir talleres de tecnología a colectivos en riesgo de exclusión.",
+                            EstimatedDurationDays = 60,
+                            ExperienceLevel = "Junior",
+                            ExpiredDate = new DateTimeOffset(new DateTime(2024, 7, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 2, 0, 0, 0)),
+                            IsActive = true,
+                            JobType = "Tiempo parcial",
+                            Location = "El Prat de Llobregat, España",
+                            MaxSalary = 25000m,
+                            MinSalary = 20000m,
+                            PostedDate = new DateTimeOffset(new DateTime(2024, 4, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 2, 0, 0, 0)),
+                            Title = "Formador TIC"
+                        },
+                        new
+                        {
+                            JobOfferId = 4,
+                            CompanyId = 1,
+                            Description = "Soporte técnico y mantenimiento de sistemas para proyectos educativos y sociales.",
+                            EstimatedDurationDays = 100,
+                            ExperienceLevel = "Mid",
+                            ExpiredDate = new DateTimeOffset(new DateTime(2024, 6, 20, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 2, 0, 0, 0)),
+                            IsActive = true,
+                            JobType = "Tiempo completo",
+                            Location = "El Prat de Llobregat, España",
+                            MaxSalary = 40000m,
+                            MinSalary = 30000m,
+                            PostedDate = new DateTimeOffset(new DateTime(2024, 2, 20, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 1, 0, 0, 0)),
+                            Title = "Técnico en Soporte Informático"
+                        },
+                        new
+                        {
+                            JobOfferId = 5,
+                            CompanyId = 1,
+                            Description = "Gestión de programas de voluntariado y coordinación de actividades.",
+                            EstimatedDurationDays = 120,
+                            ExperienceLevel = "Senior",
+                            ExpiredDate = new DateTimeOffset(new DateTime(2024, 5, 15, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 2, 0, 0, 0)),
+                            IsActive = true,
+                            JobType = "Tiempo completo",
+                            Location = "El Prat de Llobregat, España",
+                            MaxSalary = 55000m,
+                            MinSalary = 45000m,
+                            PostedDate = new DateTimeOffset(new DateTime(2024, 1, 15, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 1, 0, 0, 0)),
+                            Title = "Responsable de Voluntariado"
+                        },
+                        new
+                        {
+                            JobOfferId = 6,
+                            CompanyId = 2,
+                            Description = "Desarrollo y supervisión de proyectos de energía renovable.",
+                            EstimatedDurationDays = 150,
+                            ExperienceLevel = "Senior",
+                            ExpiredDate = new DateTimeOffset(new DateTime(2024, 7, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 2, 0, 0, 0)),
+                            IsActive = true,
+                            JobType = "Tiempo completo",
+                            Location = "Barcelona, España",
+                            MaxSalary = 75000m,
+                            MinSalary = 60000m,
+                            PostedDate = new DateTimeOffset(new DateTime(2024, 2, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 1, 0, 0, 0)),
+                            Title = "Ingeniero en Energías Renovables"
+                        },
+                        new
+                        {
+                            JobOfferId = 7,
+                            CompanyId = 2,
+                            Description = "Análisis de datos y optimización de procesos energéticos.",
+                            EstimatedDurationDays = 90,
+                            ExperienceLevel = "Mid",
+                            ExpiredDate = new DateTimeOffset(new DateTime(2024, 6, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 2, 0, 0, 0)),
+                            IsActive = true,
+                            JobType = "Medio tiempo",
+                            Location = "Barcelona, España",
+                            MaxSalary = 45000m,
+                            MinSalary = 35000m,
+                            PostedDate = new DateTimeOffset(new DateTime(2024, 3, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 1, 0, 0, 0)),
+                            Title = "Analista de Datos Energéticos"
+                        },
+                        new
+                        {
+                            JobOfferId = 8,
+                            CompanyId = 2,
+                            Description = "Instalación y mantenimiento de paneles solares y sistemas de energía renovable.",
+                            EstimatedDurationDays = 120,
+                            ExperienceLevel = "Junior",
+                            ExpiredDate = new DateTimeOffset(new DateTime(2024, 8, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 2, 0, 0, 0)),
+                            IsActive = true,
+                            JobType = "Tiempo completo",
+                            Location = "Barcelona, España",
+                            MaxSalary = 35000m,
+                            MinSalary = 28000m,
+                            PostedDate = new DateTimeOffset(new DateTime(2024, 4, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 2, 0, 0, 0)),
+                            Title = "Técnico en Instalaciones Solares"
+                        },
+                        new
+                        {
+                            JobOfferId = 9,
+                            CompanyId = 2,
+                            Description = "Asesoría en sostenibilidad ambiental y reducción de huella de carbono.",
+                            EstimatedDurationDays = 100,
+                            ExperienceLevel = "Senior",
+                            ExpiredDate = new DateTimeOffset(new DateTime(2024, 5, 20, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 2, 0, 0, 0)),
+                            IsActive = true,
+                            JobType = "Tiempo parcial",
+                            Location = "Barcelona, España",
+                            MaxSalary = 50000m,
+                            MinSalary = 40000m,
+                            PostedDate = new DateTimeOffset(new DateTime(2024, 1, 20, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 1, 0, 0, 0)),
+                            Title = "Consultor en Sostenibilidad"
+                        },
+                        new
+                        {
+                            JobOfferId = 10,
+                            CompanyId = 2,
+                            Description = "Desarrollo y mantenimiento de proyectos de energía eólica.",
+                            EstimatedDurationDays = 120,
+                            ExperienceLevel = "Mid",
+                            ExpiredDate = new DateTimeOffset(new DateTime(2024, 6, 15, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 2, 0, 0, 0)),
+                            IsActive = true,
+                            JobType = "Tiempo completo",
+                            Location = "Barcelona, España",
+                            MaxSalary = 55000m,
+                            MinSalary = 45000m,
+                            PostedDate = new DateTimeOffset(new DateTime(2024, 2, 15, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 1, 0, 0, 0)),
+                            Title = "Especialista en Energía Eólica"
+                        },
+                        new
+                        {
+                            JobOfferId = 11,
+                            CompanyId = 3,
+                            Description = "Monitorización y protección de sistemas informáticos contra amenazas.",
+                            EstimatedDurationDays = 120,
+                            ExperienceLevel = "Senior",
+                            ExpiredDate = new DateTimeOffset(new DateTime(2024, 5, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 2, 0, 0, 0)),
+                            IsActive = true,
+                            JobType = "Tiempo completo",
+                            Location = "Madrid, España",
+                            MaxSalary = 70000m,
+                            MinSalary = 55000m,
+                            PostedDate = new DateTimeOffset(new DateTime(2024, 1, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 1, 0, 0, 0)),
+                            Title = "Especialista en Ciberseguridad"
+                        },
+                        new
+                        {
+                            JobOfferId = 12,
+                            CompanyId = 3,
+                            Description = "Análisis y reporte de vulnerabilidades en sistemas informáticos.",
+                            EstimatedDurationDays = 90,
+                            ExperienceLevel = "Mid",
+                            ExpiredDate = new DateTimeOffset(new DateTime(2024, 6, 20, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 2, 0, 0, 0)),
+                            IsActive = true,
+                            JobType = "Medio tiempo",
+                            Location = "Madrid, España",
+                            MaxSalary = 50000m,
+                            MinSalary = 40000m,
+                            PostedDate = new DateTimeOffset(new DateTime(2024, 2, 20, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 1, 0, 0, 0)),
+                            Title = "Analista de Seguridad Informática"
+                        },
+                        new
+                        {
+                            JobOfferId = 13,
+                            CompanyId = 3,
+                            Description = "Asesoría en cumplimiento de normativas de protección de datos.",
+                            EstimatedDurationDays = 120,
+                            ExperienceLevel = "Senior",
+                            ExpiredDate = new DateTimeOffset(new DateTime(2024, 7, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 2, 0, 0, 0)),
+                            IsActive = true,
+                            JobType = "Tiempo completo",
+                            Location = "Madrid, España",
+                            MaxSalary = 75000m,
+                            MinSalary = 60000m,
+                            PostedDate = new DateTimeOffset(new DateTime(2024, 3, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 1, 0, 0, 0)),
+                            Title = "Consultor en Protección de Datos"
+                        },
+                        new
+                        {
+                            JobOfferId = 14,
+                            CompanyId = 3,
+                            Description = "Mantenimiento y protección de la seguridad en redes corporativas.",
+                            EstimatedDurationDays = 100,
+                            ExperienceLevel = "Mid",
+                            ExpiredDate = new DateTimeOffset(new DateTime(2024, 6, 5, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 2, 0, 0, 0)),
+                            IsActive = true,
+                            JobType = "Tiempo completo",
+                            Location = "Madrid, España",
+                            MaxSalary = 60000m,
+                            MinSalary = 50000m,
+                            PostedDate = new DateTimeOffset(new DateTime(2024, 2, 5, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 1, 0, 0, 0)),
+                            Title = "Administrador de Seguridad de Redes"
+                        },
+                        new
+                        {
+                            JobOfferId = 15,
+                            CompanyId = 3,
+                            Description = "Investigación y análisis de nuevas ciberamenazas emergentes.",
+                            EstimatedDurationDays = 150,
+                            ExperienceLevel = "Junior",
+                            ExpiredDate = new DateTimeOffset(new DateTime(2024, 8, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 2, 0, 0, 0)),
+                            IsActive = true,
+                            JobType = "Tiempo completo",
+                            Location = "Madrid, España",
+                            MaxSalary = 45000m,
+                            MinSalary = 35000m,
+                            PostedDate = new DateTimeOffset(new DateTime(2024, 4, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 2, 0, 0, 0)),
+                            Title = "Investigador de Ciberamenazas"
+                        },
+                        new
+                        {
+                            JobOfferId = 16,
+                            CompanyId = 10,
+                            Description = "Desarrollo de modelos predictivos y análisis de grandes volúmenes de datos.",
+                            EstimatedDurationDays = 120,
+                            ExperienceLevel = "Senior",
+                            ExpiredDate = new DateTimeOffset(new DateTime(2024, 6, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 2, 0, 0, 0)),
+                            IsActive = true,
+                            JobType = "Tiempo completo",
+                            Location = "Zaragoza, España",
+                            MaxSalary = 75000m,
+                            MinSalary = 60000m,
+                            PostedDate = new DateTimeOffset(new DateTime(2024, 2, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 1, 0, 0, 0)),
+                            Title = "Data Scientist Senior"
+                        },
+                        new
+                        {
+                            JobOfferId = 17,
+                            CompanyId = 10,
+                            Description = "Análisis de datos masivos y generación de insights estratégicos.",
+                            EstimatedDurationDays = 120,
+                            ExperienceLevel = "Mid",
+                            ExpiredDate = new DateTimeOffset(new DateTime(2024, 7, 5, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 2, 0, 0, 0)),
+                            IsActive = true,
+                            JobType = "Tiempo completo",
+                            Location = "Zaragoza, España",
+                            MaxSalary = 60000m,
+                            MinSalary = 50000m,
+                            PostedDate = new DateTimeOffset(new DateTime(2024, 3, 5, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 1, 0, 0, 0)),
+                            Title = "Analista de Big Data"
+                        },
+                        new
+                        {
+                            JobOfferId = 18,
+                            CompanyId = 10,
+                            Description = "Implementación de algoritmos de machine learning en proyectos de análisis de datos.",
+                            EstimatedDurationDays = 90,
+                            ExperienceLevel = "Junior",
+                            ExpiredDate = new DateTimeOffset(new DateTime(2024, 5, 20, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 2, 0, 0, 0)),
+                            IsActive = true,
+                            JobType = "Medio tiempo",
+                            Location = "Zaragoza, España",
+                            MaxSalary = 50000m,
+                            MinSalary = 40000m,
+                            PostedDate = new DateTimeOffset(new DateTime(2024, 1, 20, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 1, 0, 0, 0)),
+                            Title = "Desarrollador de Machine Learning"
+                        },
+                        new
+                        {
+                            JobOfferId = 19,
+                            CompanyId = 10,
+                            Description = "Diseño y mantenimiento de pipelines de datos eficientes.",
+                            EstimatedDurationDays = 120,
+                            ExperienceLevel = "Mid",
+                            ExpiredDate = new DateTimeOffset(new DateTime(2024, 6, 15, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 2, 0, 0, 0)),
+                            IsActive = true,
+                            JobType = "Tiempo completo",
+                            Location = "Zaragoza, España",
+                            MaxSalary = 65000m,
+                            MinSalary = 50000m,
+                            PostedDate = new DateTimeOffset(new DateTime(2024, 2, 15, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 1, 0, 0, 0)),
+                            Title = "Ingeniero de Datos"
+                        },
+                        new
+                        {
+                            JobOfferId = 20,
+                            CompanyId = 10,
+                            Description = "Gestión y mantenimiento de bases de datos empresariales.",
+                            EstimatedDurationDays = 120,
+                            ExperienceLevel = "Junior",
+                            ExpiredDate = new DateTimeOffset(new DateTime(2024, 8, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 2, 0, 0, 0)),
+                            IsActive = true,
+                            JobType = "Tiempo completo",
+                            Location = "Zaragoza, España",
+                            MaxSalary = 50000m,
+                            MinSalary = 40000m,
+                            PostedDate = new DateTimeOffset(new DateTime(2024, 4, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 2, 0, 0, 0)),
+                            Title = "Administrador de Bases de Datos"
+                        });
                 });
 
             modelBuilder.Entity("JobSearchApp.Domain.Models.Match", b =>
@@ -353,6 +1767,88 @@ namespace JobSearchApp.Infrastructure.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("Match", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            MatchId = 1,
+                            IsAccepted = true,
+                            JobOfferId = 3,
+                            MatchDate = new DateTimeOffset(new DateTime(2024, 8, 15, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
+                            UserId = 1
+                        },
+                        new
+                        {
+                            MatchId = 2,
+                            IsAccepted = false,
+                            JobOfferId = 4,
+                            MatchDate = new DateTimeOffset(new DateTime(2024, 8, 17, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
+                            UserId = 2
+                        },
+                        new
+                        {
+                            MatchId = 3,
+                            IsAccepted = true,
+                            JobOfferId = 5,
+                            MatchDate = new DateTimeOffset(new DateTime(2024, 8, 20, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
+                            UserId = 3
+                        },
+                        new
+                        {
+                            MatchId = 4,
+                            IsAccepted = true,
+                            JobOfferId = 6,
+                            MatchDate = new DateTimeOffset(new DateTime(2024, 8, 22, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
+                            UserId = 4
+                        },
+                        new
+                        {
+                            MatchId = 5,
+                            IsAccepted = false,
+                            JobOfferId = 7,
+                            MatchDate = new DateTimeOffset(new DateTime(2024, 8, 25, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
+                            UserId = 5
+                        },
+                        new
+                        {
+                            MatchId = 6,
+                            IsAccepted = true,
+                            JobOfferId = 8,
+                            MatchDate = new DateTimeOffset(new DateTime(2024, 8, 30, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
+                            UserId = 11
+                        },
+                        new
+                        {
+                            MatchId = 7,
+                            IsAccepted = false,
+                            JobOfferId = 9,
+                            MatchDate = new DateTimeOffset(new DateTime(2024, 8, 31, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
+                            UserId = 12
+                        },
+                        new
+                        {
+                            MatchId = 8,
+                            IsAccepted = true,
+                            JobOfferId = 10,
+                            MatchDate = new DateTimeOffset(new DateTime(2024, 9, 2, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
+                            UserId = 13
+                        },
+                        new
+                        {
+                            MatchId = 9,
+                            IsAccepted = true,
+                            JobOfferId = 11,
+                            MatchDate = new DateTimeOffset(new DateTime(2024, 9, 5, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
+                            UserId = 14
+                        },
+                        new
+                        {
+                            MatchId = 10,
+                            IsAccepted = false,
+                            JobOfferId = 12,
+                            MatchDate = new DateTimeOffset(new DateTime(2024, 9, 7, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
+                            UserId = 15
+                        });
                 });
 
             modelBuilder.Entity("JobSearchApp.Domain.Models.Permission", b =>
@@ -363,6 +1859,20 @@ namespace JobSearchApp.Infrastructure.Migrations
                     b.HasKey("Name");
 
                     b.ToTable("Permission", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Name = "Leer"
+                        },
+                        new
+                        {
+                            Name = "Escribir"
+                        },
+                        new
+                        {
+                            Name = "Eliminar"
+                        });
                 });
 
             modelBuilder.Entity("JobSearchApp.Domain.Models.Question", b =>
@@ -374,12 +1884,63 @@ namespace JobSearchApp.Infrastructure.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("QuestionId"));
 
                     b.Property<string>("QuestionText")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("QuestionId");
 
                     b.ToTable("Question", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            QuestionId = 1,
+                            QuestionText = "¿Cómo manejas el estrés en el trabajo?"
+                        },
+                        new
+                        {
+                            QuestionId = 2,
+                            QuestionText = "¿Cuál es tu enfoque para resolver problemas complejos?"
+                        },
+                        new
+                        {
+                            QuestionId = 3,
+                            QuestionText = "¿Cómo priorizas tus tareas cuando tienes múltiples proyectos?"
+                        },
+                        new
+                        {
+                            QuestionId = 4,
+                            QuestionText = "¿Cómo te mantienes actualizado con las últimas tendencias en tu campo?"
+                        },
+                        new
+                        {
+                            QuestionId = 5,
+                            QuestionText = "Describe una vez en la que tuviste que aprender una nueva habilidad rápidamente. ¿Cómo lo lograste?"
+                        },
+                        new
+                        {
+                            QuestionId = 6,
+                            QuestionText = "¿Cómo te aseguras de que tu trabajo sea preciso y de alta calidad?"
+                        },
+                        new
+                        {
+                            QuestionId = 7,
+                            QuestionText = "¿Qué estrategias utilizas para mejorar la comunicación en tu equipo?"
+                        },
+                        new
+                        {
+                            QuestionId = 8,
+                            QuestionText = "¿Cómo te enfrentas a la retroalimentación negativa?"
+                        },
+                        new
+                        {
+                            QuestionId = 9,
+                            QuestionText = "¿Qué aspectos de tu trabajo consideras más motivadores?"
+                        },
+                        new
+                        {
+                            QuestionId = 10,
+                            QuestionText = "¿Cómo gestionas los conflictos con colegas o miembros del equipo?"
+                        });
                 });
 
             modelBuilder.Entity("JobSearchApp.Domain.Models.Resource", b =>
@@ -391,16 +1952,40 @@ namespace JobSearchApp.Infrastructure.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ResourceId"));
 
                     b.Property<string>("Description")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("ResourceId");
 
                     b.ToTable("Resource", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            ResourceId = 1,
+                            Description = "Un recurso que proporciona servicios de autenticación para usuarios en la plataforma.",
+                            Name = "API de Autenticación"
+                        },
+                        new
+                        {
+                            ResourceId = 2,
+                            Description = "Un servicio que gestiona las notificaciones en la aplicación.",
+                            Name = "Servicio de Notificaciones"
+                        },
+                        new
+                        {
+                            ResourceId = 3,
+                            Description = "Recurso que maneja las operaciones relacionadas con los datos de usuario.",
+                            Name = "Gestión de Datos de Usuario"
+                        },
+                        new
+                        {
+                            ResourceId = 4,
+                            Description = "Recurso que permite la búsqueda y filtrado de ofertas de empleo en la plataforma.",
+                            Name = "API de Búsqueda de Empleos"
+                        });
                 });
 
             modelBuilder.Entity("JobSearchApp.Domain.Models.Role", b =>
@@ -412,16 +1997,40 @@ namespace JobSearchApp.Infrastructure.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("RoleId"));
 
                     b.Property<string>("Description")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("RoleId");
 
                     b.ToTable("Role", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            RoleId = 1,
+                            Description = "Rol con acceso completo a todas las funcionalidades y configuraciones del sistema.",
+                            Name = "Administrador"
+                        },
+                        new
+                        {
+                            RoleId = 2,
+                            Description = "Rol encargado de gestionar las ofertas de empleo, aplicaciones y procesos de contratación.",
+                            Name = "Reclutador"
+                        },
+                        new
+                        {
+                            RoleId = 3,
+                            Description = "Rol que representa a los usuarios que buscan empleo y postulan a ofertas.",
+                            Name = "Candidato"
+                        },
+                        new
+                        {
+                            RoleId = 4,
+                            Description = "Rol que gestiona los recursos y herramientas disponibles en la plataforma.",
+                            Name = "Empresa"
+                        });
                 });
 
             modelBuilder.Entity("JobSearchApp.Domain.Models.RolePermissionPatent", b =>
@@ -453,16 +2062,496 @@ namespace JobSearchApp.Infrastructure.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("SkillId"));
 
                     b.Property<string>("SkillName")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("SkillType")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("SkillId");
 
                     b.ToTable("Skill", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            SkillId = 1,
+                            SkillName = "Gestión de Proyectos",
+                            SkillType = "Hard"
+                        },
+                        new
+                        {
+                            SkillId = 2,
+                            SkillName = "Infraestructura TI",
+                            SkillType = "Hard"
+                        },
+                        new
+                        {
+                            SkillId = 3,
+                            SkillName = "Liderazgo de Equipos",
+                            SkillType = "Soft"
+                        },
+                        new
+                        {
+                            SkillId = 4,
+                            SkillName = "Comunicación Efectiva",
+                            SkillType = "Soft"
+                        },
+                        new
+                        {
+                            SkillId = 5,
+                            SkillName = "Análisis Estadístico",
+                            SkillType = "Hard"
+                        },
+                        new
+                        {
+                            SkillId = 6,
+                            SkillName = "Machine Learning",
+                            SkillType = "Hard"
+                        },
+                        new
+                        {
+                            SkillId = 7,
+                            SkillName = "Trabajo en Equipo",
+                            SkillType = "Soft"
+                        },
+                        new
+                        {
+                            SkillId = 8,
+                            SkillName = "Resolución de Problemas",
+                            SkillType = "Soft"
+                        },
+                        new
+                        {
+                            SkillId = 9,
+                            SkillName = "Desarrollo Web",
+                            SkillType = "Hard"
+                        },
+                        new
+                        {
+                            SkillId = 10,
+                            SkillName = "Desarrollo Móvil",
+                            SkillType = "Hard"
+                        },
+                        new
+                        {
+                            SkillId = 11,
+                            SkillName = "Creatividad",
+                            SkillType = "Soft"
+                        },
+                        new
+                        {
+                            SkillId = 12,
+                            SkillName = "Gestión del Tiempo",
+                            SkillType = "Soft"
+                        },
+                        new
+                        {
+                            SkillId = 13,
+                            SkillName = "Análisis Financiero",
+                            SkillType = "Hard"
+                        },
+                        new
+                        {
+                            SkillId = 14,
+                            SkillName = "Gestión de Riesgos",
+                            SkillType = "Hard"
+                        },
+                        new
+                        {
+                            SkillId = 15,
+                            SkillName = "Negociación",
+                            SkillType = "Soft"
+                        },
+                        new
+                        {
+                            SkillId = 16,
+                            SkillName = "Pensamiento Crítico",
+                            SkillType = "Soft"
+                        },
+                        new
+                        {
+                            SkillId = 17,
+                            SkillName = "Arquitectura de Sistemas",
+                            SkillType = "Hard"
+                        },
+                        new
+                        {
+                            SkillId = 18,
+                            SkillName = "Escalabilidad",
+                            SkillType = "Hard"
+                        },
+                        new
+                        {
+                            SkillId = 19,
+                            SkillName = "Adaptabilidad",
+                            SkillType = "Soft"
+                        },
+                        new
+                        {
+                            SkillId = 20,
+                            SkillName = "Resolución de Conflictos",
+                            SkillType = "Soft"
+                        },
+                        new
+                        {
+                            SkillId = 21,
+                            SkillName = "Gestión de Proyectos",
+                            SkillType = "Hard"
+                        },
+                        new
+                        {
+                            SkillId = 22,
+                            SkillName = "Planificación Estratégica",
+                            SkillType = "Hard"
+                        },
+                        new
+                        {
+                            SkillId = 23,
+                            SkillName = "Comunicación Intercultural",
+                            SkillType = "Soft"
+                        },
+                        new
+                        {
+                            SkillId = 24,
+                            SkillName = "Habilidades Organizativas",
+                            SkillType = "Soft"
+                        },
+                        new
+                        {
+                            SkillId = 25,
+                            SkillName = "Automatización de Despliegue",
+                            SkillType = "Hard"
+                        },
+                        new
+                        {
+                            SkillId = 26,
+                            SkillName = "Integración Continua",
+                            SkillType = "Hard"
+                        },
+                        new
+                        {
+                            SkillId = 27,
+                            SkillName = "Trabajo en Equipo",
+                            SkillType = "Soft"
+                        },
+                        new
+                        {
+                            SkillId = 28,
+                            SkillName = "Gestión de Proyectos Ágiles",
+                            SkillType = "Soft"
+                        },
+                        new
+                        {
+                            SkillId = 29,
+                            SkillName = "Investigación Biomédica",
+                            SkillType = "Hard"
+                        },
+                        new
+                        {
+                            SkillId = 30,
+                            SkillName = "Desarrollo de Terapias",
+                            SkillType = "Hard"
+                        },
+                        new
+                        {
+                            SkillId = 31,
+                            SkillName = "Colaboración",
+                            SkillType = "Soft"
+                        },
+                        new
+                        {
+                            SkillId = 32,
+                            SkillName = "Pensamiento Analítico",
+                            SkillType = "Soft"
+                        },
+                        new
+                        {
+                            SkillId = 33,
+                            SkillName = "Análisis de Datos Financieros",
+                            SkillType = "Hard"
+                        },
+                        new
+                        {
+                            SkillId = 34,
+                            SkillName = "Optimización de Procesos",
+                            SkillType = "Hard"
+                        },
+                        new
+                        {
+                            SkillId = 35,
+                            SkillName = "Resolución de Problemas",
+                            SkillType = "Soft"
+                        },
+                        new
+                        {
+                            SkillId = 36,
+                            SkillName = "Comunicación Eficaz",
+                            SkillType = "Soft"
+                        },
+                        new
+                        {
+                            SkillId = 37,
+                            SkillName = "Diseño de Soluciones Ecológicas",
+                            SkillType = "Hard"
+                        },
+                        new
+                        {
+                            SkillId = 38,
+                            SkillName = "Gestión Ambiental",
+                            SkillType = "Hard"
+                        },
+                        new
+                        {
+                            SkillId = 39,
+                            SkillName = "Trabajo en Equipo",
+                            SkillType = "Soft"
+                        },
+                        new
+                        {
+                            SkillId = 40,
+                            SkillName = "Creatividad",
+                            SkillType = "Soft"
+                        },
+                        new
+                        {
+                            SkillId = 41,
+                            SkillName = "Desarrollo Web",
+                            SkillType = "Hard"
+                        },
+                        new
+                        {
+                            SkillId = 42,
+                            SkillName = "Desarrollo Móvil",
+                            SkillType = "Hard"
+                        },
+                        new
+                        {
+                            SkillId = 43,
+                            SkillName = "Creatividad",
+                            SkillType = "Soft"
+                        },
+                        new
+                        {
+                            SkillId = 44,
+                            SkillName = "Gestión del Tiempo",
+                            SkillType = "Soft"
+                        },
+                        new
+                        {
+                            SkillId = 45,
+                            SkillName = "Análisis Financiero",
+                            SkillType = "Hard"
+                        },
+                        new
+                        {
+                            SkillId = 46,
+                            SkillName = "Gestión de Riesgos",
+                            SkillType = "Hard"
+                        },
+                        new
+                        {
+                            SkillId = 47,
+                            SkillName = "Negociación",
+                            SkillType = "Soft"
+                        },
+                        new
+                        {
+                            SkillId = 48,
+                            SkillName = "Pensamiento Crítico",
+                            SkillType = "Soft"
+                        },
+                        new
+                        {
+                            SkillId = 49,
+                            SkillName = "Arquitectura de Sistemas",
+                            SkillType = "Hard"
+                        },
+                        new
+                        {
+                            SkillId = 50,
+                            SkillName = "Escalabilidad",
+                            SkillType = "Hard"
+                        },
+                        new
+                        {
+                            SkillId = 51,
+                            SkillName = "Adaptabilidad",
+                            SkillType = "Soft"
+                        },
+                        new
+                        {
+                            SkillId = 52,
+                            SkillName = "Resolución de Conflictos",
+                            SkillType = "Soft"
+                        },
+                        new
+                        {
+                            SkillId = 53,
+                            SkillName = "Gestión de Proyectos",
+                            SkillType = "Hard"
+                        },
+                        new
+                        {
+                            SkillId = 54,
+                            SkillName = "Planificación Estratégica",
+                            SkillType = "Hard"
+                        },
+                        new
+                        {
+                            SkillId = 55,
+                            SkillName = "Comunicación Intercultural",
+                            SkillType = "Soft"
+                        },
+                        new
+                        {
+                            SkillId = 56,
+                            SkillName = "Habilidades Organizativas",
+                            SkillType = "Soft"
+                        },
+                        new
+                        {
+                            SkillId = 57,
+                            SkillName = "Automatización de Despliegue",
+                            SkillType = "Hard"
+                        },
+                        new
+                        {
+                            SkillId = 58,
+                            SkillName = "Integración Continua",
+                            SkillType = "Hard"
+                        },
+                        new
+                        {
+                            SkillId = 59,
+                            SkillName = "Trabajo en Equipo",
+                            SkillType = "Soft"
+                        },
+                        new
+                        {
+                            SkillId = 60,
+                            SkillName = "Gestión de Proyectos Ágiles",
+                            SkillType = "Soft"
+                        },
+                        new
+                        {
+                            SkillId = 61,
+                            SkillName = "Investigación Biomédica",
+                            SkillType = "Hard"
+                        },
+                        new
+                        {
+                            SkillId = 62,
+                            SkillName = "Desarrollo de Terapias",
+                            SkillType = "Hard"
+                        },
+                        new
+                        {
+                            SkillId = 63,
+                            SkillName = "Colaboración",
+                            SkillType = "Soft"
+                        },
+                        new
+                        {
+                            SkillId = 64,
+                            SkillName = "Pensamiento Analítico",
+                            SkillType = "Soft"
+                        },
+                        new
+                        {
+                            SkillId = 65,
+                            SkillName = "Programación en Python",
+                            SkillType = "Hard"
+                        },
+                        new
+                        {
+                            SkillId = 66,
+                            SkillName = "Desarrollo de APIs",
+                            SkillType = "Hard"
+                        },
+                        new
+                        {
+                            SkillId = 67,
+                            SkillName = "Comunicación Efectiva",
+                            SkillType = "Soft"
+                        },
+                        new
+                        {
+                            SkillId = 68,
+                            SkillName = "Trabajo en Equipo",
+                            SkillType = "Soft"
+                        },
+                        new
+                        {
+                            SkillId = 69,
+                            SkillName = "Desarrollo de Aplicaciones Móviles",
+                            SkillType = "Hard"
+                        },
+                        new
+                        {
+                            SkillId = 70,
+                            SkillName = "Arquitectura de Software",
+                            SkillType = "Hard"
+                        },
+                        new
+                        {
+                            SkillId = 71,
+                            SkillName = "Resolución de Problemas",
+                            SkillType = "Soft"
+                        },
+                        new
+                        {
+                            SkillId = 72,
+                            SkillName = "Liderazgo",
+                            SkillType = "Soft"
+                        },
+                        new
+                        {
+                            SkillId = 73,
+                            SkillName = "Investigación de Mercado",
+                            SkillType = "Hard"
+                        },
+                        new
+                        {
+                            SkillId = 74,
+                            SkillName = "Estrategia Comercial",
+                            SkillType = "Hard"
+                        },
+                        new
+                        {
+                            SkillId = 75,
+                            SkillName = "Adaptabilidad",
+                            SkillType = "Soft"
+                        },
+                        new
+                        {
+                            SkillId = 76,
+                            SkillName = "Pensamiento Crítico",
+                            SkillType = "Soft"
+                        },
+                        new
+                        {
+                            SkillId = 77,
+                            SkillName = "Seguridad Informática",
+                            SkillType = "Hard"
+                        },
+                        new
+                        {
+                            SkillId = 78,
+                            SkillName = "Desarrollo de Software Seguro",
+                            SkillType = "Hard"
+                        },
+                        new
+                        {
+                            SkillId = 79,
+                            SkillName = "Comunicación Interpersonal",
+                            SkillType = "Soft"
+                        },
+                        new
+                        {
+                            SkillId = 80,
+                            SkillName = "Gestión del Tiempo",
+                            SkillType = "Soft"
+                        });
                 });
 
             modelBuilder.Entity("JobSearchApp.Domain.Models.SocialMedia", b =>
@@ -474,11 +2563,9 @@ namespace JobSearchApp.Infrastructure.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("SocialMediaId"));
 
                     b.Property<string>("Platform")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Url")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("UserId")
@@ -489,6 +2576,22 @@ namespace JobSearchApp.Infrastructure.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("SocialMedia", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            SocialMediaId = 1,
+                            Platform = "LinkedIn",
+                            Url = "https://www.linkedin.com/in/admin",
+                            UserId = 1
+                        },
+                        new
+                        {
+                            SocialMediaId = 2,
+                            Platform = "Twitter",
+                            Url = "https://twitter.com/usuario",
+                            UserId = 2
+                        });
                 });
 
             modelBuilder.Entity("JobSearchApp.Domain.Models.Tag", b =>
@@ -500,16 +2603,136 @@ namespace JobSearchApp.Infrastructure.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("TagId"));
 
                     b.Property<string>("ImageUrl")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("TagName")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("TagId");
 
                     b.ToTable("Tag", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            TagId = 1,
+                            ImageUrl = "https://example.com/images/tag-remote.jpg",
+                            TagName = "Remoto"
+                        },
+                        new
+                        {
+                            TagId = 2,
+                            ImageUrl = "https://example.com/images/tag-fulltime.jpg",
+                            TagName = "Tiempo completo"
+                        },
+                        new
+                        {
+                            TagId = 3,
+                            ImageUrl = "https://example.com/images/tag-freelance.jpg",
+                            TagName = "Freelance"
+                        },
+                        new
+                        {
+                            TagId = 4,
+                            ImageUrl = "https://example.com/images/tag-contractor.jpg",
+                            TagName = "Contratista"
+                        },
+                        new
+                        {
+                            TagId = 5,
+                            ImageUrl = "https://example.com/images/tag-parttime.jpg",
+                            TagName = "Medio tiempo"
+                        },
+                        new
+                        {
+                            TagId = 6,
+                            ImageUrl = "https://example.com/images/tag-temporary.jpg",
+                            TagName = "Temporal"
+                        },
+                        new
+                        {
+                            TagId = 7,
+                            ImageUrl = "https://example.com/images/tag-internship.jpg",
+                            TagName = "Internship"
+                        },
+                        new
+                        {
+                            TagId = 8,
+                            ImageUrl = "https://example.com/images/tag-education.jpg",
+                            TagName = "Educación continua"
+                        },
+                        new
+                        {
+                            TagId = 9,
+                            ImageUrl = "https://example.com/images/tag-teamwork.jpg",
+                            TagName = "Trabajo en equipo"
+                        },
+                        new
+                        {
+                            TagId = 10,
+                            ImageUrl = "https://example.com/images/tag-leadership.jpg",
+                            TagName = "Liderazgo"
+                        },
+                        new
+                        {
+                            TagId = 11,
+                            ImageUrl = "https://example.com/images/tag-remote-work.jpg",
+                            TagName = "Trabajo remoto"
+                        },
+                        new
+                        {
+                            TagId = 12,
+                            ImageUrl = "https://example.com/images/tag-professional-development.jpg",
+                            TagName = "Desarrollo profesional"
+                        },
+                        new
+                        {
+                            TagId = 13,
+                            ImageUrl = "https://example.com/images/tag-flexible-hours.jpg",
+                            TagName = "Flexibilidad horaria"
+                        },
+                        new
+                        {
+                            TagId = 14,
+                            ImageUrl = "https://example.com/images/tag-growth-opportunities.jpg",
+                            TagName = "Oportunidades de crecimiento"
+                        },
+                        new
+                        {
+                            TagId = 15,
+                            ImageUrl = "https://example.com/images/tag-pressure.jpg",
+                            TagName = "Trabajo bajo presión"
+                        },
+                        new
+                        {
+                            TagId = 16,
+                            ImageUrl = "https://example.com/images/tag-benefits.jpg",
+                            TagName = "Beneficios"
+                        },
+                        new
+                        {
+                            TagId = 17,
+                            ImageUrl = "https://example.com/images/tag-innovation.jpg",
+                            TagName = "Innovación"
+                        },
+                        new
+                        {
+                            TagId = 18,
+                            ImageUrl = "https://example.com/images/tag-collaborative-environment.jpg",
+                            TagName = "Ambiente colaborativo"
+                        },
+                        new
+                        {
+                            TagId = 19,
+                            ImageUrl = "https://example.com/images/tag-training.jpg",
+                            TagName = "Capacitación"
+                        },
+                        new
+                        {
+                            TagId = 20,
+                            ImageUrl = "https://example.com/images/tag-work-life-balance.jpg",
+                            TagName = "Equilibrio vida-trabajo"
+                        });
                 });
 
             modelBuilder.Entity("JobSearchApp.Domain.Models.User", b =>
@@ -520,69 +2743,55 @@ namespace JobSearchApp.Infrastructure.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("UserId"));
 
-                    b.Property<int>("CompanyId")
+                    b.Property<int?>("CompanyId")
                         .HasColumnType("int");
 
                     b.Property<DateTimeOffset>("DateJoined")
                         .HasColumnType("datetimeoffset");
 
                     b.Property<string>("Email")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Ethnicity")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("FirstName")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("GenderIdentity")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Headline")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("IsWorking")
                         .HasColumnType("bit");
 
                     b.Property<string>("LastName")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("LinkedInUrl")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Location")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("MobileNumber")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("PasswordHash")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("PortfolioUrl")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ProfilePicture")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ProfileUrl")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Pronoun")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("RequireVisa")
@@ -592,19 +2801,15 @@ namespace JobSearchApp.Infrastructure.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("SearchStage")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Summary")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("UserName")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("UserType")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("UserId");
@@ -614,6 +2819,548 @@ namespace JobSearchApp.Infrastructure.Migrations
                     b.HasIndex("RoleId");
 
                     b.ToTable("User", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            UserId = 1,
+                            CompanyId = 1,
+                            DateJoined = new DateTimeOffset(new DateTime(2019, 8, 26, 11, 32, 32, 333, DateTimeKind.Unspecified).AddTicks(9157), new TimeSpan(0, 2, 0, 0, 0)),
+                            Email = "admin@techcorp.com",
+                            Ethnicity = "Latino",
+                            FirstName = "Carlos",
+                            GenderIdentity = "Masculino",
+                            Headline = "Gerente de TI",
+                            IsWorking = true,
+                            LastName = "Martínez",
+                            LinkedInUrl = "https://www.linkedin.com/in/carlosmartinez",
+                            Location = "San Francisco, CA",
+                            MobileNumber = "555-1234",
+                            PasswordHash = "admin",
+                            PortfolioUrl = "https://portfolio.com/carlosmartinez",
+                            ProfilePicture = "https://example.com/perfil1.jpg",
+                            ProfileUrl = "https://example.com/carlosmartinez",
+                            Pronoun = "Él",
+                            RequireVisa = false,
+                            RoleId = 2,
+                            SearchStage = "Activo",
+                            Summary = "Profesional con más de 10 años de experiencia en la gestión de proyectos tecnológicos.",
+                            UserName = "admin",
+                            UserType = "Administrador"
+                        },
+                        new
+                        {
+                            UserId = 2,
+                            CompanyId = 2,
+                            DateJoined = new DateTimeOffset(new DateTime(2021, 8, 26, 11, 32, 32, 333, DateTimeKind.Unspecified).AddTicks(9201), new TimeSpan(0, 2, 0, 0, 0)),
+                            Email = "jane.doe@saludplus.com",
+                            Ethnicity = "Caucásica",
+                            FirstName = "Jane",
+                            GenderIdentity = "Femenino",
+                            Headline = "Científica de Datos",
+                            IsWorking = false,
+                            LastName = "Doe",
+                            LinkedInUrl = "https://www.linkedin.com/in/janedoe",
+                            Location = "Nueva York, NY",
+                            MobileNumber = "555-5678",
+                            PasswordHash = "jane",
+                            PortfolioUrl = "https://portfolio.com/janedoe",
+                            ProfilePicture = "https://example.com/perfil2.jpg",
+                            ProfileUrl = "https://example.com/janedoe",
+                            Pronoun = "Ella",
+                            RequireVisa = false,
+                            RoleId = 2,
+                            SearchStage = "En búsqueda",
+                            Summary = "Especialista en análisis de datos con un enfoque en el sector salud.",
+                            UserName = "janedoe",
+                            UserType = "Usuario"
+                        },
+                        new
+                        {
+                            UserId = 3,
+                            CompanyId = 3,
+                            DateJoined = new DateTimeOffset(new DateTime(2020, 8, 26, 11, 32, 32, 333, DateTimeKind.Unspecified).AddTicks(9214), new TimeSpan(0, 2, 0, 0, 0)),
+                            Email = "john.smith@techtree.com",
+                            Ethnicity = "Afroamericano",
+                            FirstName = "John",
+                            GenderIdentity = "Masculino",
+                            Headline = "Ingeniero de Software",
+                            IsWorking = true,
+                            LastName = "Smith",
+                            LinkedInUrl = "https://www.linkedin.com/in/johnsmith",
+                            Location = "San Francisco, CA",
+                            MobileNumber = "555-1234",
+                            PasswordHash = "johnr",
+                            PortfolioUrl = "https://portfolio.com/johnsmith",
+                            ProfilePicture = "https://example.com/profile3.jpg",
+                            ProfileUrl = "https://example.com/johnsmith",
+                            Pronoun = "Él",
+                            RequireVisa = false,
+                            RoleId = 2,
+                            SearchStage = "Abierto a nuevas oportunidades",
+                            Summary = "Desarrollador de software con experiencia en tecnologías web y móviles.",
+                            UserName = "johnsmithr",
+                            UserType = "Usuario"
+                        },
+                        new
+                        {
+                            UserId = 4,
+                            CompanyId = 4,
+                            DateJoined = new DateTimeOffset(new DateTime(2022, 8, 26, 11, 32, 32, 333, DateTimeKind.Unspecified).AddTicks(9223), new TimeSpan(0, 2, 0, 0, 0)),
+                            Email = "maria.garcia@medex.com",
+                            Ethnicity = "Latina",
+                            FirstName = "Maria",
+                            GenderIdentity = "Femenino",
+                            Headline = "Analista Financiero",
+                            IsWorking = true,
+                            LastName = "Garcia",
+                            LinkedInUrl = "https://www.linkedin.com/in/mariagarcia",
+                            Location = "Miami, FL",
+                            MobileNumber = "555-2345",
+                            PasswordHash = "maria",
+                            PortfolioUrl = "https://portfolio.com/mariagarcia",
+                            ProfilePicture = "https://example.com/profile4.jpg",
+                            ProfileUrl = "https://example.com/mariagarcia",
+                            Pronoun = "Ella",
+                            RequireVisa = false,
+                            RoleId = 2,
+                            SearchStage = "Explorando opciones",
+                            Summary = "Profesional de finanzas con una sólida formación en análisis y gestión de riesgos.",
+                            UserName = "mariagarciar",
+                            UserType = "Usuarior"
+                        },
+                        new
+                        {
+                            UserId = 5,
+                            CompanyId = 5,
+                            DateJoined = new DateTimeOffset(new DateTime(2019, 8, 26, 11, 32, 32, 333, DateTimeKind.Unspecified).AddTicks(9231), new TimeSpan(0, 2, 0, 0, 0)),
+                            Email = "michael.brown@cybernet.com",
+                            Ethnicity = "Caucásico",
+                            FirstName = "Michael",
+                            GenderIdentity = "Masculino",
+                            Headline = "Arquitecto de Soluciones",
+                            IsWorking = true,
+                            LastName = "Brown",
+                            LinkedInUrl = "https://www.linkedin.com/in/michaelbrown",
+                            Location = "Austin, TX",
+                            MobileNumber = "555-3456",
+                            PasswordHash = "michaelr",
+                            PortfolioUrl = "https://portfolio.com/michaelbrown",
+                            ProfilePicture = "https://example.com/profile5.jpg",
+                            ProfileUrl = "https://example.com/michaelbrown",
+                            Pronoun = "Él",
+                            RequireVisa = false,
+                            RoleId = 2,
+                            SearchStage = "No en búsqueda activa",
+                            Summary = "Arquitecto de soluciones especializado en la creación de infraestructuras escalables.",
+                            UserName = "michaelbrownr",
+                            UserType = "Usuario"
+                        },
+                        new
+                        {
+                            UserId = 6,
+                            CompanyId = 6,
+                            DateJoined = new DateTimeOffset(new DateTime(2021, 8, 26, 11, 32, 32, 333, DateTimeKind.Unspecified).AddTicks(9239), new TimeSpan(0, 2, 0, 0, 0)),
+                            Email = "sophia.wilson@ecogreen.com",
+                            Ethnicity = "Asiática",
+                            FirstName = "Sophia",
+                            GenderIdentity = "Femenino",
+                            Headline = "Gestora de Proyectos",
+                            IsWorking = true,
+                            LastName = "Wilson",
+                            LinkedInUrl = "https://www.linkedin.com/in/sophiawilson",
+                            Location = "Seattle, WA",
+                            MobileNumber = "555-4567",
+                            PasswordHash = "sophiar",
+                            PortfolioUrl = "https://portfolio.com/sophiawilson",
+                            ProfilePicture = "https://example.com/profile6.jpg",
+                            ProfileUrl = "https://example.com/sophiawilson",
+                            Pronoun = "Ella",
+                            RequireVisa = false,
+                            RoleId = 2,
+                            SearchStage = "Interesada en nuevas oportunidades",
+                            Summary = "Gestora de proyectos con experiencia en proyectos de sostenibilidad y medio ambiente.",
+                            UserName = "sophiawilsonr",
+                            UserType = "Usuario"
+                        },
+                        new
+                        {
+                            UserId = 7,
+                            CompanyId = 7,
+                            DateJoined = new DateTimeOffset(new DateTime(2018, 8, 26, 11, 32, 32, 333, DateTimeKind.Unspecified).AddTicks(9247), new TimeSpan(0, 2, 0, 0, 0)),
+                            Email = "james.johnson@nextgen.com",
+                            Ethnicity = "Hispano",
+                            FirstName = "James",
+                            GenderIdentity = "Masculino",
+                            Headline = "Ingeniero DevOps",
+                            IsWorking = true,
+                            LastName = "Johnson",
+                            LinkedInUrl = "https://www.linkedin.com/in/jamesjohnson",
+                            Location = "Chicago, IL",
+                            MobileNumber = "555-5678",
+                            PasswordHash = "jamesr",
+                            PortfolioUrl = "https://portfolio.com/jamesjohnson",
+                            ProfilePicture = "https://example.com/profile7.jpg",
+                            ProfileUrl = "https://example.com/jamesjohnson",
+                            Pronoun = "Él",
+                            RequireVisa = false,
+                            RoleId = 2,
+                            SearchStage = "Abierto a nuevas posiciones",
+                            Summary = "Especialista en DevOps con experiencia en automatización y despliegue continuo.",
+                            UserName = "jamesjohnsonr",
+                            UserType = "Usuario"
+                        },
+                        new
+                        {
+                            UserId = 8,
+                            CompanyId = 8,
+                            DateJoined = new DateTimeOffset(new DateTime(2020, 8, 26, 11, 32, 32, 333, DateTimeKind.Unspecified).AddTicks(9254), new TimeSpan(0, 2, 0, 0, 0)),
+                            Email = "emma.davis@biomedic.com",
+                            Ethnicity = "Caucásica",
+                            FirstName = "Emma",
+                            GenderIdentity = "Femenino",
+                            Headline = "Investigadora Biomédica",
+                            IsWorking = true,
+                            LastName = "Davis",
+                            LinkedInUrl = "https://www.linkedin.com/in/emmadavis",
+                            Location = "Los Ángeles, CA",
+                            MobileNumber = "555-6789",
+                            PasswordHash = "emmar",
+                            PortfolioUrl = "https://portfolio.com/emmadavis",
+                            ProfilePicture = "https://example.com/profile8.jpg",
+                            ProfileUrl = "https://example.com/emmadavis",
+                            Pronoun = "Ella",
+                            RequireVisa = false,
+                            RoleId = 2,
+                            SearchStage = "Interesada en nuevas investigaciones",
+                            Summary = "Investigadora con experiencia en el desarrollo de terapias innovadoras.",
+                            UserName = "emmadavisr",
+                            UserType = "Usuario"
+                        },
+                        new
+                        {
+                            UserId = 9,
+                            CompanyId = 9,
+                            DateJoined = new DateTimeOffset(new DateTime(2022, 8, 26, 11, 32, 32, 333, DateTimeKind.Unspecified).AddTicks(9262), new TimeSpan(0, 2, 0, 0, 0)),
+                            Email = "william.miller@finserve.com",
+                            Ethnicity = "Caucásico",
+                            FirstName = "William",
+                            GenderIdentity = "Masculino",
+                            Headline = "Analista de Datos",
+                            IsWorking = true,
+                            LastName = "Miller",
+                            LinkedInUrl = "https://www.linkedin.com/in/williammiller",
+                            Location = "Nueva York, NY",
+                            MobileNumber = "555-7890",
+                            PasswordHash = "williamr",
+                            PortfolioUrl = "https://portfolio.com/williammiller",
+                            ProfilePicture = "https://example.com/profile9.jpg",
+                            ProfileUrl = "https://example.com/williammiller",
+                            Pronoun = "Él",
+                            RequireVisa = false,
+                            RoleId = 2,
+                            SearchStage = "Explorando oportunidades",
+                            Summary = "Analista de datos con experiencia en finanzas y optimización de procesos.",
+                            UserName = "williammillerr",
+                            UserType = "Usuario"
+                        },
+                        new
+                        {
+                            UserId = 10,
+                            CompanyId = 10,
+                            DateJoined = new DateTimeOffset(new DateTime(2021, 8, 26, 11, 32, 32, 333, DateTimeKind.Unspecified).AddTicks(9269), new TimeSpan(0, 2, 0, 0, 0)),
+                            Email = "olivia.martinez@greentech.com",
+                            Ethnicity = "Latina",
+                            FirstName = "Olivia",
+                            GenderIdentity = "Femenino",
+                            Headline = "Ingeniera Ambiental",
+                            IsWorking = true,
+                            LastName = "Martinez",
+                            LinkedInUrl = "https://www.linkedin.com/in/oliviamartinez",
+                            Location = "Denver, CO",
+                            MobileNumber = "555-8901",
+                            PasswordHash = "oliviar",
+                            PortfolioUrl = "https://portfolio.com/oliviamartinez",
+                            ProfilePicture = "https://example.com/profile10.jpg",
+                            ProfileUrl = "https://example.com/oliviamartinez",
+                            Pronoun = "Ella",
+                            RequireVisa = false,
+                            RoleId = 2,
+                            SearchStage = "En búsqueda activa",
+                            Summary = "Ingeniera con un enfoque en soluciones ecológicas y sostenibles.",
+                            UserName = "oliviamartinezr",
+                            UserType = "Usuario"
+                        },
+                        new
+                        {
+                            UserId = 11,
+                            CompanyId = 3,
+                            DateJoined = new DateTimeOffset(new DateTime(2020, 8, 26, 11, 32, 32, 333, DateTimeKind.Unspecified).AddTicks(9276), new TimeSpan(0, 2, 0, 0, 0)),
+                            Email = "john.smith@techtree.com",
+                            Ethnicity = "Afroamericano",
+                            FirstName = "John",
+                            GenderIdentity = "Masculino",
+                            Headline = "Ingeniero de Software",
+                            IsWorking = true,
+                            LastName = "Smith",
+                            LinkedInUrl = "https://www.linkedin.com/in/johnsmith",
+                            Location = "San Francisco, CA",
+                            MobileNumber = "555-1234",
+                            PasswordHash = "john",
+                            PortfolioUrl = "https://portfolio.com/johnsmith",
+                            ProfilePicture = "https://example.com/profile3.jpg",
+                            ProfileUrl = "https://example.com/johnsmith",
+                            Pronoun = "Él",
+                            RequireVisa = false,
+                            RoleId = 3,
+                            SearchStage = "Abierto a nuevas oportunidades",
+                            Summary = "Desarrollador de software con experiencia en tecnologías web y móviles.",
+                            UserName = "johnsmith",
+                            UserType = "Usuario"
+                        },
+                        new
+                        {
+                            UserId = 12,
+                            CompanyId = 4,
+                            DateJoined = new DateTimeOffset(new DateTime(2022, 8, 26, 11, 32, 32, 333, DateTimeKind.Unspecified).AddTicks(9284), new TimeSpan(0, 2, 0, 0, 0)),
+                            Email = "maria.garcia@medex.com",
+                            Ethnicity = "Latina",
+                            FirstName = "Maria",
+                            GenderIdentity = "Femenino",
+                            Headline = "Analista Financiero",
+                            IsWorking = true,
+                            LastName = "Garcia",
+                            LinkedInUrl = "https://www.linkedin.com/in/mariagarcia",
+                            Location = "Miami, FL",
+                            MobileNumber = "555-2345",
+                            PasswordHash = "maria",
+                            PortfolioUrl = "https://portfolio.com/mariagarcia",
+                            ProfilePicture = "https://example.com/profile4.jpg",
+                            ProfileUrl = "https://example.com/mariagarcia",
+                            Pronoun = "Ella",
+                            RequireVisa = false,
+                            RoleId = 3,
+                            SearchStage = "Explorando opciones",
+                            Summary = "Profesional de finanzas con una sólida formación en análisis y gestión de riesgos.",
+                            UserName = "mariagarcia",
+                            UserType = "Usuario"
+                        },
+                        new
+                        {
+                            UserId = 13,
+                            CompanyId = 5,
+                            DateJoined = new DateTimeOffset(new DateTime(2019, 8, 26, 11, 32, 32, 333, DateTimeKind.Unspecified).AddTicks(9292), new TimeSpan(0, 2, 0, 0, 0)),
+                            Email = "michael.brown@cybernet.com",
+                            Ethnicity = "Caucásico",
+                            FirstName = "Michael",
+                            GenderIdentity = "Masculino",
+                            Headline = "Arquitecto de Soluciones",
+                            IsWorking = false,
+                            LastName = "Brown",
+                            LinkedInUrl = "https://www.linkedin.com/in/michaelbrown",
+                            Location = "Austin, TX",
+                            MobileNumber = "555-3456",
+                            PasswordHash = "michael",
+                            PortfolioUrl = "https://portfolio.com/michaelbrown",
+                            ProfilePicture = "https://example.com/profile5.jpg",
+                            ProfileUrl = "https://example.com/michaelbrown",
+                            Pronoun = "Él",
+                            RequireVisa = false,
+                            RoleId = 3,
+                            SearchStage = "No en búsqueda activa",
+                            Summary = "Arquitecto de soluciones especializado en la creación de infraestructuras escalables.",
+                            UserName = "michaelbrown",
+                            UserType = "Usuario"
+                        },
+                        new
+                        {
+                            UserId = 14,
+                            CompanyId = 6,
+                            DateJoined = new DateTimeOffset(new DateTime(2021, 8, 26, 11, 32, 32, 333, DateTimeKind.Unspecified).AddTicks(9299), new TimeSpan(0, 2, 0, 0, 0)),
+                            Email = "sophia.wilson@ecogreen.com",
+                            Ethnicity = "Asiática",
+                            FirstName = "Sophia",
+                            GenderIdentity = "Femenino",
+                            Headline = "Gestora de Proyectos",
+                            IsWorking = false,
+                            LastName = "Wilson",
+                            LinkedInUrl = "https://www.linkedin.com/in/sophiawilson",
+                            Location = "Seattle, WA",
+                            MobileNumber = "555-4567",
+                            PasswordHash = "sophia",
+                            PortfolioUrl = "https://portfolio.com/sophiawilson",
+                            ProfilePicture = "https://example.com/profile6.jpg",
+                            ProfileUrl = "https://example.com/sophiawilson",
+                            Pronoun = "Ella",
+                            RequireVisa = false,
+                            RoleId = 3,
+                            SearchStage = "Interesada en nuevas oportunidades",
+                            Summary = "Gestora de proyectos con experiencia en proyectos de sostenibilidad y medio ambiente.",
+                            UserName = "sophiawilson",
+                            UserType = "Usuario"
+                        },
+                        new
+                        {
+                            UserId = 15,
+                            CompanyId = 7,
+                            DateJoined = new DateTimeOffset(new DateTime(2018, 8, 26, 11, 32, 32, 333, DateTimeKind.Unspecified).AddTicks(9307), new TimeSpan(0, 2, 0, 0, 0)),
+                            Email = "james.johnson@nextgen.com",
+                            Ethnicity = "Hispano",
+                            FirstName = "James",
+                            GenderIdentity = "Masculino",
+                            Headline = "Ingeniero DevOps",
+                            IsWorking = false,
+                            LastName = "Johnson",
+                            LinkedInUrl = "https://www.linkedin.com/in/jamesjohnson",
+                            Location = "Chicago, IL",
+                            MobileNumber = "555-5678",
+                            PasswordHash = "james",
+                            PortfolioUrl = "https://portfolio.com/jamesjohnson",
+                            ProfilePicture = "https://example.com/profile7.jpg",
+                            ProfileUrl = "https://example.com/jamesjohnson",
+                            Pronoun = "Él",
+                            RequireVisa = false,
+                            RoleId = 3,
+                            SearchStage = "Abierto a nuevas posiciones",
+                            Summary = "Especialista en DevOps con experiencia en automatización y despliegue continuo.",
+                            UserName = "jamesjohnson",
+                            UserType = "Usuario"
+                        },
+                        new
+                        {
+                            UserId = 16,
+                            CompanyId = 8,
+                            DateJoined = new DateTimeOffset(new DateTime(2020, 8, 26, 11, 32, 32, 333, DateTimeKind.Unspecified).AddTicks(9314), new TimeSpan(0, 2, 0, 0, 0)),
+                            Email = "emma.davis@biomedic.com",
+                            Ethnicity = "Caucásica",
+                            FirstName = "Emma",
+                            GenderIdentity = "Femenino",
+                            Headline = "Investigadora Biomédica",
+                            IsWorking = false,
+                            LastName = "Davis",
+                            LinkedInUrl = "https://www.linkedin.com/in/emmadavis",
+                            Location = "Los Ángeles, CA",
+                            MobileNumber = "555-6789",
+                            PasswordHash = "emma",
+                            PortfolioUrl = "https://portfolio.com/emmadavis",
+                            ProfilePicture = "https://example.com/profile8.jpg",
+                            ProfileUrl = "https://example.com/emmadavis",
+                            Pronoun = "Ella",
+                            RequireVisa = false,
+                            RoleId = 3,
+                            SearchStage = "Interesada en nuevas investigaciones",
+                            Summary = "Investigadora con experiencia en el desarrollo de terapias innovadoras.",
+                            UserName = "emmadavis",
+                            UserType = "Usuario"
+                        },
+                        new
+                        {
+                            UserId = 17,
+                            CompanyId = 9,
+                            DateJoined = new DateTimeOffset(new DateTime(2022, 8, 26, 11, 32, 32, 333, DateTimeKind.Unspecified).AddTicks(9321), new TimeSpan(0, 2, 0, 0, 0)),
+                            Email = "william.miller@finserve.com",
+                            Ethnicity = "Caucásico",
+                            FirstName = "William",
+                            GenderIdentity = "Masculino",
+                            Headline = "Analista de Datos",
+                            IsWorking = true,
+                            LastName = "Miller",
+                            LinkedInUrl = "https://www.linkedin.com/in/williammiller",
+                            Location = "Nueva York, NY",
+                            MobileNumber = "555-7890",
+                            PasswordHash = "william",
+                            PortfolioUrl = "https://portfolio.com/williammiller",
+                            ProfilePicture = "https://example.com/profile9.jpg",
+                            ProfileUrl = "https://example.com/williammiller",
+                            Pronoun = "Él",
+                            RequireVisa = false,
+                            RoleId = 3,
+                            SearchStage = "Explorando oportunidades",
+                            Summary = "Analista de datos con experiencia en finanzas y optimización de procesos.",
+                            UserName = "williammiller",
+                            UserType = "Usuario"
+                        },
+                        new
+                        {
+                            UserId = 18,
+                            CompanyId = 10,
+                            DateJoined = new DateTimeOffset(new DateTime(2021, 8, 26, 11, 32, 32, 333, DateTimeKind.Unspecified).AddTicks(9330), new TimeSpan(0, 2, 0, 0, 0)),
+                            Email = "olivia.martinez@greentech.com",
+                            Ethnicity = "Latina",
+                            FirstName = "Olivia",
+                            GenderIdentity = "Femenino",
+                            Headline = "Ingeniera Ambiental",
+                            IsWorking = false,
+                            LastName = "Martinez",
+                            LinkedInUrl = "https://www.linkedin.com/in/oliviamartinez",
+                            Location = "Denver, CO",
+                            MobileNumber = "555-8901",
+                            PasswordHash = "olivia",
+                            PortfolioUrl = "https://portfolio.com/oliviamartinez",
+                            ProfilePicture = "https://example.com/profile10.jpg",
+                            ProfileUrl = "https://example.com/oliviamartinez",
+                            Pronoun = "Ella",
+                            RequireVisa = false,
+                            RoleId = 2,
+                            SearchStage = "En búsqueda activa",
+                            Summary = "Ingeniera con un enfoque en soluciones ecológicas y sostenibles.",
+                            UserName = "oliviamartinez",
+                            UserType = "Usuario"
+                        },
+                        new
+                        {
+                            UserId = 19,
+                            CompanyId = 7,
+                            DateJoined = new DateTimeOffset(new DateTime(2017, 8, 26, 11, 32, 32, 333, DateTimeKind.Unspecified).AddTicks(9336), new TimeSpan(0, 2, 0, 0, 0)),
+                            Email = "liam.harris@urbanhealth.com",
+                            Ethnicity = "Afroamericano",
+                            FirstName = "Liam",
+                            GenderIdentity = "Masculino",
+                            Headline = "Gerente de Recursos Humanos",
+                            IsWorking = false,
+                            LastName = "Harris",
+                            LinkedInUrl = "https://www.linkedin.com/in/liamharris",
+                            Location = "Nueva York, NY",
+                            MobileNumber = "555-9999",
+                            PasswordHash = "liam",
+                            PortfolioUrl = "https://portfolio.com/liamharris",
+                            ProfilePicture = "https://example.com/profile19.jpg",
+                            ProfileUrl = "https://example.com/liamharris",
+                            Pronoun = "Él",
+                            RequireVisa = false,
+                            RoleId = 3,
+                            SearchStage = "No en búsqueda activa",
+                            Summary = "Gerente de RRHH con experiencia en reclutamiento y desarrollo de talento.",
+                            UserName = "liamharris",
+                            UserType = "Usuario"
+                        },
+                        new
+                        {
+                            UserId = 20,
+                            CompanyId = 8,
+                            DateJoined = new DateTimeOffset(new DateTime(2018, 8, 26, 11, 32, 32, 333, DateTimeKind.Unspecified).AddTicks(9344), new TimeSpan(0, 2, 0, 0, 0)),
+                            Email = "ava.walker@medtech.com",
+                            Ethnicity = "Caucásica",
+                            FirstName = "Ava",
+                            GenderIdentity = "Femenino",
+                            Headline = "Directora de Estrategia",
+                            IsWorking = false,
+                            LastName = "Walker",
+                            LinkedInUrl = "https://www.linkedin.com/in/avawalker",
+                            Location = "Denver, CO",
+                            MobileNumber = "555-0000",
+                            PasswordHash = "ava",
+                            PortfolioUrl = "https://portfolio.com/avawalker",
+                            ProfilePicture = "https://example.com/profile20.jpg",
+                            ProfileUrl = "https://example.com/avawalker",
+                            Pronoun = "Ella",
+                            RequireVisa = false,
+                            RoleId = 3,
+                            SearchStage = "Explorando nuevas iniciativas",
+                            Summary = "Especialista en estrategias de negocio y desarrollo organizacional.",
+                            UserName = "avawalker",
+                            UserType = "Usuario"
+                        });
                 });
 
             modelBuilder.Entity("JobSearchApp.Domain.Models.UserPreference", b =>
@@ -625,14 +3372,12 @@ namespace JobSearchApp.Infrastructure.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("PreferenceId"));
 
                     b.Property<string>("Category")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("UserId")
                         .HasColumnType("int");
 
                     b.Property<string>("Value")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("PreferenceId");
@@ -640,6 +3385,78 @@ namespace JobSearchApp.Infrastructure.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("UserPreference", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            PreferenceId = 1,
+                            Category = "Tipo de Trabajo",
+                            UserId = 11,
+                            Value = "Tipo de Trabajo - Freelance"
+                        },
+                        new
+                        {
+                            PreferenceId = 2,
+                            Category = "Salario",
+                            UserId = 12,
+                            Value = "Salario - Competitivo"
+                        },
+                        new
+                        {
+                            PreferenceId = 3,
+                            Category = "Horario",
+                            UserId = 13,
+                            Value = "Horario - Tiempo Parcial"
+                        },
+                        new
+                        {
+                            PreferenceId = 4,
+                            Category = "Ubicación",
+                            UserId = 14,
+                            Value = "Ubicación - Ciudad Principal"
+                        },
+                        new
+                        {
+                            PreferenceId = 5,
+                            Category = "Oportunidades",
+                            UserId = 15,
+                            Value = "Oportunidades - Liderazgo"
+                        },
+                        new
+                        {
+                            PreferenceId = 6,
+                            Category = "Tipo de Trabajo",
+                            UserId = 16,
+                            Value = "Tipo de Trabajo - Contrato"
+                        },
+                        new
+                        {
+                            PreferenceId = 7,
+                            Category = "Salario",
+                            UserId = 17,
+                            Value = "Salario - Basado en Experiencia"
+                        },
+                        new
+                        {
+                            PreferenceId = 8,
+                            Category = "Horario",
+                            UserId = 18,
+                            Value = "Horario - Tiempo Completo"
+                        },
+                        new
+                        {
+                            PreferenceId = 9,
+                            Category = "Ubicación",
+                            UserId = 19,
+                            Value = "Ubicación - Remoto"
+                        },
+                        new
+                        {
+                            PreferenceId = 10,
+                            Category = "Oportunidades",
+                            UserId = 20,
+                            Value = "Oportunidades - Internacionales"
+                        });
                 });
 
             modelBuilder.Entity("JobSearchApp.Domain.Models.UserSkill", b =>
@@ -651,14 +3468,12 @@ namespace JobSearchApp.Infrastructure.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("UserSkillId"));
 
                     b.Property<string>("ProficiencyLevel")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("RelatedId")
                         .HasColumnType("int");
 
                     b.Property<string>("RelatedTo")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("SkillId")
@@ -674,6 +3489,368 @@ namespace JobSearchApp.Infrastructure.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("UserSkill", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            UserSkillId = 1,
+                            ProficiencyLevel = "Experto",
+                            RelatedId = 101,
+                            RelatedTo = "Certificación",
+                            SkillId = 1,
+                            UserId = 11
+                        },
+                        new
+                        {
+                            UserSkillId = 2,
+                            ProficiencyLevel = "Avanzado",
+                            RelatedId = 202,
+                            RelatedTo = "Curso",
+                            SkillId = 2,
+                            UserId = 11
+                        },
+                        new
+                        {
+                            UserSkillId = 3,
+                            ProficiencyLevel = "Intermedio",
+                            RelatedId = 303,
+                            RelatedTo = "Proyecto",
+                            SkillId = 3,
+                            UserId = 11
+                        },
+                        new
+                        {
+                            UserSkillId = 4,
+                            ProficiencyLevel = "Básico",
+                            RelatedId = 404,
+                            RelatedTo = "Certificación",
+                            SkillId = 4,
+                            UserId = 11
+                        },
+                        new
+                        {
+                            UserSkillId = 5,
+                            ProficiencyLevel = "Experto",
+                            RelatedId = 505,
+                            RelatedTo = "Curso",
+                            SkillId = 5,
+                            UserId = 12
+                        },
+                        new
+                        {
+                            UserSkillId = 6,
+                            ProficiencyLevel = "Avanzado",
+                            RelatedId = 606,
+                            RelatedTo = "Proyecto",
+                            SkillId = 6,
+                            UserId = 12
+                        },
+                        new
+                        {
+                            UserSkillId = 7,
+                            ProficiencyLevel = "Intermedio",
+                            RelatedId = 707,
+                            RelatedTo = "Certificación",
+                            SkillId = 7,
+                            UserId = 12
+                        },
+                        new
+                        {
+                            UserSkillId = 8,
+                            ProficiencyLevel = "Básico",
+                            RelatedId = 808,
+                            RelatedTo = "Curso",
+                            SkillId = 8,
+                            UserId = 12
+                        },
+                        new
+                        {
+                            UserSkillId = 9,
+                            ProficiencyLevel = "Experto",
+                            RelatedId = 909,
+                            RelatedTo = "Proyecto",
+                            SkillId = 9,
+                            UserId = 13
+                        },
+                        new
+                        {
+                            UserSkillId = 10,
+                            ProficiencyLevel = "Avanzado",
+                            RelatedId = 1010,
+                            RelatedTo = "Certificación",
+                            SkillId = 10,
+                            UserId = 13
+                        },
+                        new
+                        {
+                            UserSkillId = 11,
+                            ProficiencyLevel = "Intermedio",
+                            RelatedId = 1111,
+                            RelatedTo = "Curso",
+                            SkillId = 11,
+                            UserId = 13
+                        },
+                        new
+                        {
+                            UserSkillId = 12,
+                            ProficiencyLevel = "Básico",
+                            RelatedId = 1212,
+                            RelatedTo = "Proyecto",
+                            SkillId = 12,
+                            UserId = 13
+                        },
+                        new
+                        {
+                            UserSkillId = 13,
+                            ProficiencyLevel = "Experto",
+                            RelatedId = 1313,
+                            RelatedTo = "Certificación",
+                            SkillId = 13,
+                            UserId = 14
+                        },
+                        new
+                        {
+                            UserSkillId = 14,
+                            ProficiencyLevel = "Avanzado",
+                            RelatedId = 1414,
+                            RelatedTo = "Curso",
+                            SkillId = 14,
+                            UserId = 14
+                        },
+                        new
+                        {
+                            UserSkillId = 15,
+                            ProficiencyLevel = "Intermedio",
+                            RelatedId = 1515,
+                            RelatedTo = "Proyecto",
+                            SkillId = 15,
+                            UserId = 14
+                        },
+                        new
+                        {
+                            UserSkillId = 16,
+                            ProficiencyLevel = "Básico",
+                            RelatedId = 1616,
+                            RelatedTo = "Certificación",
+                            SkillId = 16,
+                            UserId = 14
+                        },
+                        new
+                        {
+                            UserSkillId = 17,
+                            ProficiencyLevel = "Experto",
+                            RelatedId = 1717,
+                            RelatedTo = "Curso",
+                            SkillId = 17,
+                            UserId = 15
+                        },
+                        new
+                        {
+                            UserSkillId = 18,
+                            ProficiencyLevel = "Avanzado",
+                            RelatedId = 1818,
+                            RelatedTo = "Certificación",
+                            SkillId = 18,
+                            UserId = 15
+                        },
+                        new
+                        {
+                            UserSkillId = 19,
+                            ProficiencyLevel = "Intermedio",
+                            RelatedId = 1919,
+                            RelatedTo = "Proyecto",
+                            SkillId = 19,
+                            UserId = 15
+                        },
+                        new
+                        {
+                            UserSkillId = 20,
+                            ProficiencyLevel = "Básico",
+                            RelatedId = 2020,
+                            RelatedTo = "Curso",
+                            SkillId = 20,
+                            UserId = 15
+                        },
+                        new
+                        {
+                            UserSkillId = 21,
+                            ProficiencyLevel = "Experto",
+                            RelatedId = 2121,
+                            RelatedTo = "Certificación",
+                            SkillId = 21,
+                            UserId = 16
+                        },
+                        new
+                        {
+                            UserSkillId = 22,
+                            ProficiencyLevel = "Avanzado",
+                            RelatedId = 2222,
+                            RelatedTo = "Curso",
+                            SkillId = 22,
+                            UserId = 16
+                        },
+                        new
+                        {
+                            UserSkillId = 23,
+                            ProficiencyLevel = "Intermedio",
+                            RelatedId = 2323,
+                            RelatedTo = "Proyecto",
+                            SkillId = 23,
+                            UserId = 16
+                        },
+                        new
+                        {
+                            UserSkillId = 24,
+                            ProficiencyLevel = "Básico",
+                            RelatedId = 2424,
+                            RelatedTo = "Certificación",
+                            SkillId = 24,
+                            UserId = 16
+                        },
+                        new
+                        {
+                            UserSkillId = 25,
+                            ProficiencyLevel = "Experto",
+                            RelatedId = 2525,
+                            RelatedTo = "Curso",
+                            SkillId = 25,
+                            UserId = 17
+                        },
+                        new
+                        {
+                            UserSkillId = 26,
+                            ProficiencyLevel = "Avanzado",
+                            RelatedId = 2626,
+                            RelatedTo = "Certificación",
+                            SkillId = 26,
+                            UserId = 17
+                        },
+                        new
+                        {
+                            UserSkillId = 27,
+                            ProficiencyLevel = "Intermedio",
+                            RelatedId = 2727,
+                            RelatedTo = "Proyecto",
+                            SkillId = 27,
+                            UserId = 17
+                        },
+                        new
+                        {
+                            UserSkillId = 28,
+                            ProficiencyLevel = "Básico",
+                            RelatedId = 2828,
+                            RelatedTo = "Curso",
+                            SkillId = 28,
+                            UserId = 17
+                        },
+                        new
+                        {
+                            UserSkillId = 29,
+                            ProficiencyLevel = "Experto",
+                            RelatedId = 2929,
+                            RelatedTo = "Certificación",
+                            SkillId = 29,
+                            UserId = 18
+                        },
+                        new
+                        {
+                            UserSkillId = 30,
+                            ProficiencyLevel = "Avanzado",
+                            RelatedId = 3030,
+                            RelatedTo = "Curso",
+                            SkillId = 30,
+                            UserId = 18
+                        },
+                        new
+                        {
+                            UserSkillId = 31,
+                            ProficiencyLevel = "Intermedio",
+                            RelatedId = 3131,
+                            RelatedTo = "Proyecto",
+                            SkillId = 31,
+                            UserId = 18
+                        },
+                        new
+                        {
+                            UserSkillId = 32,
+                            ProficiencyLevel = "Básico",
+                            RelatedId = 3232,
+                            RelatedTo = "Certificación",
+                            SkillId = 32,
+                            UserId = 18
+                        },
+                        new
+                        {
+                            UserSkillId = 33,
+                            ProficiencyLevel = "Experto",
+                            RelatedId = 3333,
+                            RelatedTo = "Curso",
+                            SkillId = 33,
+                            UserId = 19
+                        },
+                        new
+                        {
+                            UserSkillId = 34,
+                            ProficiencyLevel = "Avanzado",
+                            RelatedId = 3434,
+                            RelatedTo = "Certificación",
+                            SkillId = 34,
+                            UserId = 19
+                        },
+                        new
+                        {
+                            UserSkillId = 35,
+                            ProficiencyLevel = "Intermedio",
+                            RelatedId = 3535,
+                            RelatedTo = "Proyecto",
+                            SkillId = 35,
+                            UserId = 19
+                        },
+                        new
+                        {
+                            UserSkillId = 36,
+                            ProficiencyLevel = "Básico",
+                            RelatedId = 3636,
+                            RelatedTo = "Curso",
+                            SkillId = 36,
+                            UserId = 19
+                        },
+                        new
+                        {
+                            UserSkillId = 37,
+                            ProficiencyLevel = "Experto",
+                            RelatedId = 3737,
+                            RelatedTo = "Certificación",
+                            SkillId = 37,
+                            UserId = 20
+                        },
+                        new
+                        {
+                            UserSkillId = 38,
+                            ProficiencyLevel = "Avanzado",
+                            RelatedId = 3838,
+                            RelatedTo = "Curso",
+                            SkillId = 38,
+                            UserId = 20
+                        },
+                        new
+                        {
+                            UserSkillId = 39,
+                            ProficiencyLevel = "Intermedio",
+                            RelatedId = 3939,
+                            RelatedTo = "Proyecto",
+                            SkillId = 39,
+                            UserId = 20
+                        },
+                        new
+                        {
+                            UserSkillId = 40,
+                            ProficiencyLevel = "Básico",
+                            RelatedId = 4040,
+                            RelatedTo = "Certificación",
+                            SkillId = 40,
+                            UserId = 20
+                        });
                 });
 
             modelBuilder.Entity("JobSearchApp.Domain.Models.WorkExperience", b =>
@@ -685,22 +3862,18 @@ namespace JobSearchApp.Infrastructure.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("WorkExperienceId"));
 
                     b.Property<string>("CompanyName")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Description")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTimeOffset>("EndDate")
                         .HasColumnType("datetimeoffset");
 
                     b.Property<string>("JobTitle")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Location")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTimeOffset>("StartDate")
@@ -714,6 +3887,118 @@ namespace JobSearchApp.Infrastructure.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("WorkExperience", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            WorkExperienceId = 1,
+                            CompanyName = "Tech Innovations",
+                            Description = "Desarrollo de interfaces web utilizando React y CSS.",
+                            EndDate = new DateTimeOffset(new DateTime(2020, 5, 31, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 2, 0, 0, 0)),
+                            JobTitle = "Desarrollador Frontend",
+                            Location = "Ciudad de México",
+                            StartDate = new DateTimeOffset(new DateTime(2018, 7, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 2, 0, 0, 0)),
+                            UserId = 1
+                        },
+                        new
+                        {
+                            WorkExperienceId = 2,
+                            CompanyName = "SoftTech",
+                            Description = "Análisis de requerimientos y diseño de soluciones tecnológicas.",
+                            EndDate = new DateTimeOffset(new DateTime(2018, 6, 30, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 2, 0, 0, 0)),
+                            JobTitle = "Analista de Sistemas",
+                            Location = "Puebla",
+                            StartDate = new DateTimeOffset(new DateTime(2016, 3, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 1, 0, 0, 0)),
+                            UserId = 8
+                        },
+                        new
+                        {
+                            WorkExperienceId = 3,
+                            CompanyName = "Creative Labs",
+                            Description = "Diseño de interfaces de usuario y experiencias de usuario para aplicaciones móviles.",
+                            EndDate = new DateTimeOffset(new DateTime(2024, 5, 30, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 2, 0, 0, 0)),
+                            JobTitle = "Diseñador UX/UI",
+                            Location = "Monterrey",
+                            StartDate = new DateTimeOffset(new DateTime(2021, 1, 5, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 1, 0, 0, 0)),
+                            UserId = 3
+                        },
+                        new
+                        {
+                            WorkExperienceId = 4,
+                            CompanyName = "Data Insights",
+                            Description = "Análisis y visualización de datos utilizando herramientas como R y Tableau.",
+                            EndDate = new DateTimeOffset(new DateTime(2023, 8, 31, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 2, 0, 0, 0)),
+                            JobTitle = "Analista de Datos",
+                            Location = "Seattle",
+                            StartDate = new DateTimeOffset(new DateTime(2020, 2, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 1, 0, 0, 0)),
+                            UserId = 5
+                        },
+                        new
+                        {
+                            WorkExperienceId = 5,
+                            CompanyName = "AppDev Inc.",
+                            Description = "Desarrollo de aplicaciones móviles y de escritorio.",
+                            EndDate = new DateTimeOffset(new DateTime(2022, 6, 30, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 2, 0, 0, 0)),
+                            JobTitle = "Desarrollador de Aplicaciones",
+                            Location = "San José",
+                            StartDate = new DateTimeOffset(new DateTime(2018, 3, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 1, 0, 0, 0)),
+                            UserId = 7
+                        },
+                        new
+                        {
+                            WorkExperienceId = 6,
+                            CompanyName = "BioHealth",
+                            Description = "Investigación y desarrollo de productos biotecnológicos.",
+                            EndDate = new DateTimeOffset(new DateTime(2022, 4, 30, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 2, 0, 0, 0)),
+                            JobTitle = "Especialista en Biotecnología",
+                            Location = "San Francisco",
+                            StartDate = new DateTimeOffset(new DateTime(2019, 5, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 2, 0, 0, 0)),
+                            UserId = 11
+                        },
+                        new
+                        {
+                            WorkExperienceId = 7,
+                            CompanyName = "Creative Design Co.",
+                            Description = "Creación de material visual y diseño de campañas publicitarias.",
+                            EndDate = new DateTimeOffset(new DateTime(2022, 2, 28, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 1, 0, 0, 0)),
+                            JobTitle = "Diseñador Gráfico",
+                            Location = "Los Ángeles",
+                            StartDate = new DateTimeOffset(new DateTime(2020, 3, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 1, 0, 0, 0)),
+                            UserId = 12
+                        },
+                        new
+                        {
+                            WorkExperienceId = 8,
+                            CompanyName = "Data Insights",
+                            Description = "Análisis y visualización de datos utilizando herramientas como R y Tableau.",
+                            EndDate = new DateTimeOffset(new DateTime(2023, 8, 31, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 2, 0, 0, 0)),
+                            JobTitle = "Analista de Datos",
+                            Location = "Seattle",
+                            StartDate = new DateTimeOffset(new DateTime(2020, 2, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 1, 0, 0, 0)),
+                            UserId = 14
+                        },
+                        new
+                        {
+                            WorkExperienceId = 9,
+                            CompanyName = "Cloud Solutions",
+                            Description = "Diseño e implementación de soluciones en la nube.",
+                            EndDate = new DateTimeOffset(new DateTime(2024, 8, 31, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 2, 0, 0, 0)),
+                            JobTitle = "Arquitecto de Soluciones",
+                            Location = "Austin",
+                            StartDate = new DateTimeOffset(new DateTime(2021, 7, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 2, 0, 0, 0)),
+                            UserId = 16
+                        },
+                        new
+                        {
+                            WorkExperienceId = 10,
+                            CompanyName = "Global HR",
+                            Description = "Gestión de equipos y desarrollo de estrategias de recursos humanos.",
+                            EndDate = new DateTimeOffset(new DateTime(2021, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 1, 0, 0, 0)),
+                            JobTitle = "Gerente de Recursos Humanos",
+                            Location = "Miami",
+                            StartDate = new DateTimeOffset(new DateTime(2017, 9, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 2, 0, 0, 0)),
+                            UserId = 18
+                        });
                 });
 
             modelBuilder.Entity("JobSearchApp.Domain.Models.Answer", b =>
@@ -898,8 +4183,7 @@ namespace JobSearchApp.Infrastructure.Migrations
                     b.HasOne("JobSearchApp.Domain.Models.Company", "Company")
                         .WithMany("Users")
                         .HasForeignKey("CompanyId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("JobSearchApp.Domain.Models.Role", "Role")
                         .WithMany("Users")

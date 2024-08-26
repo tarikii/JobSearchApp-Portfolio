@@ -1,8 +1,9 @@
 using AutoMapper;
 using JobSearchApp.BusinessLogic.DTOs;
-using JobSearchApp.BusinessLogic.Interfaces;
+using JobSearchApp.BusinessLogic.Services.Interfaces;
 using JobSearchApp.Domain.Models;
 using JobSearchApp.Infrastructure.Interfaces;
+using JobSearchApp.Infrastructure.Repositories;
 
 namespace JobSearchApp.BusinessLogic.Services
 {
@@ -29,8 +30,11 @@ namespace JobSearchApp.BusinessLogic.Services
             return answer == null ? null : _mapper.Map<AnswerDto>(answer);
         }
 
-        public async Task<AnswerDto> CreateAnswerAsync(CreateAnswerDto createAnswerDto)
+        public async Task<AnswerDto> CreateAnswerAsync(CreateAnswerDto createAnswerDto, int userId)
         {
+            CreateAnswerDto newAnswer = createAnswerDto;
+            newAnswer.UserId = userId;
+
             var answer = _mapper.Map<Answer>(createAnswerDto);
             var createdAnswer = await _answerRepository.CreateAnswerAsync(answer);
             return _mapper.Map<AnswerDto>(createdAnswer);
@@ -38,13 +42,17 @@ namespace JobSearchApp.BusinessLogic.Services
 
         public async Task<AnswerDto> UpdateAnswerAsync(int answerId, UpdateAnswerDto updateAnswerDto)
         {
-            if (answerId != updateAnswerDto.AnswerId)
+            var existingAnswer = await _answerRepository.GetAnswerByIdAsync(answerId);
+            if (existingAnswer == null)
             {
-                return null;
+                // Handle the case where the interest does not exist
+                throw new Exception($"Answer with ID {answerId} not found.");
             }
 
-            var answer = _mapper.Map<Answer>(updateAnswerDto);
-            var updatedAnswer = await _answerRepository.UpdateAnswerAsync(answer);
+            // Update properties on the existing interest
+            _mapper.Map(updateAnswerDto, existingAnswer);
+
+            var updatedAnswer = await _answerRepository.UpdateAnswerAsync(existingAnswer);
             return _mapper.Map<AnswerDto>(updatedAnswer);
         }
 

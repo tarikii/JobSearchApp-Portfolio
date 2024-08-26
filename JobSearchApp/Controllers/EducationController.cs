@@ -1,5 +1,3 @@
-using System.Collections.Generic;
-using System.Threading.Tasks;
 using AutoMapper;
 using JobSearchApp.BusinessLogic.DTOs;
 using JobSearchApp.BusinessLogic.Interfaces;
@@ -44,7 +42,7 @@ namespace JobSearchApp.Web.Controllers
         [HttpPost]
         public async Task<ActionResult<EducationDto>> CreateEducation(CreateEducationDto createEducationDto)
         {
-            var createdEducation = await _educationService.CreateEducationAsync(createEducationDto);
+            var createdEducation = await _educationService.CreateEducationAsync(createEducationDto,1);
 
             return CreatedAtAction(nameof(GetEducationById), new { id = createdEducation.EducationId }, createdEducation);
         }

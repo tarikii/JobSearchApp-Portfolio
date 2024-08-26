@@ -1,0 +1,44 @@
+﻿@using JobSearchApp.BusinessLogic.DTOs
+
+@model FeedbackDto
+
+@if (Model != null)
+{
+    <div style="background-color: #f5f5f5; border: 1px solid #dee2e6; border-radius: 5px; padding: 20px; margin-top: 20px;" class="feedback-message container mt-4">
+        <div class="message-content text-center">
+            <h1 style="color: #1F4D78; font-weight: bold;">Feedback: @Model.FeedbackText</h1>
+            <br />
+            @{
+                var returnUrl = ViewBag.ReturnUrl;
+                string buttonText;
+
+                if (returnUrl.Contains("ListApplicationJobOfferPage"))
+                {
+                    buttonText = "Volver a tus postulaciones";
+                }
+                else if (returnUrl.Contains("ListOfMatchesPage"))
+                {
+                    buttonText = "Volver a tus matches";
+                }
+                else
+                {
+                    buttonText = "Volver";
+                }
+            }
+
+            <a class="btn btn-primary" href="@returnUrl">@buttonText</a>
+        </div>
+    </div>
+}
+else
+{
+    <div style="background-color: #f5f5f5; border: 1px solid #dee2e6; border-radius: 5px; padding: 20px; margin-top: 20px;" class="no-candidates-message container mt-4">
+        <div class="message-content text-center">
+            <h1 style="color: #1F4D78; font-weight: bold;">Todavía no te han dado feedback</h1>
+            <p>Vuelve a intentarlo más tarde para ver un posible nuevo feedback.</p>
+            <br />
+            <br />
+            <a class="btn btn-primary" href="@ViewBag.ReturnUrl">Volver a tus postulaciones</a>
+        </div>
+    </div>
+}

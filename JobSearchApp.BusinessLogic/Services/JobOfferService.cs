@@ -3,6 +3,7 @@ using JobSearchApp.BusinessLogic.DTOs;
 using JobSearchApp.BusinessLogic.Interfaces;
 using JobSearchApp.Domain.Models;
 using JobSearchApp.Infrastructure.Interfaces;
+using System.Collections;
 
 namespace JobSearchApp.BusinessLogic.Services
 {
@@ -20,6 +21,7 @@ namespace JobSearchApp.BusinessLogic.Services
         public async Task<IEnumerable<JobOfferDto>> GetAllJobOffersAsync()
         {
             var jobOffers = await _jobOfferRepository.GetAllJobOffersAsync();
+
             return _mapper.Map<IEnumerable<JobOfferDto>>(jobOffers);
         }
 
@@ -27,6 +29,13 @@ namespace JobSearchApp.BusinessLogic.Services
         {
             var jobOffer = await _jobOfferRepository.GetJobOfferByIdAsync(jobOfferId);
             return jobOffer == null ? null : _mapper.Map<JobOfferDto>(jobOffer);
+        }
+
+        public async Task<IEnumerable<JobOfferDto>> GetJobOfferByCompanyIdAsync(int companyId)
+        {
+            var jobOffers= await _jobOfferRepository.GetAllJobOffersAsync();
+
+            return jobOffers == null ? null : _mapper.Map<IEnumerable<JobOfferDto>>(jobOffers.Where(c => c.CompanyId == companyId));
         }
 
         public async Task<JobOfferDto> CreateJobOfferAsync(CreateJobOfferDto createJobOfferDto)
@@ -38,12 +47,23 @@ namespace JobSearchApp.BusinessLogic.Services
 
         public async Task<JobOfferDto> UpdateJobOfferAsync(int jobOfferId, UpdateJobOfferDto updateJobOfferDto)
         {
+            JobOffer jobOffer = await _jobOfferRepository.GetJobOfferByIdAsync(jobOfferId);
             if (jobOfferId != updateJobOfferDto.JobOfferId)
             {
                 return null;
             }
 
-            var jobOffer = _mapper.Map<JobOffer>(updateJobOfferDto);
+            jobOffer.Title = updateJobOfferDto.Title;
+            jobOffer.Description = updateJobOfferDto.Description;
+            jobOffer.Location = updateJobOfferDto.Location;
+            jobOffer.JobType = updateJobOfferDto.JobType;
+            jobOffer.ExperienceLevel = updateJobOfferDto.ExperienceLevel;
+            jobOffer.ExpiredDate = updateJobOfferDto.ExpiredDate;
+            jobOffer.IsActive = updateJobOfferDto.IsActive;
+            jobOffer.EstimatedDurationDays = updateJobOfferDto.EstimatedDurationDays;
+            jobOffer.MinSalary = updateJobOfferDto.MinSalary;
+            jobOffer.MaxSalary = updateJobOfferDto.MaxSalary;
+
             var updatedJobOffer = await _jobOfferRepository.UpdateJobOfferAsync(jobOffer);
             return _mapper.Map<JobOfferDto>(updatedJobOffer);
         }

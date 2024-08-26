@@ -1,0 +1,108 @@
+﻿@using JobSearchApp.BusinessLogic.DTOs
+@model UserDto
+
+<link rel="stylesheet" href="~/css/cardsJobOffers.css" type="text/css" />
+
+@if (ViewBag.Users != "Checked")
+{
+    <a asp-controller="Home" asp-action="HomeLoggedPage" style="margin-left: 1rem; display: inline-flex; align-items: center;">
+        <svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" fill="currentColor" class="bi bi-arrow-left" viewBox="0 0 16 16">
+            <path style="color: #1F4D78;" fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8" />
+        </svg>
+    </a>
+
+    <h1 style="margin-left: 23rem;">Buscando a @ViewBag.NameOffer</h1>
+
+    <div class="job-card container mt-4">
+        <h3>@Model.Headline</h3>
+        <br />
+        <div class="tags mb-2">
+            <span class="tag">@Model.Location</span>
+            <span class="tag">@Model.MobileNumber</span>
+            <span class="tag">
+                Intereses:
+                @if (Model.Interests != null && Model.Interests.Any())
+                {
+                    @foreach (var interest in Model.Interests)
+                    {
+                        @if (!string.IsNullOrEmpty(interest.InterestText))
+                        {
+                            <span>@interest.InterestText</span>
+                            @(interest != Model.Interests.Last() ? ", " : "")
+                        }
+                    }
+                }
+            </span>
+            <span class="tag">
+                Experiencia en:
+                @if (Model.WorkExperiences != null && Model.WorkExperiences.Any())
+                {
+                    @foreach (var experience in Model.WorkExperiences)
+                    {
+                        @if (!string.IsNullOrEmpty(experience.JobTitle))
+                        {
+                            <span>@experience.JobTitle</span>
+                            @(experience != Model.WorkExperiences.Last() ? ", " : "")
+                        }
+                    }
+                }
+            </span>
+            <span class="tag">
+                Preferencias:
+                @if (Model.UserPreferences != null && Model.UserPreferences.Any())
+                {
+                    @foreach (var preference in Model.UserPreferences)
+                    {
+                        @if (!string.IsNullOrEmpty(preference.Value))
+                        {
+                            <span>@preference.Value</span>
+                            @(preference != Model.UserPreferences.Last() ? ", " : "")
+                        }
+                    }
+                }
+            </span>
+        </div>
+        <br />
+        <h4>Acerca de</h4>
+        <div class="description-placeholder mb-5">
+            <p>@Model.Summary</p>
+        </div>
+        <div class="action-buttons">
+            <div class="action-buttons-container">
+                <form asp-action="DislikeCandidate" method="post">
+                    <input type="hidden" name="userId" value="@Model.UserId" />
+                    <input type="hidden" name="nextIndex" value="@ViewBag.NextIndex" />
+                    <button type="submit" class="action-button reject">✖️</button>
+                </form>
+                <form asp-action="SaveJobOffer" method="post">
+                    <input type="hidden" name="jobOfferId" value="@Model.UserId" />
+                    <button type="submit" class="action-button save">🔖</button>
+                </form>
+                <form asp-action="LikeCandidate" method="post">
+                    <input type="hidden" name="userId" value="@Model.UserId" />
+                    <input type="hidden" name="nextIndex" value="@ViewBag.NextIndex" />
+                    <button type="submit" class="action-button accept">✔️</button>
+                </form>
+            </div>
+        </div>
+    </div>
+}
+else
+{
+    <a asp-controller="JobOffers" asp-action="AdministrationListJobOffersPage" style="margin-left: 1rem; display: inline-flex; align-items: center;">
+        <svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" fill="currentColor" class="bi bi-arrow-left" viewBox="0 0 16 16">
+            <path style="color: #1F4D78;" fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8" />
+        </svg>
+    </a>
+
+    <div style="background-color: #f5f5f5; border: 1px solid #dee2e6; border-radius: 5px; padding: 20px; margin-top: 20px;" class="no-candidates-message container mt-4">
+        <div class="message-content text-center">
+            <h1 style="color: #1F4D78; font-weight: bold;">No hay más candidatos disponibles</h1>
+            <p>Actualmente no hay más candidatos disponibles para la oferta: @ViewBag.NameOffer</p>
+            <p>Por favor, vuelve más tarde para ver nuevos candidatos.</p>
+            <br />
+            <br />
+            <a asp-controller="JobOffers" asp-action="ListCandidatesPostulatedJobOfferPage" asp-route-id="@ViewBag.JobOfferId" class="btn btn-primary">Revisar candidatos de la oferta</a>
+        </div>
+    </div>
+}

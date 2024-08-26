@@ -6,10 +6,10 @@ public class CompensationBenefitDto
 {
     public int BenefitId { get; set; }
     public int CompanyId { get; set; }
-    public string BenefitType { get; set; }
-    public string Description { get; set; }
+    public string? BenefitType { get; set; }
+    public string? Description { get; set; }
 
-    public string CompanyName { get; set; }
+    public string? CompanyName { get; set; }
 
     public CompensationBenefitDto(CompensationBenefit compensationBenefit)
     {
@@ -19,20 +19,18 @@ public class CompensationBenefitDto
         Description = compensationBenefit.Description;
         CompanyName = compensationBenefit.Company?.Name;
     }
-    public CompensationBenefitDto(){}
-
 }
 
 public class CreateCompensationBenefitDto
 {
     public int CompanyId { get; set; }
-    public string BenefitType { get; set; }
-    public string Description { get; set; }
+    public string? BenefitType { get; set; }
+    public string? Description { get; set; }
 }
 
 public class UpdateCompensationBenefitDto
 {
     public int BenefitId { get; set; }
-    public string BenefitType { get; set; }
-    public string Description { get; set; }
+    public string? BenefitType { get; set; }
+    public string? Description { get; set; }
 }

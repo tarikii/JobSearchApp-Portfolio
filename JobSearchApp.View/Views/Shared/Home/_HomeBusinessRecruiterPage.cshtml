@@ -1,0 +1,63 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+<div class="container" >
+    <div class="row">
+        <div class="col p-3">
+            <div class="card p-3" style="background-color: #1F4D78; background-size: cover; background-position: center;">
+                <div class="card-body">
+                    <h3 style="color:white;" id="titleCard" class="card-title">Buscar Candidatos🔍💼</h3>
+                    <p style="color:white;" class="card-text">Encuentra el talento ideal para tu equipo con solo deslizar.</p>
+                    <a asp-area="" asp-controller="JobOffers" asp-action="AdministrationListJobOffersPage" asp-route-id="1" class="btn btn-primary">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right-circle-fill" viewBox="0 0 16 16">
+                            <path d="M8 0a8 8 0 1 1 0 16A8 8 0 0 1 8 0M4.5 7.5a.5.5 0 0 0 0 1h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5z" />
+                        </svg> Empezar a Buscar
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col p-3">
+            <div class="card p-3" style="background-color: #dfefff; background-size: cover; background-position: center;">
+                <div class="card-body">
+                    <h3 id="titleCard" class="card-title">Administrar Ofertas🗂️</h3>
+                    <p class="card-text">Gestiona y organiza todas tus ofertas de empleo en un solo lugar.</p>
+                    <a asp-area="" asp-controller="JobOffers" asp-action="AdministrationListJobOffersPage" asp-route-id="0" class="btn btn-primary">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right-circle-fill" viewBox="0 0 16 16">
+                            <path d="M8 0a8 8 0 1 1 0 16A8 8 0 0 1 8 0M4.5 7.5a.5.5 0 0 0 0 1h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5z" />
+                        </svg> Gestionar Ofertas
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="col p-3">
+            <div class="card p-3" style="background-color: #1F4D78; background-size: cover; background-position: center;">
+                <div class="card-body">
+                    <h3 style="color: white;" id="titleCard" class="card-title">Perfil Profesional🧑</h3>
+                    <p style="color: white;" class="card-text">Visualiza y edita tu perfil para atraer a los mejores candidatos.</p>
+                    <a asp-area="" asp-controller="Profile" asp-action="ProfileOwnerUserPage" class="btn btn-primary">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right-circle-fill" viewBox="0 0 16 16">
+                            <path d="M8 0a8 8 0 1 1 0 16A8 8 0 0 1 8 0M4.5 7.5a.5.5 0 0 0 0 1h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5z" />
+                        </svg> Ver mi Perfil
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="col p-3">
+            <div class="card p-3" style="background-color: #dfefff; background-size: cover; background-position: center;">
+                <div class="card-body">
+                    <h3 id="titleCard" class="card-title">Mis Matches🤝</h3>
+                    <p class="card-text">Conecta con los candidatos que coinciden con tus ofertas.</p>
+                    <a asp-area="" asp-controller="Match" asp-action="ListMatchesBusinessRecruiterPage" class="btn btn-primary">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right-circle-fill" viewBox="0 0 16 16">
+                            <path d="M8 0a8 8 0 1 1 0 16A8 8 0 0 1 8 0M4.5 7.5a.5.5 0 0 0 0 1h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5z" />
+                        </svg> Mis Matches
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

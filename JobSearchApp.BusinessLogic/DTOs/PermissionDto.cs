@@ -4,7 +4,7 @@ namespace JobSearchApp.BusinessLogic.DTOs;
 
 public class PermissionDto
 {
-    public string Name { get; set; }
+    public string? Name { get; set; }
 
     public PermissionDto(Permission permission)
     {
@@ -16,14 +16,10 @@ public class PermissionDto
 
 public class CreatePermissionDto
 {
-    public string Name { get; set; }
-    public CreatePermissionDto() { }
-
+    public string? Name { get; set; }
 }
 
 public class UpdatePermissionDto
 {
-    public string Name { get; set; }
-    public UpdatePermissionDto() { }
-
+    public string? Name { get; set; }
 }

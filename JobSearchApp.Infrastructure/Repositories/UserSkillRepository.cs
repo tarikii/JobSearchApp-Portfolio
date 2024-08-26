@@ -18,12 +18,16 @@ namespace JobSearchApp.Infrastructure.Repositories
 
         public async Task<IEnumerable<UserSkill>> GetAllUserSkillsAsync()
         {
-            return await _context.UserSkills.ToListAsync();
+            return await _context.UserSkills
+                .Include(us => us.Skill)
+                .ToListAsync();
         }
 
         public async Task<UserSkill> GetUserSkillByIdAsync(int userSkillId)
         {
-            return await _context.UserSkills.FindAsync(userSkillId);
+            return await _context.UserSkills
+                .Include(us => us.Skill)
+                .FirstOrDefaultAsync(us => us.UserSkillId == userSkillId);
         }
 
         public async Task<UserSkill> CreateUserSkillAsync(UserSkill userSkill)

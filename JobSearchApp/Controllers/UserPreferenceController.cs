@@ -44,7 +44,7 @@ namespace JobSearchApp.Web.Controllers
         [HttpPost]
         public async Task<ActionResult<UserPreferenceDto>> CreateUserPreference(CreateUserPreferenceDto createPreferenceDto)
         {
-            var createdPreference = await _userPreferenceService.CreateUserPreferenceAsync(createPreferenceDto);
+            var createdPreference = await _userPreferenceService.CreateUserPreferenceAsync(createPreferenceDto, 1);
 
             return CreatedAtAction(nameof(GetUserPreferenceById), new { id = createdPreference.PreferenceId }, createdPreference);
         }

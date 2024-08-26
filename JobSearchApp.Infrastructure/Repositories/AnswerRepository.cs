@@ -16,7 +16,9 @@ namespace JobSearchApp.Infrastructure.Repositories
 
         public async Task<IEnumerable<Answer>> GetAllAnswersAsync()
         {
-            return await _context.Answers.ToListAsync();
+            return await _context.Answers
+                .Include(u => u.User)
+                .ToListAsync();
         }
 
         public async Task<Answer> GetAnswerByIdAsync(int answerId)

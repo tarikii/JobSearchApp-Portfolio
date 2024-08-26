@@ -75,7 +75,7 @@ namespace JobSearchApp.Infrastructure.Data
 
                 // Seed Answers
                 var answerController = scope.ServiceProvider.GetRequiredService<AnswerController>();
-                await answerController.CreateAnswer(new CreateAnswerDto { UserId = createdUser3.UserId, QuestionId = createdQuestion.QuestionId, AnswerText = "Because it aligns with my career goals." });
+                // await answerController.CreateAnswer(new CreateAnswerDto { UserId = createdUser3.UserId, QuestionId = createdQuestion.QuestionId, AnswerText = "Because it aligns with my career goals." });
 
                 // Seed Interests
                 var interestController = scope.ServiceProvider.GetRequiredService<InterestController>();

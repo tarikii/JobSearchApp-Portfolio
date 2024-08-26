@@ -1,0 +1,103 @@
+﻿@using JobSearchApp.BusinessLogic.DTOs
+
+@model IEnumerable<QuestionAnswerDto>
+
+@{
+    int? selectedQuestionId = ViewBag.SelectedQuestionId as int?;
+}
+
+<h2>Preguntas y Respuestas</h2>
+<div class="container mt-5">
+    <label for="questionSelect" class="form-label fw-bold">Selecciona una pregunta:</label>
+    <select id="questionSelect" class="form-select mb-3">
+        <option value="" selected disabled>Seleccione una pregunta</option>
+        @foreach (var item in Model)
+        {
+            if (item.QuestionId == selectedQuestionId)
+            {
+                <option value="@item.QuestionId" data-answer="@item.Answer?.AnswerText" data-answer-id="@item.Answer?.AnswerId" selected="selected">
+                    @item.QuestionText
+                </option>
+            }
+            else
+            {
+                <option value="@item.QuestionId" data-answer="@item.Answer?.AnswerText" data-answer-id="@item.Answer?.AnswerId">
+                    @item.QuestionText
+                </option>
+            }
+        }
+    </select>
+
+    <form id="answerForm" action="" method="post">
+        <div id="answerContainer" class="card">
+            <div class="card-header bg-primary text-white">
+                Respuesta
+            </div>
+            <div class="card-body">
+                <input type="hidden" id="questionId" name="QuestionId" value="@selectedQuestionId" />
+                <input type="hidden" id="answerId" name="AnswerId" value="@Model.FirstOrDefault(q => q.QuestionId == selectedQuestionId)?.Answer?.AnswerId" />
+                <input type="hidden" name="UserId" value="UserId" />
+                <textarea id="answerText" name="AnswerText" class="form-control" rows="4" readonly>
+                    @(Model.FirstOrDefault(q => q.QuestionId == selectedQuestionId)?.Answer?.AnswerText)
+                </textarea>
+            </div>
+            <div class="card-button text-end">
+                <button type="button" id="actionButton" class="btn btn-primary me-3">
+                    @(string.IsNullOrEmpty(Model.FirstOrDefault(q => q.QuestionId == selectedQuestionId)?.Answer?.AnswerText) ? "Responder" : "Editar respuesta")
+                </button>
+                <br />
+                <br />
+            </div>
+        </div>
+    </form>
+</div>
+
+@section Scripts {
+    <script>
+        const defaultAnswer = "No has respondido todavía a esta pregunta.";
+
+        document.getElementById('questionSelect').addEventListener('change', function () {
+            var selectedOption = this.options[this.selectedIndex];
+            var answerText = selectedOption.getAttribute('data-answer') || defaultAnswer;
+            var answerId = selectedOption.getAttribute('data-answer-id');
+
+            document.getElementById('answerText').value = answerText;
+            document.getElementById('questionId').value = selectedOption.value;
+            document.getElementById('answerId').value = answerId || ""; // Update answerId input
+
+            document.getElementById('answerText').readOnly = true;
+            document.getElementById('actionButton').textContent = answerText === defaultAnswer ? "Responder" : "Editar respuesta";
+        });
+
+        document.getElementById('actionButton').addEventListener('click', function () {
+            const answerTextArea = document.getElementById('answerText');
+            const isEditing = !answerTextArea.readOnly;
+            const answerForm = document.getElementById('answerForm');
+            const answerText = answerTextArea.value.trim();
+            const answerId = document.getElementById('answerId').value;
+
+            if (isEditing) {
+                if (answerText !== "") {
+                    answerForm.action = '@Url.Content("~/QuestionAndAnswer/UpdateAnswer")';
+                } else {
+                    answerForm.action = '@Url.Content("~/QuestionAndAnswer/CreateNewAnswer")';
+                }
+                answerForm.submit();
+            } else {
+                answerTextArea.readOnly = false;
+                this.textContent = "Guardar respuesta";
+            }
+        });
+
+        // Ensure correct answer is displayed if question was pre-selected
+        if (selectedQuestionId) {
+            var selectedOption = document.querySelector(`#questionSelect option[value='${selectedQuestionId}']`);
+            if (selectedOption) {
+                var answerText = selectedOption.getAttribute('data-answer') || defaultAnswer;
+                document.getElementById('answerText').value = answerText;
+                var answerId = selectedOption.getAttribute('data-answer-id');
+                document.getElementById('answerId').value = answerId || ""; // Ensure answerId is set
+            }
+        }
+    </script>
+}

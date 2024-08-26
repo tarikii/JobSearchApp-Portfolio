@@ -6,7 +6,7 @@ public interface IWorkExperienceService
 {
     Task<IEnumerable<WorkExperienceDto>> GetAllWorkExperiencesAsync();
     Task<WorkExperienceDto> GetWorkExperienceByIdAsync(int workExperienceId);
-    Task<WorkExperienceDto> CreateWorkExperienceAsync(CreateWorkExperienceDto createWorkExperienceDto);
+    Task<WorkExperienceDto> CreateWorkExperienceAsync(CreateWorkExperienceDto createWorkExperienceDto, int userId);
 
     Task<WorkExperienceDto> UpdateWorkExperienceAsync(int workExperienceId,
         UpdateWorkExperienceDto updateWorkExperienceDto);

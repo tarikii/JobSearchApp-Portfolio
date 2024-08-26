@@ -23,9 +23,9 @@ namespace JobSearchApp.BusinessLogic.Services
             return _mapper.Map<IEnumerable<FeedbackDto>>(feedbacks);
         }
 
-        public async Task<FeedbackDto> GetFeedbackByIdAsync(int feedbackId)
+        public async Task<FeedbackDto> GetFeedbackByIdAsync(int applicationId)
         {
-            var feedback = await _feedbackRepository.GetFeedbackByIdAsync(feedbackId);
+            var feedback = await _feedbackRepository.GetFeedbackByIdAsync(applicationId);
             return feedback == null ? null : _mapper.Map<FeedbackDto>(feedback);
         }
 

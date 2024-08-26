@@ -1,4 +1,6 @@
+using JobSearchApp.BusinessLogic.Interfaces;
 using JobSearchApp.Domain.Models;
+using JobSearchApp.Infrastructure.Interfaces;
 
 namespace JobSearchApp.BusinessLogic.DTOs;
 
@@ -9,9 +11,11 @@ public class MatchDto
     public int UserId { get; set; }
     public DateTimeOffset MatchDate { get; set; }
     public bool IsAccepted { get; set; }
-
-    public string JobTitle { get; set; }
-    public string UserName { get; set; }
+    public int? ApplicationId { get; set; }
+    public string? JobTitle { get; set; }
+    public string? UserName { get; set; }
+    public JobOfferDto JobOffer { get; set; }
+    public UserDto User { get; set; }
 
     public MatchDto(Match match)
     {
@@ -22,17 +26,18 @@ public class MatchDto
         IsAccepted = match.IsAccepted;
         JobTitle = match.JobOffer?.Title;
         UserName = match.User?.UserName;
-    }
-    public MatchDto(){}
 
+    }
+    
+    public MatchDto() { }
 }
 
 public class CreateMatchDto
 {
     public int JobOfferId { get; set; }
     public int UserId { get; set; }
-    public DateTimeOffset MatchDate { get; set; } = DateTimeOffset.Now;
-    public bool IsAccepted { get; set; } = false;
+    public DateTimeOffset? MatchDate { get; set; } = DateTimeOffset.Now;
+    public bool? IsAccepted { get; set; } = false;
 }
 
 public class UpdateMatchDto

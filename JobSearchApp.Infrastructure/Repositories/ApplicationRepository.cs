@@ -16,12 +16,21 @@ namespace JobSearchApp.Infrastructure.Repositories
 
         public async Task<IEnumerable<Application>> GetAllApplicationsAsync()
         {
-            return await _context.Applications.ToListAsync();
+            return await _context.Applications
+                    .Include(u => u.User)
+                    .ThenInclude(u => u.Role)
+                    .Include(j => j.JobOffer)
+                    .ThenInclude(j => j.Company)
+                    .ToListAsync();
         }
 
         public async Task<Application> GetApplicationByIdAsync(int applicationId)
         {
-            return await _context.Applications.FindAsync(applicationId);
+            return await _context.Applications
+                         .Include(a => a.User) 
+                         .Include(a => a.JobOffer)  
+                         .FirstOrDefaultAsync(a => a.ApplicationId == applicationId);
+
         }
 
         public async Task<Application> CreateApplicationAsync(Application application)

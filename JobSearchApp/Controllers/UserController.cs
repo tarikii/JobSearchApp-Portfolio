@@ -3,6 +3,7 @@ using JobSearchApp.BusinessLogic.DTOs;
 using JobSearchApp.BusinessLogic.Interfaces;
 using JobSearchApp.Domain.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace JobSearchApp.Web.Controllers;
 
@@ -44,7 +45,7 @@ public class UserController : ControllerBase
     public async Task<ActionResult<UserDto>> CreateUser(CreateUserDto createUserDto)
     {
         var user = _mapper.Map<User>(createUserDto);
-        var createdUser = await _userService.CreateUserAsync(createUserDto);
+        var createdUser = await _userService.CreateUserAsync(createUserDto,1,1);
         var userDto = _mapper.Map<UserDto>(createdUser);
 
         return CreatedAtAction(nameof(GetUserById), new { id = userDto.UserId }, userDto);
@@ -67,7 +68,7 @@ public class UserController : ControllerBase
 
     public async Task<ActionResult> AuthenticateUser(Authenticate request)
     {
-        var user = await _userService.AuthenticateUserAsync(request.Username, request.Password);
+        var user = await _userService.AuthenticateUserAsync(request.Username , request.Password);
 
         if (user == null)
             return Unauthorized();

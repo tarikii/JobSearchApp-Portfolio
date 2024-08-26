@@ -1,0 +1,58 @@
+﻿@using JobSearchApp.BusinessLogic.DTOs
+
+@model JobOfferDto
+
+<link rel="stylesheet" href="~/css/jobOffer.css" type="text/css" />
+
+<a asp-controller="JobOffers" asp-action="AdministrationListJobOffersPage" style="margin-left: 3rem;">
+    <svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" fill="currentColor" class="bi bi-arrow-left" viewBox="0 0 16 16">
+        <path style="color: #1F4D78;" fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8" />
+    </svg>
+</a>
+
+<h2 style="margin-left: 8.6rem; color: #1F4D78;">Modificar Oferta</h2>
+<form action="~/JobOffers/UpdateJobOffer" method="post" class="job-offer-form">
+    <div class="form-group">
+        <label for="Title">Título Oferta</label>
+        <input type="text" id="Title" name="Title" class="form-control" value="@Model.Title" required />
+    </div>
+    <input type="number" value="@ViewBag.CompanyId" id="CompanyId" name="CompanyId" class="form-control" hidden />
+    <input type="number" value="@ViewBag.JobbOfferId" id="JobOfferId" name="JobOfferId" class="form-control" hidden />
+    <div class="form-row">
+        <div class="form-group col">
+            <label for="Location">Ubicación</label>
+            <input type="text" id="Location" name="Location" class="form-control" value="@Model.Location" required />
+        </div>
+        <div class="form-group col">
+            <label for="JobType">Tipo de Trabajo</label>
+            <input type="text" id="JobType" name="JobType" class="form-control" value="@Model.JobType" required />
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group col">
+            <label for="ExperienceLevel">Nivel de Experiencia</label>
+            <input type="text" id="ExperienceLevel" name="ExperienceLevel" class="form-control" value="@Model.ExperienceLevel" required />
+        </div>
+        <div class="form-group col">
+            <label for="ExpiredDate">Fecha de Expiración</label>
+            <input type="date" id="ExpiredDate" name="ExpiredDate" class="form-control" value="@Model.ExpiredDate?.ToString("yyyy-MM-dd")" required />
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group col">
+            <label for="MinSalary">Salario Mínimo</label>
+            <input type="number" id="MinSalary" name="MinSalary" class="form-control" value="@((int)Model.MinSalary)" step="0.01" required />
+        </div>
+        <div class="form-group col">
+            <label for="MaxSalary">Salario Máximo</label>
+            <input type="number" id="MaxSalary" name="MaxSalary" class="form-control"  value="@((int)Model.MaxSalary)"  step="0.01" required/>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="Description">Descripción</label>
+        <textarea style="height: 120px;" type="text" id="Description" name="Description" class="form-control desription-textarea" step="0.01" required>@Model.Description</textarea>
+    </div>
+    <div class="form-group button-container text-end">
+        <button type="submit" class="btn btn-primary">Guardar Oferta</button>
+    </div>
+</form>
