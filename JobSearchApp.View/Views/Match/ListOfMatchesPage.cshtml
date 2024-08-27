@@ -34,7 +34,7 @@
                                 4px; padding: 10px;">@m.JobOffer.Description</p>
                             <div class="d-flex justify-content-end">
                                 <a asp-controller="Feedback" asp-action="ViewFeedBackCandidatePage"
-                                   asp-route-id="@m.ApplicationId" 
+                                   asp-route-id="@m.ApplicationId" asp-route-page="match" 
                                    asp-route-returnUrl="@Url.Action("ListOfMatchesPage", "Match")" 
                                    class="btn btn-primary">Ver Feedback</a>
                             </div>

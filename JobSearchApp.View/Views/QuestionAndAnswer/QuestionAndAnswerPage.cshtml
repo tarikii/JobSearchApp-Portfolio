@@ -34,17 +34,12 @@
                 Respuesta
             </div>
             <div class="card-body">
-                <input type="hidden" id="questionId" name="QuestionId" value="@selectedQuestionId" />
-                <input type="hidden" id="answerId" name="AnswerId" value="@Model.FirstOrDefault(q => q.QuestionId == selectedQuestionId)?.Answer?.AnswerId" />
-                <input type="hidden" name="UserId" value="UserId" />
-                <textarea id="answerText" name="AnswerText" class="form-control" rows="4" readonly>
-                    @(Model.FirstOrDefault(q => q.QuestionId == selectedQuestionId)?.Answer?.AnswerText)
-                </textarea>
+                <input type="hidden" id="questionId" name="QuestionId" />
+                <input type="hidden" id="answerId" name="AnswerId" />
+                <textarea id="answerText" name="AnswerText" class="form-control" rows="4" readonly></textarea>
             </div>
             <div class="card-button text-end">
-                <button type="button" id="actionButton" class="btn btn-primary me-3">
-                    @(string.IsNullOrEmpty(Model.FirstOrDefault(q => q.QuestionId == selectedQuestionId)?.Answer?.AnswerText) ? "Responder" : "Editar respuesta")
-                </button>
+                <button type="button" id="actionButton" class="btn btn-primary me-3">Responder</button>
                 <br />
                 <br />
             </div>
@@ -56,17 +51,20 @@
     <script>
         const defaultAnswer = "No has respondido todavía a esta pregunta.";
 
-        document.getElementById('questionSelect').addEventListener('change', function () {
-            var selectedOption = this.options[this.selectedIndex];
-            var answerText = selectedOption.getAttribute('data-answer') || defaultAnswer;
-            var answerId = selectedOption.getAttribute('data-answer-id');
+        function updateForm(selectedOption) {
+            const answerText = selectedOption.getAttribute('data-answer') || defaultAnswer;
+            const answerId = selectedOption.getAttribute('data-answer-id');
 
             document.getElementById('answerText').value = answerText;
             document.getElementById('questionId').value = selectedOption.value;
             document.getElementById('answerId').value = answerId || ""; // Update answerId input
+        }
 
+        document.getElementById('questionSelect').addEventListener('change', function () {
+            const selectedOption = this.options[this.selectedIndex];
+            updateForm(selectedOption);
             document.getElementById('answerText').readOnly = true;
-            document.getElementById('actionButton').textContent = answerText === defaultAnswer ? "Responder" : "Editar respuesta";
+            document.getElementById('actionButton').textContent = selectedOption.getAttribute('data-answer-id') ? "Editar respuesta" : "Responder";
         });
 
         document.getElementById('actionButton').addEventListener('click', function () {
@@ -90,14 +88,14 @@
         });
 
         // Ensure correct answer is displayed if question was pre-selected
-        if (selectedQuestionId) {
-            var selectedOption = document.querySelector(`#questionSelect option[value='${selectedQuestionId}']`);
-            if (selectedOption) {
-                var answerText = selectedOption.getAttribute('data-answer') || defaultAnswer;
-                document.getElementById('answerText').value = answerText;
-                var answerId = selectedOption.getAttribute('data-answer-id');
-                document.getElementById('answerId').value = answerId || ""; // Ensure answerId is set
+        document.addEventListener('DOMContentLoaded', function () {
+            const selectedQuestionId = '@selectedQuestionId';
+            if (selectedQuestionId) {
+                const selectedOption = document.querySelector(`#questionSelect option[value='${selectedQuestionId}']`);
+                if (selectedOption) {
+                    updateForm(selectedOption);
+                }
             }
-        }
+        });
     </script>
 }

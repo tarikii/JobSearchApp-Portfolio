@@ -52,18 +52,21 @@ namespace JobSearchApp.View.Controllers
         public async Task<IActionResult> CreateNewAnswer(CreateAnswerDto dto)
         {
             int userId = GetUserId();
+            dto.UserId = userId; // Ensure user ID is included in the DTO
             await _answerService.CreateAnswerAsync(dto, userId);
 
-            // After saving the data, redirect back to the QuestionAndAnswerPage
+            // Redirect back to the QuestionAndAnswerPage with the selected question ID
             return RedirectToAction("QuestionAndAnswerPage", new { selectedQuestionId = dto.QuestionId });
         }
 
         [HttpPost]
         public async Task<IActionResult> UpdateAnswer(UpdateAnswerDto dto)
         {
-            int userId = GetUserId();
             await _answerService.UpdateAnswerAsync(dto.AnswerId, dto);
+
+            // Redirect back to the QuestionAndAnswerPage with the selected question ID
             return RedirectToAction("QuestionAndAnswerPage", new { selectedQuestionId = dto.QuestionId });
         }
+
     }
 }

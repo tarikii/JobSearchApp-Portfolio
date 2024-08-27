@@ -82,6 +82,5 @@ namespace JobSearchApp.View.Controllers
             return View(userMatches);
         }
 
-
     }
 }
