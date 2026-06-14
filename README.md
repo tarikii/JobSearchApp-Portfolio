@@ -120,12 +120,6 @@ Includes feedback creation and question-answer interaction.
 
 ---
 
-## Screenshots
-
-Coming soon.
-
----
-
 ## Authors
 
 Tarik Aabouch  
